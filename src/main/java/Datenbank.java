@@ -1,2 +1,2 @@
-public abstract class Datenbank {
+public class Datenbank {
 }

@@ -1,0 +1,11 @@
+public class Einstellungen {
+
+
+
+    Einstellungen(){
+
+    }
+
+
+
+}
