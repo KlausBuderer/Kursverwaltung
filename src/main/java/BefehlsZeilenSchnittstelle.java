@@ -73,7 +73,7 @@ public final class BefehlsZeilenSchnittstelle {
                 Benutzerverwaltung benutzerverwaltung = new Benutzerverwaltung();
                 break;
             case 6:
-                System.out.println("Einstellungen");
+                Einstellungen einstellungen = new Einstellungen();
             default:
                 System.out.println("Bitte geben sie einen gültigen Wert ein!");
                 try {
@@ -143,6 +143,8 @@ public final class BefehlsZeilenSchnittstelle {
 
 
     }
+
+
     static void verzoegerung(int dauer){
         try {
             Thread.sleep(dauer);
@@ -151,4 +153,17 @@ public final class BefehlsZeilenSchnittstelle {
         }
     }
 
+
+    // Gibt Daten in einer Tabelle aus
+    static void datenAusgeben(String[] kopfzeile,String[] angaben){
+
+        BefehlsZeilenSchnittstelle.bildReinigen();
+        Tabelle tabelle = new Tabelle();
+        tabelle.setVertikaleLinie(true);
+        tabelle.setHeaders(kopfzeile);
+        tabelle.zeileHinzufuegen(angaben);
+        tabelle.ausgabe();
+        System.out.println();
+
+    }
     }
