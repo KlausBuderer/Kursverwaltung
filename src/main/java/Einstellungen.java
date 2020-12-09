@@ -32,13 +32,17 @@ import java.util.Scanner;
 
             Scanner scan = new Scanner(System.in);
 
-            //Konstruktor
+            //Konstruktor mit der Anzeige des Untermenüs
             Einstellungen() {
 
                 unterMenueAnzeigen();
 
             }
 
+            //Konsruktor für das einmalige Aufstarten der Software
+            Einstellungen(String start){
+                verbindunsDatenBeiStartSetzen();
+            }
 
             void unterMenueAnzeigen() {
 
@@ -167,6 +171,13 @@ import java.util.Scanner;
             }
 
 
+            void verbindunsDatenBeiStartSetzen(){
+
+                url = urlDefault;
+                benutzer = benutzerDefault;
+                passwort = passwortDefault;
+
+            }
 
         }
 
