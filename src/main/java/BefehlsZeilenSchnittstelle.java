@@ -166,4 +166,21 @@ public final class BefehlsZeilenSchnittstelle {
         System.out.println();
 
     }
+
+    static int korrekteEingabebestätigen() {
+
+        Scanner scan = new Scanner(System.in);
+
+        int auswahl = 0;
+
+        System.out.println("Sind sie sicher ob sie alles richtig eingegeben haben?");
+        System.out.println("1. Ja, Daten speichern");
+        System.out.println("2. Nein, neu beginnen");
+        System.out.println("3. Abbrechen");
+
+        auswahl = scan.nextInt();
+
+        return (auswahl);
+
+    }
     }

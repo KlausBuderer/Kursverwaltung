@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Datenbank {
 
@@ -48,5 +45,77 @@ public class Datenbank {
         return verbindungErfolgreich;
     }
 
+
+
+    public boolean datenAnlegen(Administratives objekt, String kontext){
+
+        boolean anlegenErfolgreich;
+
+        Connection connection = null;
+        Statement statement = null;
+
+        try{
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(Einstellungen.url,Einstellungen.benutzer,Einstellungen.passwort);
+            statement = connection.createStatement();
+            if (kontext.equals("Organisation")) {
+                statement.execute("Insert INTO 'itwisse_kursverwaltung'.'Organisation' ('Stellenbezeichnung','Kostenstelle_ID') VALUES ('" + objekt.stellenbezeichnung + "," + objekt.kostenstelleId + "')");
+                }else if(kontext.equals("Kostenstelle")){
+                        statement.execute("INSERT INTO `itwisse_kursverwaltung`.`Kostenstelle` (`Kostenstelle`, `Bezeichnung KST`, `KostenstelleVerantPerson`) VALUES ('" + objekt.kostenstelle + "', '" + objekt.bezeichnungKst + "', '" + objekt.kostenstelleVerantPerson + "')");
+                    }else {
+                            System.out.println("Falscher Übergabeparameter!");
+            }
+            anlegenErfolgreich = true;
+
+        }catch(SQLException | ClassNotFoundException sqlException){
+
+            sqlException.printStackTrace();
+            anlegenErfolgreich = false;
+        }
+
+        if(anlegenErfolgreich == true){
+
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+
+
+        return anlegenErfolgreich;
+    }
+
+    void datenAuslesen(){
+        Connection connection = null;
+        Statement statement = null;
+
+        try{
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(Einstellungen.url,Einstellungen.benutzer,Einstellungen.passwort);
+            statement = connection.createStatement();
+
+                ResultSet dbInhalt = statement.executeQuery("SELECT Kostenstelle FROM `itwisse_kursverwaltung`.`Kostenstelle`");
+
+                System.out.println(dbInhalt);
+
+        }catch(SQLException | ClassNotFoundException sqlException){
+
+            sqlException.printStackTrace();
+
+        }
+
+
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+    }
 
 }
