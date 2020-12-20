@@ -1,4 +1,7 @@
 import java.io.File;
+import java.lang.reflect.Array;
+import java.util.HashMap;
+import java.util.Map;
 
 public class KursverwaltungMain {
 
@@ -19,13 +22,28 @@ public class KursverwaltungMain {
             if (!verbindungAufgebaut) {
                 einstellungen.nachVerbindungFragen();
             }
-            ;
-        }while(!verbindungAufgebaut);
 
+
+
+            HashMap<Integer,Integer> kostenstelleMap =datenbank.datenAuslesenfuerAbfrageInt("Kostenstelle", "Kostenstelle");
+
+            int i = 1;
+
+            Integer[] kostenstelleArray = new Integer[kostenstelleMap.size() + 1];
+            for (Map.Entry<Integer,Integer> map: kostenstelleMap.entrySet()){
+
+                kostenstelleArray[i] = map.getKey();
+
+                System.out.println(i + ". " + map.getKey());
+                i++;
+            }
+
+            System.out.println(kostenstelleMap.get(kostenstelleArray[3]));
+
+        }while(!verbindungAufgebaut);
 
         while(true) {
             BefehlsZeilenSchnittstelle.hauptmenueAusgeben();
-
         }
 
 

@@ -13,7 +13,12 @@ public final class BefehlsZeilenSchnittstelle {
 
     }
 
-    // Anzeige des Hauptmenüs für Benutzer mit Adminrecht
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+     Anzeige des Hauptmenüs für Benutzer mit Adminrecht
+
+     */
+
     static void hauptmenueAusgeben() {
 
         int auswahlInt = 0;
@@ -85,8 +90,15 @@ public final class BefehlsZeilenSchnittstelle {
 
     }
 
-    // Anzeige der Untermenüs => Untermenü wird als String Array als Parameter übergeben,
-    // das Menü wird ausgegeben und die Auswahl wird als Integer zurückgegeben
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+      Anzeige der Untermenüs => Untermenü wird als String Array als Parameter übergeben,
+      das Menü wird ausgegeben und die Auswahl wird als Integer zurückgegeben
+
+    Parameter: Array von Strings mit dem Auswahltext der angezeigt werden soll
+    Rückgabe: Die Auswahl des Bedieners als Integer Wert
+   */
+
     static int unterMenue(String[] unterMenue) {
 
         int auswahlInt = 0;
@@ -127,7 +139,10 @@ public final class BefehlsZeilenSchnittstelle {
 
         return auswahlInt;
     }
-
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Die Methode bildReinigen reinigt das die Konsole
+     */
     static void bildReinigen() {
 
         // Reinigt die Konsole
@@ -141,10 +156,16 @@ public final class BefehlsZeilenSchnittstelle {
         } catch (IOException | InterruptedException ex) {
         }
 
-
     }
 
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Die Methode verzoegerung generiert eine Verzögerung von einer vordefinierten Dauer, um zum Beispiel eine Meldung aus-
+    zugeben.
 
+    Parameter: Verzögerungsdauer in ms
+
+     */
     static void verzoegerung(int dauer){
         try {
             Thread.sleep(dauer);
@@ -153,8 +174,10 @@ public final class BefehlsZeilenSchnittstelle {
         }
     }
 
-
-    // Gibt Daten in einer Tabelle aus
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Gibt Daten in einer Tabelle aus
+         */
     static void datenAusgeben(String[] kopfzeile,String[] angaben){
 
         BefehlsZeilenSchnittstelle.bildReinigen();
@@ -167,9 +190,16 @@ public final class BefehlsZeilenSchnittstelle {
 
     }
 
-    static int korrekteEingabebestätigen() {
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Die Methode korrekteEingabeBestätigen fragt den Benutzer ab ob die soeben Eingegebene Eingabe korrekt ist. Der Benutzer
+    hat die Möglichkeit die Eingabe nochmals zu wiederholen oder die Eingabe abzubrechen, falls die Eingabe korrekt ist,
+    kann die Eingabe gespeichert werden.
 
-        Scanner scan = new Scanner(System.in);
+
+     */
+
+    static int korrekteEingabebestaetigen() {
 
         int auswahl = 0;
 
@@ -178,9 +208,69 @@ public final class BefehlsZeilenSchnittstelle {
         System.out.println("2. Nein, neu beginnen");
         System.out.println("3. Abbrechen");
 
-        auswahl = scan.nextInt();
+        auswahl = eingabeMitWertpruefung(4);
 
         return (auswahl);
 
     }
-    }
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+    Die Methode eingabeMitWertpruefung prüft ob der eingegebene Wert des Users eine Ganzzahl ist und ob die Eingabe sich
+    im Wertebereich des Arrays befindet.
+
+    Parameter: Länge des gültigen Eingabebereiches -> Von 1-99 möglich
+    Rückgabe: Die gültige Eingabe als Integer Wert
+
+    */
+    static int eingabeMitWertpruefung(int arrayLaenge){
+
+        boolean gueltigeEingabe = false;
+
+        String eingabeString;
+        int eingabeInt = 0;
+
+        Scanner scan = new Scanner(System.in);
+
+        do {
+            //Liest Eingabe als String ein um zu überpfüfen ob die Eingabe gültig ist
+            eingabeString = scan.next();
+
+            // Überprüft ob die Eingabe eine Ganzzahl [1-99] ist
+            if (eingabeString.matches("^([1-9][0-9]?)$")) {
+                // Überprüft ob die Eingabe in der Range des Arrays ist
+                if ((Integer.parseInt(eingabeString) <= (arrayLaenge -1)) && Integer.parseInt(eingabeString) > 0) {
+
+                    eingabeInt = Integer.parseInt(eingabeString);
+                    gueltigeEingabe = true;
+                } else {
+                    // Gibt eine Fehlermeldung bei nicht korrekter Eingabe und lässt die Abfrage nochmals beginnen
+                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    System.out.println("Bitte geben sie einen gültigen Wert ein!");
+                    System.out.println();
+
+                    verzoegerung(1500);
+                    gueltigeEingabe = false;
+                }
+            } else {
+                // Gibt eine Fehlermeldung bei nicht korrekter Eingabe und lässt die Abfrage nochmals beginnen
+                BefehlsZeilenSchnittstelle.bildReinigen();
+                System.out.println("Bitte geben sie einen gültigen Wert ein!");
+                System.out.println();
+
+                verzoegerung(1500);
+                gueltigeEingabe = false;
+            }
+        }while (!gueltigeEingabe) ;
+
+            return eingabeInt;
+        }
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+}
+
+
+
+
+

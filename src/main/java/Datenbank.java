@@ -1,4 +1,8 @@
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Datenbank {
 
@@ -32,7 +36,7 @@ public class Datenbank {
             verbindungErfolgreich = false;
         }
 
-        if(verbindungErfolgreich == true){
+        if(verbindungErfolgreich){
 
             try {
                 connection.close();
@@ -60,9 +64,11 @@ public class Datenbank {
             connection = DriverManager.getConnection(Einstellungen.url,Einstellungen.benutzer,Einstellungen.passwort);
             statement = connection.createStatement();
             if (kontext.equals("Organisation")) {
-                statement.execute("Insert INTO 'itwisse_kursverwaltung'.'Organisation' ('Stellenbezeichnung','Kostenstelle_ID') VALUES ('" + objekt.stellenbezeichnung + "," + objekt.kostenstelleId + "')");
-                }else if(kontext.equals("Kostenstelle")){
-                        statement.execute("INSERT INTO `itwisse_kursverwaltung`.`Kostenstelle` (`Kostenstelle`, `Bezeichnung KST`, `KostenstelleVerantPerson`) VALUES ('" + objekt.kostenstelle + "', '" + objekt.bezeichnungKst + "', '" + objekt.kostenstelleVerantPerson + "')");
+                statement.execute("Insert INTO `itwisse_kursverwaltung`.`Organisation` (`Stellenbezeichnung`,`Kostenstelle_ID`) VALUES ('" + objekt.stellenbezeichnung + "', '" + objekt.kostenstelleId + "')");
+                }else if(kontext.equals("Kostenstelle")) {
+                statement.execute("INSERT INTO `itwisse_kursverwaltung`.`Kostenstelle` (`Kostenstelle`, `Bezeichnung KST`, `KostenstelleVerantPerson`) VALUES ('" + objekt.kostenstelle + "', '" + objekt.bezeichnungKst + "', '" + objekt.kostenstelleVerantPerson + "')");
+                    }else if(kontext.equals("Budget")){
+                statement.execute("INSERT INTO `itwisse_kursverwaltung`.`BudgetPeriode` (`Jahr`, `Betrag`, `Waehrung`, `Kostenstelle_ID`) VALUES ('" + objekt.budgetJahr + "', '" + objekt.budgetBetrag + "', '" + objekt.waehrungsArray[objekt.waehrung] +  "', '" + objekt.kostenstelleId + "')");
                     }else {
                             System.out.println("Falscher Übergabeparameter!");
             }
@@ -74,7 +80,7 @@ public class Datenbank {
             anlegenErfolgreich = false;
         }
 
-        if(anlegenErfolgreich == true){
+        if(anlegenErfolgreich){
 
             try {
                 connection.close();
@@ -88,7 +94,11 @@ public class Datenbank {
         return anlegenErfolgreich;
     }
 
-    void datenAuslesen(){
+    // Abfrage aus Datenbank für Integer Werte -> Gibt einen HashMap zurück Key = ID, Value = Inhalt
+    HashMap<Integer, Integer> datenAuslesenfuerAbfrageInt(String tabelle, String spalte){
+
+        HashMap<Integer,Integer> kostenstelleHash = new HashMap<>();
+
         Connection connection = null;
         Statement statement = null;
 
@@ -98,9 +108,13 @@ public class Datenbank {
             connection = DriverManager.getConnection(Einstellungen.url,Einstellungen.benutzer,Einstellungen.passwort);
             statement = connection.createStatement();
 
-                ResultSet dbInhalt = statement.executeQuery("SELECT Kostenstelle FROM `itwisse_kursverwaltung`.`Kostenstelle`");
+                ResultSet dbInhalt = statement.executeQuery("SELECT "+ spalte +", ID FROM `itwisse_kursverwaltung`.`" + tabelle + "`");
 
-                System.out.println(dbInhalt);
+                while(dbInhalt.next()){
+                    if (!kostenstelleHash.containsValue(dbInhalt.getInt(spalte)))
+                   kostenstelleHash.put(dbInhalt.getInt(spalte),dbInhalt.getInt("ID"));
+                }
+
 
         }catch(SQLException | ClassNotFoundException sqlException){
 
@@ -116,6 +130,7 @@ public class Datenbank {
                 throwables.printStackTrace();
             }
 
+            return kostenstelleHash;
     }
 
 }
