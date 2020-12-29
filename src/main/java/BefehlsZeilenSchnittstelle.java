@@ -240,7 +240,7 @@ public final class BefehlsZeilenSchnittstelle {
             // Überprüft ob die Eingabe eine Ganzzahl [1-99] ist
             if (eingabeString.matches("^([1-9][0-9]?)$")) {
                 // Überprüft ob die Eingabe in der Range des Arrays ist
-                if ((Integer.parseInt(eingabeString) <= (arrayLaenge -1)) && Integer.parseInt(eingabeString) > 0) {
+                if ((Integer.parseInt(eingabeString) <= (arrayLaenge)) && Integer.parseInt(eingabeString) > 0) {
 
                     eingabeInt = Integer.parseInt(eingabeString);
                     gueltigeEingabe = true;
@@ -268,6 +268,66 @@ public final class BefehlsZeilenSchnittstelle {
         }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+    Methode zur Formatierung einer Ausgabe in Tabellenform
+
+    Parameter
+    spaltenInhalt: Text der in der Spalte ausgegeben werden soll
+    spaltenBreite: Anzahl Zeichen pro Spalte
+
+     */
+
+    static String textFormatieren(String spaltenInhalt, int spaltenBreite){
+
+        StringBuffer leerzeichen = new StringBuffer("");// Stringbuilder für die Lehrzeichen nach dem Text
+
+        int anzahlLeerzeichen = (spaltenBreite - spaltenInhalt.length()); // Berechnen der fehlenden Leerzeichen
+
+        for (int i = 0; i != anzahlLeerzeichen; i++) { // Hinzufügen von Leerzeichen
+            char lehrzeichenA = ' ';
+            leerzeichen.append(lehrzeichenA);
+        }
+
+        return spaltenInhalt + leerzeichen;
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+
+
+     */
+
+    static int eingabeAufIntegerPruefen(){
+
+        int korrekterWert = 0;
+        String eingabe;
+        boolean korrekteEingabe = false;
+
+        Scanner scan = new Scanner(System.in);
+
+        //Prüft ob die Eingabe eine Zahl ist und keine Sonderzeichen enthält
+        while(!korrekteEingabe){
+
+             eingabe = scan.next();
+
+            if(eingabe.matches("[^0-9]")){
+                System.out.println("Bitte geben sie einen gültigen Wert ein");
+                korrekteEingabe = false;
+            }else{
+                korrekterWert = Integer.parseInt(eingabe);
+                korrekteEingabe = true;
+            }
+        }
+
+    return korrekterWert;
+
+    }
+
+
 }
 
 
