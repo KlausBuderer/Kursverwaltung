@@ -91,6 +91,49 @@ public class Datenbank {
         return anlegenErfolgreich;
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+    Die Methode untermenueAnzeige zeigt das Untermenü und führt anhand der Eingabe des Benutzers eine Aktion aus
+
+     */
+    public boolean datenAnlegenAllgemein(String querry) {
+
+        boolean anlegenErfolgreich;
+
+        Connection connection = null;
+        Statement statement = null;
+
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
+            statement = connection.createStatement();
+
+            statement.execute(querry);
+
+            anlegenErfolgreich = true;
+
+        } catch (SQLException | ClassNotFoundException sqlException) {
+
+            sqlException.printStackTrace();
+            anlegenErfolgreich = false;
+        }
+
+        if (anlegenErfolgreich) {
+
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+
+
+        return anlegenErfolgreich;
+    }
+
     // Abfrage aus Datenbank für Integer Werte -> Gibt einen HashMap zurück Key = ID, Value = Inhalt
     HashMap<Integer, Integer> datenAuslesenfuerAbfrageInt(String tabelle, String spalte) {
 

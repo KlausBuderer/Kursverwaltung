@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 // Utility Klasse für Ausgaben und Eingaben in der Konsole
@@ -327,6 +329,46 @@ public final class BefehlsZeilenSchnittstelle {
 
     }
 
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+        Eingabe auf korrektes Datum und korrektes Format prüfen
+
+    Rückgabe = Korrektes Datum als String
+
+     */
+
+    static String pruefeDatum() {
+
+        Scanner scan = new Scanner(System.in);
+
+        String sDatumFormat= "yyyy-MM-dd";
+        boolean korrekteEingabe = false;
+        String datum = "";
+
+
+        do {
+            try {
+                datum = scan.next();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(sDatumFormat);
+                simpleDateFormat.setLenient(false);
+                simpleDateFormat.parse(datum);
+                korrekteEingabe = true;
+
+            } catch (ParseException e) {
+                System.out.println("Ungültiges Datum oder falsches Format");
+                System.out.println("Bitte verwenden sie folgendes Format: yyyy-MM-dd");
+                korrekteEingabe = false;
+
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Fehler");
+                korrekteEingabe = false;
+
+            }
+        }while (!korrekteEingabe);
+        return datum;
+    }
 
 }
 

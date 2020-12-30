@@ -18,7 +18,7 @@ public class Administratives extends Datenbank{
     int organisationsID;
     String[] waehrungsArray = {"CHF","EUR"};
     String abteilungsBezeichnung;
-    String bezeichnungKst;
+    String bezeichnungKst = " ";
     String kostenstelleVerantPerson;
     String stellenbezeichnung;
 
@@ -27,6 +27,12 @@ public class Administratives extends Datenbank{
     //Konstruktor anzeigen Hauptmenü
     Administratives(){
     untermenueAnzeigen();
+
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Konstruktor aufruf von anderen Klassen
+    Administratives(String kontekt){
 
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -276,8 +282,8 @@ public class Administratives extends Datenbank{
                     "\t Bezeichnung: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(bezeichnungKst), 25);
                 break;
             case "Organisation":
-                ausgabe = "Bezeichnung der Abteilung: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(this.abteilungsBezeichnung), 10) +
-                        "\tKostenstelle: " + BefehlsZeilenSchnittstelle.textFormatieren(bezeichnungKst, 20);
+                ausgabe = "Bezeichnung der Abteilung: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(this.abteilungsBezeichnung), 25) +
+                        "\tKostenstelle: " + BefehlsZeilenSchnittstelle.textFormatieren(bezeichnungKst, 25);
                 break;
             case  "Budget":
                 ausgabe = "Kostenstelle: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(this.kostenstelle), 10) +
@@ -301,7 +307,7 @@ public class Administratives extends Datenbank{
 
      */
 
-    private void auswahlListeKostenstelleAusgeben() {
+    public void auswahlListeKostenstelleAusgeben() {
 
         int i = 1;
         int arrayLaenge;
@@ -340,7 +346,7 @@ public class Administratives extends Datenbank{
 
      */
 
-    private void auswahlListeOrganisationAusgeben() {
+    public void auswahlListeOrganisationAusgeben() {
 
         int i = 1;
         int arrayLaenge;
@@ -351,23 +357,23 @@ public class Administratives extends Datenbank{
 
 
         // Schreiben der Kostenstellen in ein Array
-        Administratives[] kostenstelleArray = new Administratives[organisationMap.size() + 1];
+        Administratives[] organisationArray = new Administratives[organisationMap.size() + 1];
 
         for (Map.Entry<Administratives, Integer> map : organisationMap.entrySet()) {
-            kostenstelleArray[i] = map.getKey();
+            organisationArray[i] = map.getKey();
             // Ausgeben des Array
             System.out.println(i + ". " + map.getKey().toString("Organisation"));
             i++;
         }
 
-        arrayLaenge = kostenstelleArray.length;
+        arrayLaenge = organisationArray.length;
 
-        System.out.print("Bitte wählen sie eine Organisation aus der Liste (1-" + (arrayLaenge - 1) + ")");
+        System.out.print("Bitte wählen sie eine Organisation aus der Liste (1-" + (arrayLaenge-1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
-        kostenstelleId = kostenstelleArray[auswahl].kostenstelleId;
-        organisationsID = kostenstelleArray[auswahl].organisationsID;
-        abteilungsBezeichnung = kostenstelleArray[auswahl].abteilungsBezeichnung;
+        kostenstelleId = organisationArray[auswahl].kostenstelleId;
+        organisationsID = organisationArray[auswahl].organisationsID;
+        abteilungsBezeichnung = organisationArray[auswahl].abteilungsBezeichnung;
 
     }
 
@@ -376,7 +382,7 @@ public class Administratives extends Datenbank{
     Methode zur Ausgabe einer Auswahlliste Kostenstelle für den Benutzer
 
      */
-    private void auswahlListeBudgetAusgeben() {
+    public void auswahlListeBudgetAusgeben() {
 
         int i = 1;
         int arrayLaenge;
@@ -417,51 +423,75 @@ public class Administratives extends Datenbank{
     void kostenstelleBearbeiten() {
 
         String[] spaltenArray = {"Kostenstellennummer","Bezeichnung der Kostenstelle","Verantwortliche Person der Kostenstelle"};
-        int arrayLaenge;
-        int auswahl;
         String vornamen;
         String nachnamen;
+        int arrayLaenge;
+        int auswahl;
+        boolean abschliessen = true;
+
 
         auswahlListeKostenstelleAusgeben();
 
-        BefehlsZeilenSchnittstelle.bildReinigen();
-        int i = 1;
-        for (String spalte: spaltenArray) {
+        do {
+            BefehlsZeilenSchnittstelle.bildReinigen();
+            int i = 1;
+            for (String spalte : spaltenArray) {
 
-            System.out.println(i + ": " + spalte);
-            i++;
-        }
-        arrayLaenge = spaltenArray.length;
+                System.out.println(i + ": " + spalte);
+                i++;
+            }
+            arrayLaenge = spaltenArray.length;
 
-        System.out.print("Welchen Spalte möchten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
-        auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
+            System.out.print("Welchen Spalte möchten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
+            auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
-        switch (auswahl) {
+            switch (auswahl) {
 
-            case 1:
-                System.out.println("Aktuell: " + kostenstelle);
-                System.out.print("Geben sie die neue Kostenstellennummer ein: ");
-                kostenstelle = BefehlsZeilenSchnittstelle.eingabeAufIntegerPruefen();
-                break;
-            case 2:
-                System.out.println("Aktuell: " + bezeichnungKst);
-                System.out.print("Geben sie die neue Bezeichnung ein: ");
-                bezeichnungKst = scan.next();
-                break;
-            case 3:
-                System.out.println("Aktuell: " + kostenstelleVerantPerson);
-                System.out.println("Geben sie die neue verantwortliche Person ein: ");
-                System.out.print("Vorname: ");
-                vornamen = scan.next();
-                System.out.print("Nachname: ");
-                nachnamen = scan.next();
-                kostenstelleVerantPerson = vornamen + " " + nachnamen;
-                break;
-            default:
-                System.out.println("Falsche Eingabe!");
-        }
+                case 1:
+                    System.out.println("Aktuell: " + kostenstelle);
+                    System.out.print("Geben sie die neue Kostenstellennummer ein: ");
+                    kostenstelle = BefehlsZeilenSchnittstelle.eingabeAufIntegerPruefen();
+                    break;
+                case 2:
+                    System.out.println("Aktuell: " + bezeichnungKst);
+                    System.out.print("Geben sie die neue Bezeichnung ein: ");
+                    bezeichnungKst = scan.next();
+                    break;
+                case 3:
+                    System.out.println("Aktuell: " + kostenstelleVerantPerson);
+                    System.out.println("Geben sie die neue verantwortliche Person ein: ");
+                    System.out.print("Vorname: ");
+                    vornamen = scan.next();
+                    System.out.print("Nachname: ");
+                    nachnamen = scan.next();
+                    kostenstelleVerantPerson = vornamen + " " + nachnamen;
+                    break;
+                default:
+                    System.out.println("Falsche Eingabe!");
+            }
 
-        datenBearbeiten(updateKostenstelle());
+            BefehlsZeilenSchnittstelle.bildReinigen();
+            System.out.println("Kostenstellen Bezeichnung: " + bezeichnungKst + "\tKostenstellen Nummer: " + kostenstelle + "\tVerantwortliche Person: " + kostenstelleVerantPerson);
+            System.out.println();
+            System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()) {
+
+                case 1:
+                    datenBearbeiten(updateKostenstelle());
+                    ;
+                    abschliessen = true;
+                    break;
+                case 2:
+                    abschliessen = false;
+                    break;
+                case 3:
+                    abschliessen = true;
+                    break;
+            }
+
+        }while(!abschliessen);
+
 
     }
 
@@ -491,43 +521,46 @@ public class Administratives extends Datenbank{
         String[] spaltenArray = {"Budget Jahr","Budget Betrag",};
         int arrayLaenge;
         int auswahl;
+        boolean abschliessen = true;
 
         auswahlListeBudgetAusgeben();
 
-        BefehlsZeilenSchnittstelle.bildReinigen();
-        int i = 1;
-        for (String spalte: spaltenArray) {
+        do {
+            BefehlsZeilenSchnittstelle.bildReinigen();
+            int i = 1;
+            for (String spalte : spaltenArray) {
 
-            System.out.println(i + ": " + spalte);
-            i++;
-        }
-        arrayLaenge = spaltenArray.length;
+                System.out.println(i + ": " + spalte);
+                i++;
+            }
+            arrayLaenge = spaltenArray.length;
 
-        System.out.print("Welchen Spalte möchten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
-        auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
+            System.out.print("Welchen Spalte möchten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
+            auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
-        switch (auswahl) {
+            switch (auswahl) {
 
-            case 1:
-                BefehlsZeilenSchnittstelle.bildReinigen();
-                System.out.println("Aktuell: " + budgetJahr);
-                System.out.println("Waehlen sie das neue Jahr aus: ");
-                int jahr = Year.now().getValue();
+                case 1:
+                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    System.out.println("Aktuell: " + budgetJahr);
+                    System.out.println("Waehlen sie das neue Jahr aus: ");
+                    int jahr = Year.now().getValue();
 
-                //Gibt Jahre zu Auswahl
-                for (int j = 1; j < 6; j++) {
-                    System.out.println(j + ". " + (jahr + (j-1)));
-                }
+                    //Gibt Jahre zu Auswahl
+                    for (int j = 1; j < 6; j++) {
+                        System.out.println(j + ". " + (jahr + (j - 1)));
+                    }
 
-                System.out.print("Jahr (1-5): ");
-                budgetJahr = jahr + (BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(6) - 1);
-                break;
-            case 2:
-                BefehlsZeilenSchnittstelle.bildReinigen();
-                System.out.println("Aktuell: " + budgetBetrag);
-                System.out.print("Geben sie das neue Budget ein: ");
-                budgetBetrag = BefehlsZeilenSchnittstelle.eingabeAufIntegerPruefen();
-                break;
+                    System.out.print("Jahr (1-5): ");
+                    budgetJahr = jahr + (BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(6) - 1);
+                    break;
+                case 2:
+                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    System.out.println("Aktuell: " + budgetBetrag);
+                    System.out.print("Geben sie das neue Budget ein: ");
+                    budgetBetrag = BefehlsZeilenSchnittstelle.eingabeAufIntegerPruefen();
+                    break;
+                // TODO Checken ob Waehrung bei Budget wirklich notwendig
 //            case 3:
 //                System.out.println("Aktuell: " + waehrung);
 //                int p = 1;
@@ -539,11 +572,31 @@ public class Administratives extends Datenbank{
 //                System.out.println("Wahrung (1-2): ");
 //                waehrung = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1;
 //                break;
-            default:
-                System.out.println("Falsche Eingabe!");
-        }
+                default:
+                    System.out.println("Falsche Eingabe!");
+            }
 
-        datenBearbeiten(updateBudget());
+            BefehlsZeilenSchnittstelle.bildReinigen();
+            System.out.println("Budget Betrag: " + budgetBetrag + "\tBudget Jahr: " + budgetJahr + "\tKostenstelle: " + bezeichnungKst);
+            System.out.println();
+            System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()){
+
+                case 1: datenBearbeiten(updateBudget());
+                    abschliessen = true;
+                    break;
+                case 2: abschliessen = false;
+                    break;
+                case 3: abschliessen = true;
+                    break;
+            }
+
+
+
+
+        }while(!abschliessen);
+
 
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
