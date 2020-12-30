@@ -135,9 +135,12 @@ public class Mitarbeiter extends Datenbank {
 
 
 
-
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    To String Methode
+     */
     @Override
     public String toString() {
         return "Anrede " + BefehlsZeilenSchnittstelle.textFormatieren(anrede, 15)
@@ -149,6 +152,10 @@ public class Mitarbeiter extends Datenbank {
 
     }
 
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode zum erstellen des Sql Querry
+     */
 
     String anlegenQuerry(){
         if (mitarbeiterStatus) {
