@@ -1,13 +1,18 @@
+import java.sql.SQLOutput;
+import java.time.Year;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Kurse extends Datenbank {
 
-    String [] unterMenue = {"Kurse", "1. Kurse anlegen", "2. Kurse auslesen", "3. Hauptmenue"};
+    String [] unterMenue = {"Kurse", "1. Kurse anlegen", "2. Kurse bearbeiten", "3. Hauptmenue"};
 
     int kurseId;
-    int kosten;
+    int kosten = 1;
     int waehrung;
+    String waehrungDb;
     String kursCode;
     String anbieter;
     String kursBeschreibung;
@@ -23,6 +28,22 @@ public class Kurse extends Datenbank {
 
     }
 
+
+    public Kurse(int kurseId, int kosten, String waehrungDb, String kursCode, String anbieter, String kursBeschreibung, String datumVon, String datumBis, String durchfuerungsOrt) {
+        this.kurseId = kurseId;
+        this.kosten = kosten;
+        this.waehrung = waehrung;
+        this.kursCode = kursCode;
+        this.anbieter = anbieter;
+        this.kursBeschreibung = kursBeschreibung;
+        this.datumVon = datumVon;
+        this.datumBis = datumBis;
+        this.durchfuerungsOrt = durchfuerungsOrt;
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Methode zum Anzeigen des Untermenüs
+     */
     public void untermenueAnzeigen(){
 
 
@@ -36,7 +57,7 @@ public class Kurse extends Datenbank {
                     kurseAnlegen();
                     break;
                 case 2:
-                    System.out.println("Kurse auslesen");
+                    kurseBearbeiten();
                     break;
                 case 3:
                     //zurück ins Hauptmenü;
@@ -48,6 +69,12 @@ public class Kurse extends Datenbank {
             }
         }while(gueltigeEingabe);
     }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Methode zum Anlegen von Kursen
+
+     */
 
 
     void kurseAnlegen() {
@@ -113,6 +140,159 @@ public class Kurse extends Datenbank {
 
 
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Methode zur Bearbeitung eines Budget
+     */
+    void kurseBearbeiten() {
+
+        String[] spaltenArray = {"Kurs Code","Anbieter","Kursbeschreibung", "Kosten", "Waehrung", "Start Datum", "End Datum", "Durchfuehrungs Ort"};
+        int arrayLaenge;
+        int auswahl;
+        boolean abschliessen = true;
+
+        auswahlListeKurseAusgeben();
+
+        do {
+            BefehlsZeilenSchnittstelle.bildReinigen();
+            int i = 1;
+            for (String spalte : spaltenArray) {
+
+                System.out.println(i + ": " + spalte);
+                i++;
+            }
+            arrayLaenge = spaltenArray.length;
+
+            System.out.print("Welchen Spalte möchten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
+            auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
+
+            switch (auswahl) {
+
+                case 1:
+                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    System.out.println("Aktuell: " + kursCode);
+                    System.out.println("Geben sie einen neuen Code ein: ");
+                    kursCode = scan.next();
+                    break;
+                case 2:
+                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    System.out.println("Aktuell: " + anbieter);
+                    System.out.print("Geben sie einen neuen Anbieter an: ");
+                    anbieter = scan.next();
+                    break;
+                case 3:
+                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    System.out.println("Aktuell: " + kursBeschreibung);
+                    System.out.print("Geben sie eine neue Kursbeschreibung ein: ");
+                    kursBeschreibung = scan.next();
+                    break;
+                case 4:
+                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    System.out.println("Aktuell: " + kosten);
+                    System.out.print("Geben sie die neuen Kosten ein: ");
+                    kosten = BefehlsZeilenSchnittstelle.eingabeAufIntegerPruefen();
+                    break;
+                case 5:
+                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    System.out.println("Aktuell: " + waehrungsArray[waehrung]);
+                    System.out.println("Waehlen sie die neue Waehrung: ");
+                    int j = 1;
+
+                    for (String waehrung: waehrungsArray) {
+                        System.out.println(j + ". " + waehrung);
+                        j++;
+                    }
+                    System.out.println("Wahrung (1-2): ");
+                    waehrung = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1;
+                    break;
+                case 6:
+                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    System.out.println("Aktuell: " + datumVon);
+                    System.out.print("Geben sie das neue Start Datum ein: ");
+                    datumVon = BefehlsZeilenSchnittstelle.pruefeDatum();
+                    break;
+                case 7:
+                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    System.out.println("Aktuell: " + datumBis);
+                    System.out.print("Geben sie das neue End Datum ein: ");
+                    datumBis = BefehlsZeilenSchnittstelle.pruefeDatum();
+                    break;
+                case 8:
+                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    System.out.println("Aktuell: " + durchfuerungsOrt);
+                    System.out.print("Geben sie den neuen Durchfuehrungsort ein: ");
+                    durchfuerungsOrt = scan.next();
+                    break;
+                default:
+                    System.out.println("Falsche Eingabe!");
+                    break;
+            }
+
+            BefehlsZeilenSchnittstelle.bildReinigen();
+            System.out.println(toString());
+            System.out.println();
+            System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()){
+
+                case 1: datenBearbeiten(updateQuerry());
+                    abschliessen = true;
+                    break;
+                case 2: abschliessen = false;
+                    break;
+                case 3: abschliessen = true;
+                    break;
+            }
+
+        }while(!abschliessen);
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Methode zur Ausgabe einer Auswahlliste Kostenstelle für den Benutzer
+
+     */
+
+    public void auswahlListeKurseAusgeben() {
+
+        int i = 1;
+        int arrayLaenge;
+        int auswahl;
+
+        // Abfrage Datenbank nach Kursen
+        HashMap<Kurse, Integer> kursMap = (HashMap<Kurse, Integer>) datenAuslesenfuerAbfrage("Kurse");
+
+
+        // Schreiben der Kostenstellen in ein Array
+        Kurse[] kursArray = new Kurse[kursMap.size() + 1];
+
+        for (Map.Entry<Kurse, Integer> map : kursMap.entrySet()) {
+            kursArray[i] = map.getKey();
+            // Ausgeben des Array
+            System.out.println(i + ". " + map.getKey().toString());
+            i++;
+        }
+
+        arrayLaenge = kursArray.length;
+
+        //Der Bediener wird zu Auswahl einer der Objekte aufgefordert
+        System.out.print("Bitte wählen sie einen Kurs aus der Liste (1-" + (arrayLaenge-1) + ")");
+        auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
+
+        // Die Daten des gewählten Objekts werden in das sich vorhandene Objekt geschrieben
+        kurseId = kursArray[auswahl].kurseId;
+        kosten = kursArray[auswahl].kosten;
+        waehrungDb = kursArray[auswahl].waehrungDb;
+        kursCode = kursArray[auswahl].kursCode;
+        anbieter = kursArray[auswahl].anbieter;
+        kursBeschreibung = kursArray[auswahl].kursBeschreibung;
+        datumVon = kursArray[auswahl].datumVon;
+        datumBis = kursArray[auswahl].datumBis;
+        durchfuerungsOrt = kursArray[auswahl].durchfuerungsOrt;
+
+    }
+
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode zur Erstellung eines Querrys für einen Update von Kostenstelle
@@ -125,14 +305,15 @@ public class Kurse extends Datenbank {
 
         querry = "UPDATE `itwisse_kursverwaltung`.`Kurse` SET " +
                 " `KursCode` = " + kursCode +
-                ", `Anbieter` = " + anbieter +
-                ", `Kursbeschreibung` = " + kursBeschreibung +
-                ", `Kosten` = " + kosten +
-                ", `Waehrung` = " + waehrung +
-                ", `DatumVon` = " + datumVon +
+                ", `Anbieter` = '" + anbieter +
+                "', `Kursbeschreibung` = '" + kursBeschreibung +
+                "', `Kosten` = " + kosten +
+                ", `Waehrung` = '" + waehrungsArray[waehrung] +
+                "', `DatumVon` = " + datumVon +
                 ", `DatumBis` = " + datumBis +
-                ", `Durchfuehrungsort` = " + durchfuerungsOrt +
-                " WHERE `ID` = " + kurseId + ";";
+                ", `Durchfuehrungsort` = '" + durchfuerungsOrt +
+                "' WHERE `ID` = " + kurseId + ";";
+
         return querry;
     }
 
@@ -150,6 +331,12 @@ public class Kurse extends Datenbank {
                 datumVon + "', '" + datumBis + "', '" + durchfuerungsOrt +"')";
 
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    ToString Methode
+
+     */
 
     @Override
     public String toString() {
