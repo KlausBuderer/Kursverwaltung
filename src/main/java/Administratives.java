@@ -86,7 +86,7 @@ public class Administratives extends Datenbank{
                     kostenstelleAnlegen();
                     break;
                 case 2:
-                    budgetErfassen();
+                    budgetAnlegen();
                     break;
                 case 3:
                     organisationAnlegen();
@@ -125,7 +125,7 @@ public class Administratives extends Datenbank{
             BefehlsZeilenSchnittstelle.bildReinigen();
             System.out.println("Bitte geben sie folgende Daten ein");
             System.out.print("Kostenstelle: ");
-            kostenstelle = scan.nextInt();
+            kostenstelle = BefehlsZeilenSchnittstelle.eingabeAufIntegerPruefen();
             System.out.print("Bezeichnung der Kostenstelle: ");
             bezeichnungKst = scan.next();
             System.out.println("Verantwortliche Person der Kostenstelle: ");
@@ -142,7 +142,7 @@ public class Administratives extends Datenbank{
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()){
 
-                case 1: datenAnlegen(this,"Kostenstelle");
+                case 1: datenAnlegen(kostenstelleAnlegenQuerry());
                         abschliessen = true;
                         break;
                 case 2: abschliessen = false;
@@ -152,13 +152,23 @@ public class Administratives extends Datenbank{
             }
         }while(!abschliessen);
     }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Methode zur Erstellung eines Querrys für ein Anlegen eines neuen Kurses
+     */
+    String kostenstelleAnlegenQuerry(){
+
+        return "INSERT INTO `itwisse_kursverwaltung`.`Kostenstelle` (`Kostenstelle`, `BezeichnungKST`, `KostenstelleVerantPerson`) VALUES " +
+                "('" + kostenstelle + "', '" + bezeichnungKst + "', '" + kostenstelleVerantPerson + "')";
+
+    }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Die Methode budgetErfassen lässt den Benutzer ein neues Budget erfassen und einer Kostenstelle zuweisen
      */
 
-    void budgetErfassen(){
+    void budgetAnlegen(){
 
         boolean abschliessen = true;
 
@@ -182,21 +192,31 @@ public class Administratives extends Datenbank{
 
             boolean korrekteEingabe = false;
 
-            //Prüft ob die Eingabe eine Zahl ist und keine Sonderzeichen enthält
-            while(!korrekteEingabe){
+//            //Prüft ob die Eingabe eine Zahl ist und keine Sonderzeichen enthält
+//            while(!korrekteEingabe){
+//
+//               String eingabe = scan.next();
+//
+//               if(eingabe.matches("[^0-9]")){
+//                   System.out.println("Bitte geben sie einen gültigen Wert ein");
+//                   korrekteEingabe = false;
+//               }else{
+//                   budgetBetrag = Integer.parseInt(eingabe);
+//                   korrekteEingabe = true;
+//               }
+//            }
 
-               String eingabe = scan.next();
-
-               if(eingabe.matches("[^0-9]")){
-                   System.out.println("Bitte geben sie einen gültigen Wert ein");
+            while(!korrekteEingabe) {
+                try {
+                    budgetBetrag = scan.nextInt();
+                    korrekteEingabe = true;
+                } catch (Exception exception) {
+                    System.out.println("Bitte geben sie einen gültigen Wert ein");
                    korrekteEingabe = false;
-               }else{
-                   budgetBetrag = Integer.parseInt(eingabe);
-                   korrekteEingabe = true;
-               }
+                }
             }
-
             int i = 1;
+
 
             for (String waehrung: waehrungsArray) {
                 System.out.println(i + ". " + waehrung);
@@ -216,7 +236,7 @@ public class Administratives extends Datenbank{
 
         switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()){
 
-            case 1: datenAnlegen(this,"Budget");
+            case 1: datenAnlegen(budgetAnlegenQuerry());
                 abschliessen = true;
                 break;
             case 2: abschliessen = false;
@@ -227,7 +247,16 @@ public class Administratives extends Datenbank{
 
     }while(!abschliessen);
     }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Methode zur Erstellung eines Querrys für ein Anlegen eines neuen Kurses
+     */
+    String budgetAnlegenQuerry(){
 
+        return "INSERT INTO `itwisse_kursverwaltung`.`BudgetPeriode` (`Jahr`, `Betrag`, `Waehrung`, `KostenstelleID`) VALUES" +
+                " ('" + budgetJahr + "', '" + budgetBetrag + "', '" + waehrungsArray[waehrung] + "', '" + kostenstelleId + "')";
+
+    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Die Methode organisationAnlegen lässt den Benutzer eine neue Organisation Anlegen
@@ -254,7 +283,7 @@ public class Administratives extends Datenbank{
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()){
 
-            case 1: datenAnlegen(this,"Organisation");
+            case 1: datenAnlegen(organisationAnlegenQuerry());
                 abschliessen = true;
                 break;
             case 2: abschliessen = false;
@@ -265,7 +294,15 @@ public class Administratives extends Datenbank{
 
     }while(!abschliessen);
     }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Methode zur Erstellung eines Querrys für ein Anlegen eines neuen Kurses
+     */
+    String organisationAnlegenQuerry(){
 
+        return "Insert INTO `itwisse_kursverwaltung`.`Organisation` (`AbteilungsBezeichnung`,`KostenstelleID`) VALUES ('" + stellenbezeichnung + "', '" + kostenstelleId + "')";
+
+    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Die Methode gibt beim Aufruf des Objekts und der Übergabe des Parameters die Membervariablen aus

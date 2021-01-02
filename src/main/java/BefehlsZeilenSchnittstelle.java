@@ -286,6 +286,10 @@ public final class BefehlsZeilenSchnittstelle {
 
         int anzahlLeerzeichen = (spaltenBreite - spaltenInhalt.length()); // Berechnen der fehlenden Leerzeichen
 
+        if (anzahlLeerzeichen < 5){ //Mindestabstand von 5 Leerzeichen
+            anzahlLeerzeichen = 5;
+        }
+
         for (int i = 0; i != anzahlLeerzeichen; i++) { // Hinzufügen von Leerzeichen
             char lehrzeichenA = ' ';
             leerzeichen.append(lehrzeichenA);
@@ -299,11 +303,11 @@ public final class BefehlsZeilenSchnittstelle {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /*
-
+        Diese Methode prüft ob die Eingage nur Zahlen verwendet werden
 
      */
 
-    static int eingabeAufIntegerPruefen(){
+    static int eingabeAufIntegerPruefen() {
 
         int korrekterWert = 0;
         String eingabe;
@@ -312,23 +316,41 @@ public final class BefehlsZeilenSchnittstelle {
         Scanner scan = new Scanner(System.in);
 
         //Prüft ob die Eingabe eine Zahl ist und keine Sonderzeichen enthält
-        while(!korrekteEingabe){
-
-             eingabe = scan.next();
-
-            if(eingabe.matches("[^0-9]")){
-                System.out.println("Bitte geben sie einen gültigen Wert ein");
+        while (!korrekteEingabe) {
+            eingabe = scan.next();
+            korrekteEingabe = true;
+            if (eingabeIntPruefen(eingabe)) {
+                return korrekterWert = Integer.parseInt(eingabe);
+            }else {
                 korrekteEingabe = false;
-            }else{
-                korrekterWert = Integer.parseInt(eingabe);
-                korrekteEingabe = true;
+                System.out.println("Bitte geben sie einen gültigen Wert ein");
             }
         }
-
-    return korrekterWert;
-
+            return korrekterWert;
     }
 
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+        Diese Methode prüft ob die Eingage nur Zahlen verwendet werden
+
+     */
+//TODO funktioniert nicht  Regex überprüfen
+
+    static boolean eingabeIntPruefen(String eingabe){
+
+        boolean korrekteIntEingabe = false;
+        int zahl;
+
+            try {
+                zahl = Integer.parseInt(eingabe);
+                korrekteIntEingabe = true;
+            } catch (Exception exception) {
+                korrekteIntEingabe = false;
+            }
+
+        return korrekteIntEingabe;
+    }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /*

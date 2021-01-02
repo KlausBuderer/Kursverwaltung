@@ -47,57 +47,13 @@ public class Datenbank {
         return verbindungErfolgreich;
     }
 
-
-    public boolean datenAnlegen(Administratives objekt, String kontext) {
-
-        boolean anlegenErfolgreich;
-
-        Connection connection = null;
-        Statement statement = null;
-
-        try {
-
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
-            statement = connection.createStatement();
-            if (kontext.equals("Organisation")) {
-                statement.execute("Insert INTO `itwisse_kursverwaltung`.`Organisation` (`AbteilungsBezeichnung`,`KostenstelleID`) VALUES ('" + objekt.stellenbezeichnung + "', '" + objekt.kostenstelleId + "')");
-            } else if (kontext.equals("Kostenstelle")) {
-                statement.execute("INSERT INTO `itwisse_kursverwaltung`.`Kostenstelle` (`Kostenstelle`, `BezeichnungKST`, `KostenstelleVerantPerson`) VALUES ('" + objekt.kostenstelle + "', '" + objekt.bezeichnungKst + "', '" + objekt.kostenstelleVerantPerson + "')");
-            } else if (kontext.equals("Budget")) {
-                statement.execute("INSERT INTO `itwisse_kursverwaltung`.`BudgetPeriode` (`Jahr`, `Betrag`, `Waehrung`, `KostenstelleID`) VALUES ('" + objekt.budgetJahr + "', '" + objekt.budgetBetrag + "', '" + objekt.waehrungsArray[objekt.waehrung] + "', '" + objekt.kostenstelleId + "')");
-            } else {
-                System.out.println("Falscher Übergabeparameter!");
-            }
-            anlegenErfolgreich = true;
-
-        } catch (SQLException | ClassNotFoundException sqlException) {
-
-            sqlException.printStackTrace();
-            anlegenErfolgreich = false;
-        }
-
-        if (anlegenErfolgreich) {
-
-            try {
-                connection.close();
-                statement.close();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-        }
-
-
-        return anlegenErfolgreich;
-    }
-
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /*
     Die Methode untermenueAnzeige zeigt das Untermenü und führt anhand der Eingabe des Benutzers eine Aktion aus
 
      */
-    public boolean datenAnlegenAllgemein(String querry) {
+    public boolean datenAnlegen(String querry) {
 
         boolean anlegenErfolgreich;
 
@@ -173,99 +129,8 @@ public class Datenbank {
         return kostenstelleHash;
     }
 
-    // Abfrage aus Datenbank für Integer Werte -> Gibt einen HashMap zurück Key = ID, Value = Inhalt
-    HashMap<Administratives, Integer> datenAuslesenfuerAbfrageKostenstelle(String tabelle) {
-
-        HashMap<Administratives, Integer> kostenstelleHash = new HashMap<>();
-
-        Connection connection = null;
-        Statement statement = null;
-        Administratives kostenstelle;
-
-        try {
-
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
-            statement = connection.createStatement();
-
-            ResultSet dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`.`" + tabelle + "`");
-
-            while (dbInhalt.next()) {
-
-                Integer id = dbInhalt.getInt("ID");
-                Integer kostenstelleNummer = dbInhalt.getInt("Kostenstelle");
-                String kostenstellenBezeichnung = dbInhalt.getString("BezeichnungKST");
-                String verantwortlichePerson = dbInhalt.getNString("KostenstelleVerantPerson");
-                kostenstelle = new Administratives(id, kostenstelleNummer, kostenstellenBezeichnung, verantwortlichePerson);
-
-                kostenstelleHash.put(kostenstelle, id);
-            }
-
-
-        } catch (SQLException | ClassNotFoundException sqlException) {
-
-            sqlException.printStackTrace();
-
-        }
-
-
-        try {
-            connection.close();
-            statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return kostenstelleHash;
-    }
-
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-    // Abfrage aus Datenbank für Integer Werte -> Gibt einen HashMap zurück Key = ID, Value = Inhalt
-    HashMap<Administratives, Integer> datenAuslesenfuerAbfrageOrganisation() {
-
-        HashMap<Administratives, Integer> organisationHash = new HashMap<>();
-
-        Connection connection = null;
-        Statement statement = null;
-        Administratives organisation;
-
-        try {
-
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
-            statement = connection.createStatement();
-
-            ResultSet dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`.`Organisation`");
-
-            while (dbInhalt.next()) {
-
-                Integer id = dbInhalt.getInt("ID");
-                String abteilungsBezeichnung = dbInhalt.getString("AbteilungsBezeichnung");
-                Integer kostenstelleID = dbInhalt.getInt("KostenstelleID");
-                organisation = new Administratives(id, kostenstelleID, abteilungsBezeichnung);
-
-                organisationHash.put(organisation, id);
-            }
-
-
-        } catch (SQLException | ClassNotFoundException sqlException) {
-
-            sqlException.printStackTrace();
-
-        }
-
-
-        try {
-            connection.close();
-            statement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        return organisationHash;
-    }
 
     // Abfrage aus Datenbank für Integer Werte -> Gibt einen HashMap zurück Key = ID, Value = Inhalt
     HashMap<?, Integer> datenAuslesenfuerAbfrage(String tabelle) {
@@ -294,6 +159,9 @@ public class Datenbank {
                     break;
                 case "Kurse":
                     datenAuflistung = kurseAusgeben(dbInhalt);
+                    break;
+                case "Zertifikate":
+                    datenAuflistung = zertifikateAusgeben(dbInhalt);
                     break;
                 default:
                     break;
@@ -439,6 +307,40 @@ public class Datenbank {
 
         }
         return kursHash;
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+     Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank
+
+    Parameter: Inhalt der Tabelle der Datenbank
+
+    Rückgabewert: Hashmap mit Objekten für jeden Tuple
+
+     */
+
+    HashMap<Zertifikate, Integer> zertifikateAusgeben(ResultSet dbInhalt) throws SQLException {
+
+        HashMap<Zertifikate, Integer> zertifikateHash = new HashMap<>();
+        Zertifikate zertifikate;
+
+        while (dbInhalt.next()) {
+
+            Integer id = dbInhalt.getInt("ID");
+            String zertifikatstitel = dbInhalt.getString("Titel");
+            String zertifikatsBeschreibung = dbInhalt.getString("Beschreibung");
+            String anbieter = dbInhalt.getString("Anbieter");
+            String sprache = dbInhalt.getString("Sprache");
+            Integer kosten = dbInhalt.getInt("Kosten");
+            String waehrung = dbInhalt.getString("Waehrung");
+            zertifikate = new Zertifikate(id,kosten, zertifikatstitel, zertifikatsBeschreibung,anbieter,sprache, waehrung);
+
+           zertifikateHash.put(zertifikate, id);
+
+
+        }
+        return zertifikateHash;
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

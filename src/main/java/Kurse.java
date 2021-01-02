@@ -1,25 +1,22 @@
-import java.sql.SQLOutput;
-import java.time.Year;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Kurse extends Datenbank {
 
-    String [] unterMenue = {"Kurse", "1. Kurse anlegen", "2. Kurse bearbeiten", "3. Hauptmenue"};
+    private String [] unterMenue = {"Kurse", "1. Kurse anlegen", "2. Kurse bearbeiten", "3. Hauptmenue"};
+    private String[] waehrungsArray = {"CHF","EUR"};
+    private int kurseId;
+    private int kosten = 1;
+    private int waehrung;
+    private String waehrungDb;
+    private String kursCode;
+    private String anbieter;
+    private String kursBeschreibung;
+    private String datumVon;
+    private String datumBis;
+    private String durchfuehrungsOrt;
 
-    int kurseId;
-    int kosten = 1;
-    int waehrung;
-    String waehrungDb;
-    String kursCode;
-    String anbieter;
-    String kursBeschreibung;
-    String datumVon;
-    String datumBis;
-    String durchfuerungsOrt;
-    String[] waehrungsArray = {"CHF","EUR"};
 
     Scanner scan = new Scanner(System.in);
 
@@ -32,13 +29,13 @@ public class Kurse extends Datenbank {
     public Kurse(int kurseId, int kosten, String waehrungDb, String kursCode, String anbieter, String kursBeschreibung, String datumVon, String datumBis, String durchfuerungsOrt) {
         this.kurseId = kurseId;
         this.kosten = kosten;
-        this.waehrung = waehrung;
+        this.waehrungDb = waehrungDb;
         this.kursCode = kursCode;
         this.anbieter = anbieter;
         this.kursBeschreibung = kursBeschreibung;
         this.datumVon = datumVon;
         this.datumBis = datumBis;
-        this.durchfuerungsOrt = durchfuerungsOrt;
+        this.durchfuehrungsOrt = durchfuerungsOrt;
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
@@ -114,7 +111,7 @@ public class Kurse extends Datenbank {
             datumBis = BefehlsZeilenSchnittstelle.pruefeDatum();
             //kostenstelle (organisation)
             System.out.print("Durchfuehrungsort: ");
-            durchfuerungsOrt = scan.next();
+            durchfuehrungsOrt = scan.next();
 
             BefehlsZeilenSchnittstelle.bildReinigen();
             System.out.println(toString());
@@ -124,7 +121,7 @@ public class Kurse extends Datenbank {
             switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()) {
 
                 case 1:
-                    datenAnlegenAllgemein(anlegenQuerry());
+                    datenAnlegen(anlegenQuerry());
                     abschliessen = true;
                     break;
                 case 2:
@@ -220,9 +217,9 @@ public class Kurse extends Datenbank {
                     break;
                 case 8:
                     BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Aktuell: " + durchfuerungsOrt);
+                    System.out.println("Aktuell: " + durchfuehrungsOrt);
                     System.out.print("Geben sie den neuen Durchfuehrungsort ein: ");
-                    durchfuerungsOrt = scan.next();
+                    durchfuehrungsOrt = scan.next();
                     break;
                 default:
                     System.out.println("Falsche Eingabe!");
@@ -289,7 +286,7 @@ public class Kurse extends Datenbank {
         kursBeschreibung = kursArray[auswahl].kursBeschreibung;
         datumVon = kursArray[auswahl].datumVon;
         datumBis = kursArray[auswahl].datumBis;
-        durchfuerungsOrt = kursArray[auswahl].durchfuerungsOrt;
+        durchfuehrungsOrt = kursArray[auswahl].durchfuehrungsOrt;
 
     }
 
@@ -311,7 +308,7 @@ public class Kurse extends Datenbank {
                 ", `Waehrung` = '" + waehrungsArray[waehrung] +
                 "', `DatumVon` = " + datumVon +
                 ", `DatumBis` = " + datumBis +
-                ", `Durchfuehrungsort` = '" + durchfuerungsOrt +
+                ", `Durchfuehrungsort` = '" + durchfuehrungsOrt +
                 "' WHERE `ID` = " + kurseId + ";";
 
         return querry;
@@ -328,7 +325,7 @@ public class Kurse extends Datenbank {
         return "INSERT INTO `itwisse_kursverwaltung`.`Kurse`" +
                 " (`KursCode`, `Anbieter`, `Kursbeschreibung`, `Kosten`, `Waehrung`, `DatumVon`, `DatumBis`, `Durchfuehrungsort`)" +
                 " VALUES ('" + kursCode + "', '" + anbieter + "', '" + kursBeschreibung + "', '" + kosten + "', '" + waehrung + "', '" +
-                datumVon + "', '" + datumBis + "', '" + durchfuerungsOrt +"')";
+                datumVon + "', '" + datumBis + "', '" + durchfuehrungsOrt +"')";
 
     }
 
@@ -348,7 +345,7 @@ public class Kurse extends Datenbank {
                 ", kursBeschreibung: " + kursBeschreibung +
                 ", datumVon: " + datumVon +
                 ", datumBis: " + datumBis +
-                ", durchfuerungsOrt: '" + durchfuerungsOrt +
+                ", durchfuerungsOrt: '" + durchfuehrungsOrt +
                 ", waehrungsArray: " + waehrungsArray[waehrung];
     }
 }

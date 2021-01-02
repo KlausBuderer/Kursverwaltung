@@ -3,20 +3,21 @@ import java.util.Scanner;
 public class Mitarbeiter extends Datenbank {
 
 
-    String[] unterMenue = {"Mitarbeitermenü", "1. Mitarbeiter anlegen", "2. Mitarbeiter anlegen Massenimport",
+    private String[] unterMenue = {"Mitarbeitermenü", "1. Mitarbeiter anlegen", "2. Mitarbeiter anlegen Massenimport",
             "3. Kurs an Mitarbeiter zuordnen", "4. Mitarbeiter neue Zertifikate zuordnen", "5. Zertifikate von Mitarbeiter erneuern",
             "6. Mitarbeiter Informationen auslesen", "7. Mitarbeiter bearbeiten", "8. Hauptmenue"};
-    String[] anredeArray = {"Frau", "Herr", "Neutral"};
-    boolean mitarbeiterStatus;
-    int mitarbeiterId;
-    int personalNummer;
-    int organisationsId;
-    String anrede;
-    String vorname;
-    String nachname;
-    String jobTitel;
-    String geburtstag;
-    String mitarbeiterStatusString;
+    private String[] anredeArray = {"Frau", "Herr", "Neutral"};
+
+    private boolean mitarbeiterStatus;
+    private int mitarbeiterId;
+    private int personalNummer;
+    private int organisationsId;
+    private String anrede;
+    private String vorname;
+    private String nachname;
+    private String jobTitel;
+    private String geburtstag;
+    private String mitarbeiterStatusString;
 
     Scanner scan = new Scanner(System.in);
 
@@ -24,7 +25,7 @@ public class Mitarbeiter extends Datenbank {
         untermenueAnzeigen();
     }
 
-    public void untermenueAnzeigen() {
+    private void untermenueAnzeigen() {
 
         boolean gueltigeEingabe = false;
 
@@ -120,7 +121,7 @@ public class Mitarbeiter extends Datenbank {
             switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()) {
 
                 case 1:
-                    datenAnlegenAllgemein(anlegenQuerry());
+                    datenAnlegen(anlegenQuerry());
                     abschliessen = true;
                     break;
                 case 2:
