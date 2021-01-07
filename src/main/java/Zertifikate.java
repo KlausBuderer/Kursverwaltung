@@ -112,7 +112,7 @@ public class Zertifikate extends Datenbank{
             System.out.println();
             System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
-            switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()) {
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1:
                     datenAnlegen(anlegenQuerry());
@@ -213,7 +213,7 @@ public class Zertifikate extends Datenbank{
             System.out.println();
             System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
-            switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()){
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
                 case 1: datenBearbeiten(updateQuerry());
                     abschliessen = true;

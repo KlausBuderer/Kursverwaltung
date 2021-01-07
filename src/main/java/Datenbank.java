@@ -7,10 +7,12 @@ import java.util.Map;
 public class Datenbank {
 
 
-    Datenbank() {
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Die Methode führt einen Verbindungstest
 
-    }
-
+    Rückgabewert: Das Resultat des Verbindungstest als Boolean
+     */
     public boolean verbindungTesten() {
 
         boolean verbindungErfolgreich;
@@ -30,7 +32,7 @@ public class Datenbank {
 
         } catch (SQLException | ClassNotFoundException sqlException) {
 
-            sqlException.printStackTrace();
+            System.out.println("Verbindung zur Datenbank nicht erfolgreich!");
             verbindungErfolgreich = false;
         }
 
@@ -42,16 +44,12 @@ public class Datenbank {
                 throwables.printStackTrace();
             }
         }
-
-
         return verbindungErfolgreich;
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
     /*
     Die Methode untermenueAnzeige zeigt das Untermenü und führt anhand der Eingabe des Benutzers eine Aktion aus
-
      */
     public boolean datenAnlegen(String querry) {
 
@@ -85,8 +83,6 @@ public class Datenbank {
                 throwables.printStackTrace();
             }
         }
-
-
         return anlegenErfolgreich;
     }
 
@@ -130,9 +126,13 @@ public class Datenbank {
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Abfrage aus Datenbank für Integer Werte -> Gibt einen HashMap zurück Key = ID, Value = Inhalt
 
+    Parameter: Tabellennamen der Datenbank als String
 
-    // Abfrage aus Datenbank für Integer Werte -> Gibt einen HashMap zurück Key = ID, Value = Inhalt
+    Rückgabewert: HashMap mit Objekt als Key und ID als Value
+     */
     HashMap<?, Integer> datenAuslesenfuerAbfrage(String tabelle) {
 
         HashMap<?, Integer> datenAuflistung = new HashMap<>();
@@ -165,15 +165,12 @@ public class Datenbank {
                     break;
                 default:
                     break;
-
             }
-
         } catch (SQLException | ClassNotFoundException sqlException) {
 
             sqlException.printStackTrace();
 
         }
-
         try {
             connection.close();
             statement.close();
@@ -369,8 +366,7 @@ public class Datenbank {
             bearbeitungErfolgreich = true;
 
         } catch (SQLException | ClassNotFoundException sqlException) {
-
-            sqlException.printStackTrace();
+            System.out.println(sqlException.getLocalizedMessage());
             bearbeitungErfolgreich = false;
         }
 
@@ -379,7 +375,9 @@ public class Datenbank {
             try {
                 connection.close();
             } catch (SQLException throwables) {
+
                 throwables.printStackTrace();
+
             }
         }
 

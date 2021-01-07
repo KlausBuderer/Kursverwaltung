@@ -6,9 +6,8 @@ import java.util.Scanner;
 // Utility Klasse für Ausgaben und Eingaben in der Konsole
 public final class BefehlsZeilenSchnittstelle {
 
-   static String[] hauptmenuAdmin =  {"Hauptmenü","", "1. Mitarbeiter", "2. Kurse", "3. Zertifikate", "4. Administratives",
+   private static String[] hauptmenuAdmin =  {"Hauptmenü","", "1. Mitarbeiter", "2. Kurse", "3. Zertifikate", "4. Administratives",
             "5. Benutzerverwaltung,", "6. Einstellungen", "Mit welchen Menüpunkt wollen sie weiterfahren?"};
-
 
     // Privater Konstruktor um keine Instanzierung zu erlauben
     private BefehlsZeilenSchnittstelle(){
@@ -18,10 +17,8 @@ public final class BefehlsZeilenSchnittstelle {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
      Anzeige des Hauptmenüs für Benutzer mit Adminrecht
-
      */
-
-    static void hauptmenueAusgeben() {
+    public static void hauptmenueAusgeben() {
 
         int auswahlInt = 0;
         boolean gueltigeEingabe;
@@ -30,8 +27,6 @@ public final class BefehlsZeilenSchnittstelle {
         Scanner scan = new Scanner(System.in);
 
         //Ausgabe des Hauptmenüs und Einlesen der Auswahl
-
-
         bildReinigen();
         System.out.println();
         System.out.println();
@@ -100,8 +95,7 @@ public final class BefehlsZeilenSchnittstelle {
     Parameter: Array von Strings mit dem Auswahltext der angezeigt werden soll
     Rückgabe: Die Auswahl des Bedieners als Integer Wert
    */
-
-    static int unterMenue(String[] unterMenue) {
+    public static int unterMenue(String[] unterMenue) {
 
         int auswahlInt = 0;
         String auswahlString;
@@ -141,14 +135,14 @@ public final class BefehlsZeilenSchnittstelle {
 
         return auswahlInt;
     }
+
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Die Methode bildReinigen reinigt das die Konsole
      */
-    static void bildReinigen() {
+    public static void bildReinigen() {
 
-        // Reinigt die Konsole
-
+        // Reinigt die Konsole in Windows
         try {
             if (System.getProperty("os.name").contains("Windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -157,7 +151,6 @@ public final class BefehlsZeilenSchnittstelle {
             }
         } catch (IOException | InterruptedException ex) {
         }
-
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -166,7 +159,6 @@ public final class BefehlsZeilenSchnittstelle {
     zugeben.
 
     Parameter: Verzögerungsdauer in ms
-
      */
     static void verzoegerung(int dauer){
         try {
@@ -180,7 +172,7 @@ public final class BefehlsZeilenSchnittstelle {
     /*
     Gibt Daten in einer Tabelle aus
          */
-    static void datenAusgeben(String[] kopfzeile,String[] angaben){
+    public static void tabelleAusgeben(String[] kopfzeile,String[] angaben){
 
         BefehlsZeilenSchnittstelle.bildReinigen();
         Tabelle tabelle = new Tabelle();
@@ -189,7 +181,6 @@ public final class BefehlsZeilenSchnittstelle {
         tabelle.zeileHinzufuegen(angaben);
         tabelle.ausgabe();
         System.out.println();
-
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -197,11 +188,9 @@ public final class BefehlsZeilenSchnittstelle {
     Die Methode korrekteEingabeBestätigen fragt den Benutzer ab ob die soeben Eingegebene Eingabe korrekt ist. Der Benutzer
     hat die Möglichkeit die Eingabe nochmals zu wiederholen oder die Eingabe abzubrechen, falls die Eingabe korrekt ist,
     kann die Eingabe gespeichert werden.
-
-
      */
 
-    static int korrekteEingabebestaetigen() {
+    static int korrekteEingabeBestaetigen() {
 
         int auswahl = 0;
 
@@ -213,7 +202,6 @@ public final class BefehlsZeilenSchnittstelle {
         auswahl = eingabeMitWertpruefung(4);
 
         return (auswahl);
-
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -224,9 +212,8 @@ public final class BefehlsZeilenSchnittstelle {
 
     Parameter: Länge des gültigen Eingabebereiches -> Von 1-99 möglich
     Rückgabe: Die gültige Eingabe als Integer Wert
-
     */
-    static int eingabeMitWertpruefung(int arrayLaenge){
+    public static int eingabeMitWertpruefung(int arrayLaenge){
 
         boolean gueltigeEingabe = false;
 
@@ -280,7 +267,7 @@ public final class BefehlsZeilenSchnittstelle {
 
      */
 
-    static String textFormatieren(String spaltenInhalt, int spaltenBreite){
+    public static String textFormatieren(String spaltenInhalt, int spaltenBreite){
 
         StringBuffer leerzeichen = new StringBuffer("");// Stringbuilder für die Lehrzeichen nach dem Text
 
@@ -307,7 +294,7 @@ public final class BefehlsZeilenSchnittstelle {
 
      */
 
-    static int eingabeAufIntegerPruefen() {
+    public static int eingabeAufIntegerPruefen() {
 
         int korrekterWert = 0;
         String eingabe;
@@ -333,11 +320,8 @@ public final class BefehlsZeilenSchnittstelle {
 
     /*
         Diese Methode prüft ob die Eingage nur Zahlen verwendet werden
-
      */
-//TODO funktioniert nicht  Regex überprüfen
-
-    static boolean eingabeIntPruefen(String eingabe){
+    public static boolean eingabeIntPruefen(String eingabe){
 
         boolean korrekteIntEingabe = false;
         int zahl;
@@ -360,14 +344,13 @@ public final class BefehlsZeilenSchnittstelle {
 
      */
 
-    static String pruefeDatum() {
+    public static String pruefeDatum() {
 
         Scanner scan = new Scanner(System.in);
 
         String sDatumFormat= "yyyy-MM-dd";
         boolean korrekteEingabe = false;
         String datum = "";
-
 
         do {
             try {
@@ -382,11 +365,9 @@ public final class BefehlsZeilenSchnittstelle {
                 System.out.println("Bitte verwenden sie folgendes Format: yyyy-MM-dd");
                 korrekteEingabe = false;
 
-
             } catch (IllegalArgumentException e) {
                 System.out.println("Fehler");
                 korrekteEingabe = false;
-
             }
         }while (!korrekteEingabe);
         return datum;

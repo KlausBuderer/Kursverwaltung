@@ -1,28 +1,29 @@
 
+import java.sql.SQLException;
 import java.time.Year;
 import java.util.*;
 
 public class Administratives extends Datenbank{
 
 
-    String[] unterMenue = {"Menü für Administratives", "1. Kostenstelle anlegen", "2. Budget erfassen pro Kostenstelle", "3. Oranisation anlegen", "4. Kostenstelle bearbeiten", "5. Budget Bearbeiten", "6. Hauptmenü"};
+    private String[] unterMenue = {"Menü für Administratives", "1. Kostenstelle anlegen", "2. Budget erfassen pro Kostenstelle", "3. Oranisation anlegen", "4. Kostenstelle bearbeiten", "5. Budget Bearbeiten", "6. Hauptmenü"};
+    private String[] waehrungsArray = {"CHF","EUR"};
 
+    private int kostenstelleId;
+    private int budgetId;
+    private int kostenstelle;
+    private int budgetJahr;
+    private int budgetBetrag;
+    private int waehrung;
+    private String abteilungsBezeichnung;
+    private String bezeichnungKst = " ";
+    private String kostenstelleVerantPerson;
+    private String stellenbezeichnung;
 
-
-    int kostenstelleId;
-    int kostenstelle;
-    int budgetJahr;
-    int budgetBetrag;
-    int budgetID;
-    int waehrung;
-    int organisationsID;
-    String[] waehrungsArray = {"CHF","EUR"};
-    String abteilungsBezeichnung;
-    String bezeichnungKst = " ";
-    String kostenstelleVerantPerson;
-    String stellenbezeichnung;
+    public int organisationsId;
 
     Scanner scan = new Scanner(System.in);
+
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Konstruktor anzeigen Hauptmenü
     Administratives(){
@@ -53,7 +54,7 @@ public class Administratives extends Datenbank{
     //Konstruktor erstellen eines Objekts mit Angaben der Organisation
     public Administratives( int organisationsID, int kostenstelleId, String abteilungsBezeichnung) {
         this.kostenstelleId = kostenstelleId;
-        this.organisationsID = organisationsID;
+        this.organisationsId = organisationsID;
         this.abteilungsBezeichnung = abteilungsBezeichnung;
     }
 
@@ -64,7 +65,7 @@ public class Administratives extends Datenbank{
         this.kostenstelleId = kostenstelleId;
         this.budgetJahr = budgetJahr;
         this.budgetBetrag = budgetBetrag;
-        this.budgetID = budgetID;
+        this.budgetId = budgetID;
     }
 
 
@@ -140,7 +141,7 @@ public class Administratives extends Datenbank{
             System.out.println();
             System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
-            switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()){
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
                 case 1: datenAnlegen(kostenstelleAnlegenQuerry());
                         abschliessen = true;
@@ -185,46 +186,20 @@ public class Administratives extends Datenbank{
             for (int i = 1; i < 6; i++) {
                 System.out.println(i + ". " + (jahr + (i-1)));
             }
-
             System.out.print("Jahr (1-5): ");
             budgetJahr = jahr + (BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(6) - 1);
+            //Budget Betrag
             System.out.print("Budget Betrag: ");
-
-            boolean korrekteEingabe = false;
-
-//            //Prüft ob die Eingabe eine Zahl ist und keine Sonderzeichen enthält
-//            while(!korrekteEingabe){
-//
-//               String eingabe = scan.next();
-//
-//               if(eingabe.matches("[^0-9]")){
-//                   System.out.println("Bitte geben sie einen gültigen Wert ein");
-//                   korrekteEingabe = false;
-//               }else{
-//                   budgetBetrag = Integer.parseInt(eingabe);
-//                   korrekteEingabe = true;
-//               }
-//            }
-
-            while(!korrekteEingabe) {
-                try {
-                    budgetBetrag = scan.nextInt();
-                    korrekteEingabe = true;
-                } catch (Exception exception) {
-                    System.out.println("Bitte geben sie einen gültigen Wert ein");
-                   korrekteEingabe = false;
-                }
-            }
+            budgetBetrag = BefehlsZeilenSchnittstelle.eingabeAufIntegerPruefen();
+              //Gibt Währung zur Auswahl
             int i = 1;
-
-
             for (String waehrung: waehrungsArray) {
                 System.out.println(i + ". " + waehrung);
                 i++;
             }
             System.out.println("Wahrung (1-2): ");
             waehrung = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1;
-
+            //Gibt Kostenstellen zur Auswahl aus
             auswahlListeKostenstelleAusgeben();
 
             BefehlsZeilenSchnittstelle.bildReinigen();
@@ -234,7 +209,7 @@ public class Administratives extends Datenbank{
             System.out.println();
             System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
-        switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()){
+        switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
             case 1: datenAnlegen(budgetAnlegenQuerry());
                 abschliessen = true;
@@ -271,7 +246,7 @@ public class Administratives extends Datenbank{
             System.out.println("Bitte geben sie folgende Daten ein");
             System.out.print("Stellenbezeichnung: ");
             stellenbezeichnung = scan.next();
-
+            //Gibt Kostenstelle als Liste aus
             auswahlListeKostenstelleAusgeben();
 
             BefehlsZeilenSchnittstelle.bildReinigen();
@@ -281,7 +256,7 @@ public class Administratives extends Datenbank{
 
 
 
-            switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()){
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
             case 1: datenAnlegen(organisationAnlegenQuerry());
                 abschliessen = true;
@@ -409,7 +384,7 @@ public class Administratives extends Datenbank{
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
         kostenstelleId = organisationArray[auswahl].kostenstelleId;
-        organisationsID = organisationArray[auswahl].organisationsID;
+        organisationsId = organisationArray[auswahl].organisationsId;
         abteilungsBezeichnung = organisationArray[auswahl].abteilungsBezeichnung;
 
     }
@@ -444,7 +419,7 @@ public class Administratives extends Datenbank{
         System.out.print("Bitte wählen sie ein Budget aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
-        budgetID = budgetArray[auswahl].budgetID;
+        budgetId = budgetArray[auswahl].budgetId;
         budgetBetrag = budgetArray[auswahl].budgetBetrag;
         budgetJahr = budgetArray[auswahl].budgetJahr;
         waehrung = budgetArray[auswahl].waehrung;
@@ -457,7 +432,7 @@ public class Administratives extends Datenbank{
     Methode zur Bearbeitung einer Kostenstelle
 
      */
-    void kostenstelleBearbeiten() {
+    void kostenstelleBearbeiten(){
 
         String[] spaltenArray = {"Kostenstellennummer","Bezeichnung der Kostenstelle","Verantwortliche Person der Kostenstelle"};
         String vornamen;
@@ -512,7 +487,7 @@ public class Administratives extends Datenbank{
             System.out.println();
             System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
-            switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()) {
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1:
                     datenBearbeiten(updateKostenstelle());
@@ -618,7 +593,7 @@ public class Administratives extends Datenbank{
             System.out.println();
             System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
-            switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()){
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
                 case 1: datenBearbeiten(updateBudget());
                     abschliessen = true;
@@ -649,7 +624,7 @@ public class Administratives extends Datenbank{
         querry = "UPDATE `itwisse_kursverwaltung`.`BudgetPeriode` SET " +
                 " `Jahr` = " + budgetJahr +
                 ", `Betrag` = " + budgetBetrag +
-                " WHERE `ID` = " + budgetID + ";";
+                " WHERE `ID` = " + budgetId + ";";
         return querry;
     }
 }

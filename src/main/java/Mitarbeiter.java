@@ -6,7 +6,7 @@ public class Mitarbeiter extends Datenbank {
     private String[] unterMenue = {"Mitarbeitermenü", "1. Mitarbeiter anlegen", "2. Mitarbeiter anlegen Massenimport",
             "3. Kurs an Mitarbeiter zuordnen", "4. Mitarbeiter neue Zertifikate zuordnen", "5. Zertifikate von Mitarbeiter erneuern",
             "6. Mitarbeiter Informationen auslesen", "7. Mitarbeiter bearbeiten", "8. Hauptmenue"};
-    private String[] anredeArray = {"Frau", "Herr", "Neutral"};
+    private String[] anredeArray = {"Frau", "Herr", "Andere"};
 
     private boolean mitarbeiterStatus;
     private int mitarbeiterId;
@@ -110,7 +110,7 @@ public class Mitarbeiter extends Datenbank {
 
             Administratives administratives = new Administratives("test");
             administratives.auswahlListeOrganisationAusgeben();
-            organisationsId = administratives.organisationsID;
+            organisationsId = administratives.organisationsId;
 
 
             BefehlsZeilenSchnittstelle.bildReinigen();
@@ -118,7 +118,7 @@ public class Mitarbeiter extends Datenbank {
             System.out.println();
             System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
-            switch (BefehlsZeilenSchnittstelle.korrekteEingabebestaetigen()) {
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1:
                     datenAnlegen(anlegenQuerry());

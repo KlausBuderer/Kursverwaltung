@@ -1,42 +1,37 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 
         public class Einstellungen {
 
-
-            String[] unterMenue = {"Einstellungen", "1. Datenbank Verbindungsdaten ändern", "2. Hauptmenü"};
-            String[] kopfzeileTabelle = {"Url", "Benutzer", "Passwort"};
-            String[] angabenTabelle = {url, benutzer, passwort};
-
+            private final String[] UNTERMENUE = {"Einstellungen", "1. Datenbank Verbindungsdaten ändern", "2. Hauptmenü"};
+            private final String[] KOPFZEILETABELLE = {"Url", "Benutzer", "Passwort"};
+            private String[] angabenTabelle = {url, benutzer, passwort};
 
             //Standard Verbindungsdaten
-            public final  String urlDefault = "jdbc:mysql://itwisse.mysql.db.hostpoint.ch:3306/itwisse_kursverwaltung";
-            public final  String benutzerDefault = "itwisse_kursvw";
-            public final  String passwortDefault = "abbts2020-01";
+            private final  String URLDEFAULT = "jdbc:mysql://itwisse.mysql.db.hostpoint.ch:3306/itwisse_kursverwaltung";
+            private final  String BENUTZERDEFAULT = "itwisse_kursvw";
+            private final  String PASSWORTDEFAULT = "abbts2020-01";
 
             //Benutzerdefinierte Benutzerdaten
-            public  String urlBenutzerdefiniert;
-            public  String benutzerBenutzerdefiniert;
-            public  String passwortBenutzerdefiniert;
+            private   String urlBenutzerdefiniert;
+            private   String benutzerBenutzerdefiniert;
+            private   String passwortBenutzerdefiniert;
 
             //aktive Verbindungsdaten
             public static String url;
             public static String benutzer;
             public static String passwort;
 
-            public boolean standartVerbindungsDaten = true;
+            private boolean standardVerbindungsDaten = true;
 
             Scanner scan = new Scanner(System.in);
 
             //Konstruktor mit der Anzeige des Untermenüs
             Einstellungen() {
-
                 unterMenueAnzeigen();
-
             }
 
             //Konsruktor für das einmalige Aufstarten der Software
@@ -44,12 +39,12 @@ import java.util.Scanner;
                 verbindunsDatenBeiStartSetzen();
             }
 
-            void unterMenueAnzeigen() {
+           private void unterMenueAnzeigen() {
 
                 boolean gueltigeEingabe = false;
 
                 do {
-                    switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue)) {
+                    switch (BefehlsZeilenSchnittstelle.unterMenue(UNTERMENUE)) {
                         case 1:
                             nachVerbindungFragen();
                             break;
@@ -65,7 +60,7 @@ import java.util.Scanner;
 
 
             //Erstellt neue Datei und schreibt die Eingaben vom Benutzer in die Datei
-            void verbindungsDatenDateiErstellen(){
+            private void verbindungsdatenDateiErstellen(){
 
                 try {
 
@@ -85,7 +80,7 @@ import java.util.Scanner;
 
             }
             //Liest die Daten aus der Datein
-            void verbindungsdatenAusDateiLesen() throws FileNotFoundException {
+           private void verbindungsdatenAusDateiLesen() throws FileNotFoundException {
 
                 File file = new File("DatenbankVerbindungsdaten.txt");
 
@@ -102,7 +97,7 @@ import java.util.Scanner;
 
 
             // Abfrage welche Verbindungsdaten verwendet werden sollen
-            void nachVerbindungFragen(){
+            public void nachVerbindungFragen(){
 
                 System.out.println("Welche Verbindungsdaten möchten sie nutzen?");
                 System.out.println("1. Standart Verbindungsdaten");
@@ -110,14 +105,14 @@ import java.util.Scanner;
 
                 switch (scan.nextInt()){
                     case 1:
-                        standartVerbindungsDaten = true;
+                        standardVerbindungsDaten = true;
                         System.out.println("Standart Verbindungsdaten aktiviert");
-                        url = urlDefault;
-                        benutzer = benutzerDefault;
-                        passwort = passwortDefault;
+                        url = URLDEFAULT;
+                        benutzer = BENUTZERDEFAULT;
+                        passwort = PASSWORTDEFAULT;
                         break;
                     case 2:
-                        standartVerbindungsDaten = false;
+                        standardVerbindungsDaten = false;
                         try {
                             verbindungsDatenKorrektAbfrage();
                         } catch (FileNotFoundException fileNotFoundException) {
@@ -160,7 +155,7 @@ import java.util.Scanner;
                             break;
 
                         case 2:
-                            verbindungsDatenDateiErstellen();
+                            verbindungsdatenDateiErstellen();
                             korrekteEingabe = true;
                             break;
                         default:
@@ -173,9 +168,9 @@ import java.util.Scanner;
 
             void verbindunsDatenBeiStartSetzen(){
 
-                url = urlDefault;
-                benutzer = benutzerDefault;
-                passwort = passwortDefault;
+                url = URLDEFAULT;
+                benutzer = BENUTZERDEFAULT;
+                passwort = PASSWORTDEFAULT;
 
             }
 
