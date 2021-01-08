@@ -1,12 +1,13 @@
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 // Utility Klasse für Ausgaben und Eingaben in der Konsole
 public final class BefehlsZeilenSchnittstelle {
 
-   static String[] hauptmenuAdmin =  {"Hauptmenü","", "1. Mitarbeiter", "2. Kurse", "3. Zertifikate", "4. Administratives",
+   private static String[] hauptmenuAdmin =  {"Hauptmenü","", "1. Mitarbeiter", "2. Kurse", "3. Zertifikate", "4. Administratives",
             "5. Benutzerverwaltung,", "6. Einstellungen", "Mit welchen Menüpunkt wollen sie weiterfahren?"};
-
 
     // Privater Konstruktor um keine Instanzierung zu erlauben
     private BefehlsZeilenSchnittstelle(){
@@ -16,10 +17,8 @@ public final class BefehlsZeilenSchnittstelle {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
      Anzeige des Hauptmenüs für Benutzer mit Adminrecht
-
      */
-
-    static void hauptmenueAusgeben() {
+    public static void hauptmenueAusgeben() {
 
         int auswahlInt = 0;
         boolean gueltigeEingabe;
@@ -28,8 +27,6 @@ public final class BefehlsZeilenSchnittstelle {
         Scanner scan = new Scanner(System.in);
 
         //Ausgabe des Hauptmenüs und Einlesen der Auswahl
-
-
         bildReinigen();
         System.out.println();
         System.out.println();
@@ -98,8 +95,7 @@ public final class BefehlsZeilenSchnittstelle {
     Parameter: Array von Strings mit dem Auswahltext der angezeigt werden soll
     Rückgabe: Die Auswahl des Bedieners als Integer Wert
    */
-
-    static int unterMenue(String[] unterMenue) {
+    public static int unterMenue(String[] unterMenue) {
 
         int auswahlInt = 0;
         String auswahlString;
@@ -139,14 +135,14 @@ public final class BefehlsZeilenSchnittstelle {
 
         return auswahlInt;
     }
+
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Die Methode bildReinigen reinigt das die Konsole
      */
-    static void bildReinigen() {
+    public static void bildReinigen() {
 
-        // Reinigt die Konsole
-
+        // Reinigt die Konsole in Windows
         try {
             if (System.getProperty("os.name").contains("Windows")) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -155,7 +151,6 @@ public final class BefehlsZeilenSchnittstelle {
             }
         } catch (IOException | InterruptedException ex) {
         }
-
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -164,7 +159,6 @@ public final class BefehlsZeilenSchnittstelle {
     zugeben.
 
     Parameter: Verzögerungsdauer in ms
-
      */
     static void verzoegerung(int dauer){
         try {
@@ -178,7 +172,7 @@ public final class BefehlsZeilenSchnittstelle {
     /*
     Gibt Daten in einer Tabelle aus
          */
-    static void datenAusgeben(String[] kopfzeile,String[] angaben){
+    public static void tabelleAusgeben(String[] kopfzeile,String[] angaben){
 
         BefehlsZeilenSchnittstelle.bildReinigen();
         Tabelle tabelle = new Tabelle();
@@ -187,7 +181,6 @@ public final class BefehlsZeilenSchnittstelle {
         tabelle.zeileHinzufuegen(angaben);
         tabelle.ausgabe();
         System.out.println();
-
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -195,11 +188,9 @@ public final class BefehlsZeilenSchnittstelle {
     Die Methode korrekteEingabeBestätigen fragt den Benutzer ab ob die soeben Eingegebene Eingabe korrekt ist. Der Benutzer
     hat die Möglichkeit die Eingabe nochmals zu wiederholen oder die Eingabe abzubrechen, falls die Eingabe korrekt ist,
     kann die Eingabe gespeichert werden.
-
-
      */
 
-    static int korrekteEingabebestaetigen() {
+    static int korrekteEingabeBestaetigen() {
 
         int auswahl = 0;
 
@@ -211,7 +202,6 @@ public final class BefehlsZeilenSchnittstelle {
         auswahl = eingabeMitWertpruefung(4);
 
         return (auswahl);
-
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -222,9 +212,8 @@ public final class BefehlsZeilenSchnittstelle {
 
     Parameter: Länge des gültigen Eingabebereiches -> Von 1-99 möglich
     Rückgabe: Die gültige Eingabe als Integer Wert
-
     */
-    static int eingabeMitWertpruefung(int arrayLaenge){
+    public static int eingabeMitWertpruefung(int arrayLaenge){
 
         boolean gueltigeEingabe = false;
 
@@ -240,7 +229,7 @@ public final class BefehlsZeilenSchnittstelle {
             // Überprüft ob die Eingabe eine Ganzzahl [1-99] ist
             if (eingabeString.matches("^([1-9][0-9]?)$")) {
                 // Überprüft ob die Eingabe in der Range des Arrays ist
-                if ((Integer.parseInt(eingabeString) <= (arrayLaenge -1)) && Integer.parseInt(eingabeString) > 0) {
+                if ((Integer.parseInt(eingabeString) <= (arrayLaenge)) && Integer.parseInt(eingabeString) > 0) {
 
                     eingabeInt = Integer.parseInt(eingabeString);
                     gueltigeEingabe = true;
@@ -268,6 +257,122 @@ public final class BefehlsZeilenSchnittstelle {
         }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+    Methode zur Formatierung einer Ausgabe in Tabellenform
+
+    Parameter
+    spaltenInhalt: Text der in der Spalte ausgegeben werden soll
+    spaltenBreite: Anzahl Zeichen pro Spalte
+
+     */
+
+    public static String textFormatieren(String spaltenInhalt, int spaltenBreite){
+
+        StringBuffer leerzeichen = new StringBuffer("");// Stringbuilder für die Lehrzeichen nach dem Text
+
+        int anzahlLeerzeichen = (spaltenBreite - spaltenInhalt.length()); // Berechnen der fehlenden Leerzeichen
+
+        if (anzahlLeerzeichen < 5){ //Mindestabstand von 5 Leerzeichen
+            anzahlLeerzeichen = 5;
+        }
+
+        for (int i = 0; i != anzahlLeerzeichen; i++) { // Hinzufügen von Leerzeichen
+            char lehrzeichenA = ' ';
+            leerzeichen.append(lehrzeichenA);
+        }
+
+        return spaltenInhalt + leerzeichen;
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+        Diese Methode prüft ob die Eingage nur Zahlen verwendet werden
+
+     */
+
+    public static int eingabeAufIntegerPruefen() {
+
+        int korrekterWert = 0;
+        String eingabe;
+        boolean korrekteEingabe = false;
+
+        Scanner scan = new Scanner(System.in);
+
+        //Prüft ob die Eingabe eine Zahl ist und keine Sonderzeichen enthält
+        while (!korrekteEingabe) {
+            eingabe = scan.next();
+            korrekteEingabe = true;
+            if (eingabeIntPruefen(eingabe)) {
+                return korrekterWert = Integer.parseInt(eingabe);
+            }else {
+                korrekteEingabe = false;
+                System.out.println("Bitte geben sie einen gültigen Wert ein");
+            }
+        }
+            return korrekterWert;
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+        Diese Methode prüft ob die Eingage nur Zahlen verwendet werden
+     */
+    public static boolean eingabeIntPruefen(String eingabe){
+
+        boolean korrekteIntEingabe = false;
+        int zahl;
+
+            try {
+                zahl = Integer.parseInt(eingabe);
+                korrekteIntEingabe = true;
+            } catch (Exception exception) {
+                korrekteIntEingabe = false;
+            }
+
+        return korrekteIntEingabe;
+    }
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+        Eingabe auf korrektes Datum und korrektes Format prüfen
+
+    Rückgabe = Korrektes Datum als String
+
+     */
+
+    public static String pruefeDatum() {
+
+        Scanner scan = new Scanner(System.in);
+
+        String sDatumFormat= "yyyy-MM-dd";
+        boolean korrekteEingabe = false;
+        String datum = "";
+
+        do {
+            try {
+                datum = scan.next();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(sDatumFormat);
+                simpleDateFormat.setLenient(false);
+                simpleDateFormat.parse(datum);
+                korrekteEingabe = true;
+
+            } catch (ParseException e) {
+                System.out.println("Ungültiges Datum oder falsches Format");
+                System.out.println("Bitte verwenden sie folgendes Format: yyyy-MM-dd");
+                korrekteEingabe = false;
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Fehler");
+                korrekteEingabe = false;
+            }
+        }while (!korrekteEingabe);
+        return datum;
+    }
+
 }
 
 
