@@ -5,15 +5,13 @@ import java.util.Scanner;
 public class Zertifikate extends Datenbank{
 
     String [] unterMenue = {"Zertifikate", "1. Zertifikate anlegen", "2. Zertifikate bearbeiten", "3. Gültigkeitsdauer von Zertifikate verlängern", "4. Hauptmenü"};
-    String [] waehrungsArray = {"CHF", "EUR"};
     int zertifikatsId;
     int kosten;
-    int waehrung = 1;
+    String waehrung;
     String zertifikatsTitel;
     String zertifikatsBeschreibung;
     String anbieter;
     String sprache;
-    String waehrungDb;
 
     Scanner scan = new Scanner(System.in);
 
@@ -24,15 +22,14 @@ public class Zertifikate extends Datenbank{
 
     }
 
-    public Zertifikate(int zertifikatsId, int kosten, String zertifikatsTitel, String zertifikatsBeschreibung, String anbieter, String sprache, String waehrungDb) {
+    public Zertifikate(int zertifikatsId, int kosten, String zertifikatsTitel, String zertifikatsBeschreibung, String anbieter, String sprache, String waehrung) {
         this.zertifikatsId = zertifikatsId;
         this.kosten = kosten;
-        this.waehrung = waehrung;
         this.zertifikatsTitel = zertifikatsTitel;
         this.zertifikatsBeschreibung = zertifikatsBeschreibung;
         this.anbieter = anbieter;
         this.sprache = sprache;
-        this.waehrungDb = waehrungDb;
+        this.waehrung = waehrung;
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -82,30 +79,17 @@ public class Zertifikate extends Datenbank{
             BefehlsZeilenSchnittstelle.bildReinigen();
             System.out.println("Bitte geben sie folgende Daten ein");
             //Zertifikats Titel
-            System.out.print("Zertifikats Titel: ");
-            zertifikatsTitel = scan.next();
+            zertifikatsTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Zertifikats Titel: ");
             //Anbieter
-            System.out.print("Anbieter: ");
-            anbieter = scan.next();
+            anbieter = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Anbieter: ");
             //Beschreibung
-            System.out.print("Beschreibung: ");
-            zertifikatsBeschreibung = scan.next();
+            zertifikatsBeschreibung = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Beschreibung: ");
             //Kosten
-            System.out.print("Kosten: ");
-            kosten = BefehlsZeilenSchnittstelle.eingabeAufIntegerPruefen();
+            kosten = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Kosten: ");
             //Waehrung
-            int i = 1;
-
-            for (String waehrung: waehrungsArray) {
-                System.out.println(i + ". " + waehrung);
-                i++;
-            }
-            System.out.println("Wahrung (1-2): ");
-            waehrung = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1;
+            waehrung = BefehlsZeilenSchnittstelle.abfrageWaehrung();
             //Sprache
-            System.out.print("Sprache: ");
-            sprache = scan.next();
-
+            sprache = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Sprache: ");
 
             BefehlsZeilenSchnittstelle.bildReinigen();
             System.out.println(toString());
@@ -186,16 +170,8 @@ public class Zertifikate extends Datenbank{
                     break;
                 case 5:
                     BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Aktuell: " + waehrungsArray[waehrung]);
-                    System.out.println("Waehlen sie die neue Waehrung: ");
-                    int j = 1;
-
-                    for (String waehrung: waehrungsArray) {
-                        System.out.println(j + ". " + waehrung);
-                        j++;
-                    }
-                    System.out.println("Wahrung (1-2): ");
-                    waehrung = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1;
+                    System.out.println("Aktuell: " + waehrung);
+                    waehrung = BefehlsZeilenSchnittstelle.abfrageWaehrung();
                     break;
                 case 6:
                     BefehlsZeilenSchnittstelle.bildReinigen();
@@ -260,7 +236,7 @@ public class Zertifikate extends Datenbank{
         // Die Daten des gewählten Objekts werden in das sich vorhandene Objekt geschrieben
         zertifikatsId = zertifikatArray[auswahl].zertifikatsId;
         kosten = zertifikatArray[auswahl].kosten;
-        waehrungDb = zertifikatArray[auswahl].waehrungDb;
+        waehrung = zertifikatArray[auswahl].waehrung;
         zertifikatsTitel = zertifikatArray[auswahl].zertifikatsTitel;
         anbieter = zertifikatArray[auswahl].anbieter;
         zertifikatsBeschreibung = zertifikatArray[auswahl].zertifikatsBeschreibung;
@@ -279,7 +255,7 @@ public class Zertifikate extends Datenbank{
                 "', `Anbieter` = '" + anbieter +
                 "', `Sprache` = '" + sprache +
                 "', `Kosten` = " + kosten +
-                ", `Waehrung` = '" + waehrungsArray[waehrung] +
+                ", `Waehrung` = '" + waehrung +
                 "' WHERE `ID` = " + zertifikatsId + ";";
     }
 
@@ -292,8 +268,7 @@ public class Zertifikate extends Datenbank{
         return "INSERT INTO `itwisse_kursverwaltung`.`Zertifikate`" +
                 " (`Titel`, `Beschreibung`, `Anbieter`, `Sprache`, `Kosten`, `Waehrung`)" +
                 " VALUES ('" + zertifikatsTitel + "', '" + zertifikatsBeschreibung + "', '" + anbieter + "', '" + sprache + "', '" + kosten + "', '" +
-                waehrungsArray[waehrung] + "')";
-
+                waehrung + "')";
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -307,11 +282,6 @@ public class Zertifikate extends Datenbank{
                 "Anbieter: " + BefehlsZeilenSchnittstelle.textFormatieren(anbieter, 15 ) +
                 "Sprache: " + BefehlsZeilenSchnittstelle.textFormatieren(sprache, 10 ) +
                 "Kosten: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(kosten), 10 ) +
-                "Waehrung: " + BefehlsZeilenSchnittstelle.textFormatieren(waehrungsArray[waehrung], 30 ) ;
-
-
-
-
-
+                "Waehrung: " + BefehlsZeilenSchnittstelle.textFormatieren(waehrung, 30 ) ;
     }
 }

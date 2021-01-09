@@ -7,14 +7,13 @@ public class Administratives extends Datenbank{
 
 
     private String[] unterMenue = {"Menü für Administratives", "1. Kostenstelle anlegen", "2. Budget erfassen pro Kostenstelle", "3. Oranisation anlegen", "4. Kostenstelle bearbeiten", "5. Budget Bearbeiten", "6. Hauptmenü"};
-    private String[] waehrungsArray = {"CHF","EUR"};
 
     private int kostenstelleId;
     private int budgetId;
     private int kostenstelle;
     private int budgetJahr;
     private int budgetBetrag;
-    private int waehrung;
+    private String waehrung;
     private String abteilungsBezeichnung;
     private String bezeichnungKst = " ";
     private String kostenstelleVerantPerson;
@@ -192,13 +191,7 @@ public class Administratives extends Datenbank{
             System.out.print("Budget Betrag: ");
             budgetBetrag = BefehlsZeilenSchnittstelle.eingabeAufIntegerPruefen();
               //Gibt Währung zur Auswahl
-            int i = 1;
-            for (String waehrung: waehrungsArray) {
-                System.out.println(i + ". " + waehrung);
-                i++;
-            }
-            System.out.println("Wahrung (1-2): ");
-            waehrung = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1;
+            waehrung = BefehlsZeilenSchnittstelle.abfrageWaehrung();
             //Gibt Kostenstellen zur Auswahl aus
             auswahlListeKostenstelleAusgeben();
 
@@ -229,7 +222,7 @@ public class Administratives extends Datenbank{
     String budgetAnlegenQuerry(){
 
         return "INSERT INTO `itwisse_kursverwaltung`.`BudgetPeriode` (`Jahr`, `Betrag`, `Waehrung`, `KostenstelleID`) VALUES" +
-                " ('" + budgetJahr + "', '" + budgetBetrag + "', '" + waehrungsArray[waehrung] + "', '" + kostenstelleId + "')";
+                " ('" + budgetJahr + "', '" + budgetBetrag + "', '" + waehrung + "', '" + kostenstelleId + "')";
 
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
