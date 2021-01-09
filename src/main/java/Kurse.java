@@ -5,11 +5,9 @@ import java.util.Scanner;
 public class Kurse extends Datenbank {
 
     private String [] unterMenue = {"Kurse", "1. Kurse anlegen", "2. Kurse bearbeiten", "3. Hauptmenue"};
-    private String[] waehrungsArray = {"CHF","EUR"};
     private int kurseId;
     private int kosten = 1;
-    private int waehrung;
-    private String waehrungDb;
+    private String waehrung;
     private String kursCode;
     private String anbieter;
     private String kursBeschreibung;
@@ -26,10 +24,10 @@ public class Kurse extends Datenbank {
     }
 
 
-    public Kurse(int kurseId, int kosten, String waehrungDb, String kursCode, String anbieter, String kursBeschreibung, String datumVon, String datumBis, String durchfuerungsOrt) {
+    public Kurse(int kurseId, int kosten, String waehrung, String kursCode, String anbieter, String kursBeschreibung, String datumVon, String datumBis, String durchfuerungsOrt) {
         this.kurseId = kurseId;
         this.kosten = kosten;
-        this.waehrungDb = waehrungDb;
+        this.waehrung = waehrung;
         this.kursCode = kursCode;
         this.anbieter = anbieter;
         this.kursBeschreibung = kursBeschreibung;
@@ -82,36 +80,21 @@ public class Kurse extends Datenbank {
             BefehlsZeilenSchnittstelle.bildReinigen();
             System.out.println("Bitte geben sie folgende Daten ein");
             //Kurs Code
-            System.out.print("Kurs Code: ");
-            kursCode = scan.next();
+            kursCode = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Kurs Code: ");
             //Anbieter
-            System.out.print("Anbieter: ");
-            anbieter = scan.next();
+            anbieter = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Anbieter: ");
             //Kursbeschreibung
-            System.out.print("Kursbeschreibung: ");
-            kursBeschreibung = scan.next();
+            kursBeschreibung = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Kursbeschreibung: ");
             //Kosten
-            System.out.print("Kosten: ");
-            kosten = BefehlsZeilenSchnittstelle.eingabeAufIntegerPruefen();
+            kosten = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Kosten: ");
             //Waehrung
-            int i = 1;
-
-            for (String waehrung: waehrungsArray) {
-                System.out.println(i + ". " + waehrung);
-                i++;
-            }
-            System.out.println("Wahrung (1-2): ");
-            waehrung = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1;
+            waehrung = BefehlsZeilenSchnittstelle.abfrageWaehrung();
             //Datum von
-            System.out.print("Start Datum: ");
-            datumVon = BefehlsZeilenSchnittstelle.pruefeDatum();
-
+            datumVon = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Start Datum: ");
             //Datum bis
-            System.out.print("End-Datum: ");
-            datumBis = BefehlsZeilenSchnittstelle.pruefeDatum();
-            //kostenstelle (organisation)
-            System.out.print("Durchfuehrungsort: ");
-            durchfuehrungsOrt = scan.next();
+            datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("End-Datum: ");
+            //Durchfuehrungsort
+            durchfuehrungsOrt = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Durchfuehrungsort: ");
 
             BefehlsZeilenSchnittstelle.bildReinigen();
             System.out.println(toString());
@@ -192,16 +175,8 @@ public class Kurse extends Datenbank {
                     break;
                 case 5:
                     BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Aktuell: " + waehrungsArray[waehrung]);
-                    System.out.println("Waehlen sie die neue Waehrung: ");
-                    int j = 1;
-
-                    for (String waehrung: waehrungsArray) {
-                        System.out.println(j + ". " + waehrung);
-                        j++;
-                    }
-                    System.out.println("Wahrung (1-2): ");
-                    waehrung = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1;
+                    System.out.println("Aktuell: " + waehrung);
+                    waehrung = BefehlsZeilenSchnittstelle.abfrageWaehrung();
                     break;
                 case 6:
                     BefehlsZeilenSchnittstelle.bildReinigen();
@@ -280,7 +255,7 @@ public class Kurse extends Datenbank {
         // Die Daten des gewählten Objekts werden in das sich vorhandene Objekt geschrieben
         kurseId = kursArray[auswahl].kurseId;
         kosten = kursArray[auswahl].kosten;
-        waehrungDb = kursArray[auswahl].waehrungDb;
+        waehrung = kursArray[auswahl].waehrung;
         kursCode = kursArray[auswahl].kursCode;
         anbieter = kursArray[auswahl].anbieter;
         kursBeschreibung = kursArray[auswahl].kursBeschreibung;
@@ -305,7 +280,7 @@ public class Kurse extends Datenbank {
                 ", `Anbieter` = '" + anbieter +
                 "', `Kursbeschreibung` = '" + kursBeschreibung +
                 "', `Kosten` = " + kosten +
-                ", `Waehrung` = '" + waehrungsArray[waehrung] +
+                ", `Waehrung` = '" + waehrung +
                 "', `DatumVon` = " + datumVon +
                 ", `DatumBis` = " + datumBis +
                 ", `Durchfuehrungsort` = '" + durchfuehrungsOrt +
@@ -339,13 +314,13 @@ public class Kurse extends Datenbank {
     public String toString() {
         return
 
-                " kursCode: " + kursCode +
-                ", anbieter: " + anbieter +
-                        ", kosten: " + kosten +
-                ", kursBeschreibung: " + kursBeschreibung +
-                ", datumVon: " + datumVon +
-                ", datumBis: " + datumBis +
-                ", durchfuerungsOrt: '" + durchfuehrungsOrt +
-                ", waehrungsArray: " + waehrungsArray[waehrung];
+                " KursCode: " + kursCode +
+                " Anbieter: " + anbieter +
+                        " Kosten: " + kosten +
+                " KursBeschreibung: " + kursBeschreibung +
+                " DatumVon: " + datumVon +
+                " DatumBis: " + datumBis +
+                " DurchfuerungsOrt: " + durchfuehrungsOrt +
+                " Waehrung: " + waehrung;
     }
 }

@@ -89,21 +89,15 @@ public class Mitarbeiter extends Datenbank {
             System.out.println("Anrede (1-3): ");
             anrede = anredeArray[BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
             //Vorname
-            System.out.print("Vorname: ");
-            vorname = scan.next();
+            vorname = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Vorname: ");
             //Nachname
-            System.out.print("Nachname: ");
-            nachname = scan.next();
+            nachname = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Nachname: ");
             //Geburtsdatum
-            System.out.print("Geburtsdatum (yyyy-MM-dd): ");
-            geburtstag = BefehlsZeilenSchnittstelle.pruefeDatum();
+            geburtstag = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geburtsdatumg (dd.MM.yyyy): ");
             //Personal Nummer
-            System.out.print("Personalnummer: ");
-            personalNummer = BefehlsZeilenSchnittstelle.eingabeAufIntegerPruefen();
+            personalNummer = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Personalnummer: ");
             //Jobtitel
-            System.out.print("Jobtitel: ");
-            jobTitel = scan.next();
-
+            jobTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Jobtitel: ");
             //Status beim Anlegen automatisch true
             mitarbeiterStatus = true;
             //kostenstelle (organisation)

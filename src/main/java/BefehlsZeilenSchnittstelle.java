@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 // Utility Klasse für Ausgaben und Eingaben in der Konsole
@@ -207,7 +208,7 @@ public final class BefehlsZeilenSchnittstelle {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /*
-    Die Methode eingabeMitWertpruefung prüft ob der eingegebene Wert des Users eine Ganzzahl ist und ob die Eingabe sich
+    Die Methode eingabeMitWertpruefung prüft ob der eingegebene Wert des Users eine Ganzzahl ist und sich
     im Wertebereich des Arrays befindet.
 
     Parameter: Länge des gültigen Eingabebereiches -> Von 1-99 möglich
@@ -348,21 +349,24 @@ public final class BefehlsZeilenSchnittstelle {
 
         Scanner scan = new Scanner(System.in);
 
-        String sDatumFormat= "yyyy-MM-dd";
+        String sDatumFormat= "dd.MM.yyyy";
         boolean korrekteEingabe = false;
         String datum = "";
+        Date date;
 
         do {
             try {
                 datum = scan.next();
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(sDatumFormat);
                 simpleDateFormat.setLenient(false);
-                simpleDateFormat.parse(datum);
+                date = simpleDateFormat.parse(datum);
+                simpleDateFormat.applyPattern("yyyy-MM-dd");
+                datum = simpleDateFormat.format(date);
                 korrekteEingabe = true;
 
             } catch (ParseException e) {
                 System.out.println("Ungültiges Datum oder falsches Format");
-                System.out.println("Bitte verwenden sie folgendes Format: yyyy-MM-dd");
+                System.out.println("Bitte verwenden sie folgendes Format: dd.MM.yyyy");
                 korrekteEingabe = false;
 
             } catch (IllegalArgumentException e) {
@@ -371,6 +375,128 @@ public final class BefehlsZeilenSchnittstelle {
             }
         }while (!korrekteEingabe);
         return datum;
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+        Ausgabe eines Textes mit Erwartung einer Eingabe die keine Sonderzeichne oder Zahlen enthält (z.B Namen)
+
+        Parameter = Ausgabe
+        Rückgabe = Korrektes Eingabe als String
+
+     */
+    public static String abfrageMitEingabeString(String abfrage) {
+        Scanner scan = new Scanner(System.in);
+        boolean korrekteEingabe = false;
+        String eingabe = "";
+        do {
+            System.out.print(abfrage);
+
+            try {
+                eingabe = scan.nextLine();
+
+                for (Character zeichen:eingabe.toCharArray()) {
+                    if(Character.isAlphabetic(zeichen) || Character.isSpaceChar(zeichen)){
+
+                    }else {
+                        korrekteEingabe = false;
+                        System.out.println("Diese Eingabe darf keine Zahlen enthalten!");
+                        break;
+                    }
+                    korrekteEingabe = true;
+                }
+
+            } catch (Exception e) {
+                System.out.println("Fehler bei der Verarbeitung der Eingabe");
+                korrekteEingabe = false;
+            }
+        } while (!korrekteEingabe);
+        return eingabe;
+    }
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+        Ausgabe eines Textes mit Erwartung einer Eingabe die keine Sonderzeichnen oder Buchstaben enthält
+
+        Parameter = Ausgabe
+        Rückgabe = Korrektes Eingabe als int
+
+     */
+
+    public static int abfrageMitEingabeInt(String ausgabe){
+
+       int eingabe = -1;
+       Scanner scan = new Scanner(System.in);
+
+        System.out.print(ausgabe);
+        eingabe = eingabeAufIntegerPruefen();
+
+        return eingabe;
+    }
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+        Ausgabe eines Textes mit Erwartung einer Eingabe eines Datum im richtigen Format
+
+        Parameter = Ausgabe
+        Rückgabe = Korrektes Eingabe als int
+
+     */
+
+    public static String abfrageMitEingabeDatum(String ausgabe){
+
+        String eingabe = "";
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print(ausgabe);
+        eingabe = pruefeDatum();
+
+        return eingabe;
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+        Ausgabe eines Textes mit Erwartung einer Eingabe eines Datum im richtigen Format
+
+        Parameter = Ausgabe
+        Rückgabe = Korrektes Eingabe als int
+
+     */
+
+    public static String abfrageMitEingabeFrei(String ausgabe){
+
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print(ausgabe);
+
+        return scan.nextLine();
+    }
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+        Ausgabe einer Auswahl von Währungen mit Erwartung einer korrekten Eingabe
+
+        Parameter = Ausgabe
+        Rückgabe = Auswahl als String
+
+     */
+
+    public static String abfrageWaehrung(){
+
+        String[] waehrungsArray = {"CHF","EUR","USD"};
+        Scanner scan = new Scanner(System.in);
+
+        int i = 1;
+
+        for (String waehrung: waehrungsArray) {
+            System.out.println(i + ". " + waehrung);
+            i++;
+        }
+        System.out.println("Waehrung (1-" + waehrungsArray.length + "): ");
+
+        return waehrungsArray[eingabeMitWertpruefung(waehrungsArray.length)-1];
     }
 
 }
