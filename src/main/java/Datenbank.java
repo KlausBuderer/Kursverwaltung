@@ -163,6 +163,8 @@ public class Datenbank {
                 case "Zertifikate":
                     datenAuflistung = zertifikateAusgeben(dbInhalt);
                     break;
+                case "Auswertung":
+                    break;
                 default:
                     break;
             }
@@ -261,7 +263,8 @@ public class Datenbank {
             Integer budgetJahr = dbInhalt.getInt("Jahr");
             Integer kostenstelleID = dbInhalt.getInt("KostenstelleID");
             Integer betrag = dbInhalt.getInt("Betrag");
-            budget = new Administratives(id, kostenstelleID, budgetJahr, betrag);
+            String waehrung = dbInhalt.getString("Waehrung");
+            budget = new Administratives(id, kostenstelleID, budgetJahr, betrag, waehrung);
 
             budgetHash.put(budget, id);
 
@@ -297,7 +300,7 @@ public class Datenbank {
             String datumVon = dbInhalt.getString("DatumVon");
             String datumBis = dbInhalt.getString("DatumBis");
             String durchfuehrungsOrt = dbInhalt.getString("Durchfuehrungsort");
-            kurs = new Kurse(id,kosten,waehrung, kursCode, anbieter, kursBeschreibung, datumVon, datumBis,durchfuehrungsOrt);
+            kurs = new Kurse(id, kosten, waehrung, kursCode, anbieter, kursBeschreibung, datumVon, datumBis, durchfuehrungsOrt);
 
             kursHash.put(kurs, id);
 
@@ -331,9 +334,9 @@ public class Datenbank {
             String sprache = dbInhalt.getString("Sprache");
             Integer kosten = dbInhalt.getInt("Kosten");
             String waehrung = dbInhalt.getString("Waehrung");
-            zertifikate = new Zertifikate(id,kosten, zertifikatstitel, zertifikatsBeschreibung,anbieter,sprache, waehrung);
+            zertifikate = new Zertifikate(id, kosten, zertifikatstitel, zertifikatsBeschreibung, anbieter, sprache, waehrung);
 
-           zertifikateHash.put(zertifikate, id);
+            zertifikateHash.put(zertifikate, id);
 
 
         }
@@ -382,5 +385,46 @@ public class Datenbank {
         }
 
         return bearbeitungErfolgreich;
+    }
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Abfrage aus Datenbank für Integer Werte -> Gibt einen HashMap zurück Key = ID, Value = Inhalt
+
+    Parameter: Tabellennamen der Datenbank als String
+
+    Rückgabewert: HashMap mit Objekt als Key und ID als Value
+     */
+    public ResultSet auswertungAusgeben(String view) {
+
+        Connection connection = null;
+        Statement statement = null;
+
+        ResultSet dbInhalt = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
+            statement = connection.createStatement();
+
+            dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`.`" + view + "`");
+
+            switch(view) {
+                case "view_Bruno_TEST":     MitarbeiterAuswertung mitarbeiterAuswertung = new MitarbeiterAuswertung();
+                                            mitarbeiterAuswertung.ausgabeListe(mitarbeiterAuswertung.mitarbeiterAuswerten(dbInhalt));
+                                            break;
+                case "view_kurse_auswertung":
+                    System.out.println("Kursauswertung");
+                    break;
+                default:
+                    System.out.println("Tabelle unbekannt");
+            }
+
+            connection.close();
+            statement.close();
+
+        } catch (SQLException | ClassNotFoundException sqlException) {
+
+            sqlException.printStackTrace();
+        }
+        return dbInhalt;
     }
 }
