@@ -7,8 +7,8 @@ import java.util.Scanner;
 // Utility Klasse für Ausgaben und Eingaben in der Konsole
 public final class BefehlsZeilenSchnittstelle {
 
-   private static String[] hauptmenuAdmin =  {"Hauptmenü","", "1. Mitarbeiter", "2. Kurse", "3. Zertifikate", "4. Administratives",
-            "5. Benutzerverwaltung,", "6. Einstellungen", "Mit welchen Menüpunkt wollen sie weiterfahren?"};
+   private static String[] hauptmenuAdmin =  {"Hauptmenü","", "1. Mitarbeiter", "2. Kurse", "3. Zertifikate","4. Auswertungen", "5. Administratives",
+            "6. Benutzerverwaltung", "7. Einstellungen", "Mit welchen Menüpunkt wollen sie weiterfahren?"};
 
     // Privater Konstruktor um keine Instanzierung zu erlauben
     private BefehlsZeilenSchnittstelle(){
@@ -70,12 +70,15 @@ public final class BefehlsZeilenSchnittstelle {
                 Zertifikate zertifikate = new Zertifikate();
                 break;
             case 4:
-                Administratives administratives = new Administratives();
+                Auswertungen auswertungen = new Auswertungen();
                 break;
             case 5:
-                Benutzerverwaltung benutzerverwaltung = new Benutzerverwaltung();
+                Administratives administratives = new Administratives();
                 break;
             case 6:
+                Benutzerverwaltung benutzerverwaltung = new Benutzerverwaltung();
+                break;
+            case 7:
                 Einstellungen einstellungen = new Einstellungen();
             default:
                 System.out.println("Bitte geben sie einen gültigen Wert ein!");
