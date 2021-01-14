@@ -1,4 +1,4 @@
-/**
+package Utilities; /**
  * @author: Bruno Thurnherr <bruno.thurnherr@it-wissen.ch>
  * @version: 1.0
  */
@@ -31,7 +31,7 @@ public class Utilites {
             // our SQL SELECT query.
             // if you only need a few columns, specify them by name instead of using "*"
 
-            String query = "SELECT * FROM itwisse_kursverwaltung.Fehlermeldungen where FehlermeldungsNummer =" +bedingung1 +" and Sprache = "+bedingung2 ;
+            String query = "SELECT * FROM itwisse_kursverwaltung.Utilities.Fehlermeldungen where FehlermeldungsNummer =" +bedingung1 +" and Sprache = "+bedingung2 ;
 
             // create the java statement
             Statement st = conn.createStatement();
@@ -54,7 +54,7 @@ public class Utilites {
                 // System.out.format("%s, %s, %s, %s, %s, \n", FehlermeldungID, Arbeitsgebiet, FehlermeldungsNummer, Sprache, FehlermeldungsText);
 
                 System.out.println("Datensatz Nr.: " +FehlermeldungID );
-                System.out.println("Aus Tabelle: Fehlermeldungen");
+                System.out.println("Aus Utilities.Tabelle: Utilities.Fehlermeldungen");
                 System.out.println("Die Fehlermeldung lautet: " +FehlermeldungsText );
 
 

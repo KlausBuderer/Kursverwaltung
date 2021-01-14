@@ -1,7 +1,6 @@
-import java.io.File;
-import java.lang.reflect.Array;
-import java.util.HashMap;
-import java.util.Map;
+import Datenbank.Datenbank;
+import Einstellungen.Einstellungen;
+import Utilities.BefehlsZeilenSchnittstelle;
 
 public class KursverwaltungMain {
 
@@ -15,7 +14,7 @@ public class KursverwaltungMain {
         boolean verbindungAufgebaut;
         Datenbank datenbank = new Datenbank();
 
-        // Verbindung zur Datenbank testen
+        // Verbindung zur Datenbank.Datenbank testen
         do {
             verbindungAufgebaut = datenbank.verbindungTesten();
 

@@ -1,3 +1,7 @@
+package Einstellungen;
+
+import Utilities.BefehlsZeilenSchnittstelle;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -30,12 +34,12 @@ import java.util.Scanner;
             Scanner scan = new Scanner(System.in);
 
             //Konstruktor mit der Anzeige des Untermenüs
-            Einstellungen() {
+            public Einstellungen() {
                 unterMenueAnzeigen();
             }
 
             //Konsruktor für das einmalige Aufstarten der Software
-            Einstellungen(String start){
+            public Einstellungen(String start){
                 verbindunsDatenBeiStartSetzen();
             }
 
@@ -65,9 +69,9 @@ import java.util.Scanner;
                 try {
 
                     FileWriter fileWriter = new FileWriter("DatenbankVerbindungsdaten.txt");
-                    System.out.println("Geben sie die URL der Datenbank ein");
+                    System.out.println("Geben sie die URL der Datenbank.Datenbank ein");
                     fileWriter.write(scan.next() + "\n");
-                    System.out.println("Geben sie den Benutzer der Datenbank ein");
+                    System.out.println("Geben sie den Benutzer der Datenbank.Datenbank ein");
                     fileWriter.write(scan.next() + "\n");
                     System.out.println("Geben sie das Passwort des Benutzers ein");
                     fileWriter.write(scan.next() + "\n");
@@ -140,7 +144,7 @@ import java.util.Scanner;
                 verbindungsdatenAusDateiLesen();
                 BefehlsZeilenSchnittstelle.bildReinigen();
                 System.out.println();
-                System.out.println("Datenbank URL: " + urlBenutzerdefiniert + "\t" + "Benutzer: " + benutzerBenutzerdefiniert + "\t" + "Passwort: " + passwortBenutzerdefiniert);
+                System.out.println("Datenbank.Datenbank URL: " + urlBenutzerdefiniert + "\t" + "Benutzer: " + benutzerBenutzerdefiniert + "\t" + "Passwort: " + passwortBenutzerdefiniert);
                 System.out.println();
                 System.out.println("Bitte überprüfen sie die Daten auf ihre Korrektheit");
                 System.out.println("Sind die Daten korrekt?");

@@ -1,3 +1,5 @@
+package Auswertungen;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -32,7 +34,7 @@ public class MitarbeiterAuswertung {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zum Erstellen einer Liste von Objekten der Klasse MitarbeiterAuswertung
+    Methode zum Erstellen einer Liste von Objekten der Klasse Auswertungen.MitarbeiterAuswertung
      */
 
     public List<MitarbeiterAuswertung> mitarbeiterAuswerten(ResultSet dbInhalt) throws SQLException {
@@ -59,7 +61,7 @@ public class MitarbeiterAuswertung {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zum Erstellen einer Liste von Objekter der Klasse MitarbeiterAuswertung
+    Methode zum Erstellen einer Liste von Objekter der Klasse Auswertungen.MitarbeiterAuswertung
      */
     public void ausgabeListe(List<MitarbeiterAuswertung> list){
 

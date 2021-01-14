@@ -1,10 +1,15 @@
+package Zertifikate;
+
+import Datenbank.Datenbank;
+import Utilities.BefehlsZeilenSchnittstelle;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Zertifikate extends Datenbank{
+public class Zertifikate extends Datenbank {
 
-    String [] unterMenue = {"Zertifikate", "1. Zertifikate anlegen", "2. Zertifikate bearbeiten", "3. Gültigkeitsdauer von Zertifikate verlängern", "4. Hauptmenü"};
+    String [] unterMenue = {"Zertifikate", "1. Zertifikate anlegen", "2. Zertifikate bearbeiten", "3. Hauptmenü"};
     int zertifikatsId;
     int kosten;
     String waehrung;
@@ -16,7 +21,7 @@ public class Zertifikate extends Datenbank{
     Scanner scan = new Scanner(System.in);
 
 
-    Zertifikate(){
+    public Zertifikate(){
 
         untermenueAnzeigen();
 
@@ -51,11 +56,7 @@ public class Zertifikate extends Datenbank{
                     zertifikatBearbeiten();
                     break;
                 case 3:
-                    System.out.println("Gültigkeitsdauer von Zertifikat verlängern");
-                    break;
-                case 4:
                     //zurück ins Hauptmenü;
-                    System.out.println("Hauptmenü");
                     System.out.println("Hauptmenü");
                     gueltigeEingabe = false;
                     break;
@@ -99,7 +100,7 @@ public class Zertifikate extends Datenbank{
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1:
-                    datenAnlegen(anlegenQuerry());
+                    datenInDbAnlegen(anlegenQuerry());
                     abschliessen = true;
                     break;
                 case 2:
@@ -176,8 +177,7 @@ public class Zertifikate extends Datenbank{
                 case 6:
                     BefehlsZeilenSchnittstelle.bildReinigen();
                     System.out.println("Aktuell: " + sprache);
-                    System.out.print("Geben sie eine neue Sprache ein: ");
-                    sprache = BefehlsZeilenSchnittstelle.pruefeDatum();
+                    sprache = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie eine neue Sprache ein: ");
                     break;
                 default:
                     System.out.println("Falsche Eingabe!");
@@ -213,7 +213,7 @@ public class Zertifikate extends Datenbank{
         int arrayLaenge;
         int auswahl;
 
-        // Abfrage Datenbank nach Zertifikaten
+        // Abfrage Datenbank.Datenbank nach Zertifikaten
         HashMap<Zertifikate, Integer> zertifikatMap = (HashMap<Zertifikate, Integer>) datenAuslesenfuerAbfrage("Zertifikate");
 
 

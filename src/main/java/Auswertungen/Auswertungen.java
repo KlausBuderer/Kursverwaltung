@@ -1,10 +1,9 @@
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+package Auswertungen;
 
-public class Auswertungen extends Datenbank{
+import Datenbank.AuswertungenDatenbank;
+import Utilities.BefehlsZeilenSchnittstelle;
+
+public class Auswertungen{
 
     private String[] unterMenue = {"Auswertungen", "1. Mitarbeiter","2. Zertifikate","3. Kurse","4. Hauptmenue"};
     private final String[] viewBefehle = {"view_Bruno_TEST","view_kurse_auswertung"};
@@ -25,15 +24,14 @@ public class Auswertungen extends Datenbank{
         do{
             switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue)){
                 case 1:
-                    System.out.println("Mitarbeiter Auswertung");
-                     auswertungAusgeben(viewBefehle[0]);
+                    new AuswertungenDatenbank().auswertungAusDbLesen(viewBefehle[0]);
                     break;
                 case 2:
                     System.out.println("Zertifikat Auswertung");
                     break;
                 case 3:
                     System.out.println("Kurse Auswertung");
-                    auswertungAusgeben(viewBefehle[1]);
+                    new AuswertungenDatenbank().auswertungAusDbLesen(viewBefehle[1]);
                     break;
                 case 4:
                     System.out.println("Kurse Auswertung");

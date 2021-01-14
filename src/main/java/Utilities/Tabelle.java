@@ -1,9 +1,11 @@
+package Utilities;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-// Formatieren einer Tabelle und einordnen der auszugebenden Daten
+// Formatieren einer Utilities.Tabelle und einordnen der auszugebenden Daten
 public class Tabelle {
 
         private static final String HORIZONTALE_LINIE = "-";

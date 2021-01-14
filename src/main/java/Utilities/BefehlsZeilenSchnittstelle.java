@@ -1,3 +1,13 @@
+package Utilities;
+
+import Administratives.Administratives;
+import Auswertungen.Auswertungen;
+import Benutzerverwaltung.Benutzerverwaltung;
+import Einstellungen.Einstellungen;
+import Kurse.Kurse;
+import Mitarbeiter.Mitarbeiter;
+import Zertifikate.Zertifikate;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -164,7 +174,7 @@ public final class BefehlsZeilenSchnittstelle {
 
     Parameter: Verzögerungsdauer in ms
      */
-    static void verzoegerung(int dauer){
+    public static void verzoegerung(int dauer){
         try {
             Thread.sleep(dauer);
         } catch (InterruptedException e) {
@@ -174,7 +184,7 @@ public final class BefehlsZeilenSchnittstelle {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Gibt Daten in einer Tabelle aus
+    Gibt Daten in einer Utilities.Tabelle aus
          */
     public static void tabelleAusgeben(String[] kopfzeile,String[] angaben){
 
@@ -194,7 +204,7 @@ public final class BefehlsZeilenSchnittstelle {
     kann die Eingabe gespeichert werden.
      */
 
-    static int korrekteEingabeBestaetigen() {
+    public static int korrekteEingabeBestaetigen() {
 
         int auswahl = 0;
 

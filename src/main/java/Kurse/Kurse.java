@@ -1,3 +1,8 @@
+package Kurse;
+
+import Datenbank.Datenbank;
+import Utilities.BefehlsZeilenSchnittstelle;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -18,7 +23,7 @@ public class Kurse extends Datenbank {
 
     Scanner scan = new Scanner(System.in);
 
-    Kurse(){
+    public Kurse(){
     untermenueAnzeigen();
 
     }
@@ -104,7 +109,7 @@ public class Kurse extends Datenbank {
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1:
-                    datenAnlegen(anlegenQuerry());
+                    datenInDbAnlegen(anlegenQuerry());
                     abschliessen = true;
                     break;
                 case 2:
@@ -232,7 +237,7 @@ public class Kurse extends Datenbank {
         int arrayLaenge;
         int auswahl;
 
-        // Abfrage Datenbank nach Kursen
+        // Abfrage Datenbank.Datenbank nach Kursen
         HashMap<Kurse, Integer> kursMap = (HashMap<Kurse, Integer>) datenAuslesenfuerAbfrage("Kurse");
 
 

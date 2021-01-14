@@ -1,78 +1,24 @@
+package Administratives;
 
-import java.time.Year;
-import java.util.*;
+import Utilities.BefehlsZeilenSchnittstelle;
 
-public class Administratives extends Datenbank{
+public class Administratives{
 
 
     private String[] unterMenue = {"Menü für Administratives", "1. Kostenstelle anlegen", "2. Budget erfassen pro Kostenstelle", "3. Oranisation anlegen", "4. Kostenstelle bearbeiten", "5. Budget Bearbeiten", "6. Hauptmenü"};
 
-    private int kostenstelleId;
-    private int budgetId;
-    private int kostenstelle;
-    private int budgetJahr;
-    private int budgetBetrag;
-    private String waehrung;
-    private String abteilungsBezeichnung;
-    private String bezeichnungKst = " ";
-    private String kostenstelleVerantPerson;
-    private String abteilungsbezeichnung;
-
-    public int organisationsId;
-
-    Scanner scan = new Scanner(System.in);
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Konstruktor anzeigen Hauptmenü
-    Administratives(){
-    untermenueAnzeigen();
+    public Administratives() {
+        untermenueAnzeigen();
 
     }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //Konstruktor aufruf von anderen Klassen
-    Administratives(String kontekt){
-
-    }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //Konstruktor erstellen eines Objekts mit Angaben der Kostenstelle
-    Administratives( int kostenstelleId, int konstenstelle, String bezeichnungKst, String kostenstelleVerantPerson){
-
-        this.kostenstelleId =kostenstelleId;
-        this.kostenstelle = konstenstelle;
-        this.bezeichnungKst = bezeichnungKst;
-        this.kostenstelleVerantPerson = kostenstelleVerantPerson;
-
-    }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //Konstruktor erstellen eines Objekts mit Angaben der Organisation
-    public Administratives( int organisationsID, int kostenstelleId, String abteilungsBezeichnung) {
-        this.kostenstelleId = kostenstelleId;
-        this.organisationsId = organisationsID;
-        this.abteilungsBezeichnung = abteilungsBezeichnung;
-    }
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //Konstruktor erstellen eines Objekts mit Angaben der Tabelle BudgetPeriode
-
-    public Administratives(int budgetID, int kostenstelleId, int budgetJahr, int budgetBetrag, String waehrung) {
-        this.kostenstelleId = kostenstelleId;
-        this.budgetJahr = budgetJahr;
-        this.budgetBetrag = budgetBetrag;
-        this.budgetId = budgetID;
-        this.waehrung = waehrung;
-    }
-
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /*
     Die Methode untermenueAnzeige zeigt das Untermenü und führt anhand der Eingabe des Benutzers eine Aktion aus
-
      */
 
     public void untermenueAnzeigen(){
@@ -83,19 +29,19 @@ public class Administratives extends Datenbank{
 
             switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue)) {
                 case 1:
-                    kostenstelleAnlegen();
+                    new Kostenstelle().kostenstelleAnlegen();
                     break;
                 case 2:
-                    budgetAnlegen();
+                    new Budget().budgetAnlegen();
                     break;
                 case 3:
-                    organisationAnlegen();
+                    new Organisation().organisationAnlegen();
                     break;
                 case 4:
-                    kostenstelleBearbeiten();
+                    new Kostenstelle().kostenstelleBearbeiten();
                     break;
                 case 5:
-                    budgetBearbeiten();
+                    new Budget().budgetBearbeiten();
                     break;
                 case 6:
                     //zurück ins Hauptmenü;
@@ -113,7 +59,7 @@ public class Administratives extends Datenbank{
     /*
     Die Methode kostenstelleAnlegen lässt den Benutzer eine neue Kostenstelle anlegen
      */
-
+/*
     void kostenstelleAnlegen(){
 
         boolean abschliessen = true;
@@ -147,9 +93,9 @@ public class Administratives extends Datenbank{
         }while(!abschliessen);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
+       *//*
     Methode zur Erstellung eines Querrys für ein Anlegen eines neuen Kurses
-     */
+     *//*
     String kostenstelleAnlegenQuerry(){
 
         return "INSERT INTO `itwisse_kursverwaltung`.`Kostenstelle` (`Kostenstelle`, `BezeichnungKST`, `KostenstelleVerantPerson`) VALUES " +
@@ -158,10 +104,10 @@ public class Administratives extends Datenbank{
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    /*
+    *//*
     Die Methode budgetErfassen lässt den Benutzer ein neues Budget erfassen und einer Kostenstelle zuweisen
-     */
-
+     *//*
+*//*
     void budgetAnlegen(){
 
         boolean abschliessen = true;
@@ -207,21 +153,21 @@ public class Administratives extends Datenbank{
         }
 
     }while(!abschliessen);
-    }
+    }*//*
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
+       *//*
     Methode zur Erstellung eines Querrys für ein Anlegen eines neuen Kurses
-     */
+ /*
     String budgetAnlegenQuerry(){
 
         return "INSERT INTO `itwisse_kursverwaltung`.`BudgetPeriode` (`Jahr`, `Betrag`, `Waehrung`, `KostenstelleID`) VALUES" +
                 " ('" + budgetJahr + "', '" + budgetBetrag + "', '" + waehrung + "', '" + kostenstelleId + "')";
 
     }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    /*
+            *//*  //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    *//*
     Die Methode organisationAnlegen lässt den Benutzer eine neue Organisation Anlegen
-     */
+     *//*
     void organisationAnlegen(){
 
         boolean abschliessen = true;
@@ -256,18 +202,18 @@ public class Administratives extends Datenbank{
     }while(!abschliessen);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
+       *//*
     Methode zur Erstellung eines Querrys für ein Anlegen eines neuen Kurses
-     */
+     *//*
     String organisationAnlegenQuerry(){
 
         return "Insert INTO `itwisse_kursverwaltung`.`Organisation` (`AbteilungsBezeichnung`,`KostenstelleID`) VALUES ('" + abteilungsbezeichnung + "', '" + kostenstelleId + "')";
 
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    /*
+    *//*
     Die Methode gibt beim Aufruf des Objekts und der Übergabe des Parameters die Membervariablen aus
-     */
+     *//*
 
     public String toString(String tabelle) {
 
@@ -283,12 +229,12 @@ public class Administratives extends Datenbank{
                 ausgabe = "Bezeichnung der Abteilung: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(this.abteilungsBezeichnung), 25) +
                         "Kostenstelle: " + BefehlsZeilenSchnittstelle.textFormatieren(bezeichnungKst, 25);
                 break;
-            case  "Budget":
+          *//*  case  "Budget":
                 ausgabe = "Kostenstelle: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(this.kostenstelleId), 10) +
                         "Budget Jahr: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(budgetJahr), 20) +
                         "Budget Betrag: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(budgetBetrag), 25) +
                         "Waehrung: " + waehrung;
-                break;
+                break;*//*
             default:
                 ausgabe = "";
                 break;
@@ -301,10 +247,10 @@ public class Administratives extends Datenbank{
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-       /*
+       *//*
     Methode zur Ausgabe einer Auswahlliste Kostenstelle für den Benutzer
 
-     */
+     *//*
 
     public void auswahlListeKostenstelleAusgeben() {
 
@@ -312,7 +258,7 @@ public class Administratives extends Datenbank{
         int arrayLaenge;
         int auswahl;
 
-        // Abfrage Datenbank nach Kostenstellen
+        // Abfrage Datenbank.Datenbank nach Kostenstellen
         HashMap<Administratives, Integer> kostenstelleMap = (HashMap<Administratives, Integer>) datenAuslesenfuerAbfrage("Kostenstelle");
 
 
@@ -340,10 +286,10 @@ public class Administratives extends Datenbank{
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
+       *//*
     Methode zur Ausgabe einer Auswahlliste Kostenstelle für den Benutzer
 
-     */
+     *//*
 
     public void auswahlListeOrganisationAusgeben() {
 
@@ -351,7 +297,7 @@ public class Administratives extends Datenbank{
         int arrayLaenge;
         int auswahl;
 
-        // Abfrage Datenbank nach Kostenstellen
+        // Abfrage Datenbank.Datenbank nach Kostenstellen
         HashMap<Administratives, Integer> organisationMap = (HashMap<Administratives, Integer>) datenAuslesenfuerAbfrage("Organisation");
 
 
@@ -377,18 +323,21 @@ public class Administratives extends Datenbank{
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
+       *//*
     Methode zur Ausgabe einer Auswahlliste Kostenstelle für den Benutzer
 
-     */
-    public void auswahlListeBudgetAusgeben() {
+     *//*
+   *//* public void auswahlListeBudgetAusgeben() {
 
         int i = 1;
         int arrayLaenge;
         int auswahl;
 
-        // Abfrage Datenbank nach Kostenstellen
-        HashMap<Administratives, Integer> organisationMap = (HashMap<Administratives, Integer>) datenAuslesenfuerAbfrage("BudgetPeriode");
+        // Datenbank nach Liste Fragen
+        AdministrativesDatenbank administrativesDatenbank = new AdministrativesDatenbank();
+
+        // Abfrage Datenbank.Datenbank nach Kostenstellen
+        HashMap<Administratives, Integer> organisationMap = (HashMap<Administratives, Integer>) administrativesDatenbank.datenAuslesenfuerAbfrage("BudgetPeriode");
 
 
         // Schreiben der Kostenstellen in ein budgetArray
@@ -406,6 +355,7 @@ public class Administratives extends Datenbank{
         System.out.print("Bitte wählen sie ein Budget aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
+        //Schreiben der Attributen der ausgewählten Daten in die Membervariablen
         budgetId = budgetArray[auswahl].budgetId;
         budgetBetrag = budgetArray[auswahl].budgetBetrag;
         budgetJahr = budgetArray[auswahl].budgetJahr;
@@ -413,12 +363,12 @@ public class Administratives extends Datenbank{
         abteilungsBezeichnung = budgetArray[auswahl].abteilungsBezeichnung;
 
     }
-
+*//*
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
+       *//*
     Methode zur Bearbeitung einer Kostenstelle
 
-     */
+     *//*
     void kostenstelleBearbeiten(){
 
         String[] spaltenArray = {"Kostenstellennummer","Bezeichnung der Kostenstelle","Verantwortliche Person der Kostenstelle"};
@@ -488,10 +438,10 @@ public class Administratives extends Datenbank{
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
+       *//*
     Methode zur Erstellung eines Querrys für einen Update von Kostenstelle
 
-     */
+     *//*
 
     String updateKostenstelle(){
 
@@ -505,10 +455,10 @@ public class Administratives extends Datenbank{
         return querry;
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
+       *//*
     Methode zur Bearbeitung eines Budget
-     */
-    void budgetBearbeiten() {
+     *//*
+   *//* void budgetBearbeiten() {
 
         String[] spaltenArray = {"Budget Jahr","Budget Betrag","Waehrung"};
         int arrayLaenge;
@@ -582,14 +532,13 @@ public class Administratives extends Datenbank{
         }while(!abschliessen);
 
 
-    }
+    }*//*
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
+       *//*
     Methode zur Erstellung eines Querrys für einen Update von Kostenstelle
 
-     */
-
-    String updateBudget(){
+     *//*
+    *//*String updateBudget(){
 
         String querry;
 
@@ -598,5 +547,5 @@ public class Administratives extends Datenbank{
                 ", `Betrag` = " + budgetBetrag +
                 " WHERE `ID` = " + budgetId + ";";
         return querry;
-    }
+    }*/
 }

@@ -1,8 +1,12 @@
+package Benutzerverwaltung;
+
+import Utilities.BefehlsZeilenSchnittstelle;
+
 public class Benutzerverwaltung {
 
     String [] unterMenue = {"Benutzerverwaltung", "1. Benutzer anlegen", "2. Benutzer sperren", "3. Benutzer ändern", "4. Hauptmenü"};
 
-    Benutzerverwaltung(){
+    public Benutzerverwaltung(){
 
         untermenueAnzeigen();
 
