@@ -1,21 +1,21 @@
 package Administratives;
 
 
-import Datenbank.AdministrativesDatenbank;
+import Datenbank.BudgetDatenbank;
 import Utilities.BefehlsZeilenSchnittstelle;
 
 import java.time.Year;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Budget {
+public class Budget{
 
-    private int kostenstelleId;
-    private int budgetId;
-    private int budgetJahr;
-    private int budgetBetrag;
-    private String waehrung;
-    private String abteilungsBezeichnung;
+    public int kostenstelleId;
+    public int budgetId;
+    public int budgetJahr;
+    public int budgetBetrag;
+    public String waehrung;
+    public String abteilungsBezeichnung;
 
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -60,6 +60,7 @@ public class Budget {
             //Gibt Kostenstellen zur Auswahl aus
             Kostenstelle kostenstelle = new Kostenstelle();
             kostenstelle.auswahlListeKostenstelleAusgeben();
+            kostenstelleId = kostenstelle.kostenstelleId;
 
 
             BefehlsZeilenSchnittstelle.bildReinigen();
@@ -72,8 +73,7 @@ public class Budget {
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
                 case 1:
-                    AdministrativesDatenbank administrativesDatenbank = new AdministrativesDatenbank();
-                    administrativesDatenbank.datenInDbAnlegen(budgetAnlegenQuerry());
+                    new BudgetDatenbank().datenAnlegen(this);
                     abschliessen = true;
                     break;
                 case 2: abschliessen = false;
@@ -83,16 +83,6 @@ public class Budget {
             }
 
         }while(!abschliessen);
-    }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Methode zur Erstellung eines Querrys für ein Anlegen eines neuen Kurses
-     */
-    String budgetAnlegenQuerry(){
-
-        return "INSERT INTO `itwisse_kursverwaltung`.`BudgetPeriode` (`Jahr`, `Betrag`, `Waehrung`, `KostenstelleID`) VALUES" +
-                " ('" + budgetJahr + "', '" + budgetBetrag + "', '" + waehrung + "', '" + kostenstelleId + "')";
-
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -107,10 +97,10 @@ public class Budget {
         int auswahl;
 
         // Datenbank nach Liste Fragen
-        AdministrativesDatenbank administrativesDatenbank = new AdministrativesDatenbank();
+        BudgetDatenbank budgetDatenbank = new BudgetDatenbank();
 
         // Abfrage Datenbank.Datenbank nach Kostenstellen
-        HashMap<Budget, Integer> budgetMap = (HashMap<Budget, Integer>) administrativesDatenbank.datenAuslesenfuerAbfrage("BudgetPeriode");
+        HashMap<Budget, Integer> budgetMap = (HashMap<Budget, Integer>) budgetDatenbank.datenAuslesenfuerAbfrage("BudgetPeriode");
 
 
         // Schreiben der Kostenstellen in ein budgetArray
@@ -142,7 +132,7 @@ public class Budget {
        /*
     Methode zur Bearbeitung eines Budget
      */
-    void budgetBearbeiten() {
+    void budgetMutieren() {
 
         String[] spaltenArray = {"Budget Jahr","Budget Betrag","Waehrung"};
         int arrayLaenge;
@@ -201,8 +191,8 @@ public class Budget {
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
-                case 1: AdministrativesDatenbank administrativesDatenbank = new AdministrativesDatenbank();
-                    administrativesDatenbank.datenMutation(updateBudget());
+                case 1:
+                    new BudgetDatenbank().datenMutation(this);
                     abschliessen = true;
                     break;
                 case 2: abschliessen = false;
@@ -211,17 +201,6 @@ public class Budget {
                     break;
             }
         }while(!abschliessen);
-    }
-
-    String updateBudget(){
-
-        String querry;
-
-        querry = "UPDATE `itwisse_kursverwaltung`.`BudgetPeriode` SET " +
-                " `Jahr` = " + budgetJahr +
-                ", `Betrag` = " + budgetBetrag +
-                " WHERE `ID` = " + budgetId + ";";
-        return querry;
     }
 
     @Override

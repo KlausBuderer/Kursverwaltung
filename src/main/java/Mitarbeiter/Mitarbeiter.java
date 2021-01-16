@@ -1,40 +1,35 @@
 package Mitarbeiter;
 
-import Administratives.*;
+import Administratives.Kostenstelle;
 import Datenbank.MitarbeiterDatenbank;
 import Utilities.BefehlsZeilenSchnittstelle;
-
-import java.util.Scanner;
 
 public class Mitarbeiter{
 
 
-    private String[] unterMenue = {"Mitarbeitermenü", "1. Mitarbeiter anlegen", "2. Mitarbeiter anlegen Massenimport",
-            "3. Kurs an Mitarbeiter zuordnen", "4. Mitarbeiter neue Zertifikate.Zertifikate zuordnen", "5. Zertifikate von Mitarbeiter erneuern",
-            "6. Mitarbeiter Informationen auslesen", "7. Mitarbeiter bearbeiten", "8. Hauptmenue"};
+    private String[] unterMenue = {"Mitarbeitermenue", "1. Mitarbeiter Anlegen","2. Mitarbeiter Kurszuordnung", "3. Mitarbeiter Zertifikatszuordnung", "4. Zertifikat Verlängern",
+            "5. Mitarbeiter Mutation", "6. Mitarbeiter Massenimport", "7. Hauptmenue"};
     private String[] anredeArray = {"Frau", "Herr", "Andere"};
 
-    private boolean mitarbeiterStatus;
-    private int mitarbeiterId;
-    private int personalNummer;
-    private int organisationsId;
-    private String anrede;
-    private String vorname;
-    private String nachname;
-    private String jobTitel;
-    private String geburtstag;
-    private String mitarbeiterStatusString;
-
-    Scanner scan = new Scanner(System.in);
+    public boolean mitarbeiterStatus;
+    public int mitarbeiterId;
+    public int personalNummer;
+    public int kostenstelleId;
+    public String anrede;
+    public String vorname;
+    public String nachname;
+    public String jobTitel;
+    public String geburtstag;
+    public String mitarbeiterStatusString;
 
     public Mitarbeiter() {
         untermenueAnzeigen();
     }
 
-    public Mitarbeiter(int mitarbeiterId, int personalNummer, int organisationsId, String anrede, String vorname, String nachname, String jobTitel, String geburtstag, String mitarbeiterStatusString) {
+    public Mitarbeiter(int mitarbeiterId, int personalNummer, int kostenstelleId, String anrede, String vorname, String nachname, String jobTitel, String geburtstag, String mitarbeiterStatusString) {
         this.mitarbeiterId = mitarbeiterId;
         this.personalNummer = personalNummer;
-        this.organisationsId = organisationsId;
+        this.kostenstelleId = kostenstelleId;
         this.anrede = anrede;
         this.vorname = vorname;
         this.nachname = nachname;
@@ -47,9 +42,7 @@ public class Mitarbeiter{
 
         boolean gueltigeEingabe = false;
 
-
         do {
-
             switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue)) {
                 case 1:
                     mitarbeiterAnlegen();
@@ -71,9 +64,6 @@ public class Mitarbeiter{
                     break;
                 case 7:
                     System.out.println(unterMenue[7]);
-                    break;
-                case 8:
-                    System.out.println(unterMenue[8]);
                     gueltigeEingabe = true;
                     break;
                 default:
@@ -86,10 +76,7 @@ public class Mitarbeiter{
     /*
     Methode zum Mitarbeiter.Mitarbeiter anlegen
      */
-
-
-    void mitarbeiterAnlegen() {
-
+    private void mitarbeiterAnlegen() {
 
         boolean abschliessen = true;
 
@@ -120,10 +107,9 @@ public class Mitarbeiter{
             mitarbeiterStatus = true;
             //kostenstelle (organisation)
 
-            Organisation organisation = new Organisation();
-            organisation.auswahlListeOrganisationAusgeben();
-            organisationsId = organisation.organisationsId;
-
+            Kostenstelle kostenstelle = new Kostenstelle();
+            kostenstelle.auswahlListeKostenstelleAusgeben();
+            kostenstelleId = kostenstelle.kostenstelleId;
 
             BefehlsZeilenSchnittstelle.bildReinigen();
             System.out.println(toString());
@@ -134,7 +120,7 @@ public class Mitarbeiter{
 
                 case 1:
                     MitarbeiterDatenbank mitarbeiter = new MitarbeiterDatenbank();
-                    mitarbeiter.mitarbeiterAnlegen(anlegenQuerry());
+                    mitarbeiter.mitarbeiterAnlegen(this);
                     abschliessen = true;
                     break;
                 case 2:
@@ -143,56 +129,15 @@ public class Mitarbeiter{
                 case 3:
                     abschliessen = true;
                     break;
-
             }
         }while (!abschliessen) ;
-
-
-
     }
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    /*
-    To String Methode
-     */
-    @Override
-    public String toString() {
-        return "Anrede " + BefehlsZeilenSchnittstelle.textFormatieren(anrede, 15)
-                + "Vorname " + BefehlsZeilenSchnittstelle.textFormatieren(vorname, 15) +
-                "Nachname " + BefehlsZeilenSchnittstelle.textFormatieren(nachname, 15) +
-                "PersonalNummer " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(personalNummer), 15) +
-                "Geburtstag " + BefehlsZeilenSchnittstelle.textFormatieren(geburtstag, 15) +
-                "JobTitel " + BefehlsZeilenSchnittstelle.textFormatieren(jobTitel, 25);
-
-    }
-
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    /*
-    Methode zum erstellen des Sql Querry
-     */
-
-    String anlegenQuerry(){
-        if (mitarbeiterStatus) {
-
-            mitarbeiterStatusString = "angestellt";
-
-        }else{
-            mitarbeiterStatusString = "nicht angestellt";
-        }
-
-        return "INSERT INTO `itwisse_kursverwaltung`.`Mitarbeiter`" +
-                " (`PersonalNr`, `Anrede`, `Vorname`, `Nachname`, `Jobtitel`, `Geburtsdatum`, `Statusmitarbeiter`, `OrganisationID`)" +
-                " VALUES ('" + personalNummer + "', '" + anrede + "', '" + vorname + "', '" + nachname + "', '" + jobTitel + "', '" +
-                geburtstag + "', '" + mitarbeiterStatusString + "', '" + organisationsId +"')";
-
-    }
-
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode zur Bearbeitung eines Budget
      */
-    private void mitarbeiterBearbeiten() {
+    private void mitarbeiterMutieren() {
 
         String[] spaltenArray = {"Personalnummer","Nachname","Vorname","Geburtstag","Abteilung","Jobtitel","Status"};
         int arrayLaenge;
@@ -289,16 +234,11 @@ public class Mitarbeiter{
 
         }while(!abschliessen);*/
     }
-
-
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-
     Die Methode übergibt ein Objekt in das jetztige
-
     Parameter: Objekt welches übergeben werden soll
-
      */
-
     void objektUebergeben(Mitarbeiter mitarbeiter){
 
         this.anrede = mitarbeiter.anrede;
@@ -309,7 +249,20 @@ public class Mitarbeiter{
         this.mitarbeiterStatusString = mitarbeiter.mitarbeiterStatusString;
         this.geburtstag = mitarbeiter.geburtstag;
         this.mitarbeiterId = mitarbeiter.mitarbeiterId;
-        this.organisationsId = mitarbeiter.organisationsId;
+        this.kostenstelleId = mitarbeiter.kostenstelleId;
     }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    To String Methode
+     */
+    @Override
+    public String toString() {
+        return "Anrede " + BefehlsZeilenSchnittstelle.textFormatieren(anrede, 15)
+                + "Vorname " + BefehlsZeilenSchnittstelle.textFormatieren(vorname, 15) +
+                "Nachname " + BefehlsZeilenSchnittstelle.textFormatieren(nachname, 15) +
+                "PersonalNummer " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(personalNummer), 15) +
+                "Geburtstag " + BefehlsZeilenSchnittstelle.textFormatieren(geburtstag, 15) +
+                "JobTitel " + BefehlsZeilenSchnittstelle.textFormatieren(jobTitel, 25);
 
+    }
 }

@@ -10,17 +10,12 @@ public class MitarbeiterSuche extends Mitarbeiter {
 
 
     private String suchText;
-    public int anzahlTreffer;
-
     private final String[] SUCHKRITERIEN = {"Personalnummer","Nachname","Vorname","Geburtstag","Abteilung","Jobtitel","Status"};
 
     /*--------------------------------------------------------------------------------------------------------------------------------------
-
     Methode die eine Auswahl an Suchkriterien Ausgibt und eine Auswahl vom Bediener liest
-
-   Rückgabewert: Objekt von Mitarbeiter.Mitarbeiter oder null
+    Rückgabewert: Objekt von Mitarbeiter.Mitarbeiter oder null
      */
-
     public Mitarbeiter mitarbeiterSuchen(){//
         Mitarbeiter mitarbeiter = null;
         int arrayLaenge;
@@ -31,9 +26,9 @@ public class MitarbeiterSuche extends Mitarbeiter {
         //Suchkriterium Abfragen
         int suchkriterium = suchkriterienAbfragen();
         //Suchtext zum gewählten Kriterium Abfragen
-        String suchtext = suchTexteinlesen(suchkriterium);
+        String suchtext = suchTextEinlesen(suchkriterium);
         //Datenbankquery zusammenstellen anhand den Angaben
-        String query = queryZusammensetzenFuerAnzahlAbfrage(suchkriterium, suchText);
+        String query = queryFuerAnzahlAbfrage(suchkriterium, suchText);
         //Hashmap mit allen Treffern erstellen
         mitarbeiterHash = new MitarbeiterDatenbank().mitarbeiterSuchen(query);
 
@@ -52,15 +47,10 @@ public class MitarbeiterSuche extends Mitarbeiter {
 
         return mitarbeiter;
     }
-
     /*--------------------------------------------------------------------------------------------------------------------------------------
-
     Methode die eine Auswahl an Suchkriterien Ausgibt und eine Auswahl vom Bediener liest
-
    Rückgabewert: Auswahl als Integer
      */
-
-
     private int suchkriterienAbfragen(){
 
         int eingabe = 0;
@@ -80,26 +70,20 @@ public class MitarbeiterSuche extends Mitarbeiter {
         return BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(SUCHKRITERIEN.length);
     }
     /*--------------------------------------------------------------------------------------------------------------------------------------
-
     Methode die den query aus den Angaben des Bedieners zusammensetzt
-
    Rückgabewert: query als String
      */
-
-    private String queryZusammensetzenFuerAnzahlAbfrage(int auswahl, String suchText){
+    private String queryFuerAnzahlAbfrage(int auswahl, String suchText){
 
         String query = "Mitarbeiter.Mitarbeiter where ";
         String suchkriterium = SUCHKRITERIEN[auswahl] + " = " + suchText + "%";
         return query + suchkriterium;
         }
     /*--------------------------------------------------------------------------------------------------------------------------------------
-
     Methode die die Eingabe des Suchtextes einliest
-
    Rückgabewert: Suchtext als String
      */
-
-    private String suchTexteinlesen(int auswahl){
+    private String suchTextEinlesen(int auswahl){
 
         int suchZahl = 0;
 
@@ -113,21 +97,14 @@ public class MitarbeiterSuche extends Mitarbeiter {
             case 7: break;
         }
         suchText = String.valueOf(suchZahl);
-
         return suchText;
     }
-
-
-
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode zum Erstellen einer Liste von Objekten der Klasse Mitarbeiter.Mitarbeiter zur Auswahl für den Bediener
-
     Parameter: Hashmap mit den Mitarbeiter.Mitarbeiter
     Rückgabewert: objekt des Typ Mitarbeiter.Mitarbeiter
-
      */
-
     private Mitarbeiter mitarbeiterListeAusgeben(HashMap<Mitarbeiter,Integer> mitarbeiterHash) {
 
         int arrayLaenge;

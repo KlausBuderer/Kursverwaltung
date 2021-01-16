@@ -1,6 +1,6 @@
 package Administratives;
 
-import Datenbank.AdministrativesDatenbank;
+import Datenbank.OrganisationsDatenbank;
 import Utilities.BefehlsZeilenSchnittstelle;
 
 import java.util.HashMap;
@@ -8,8 +8,8 @@ import java.util.Map;
 
 public class Organisation {
 
-    private String abteilungsBezeichnung;
-    private int kostenstelleId;
+    public String abteilungsBezeichnung;
+    public int kostenstelleId;
     public int organisationsId;
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -52,8 +52,8 @@ public class Organisation {
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
                 case 1:
-                    AdministrativesDatenbank administrativesDatenbank = new AdministrativesDatenbank();
-                    administrativesDatenbank.datenInDbAnlegen(organisationAnlegenQuerry());
+                    OrganisationsDatenbank organisationsDatenbank = new OrganisationsDatenbank();
+                    organisationsDatenbank.datenAnlegen(this);
                     abschliessen = true;
                     break;
                 case 2: abschliessen = false;
@@ -65,15 +65,7 @@ public class Organisation {
         }while(!abschliessen);
     }
 
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Methode zur Erstellung eines Querrys für ein Anlegen eines neuen Kurses
-     */
-    String organisationAnlegenQuerry(){
 
-        return "Insert INTO `itwisse_kursverwaltung`.`Organisation` (`AbteilungsBezeichnung`,`KostenstelleID`) VALUES ('" + abteilungsBezeichnung + "', '" + kostenstelleId + "')";
-
-    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode zur Ausgabe einer Auswahlliste Kostenstelle für den Benutzer
@@ -87,8 +79,8 @@ public class Organisation {
         int auswahl;
 
         // Abfrage Datenbank.Datenbank nach Kostenstellen
-        AdministrativesDatenbank administrativesDatenbank = new AdministrativesDatenbank();
-        HashMap<Organisation, Integer> organisationMap = (HashMap<Organisation, Integer>) administrativesDatenbank.datenAuslesenfuerAbfrage("Organisation");
+        OrganisationsDatenbank organisationsDatenbank = new OrganisationsDatenbank();
+        HashMap<Organisation, Integer> organisationMap = (HashMap<Organisation, Integer>) organisationsDatenbank.datenAuslesenfuerAbfrage("Organisation");
 
 
         // Schreiben der Kostenstellen in ein Array

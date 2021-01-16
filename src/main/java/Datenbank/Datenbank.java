@@ -3,7 +3,9 @@ import Einstellungen.Einstellungen;
 import Utilities.BefehlsZeilenSchnittstelle;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Datenbank {
 
@@ -111,13 +113,13 @@ public class Datenbank {
 
             switch (tabelle) {
                 case "Kostenstelle":
-                    datenAuflistung = new AdministrativesDatenbank().kostenstelleAusgeben(dbInhalt);
+                    datenAuflistung = new KostenstelleDatenbank().kostenstelleAusgeben(dbInhalt);
                     break;
                 case "Organisation":
-                    datenAuflistung = new AdministrativesDatenbank().organisationAusgeben(dbInhalt);
+                    datenAuflistung = new OrganisationsDatenbank().organisationAusgeben(dbInhalt);
                     break;
                 case "BudgetPeriode":
-                    datenAuflistung = new AdministrativesDatenbank().budgetAusgeben(dbInhalt);
+                    datenAuflistung = new BudgetDatenbank().budgetAusgeben(dbInhalt);
                     break;
                 case "Kurse":
                     datenAuflistung = new KursDatenbank().kurseAusgeben(dbInhalt);
@@ -197,11 +199,12 @@ public class Datenbank {
 
     Rückgabewert: HashMap mit Objekt als Key und ID als Value
      */
-    public ResultSet auswertungAusgeben(String view) {
+    public List<?> auswertungAusgeben(String view) {
 
         Connection connection = null;
         Statement statement = null;
 
+        List<?> auswertungsListe = new ArrayList<>();
         ResultSet dbInhalt = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -210,9 +213,11 @@ public class Datenbank {
 
             dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`.`" + view + "`");
 
+
+
             switch (view) {
                 case "view_Bruno_TEST":
-                   new AuswertungenDatenbank().auswertungErstellen(dbInhalt);
+                   auswertungsListe = new AuswertungenDatenbank().mitarbeiterAuswerten(dbInhalt);
                     break;
                 case "view_kurse_auswertung":
                     System.out.println("Kursauswertung");
@@ -234,7 +239,7 @@ public class Datenbank {
             }
 
         }
-        return dbInhalt;
+        return auswertungsListe;
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -272,5 +277,16 @@ public class Datenbank {
             }
         }
     }
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    /*
+     Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank.Datenbank
+    Parameter: Inhalt der Utilities.Tabelle der Datenbank.Datenbank
+    Rückgabewert: Hashmap mit Objekten für jeden Tuple
+
+     */
+
+    public HashMap<?,Integer> dbHashMap(String tabelle){
+        return datenAuslesenfuerAbfrage(tabelle);
+    }
 }

@@ -10,11 +10,12 @@ import java.util.List;
 public class AuswertungenDatenbank extends Datenbank {
 
 
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Methode zum Erstellen einer Liste von Objekten der Klasse Auswertungen.MitarbeiterAuswertung
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank
+    Parameter: Inhalt der Tabelle der Datenbank
+    Rückgabewert: Liste mit Objekten für jeden Tuple
      */
-
     public List<MitarbeiterAuswertung> mitarbeiterAuswerten(ResultSet dbInhalt) throws SQLException {
 
         List<MitarbeiterAuswertung> mitarbeiterAuswertungsliste = new ArrayList<>();
@@ -36,10 +37,16 @@ public class AuswertungenDatenbank extends Datenbank {
         }
         return mitarbeiterAuswertungsliste;
     }
-
-    public void auswertungAusDbLesen(String query){
-        auswertungAusgeben(query);
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank
+    Parameter: Inhalt der Tabelle der Datenbank
+    Rückgabewert: Liste mit Objekten für jeden Tuple
+     */
+    public List<?> auswertungAusDbLesen(String query){
+        return  auswertungAusgeben(query);
     }
+
 
     void auswertungErstellen(ResultSet dbInhalt) throws SQLException {
         MitarbeiterAuswertung mitarbeiterAuswertung = new MitarbeiterAuswertung();

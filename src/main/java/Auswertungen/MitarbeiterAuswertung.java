@@ -63,7 +63,7 @@ public class MitarbeiterAuswertung {
        /*
     Methode zum Erstellen einer Liste von Objekter der Klasse Auswertungen.MitarbeiterAuswertung
      */
-    public void ausgabeListe(List<MitarbeiterAuswertung> list){
+    public void ausgabeListe(List<?> list){
 
         System.out.println("MitarbeiterAuswertung");
         System.out.println();

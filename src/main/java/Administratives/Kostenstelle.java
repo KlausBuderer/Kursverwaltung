@@ -1,6 +1,6 @@
 package Administratives;
 
-import Datenbank.AdministrativesDatenbank;
+import Datenbank.KostenstelleDatenbank;
 import Utilities.BefehlsZeilenSchnittstelle;
 
 import java.util.HashMap;
@@ -8,17 +8,17 @@ import java.util.Map;
 
 public class Kostenstelle {
 
-    private int kostenstelleId;
-    private int kostenstelle;
-    private String bezeichnungKst = " ";
-    private String kostenstelleVerantPerson;
+    public int kostenstelleId;
+    public int kostenstelleNr;
+    public String bezeichnungKst = " ";
+    public String kostenstelleVerantPerson;
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Konstruktor erstellen eines Objekts mit Angaben der Kostenstelle
     public Kostenstelle(int kostenstelleId, int konstenstelle, String bezeichnungKst, String kostenstelleVerantPerson){
 
         this.kostenstelleId =kostenstelleId;
-        this.kostenstelle = konstenstelle;
+        this.kostenstelleNr = konstenstelle;
         this.bezeichnungKst = bezeichnungKst;
         this.kostenstelleVerantPerson = kostenstelleVerantPerson;
 
@@ -41,21 +41,21 @@ public class Kostenstelle {
             BefehlsZeilenSchnittstelle.bildReinigen();
             System.out.println("Bitte geben sie folgende Daten ein");
             //Kostenstellennummer
-            kostenstelle = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Kostenstelle Nummer: ");
+            kostenstelleNr = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Kostenstelle Nummer: ");
             //Bezeichnung Kostenstelle
             bezeichnungKst = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Bezeichnung der Kostenstelle: ");
             //Verantwortliche Person
             kostenstelleVerantPerson = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Verantwortliche Person der Kostenstelle: ");
 
             BefehlsZeilenSchnittstelle.bildReinigen();
-            System.out.println("Kostenstelle: " + kostenstelle + "\tBezeichnung der Kostenstelle: " + bezeichnungKst + "\tVerantwortliche Person der Kostenstelle: " + kostenstelleVerantPerson);
+            System.out.println("Kostenstelle: " + kostenstelleNr + "\tBezeichnung der Kostenstelle: " + bezeichnungKst + "\tVerantwortliche Person der Kostenstelle: " + kostenstelleVerantPerson);
             System.out.println();
             System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
-                case 1: AdministrativesDatenbank administrativesDatenbank = new AdministrativesDatenbank();
-                    administrativesDatenbank.datenAnlegen(kostenstelleAnlegenQuerry());
+                case 1: KostenstelleDatenbank kostenstelleDatenbank = new KostenstelleDatenbank();
+                    kostenstelleDatenbank.datenAnlegen(this);
                     abschliessen = true;
                     break;
                 case 2: abschliessen = false;
@@ -79,9 +79,9 @@ public class Kostenstelle {
         int arrayLaenge;
         int auswahl;
 
-        AdministrativesDatenbank administrativesDatenbank = new AdministrativesDatenbank();
+       KostenstelleDatenbank kostenstelleDatenbank = new KostenstelleDatenbank();
         // Abfrage Datenbank.Datenbank nach Kostenstellen
-        HashMap<Kostenstelle, Integer> kostenstelleMap = (HashMap<Kostenstelle, Integer>) administrativesDatenbank.datenAuslesenfuerAbfrage("Kostenstelle");
+        HashMap<Kostenstelle, Integer> kostenstelleMap = (HashMap<Kostenstelle, Integer>) kostenstelleDatenbank.datenAuslesenfuerAbfrage("Kostenstelle");
 
 
         // Schreiben der Kostenstellen in ein Array
@@ -101,29 +101,20 @@ public class Kostenstelle {
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
         kostenstelleId = kostenstelleArray[auswahl].kostenstelleId;
-        kostenstelle = kostenstelleArray[auswahl].kostenstelle;
+        kostenstelleNr = kostenstelleArray[auswahl].kostenstelleNr;
         bezeichnungKst = kostenstelleArray[auswahl].bezeichnungKst;
         kostenstelleVerantPerson = kostenstelleArray[auswahl].kostenstelleVerantPerson;
 
     }
 
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Methode zur Erstellung eines Querrys für ein Anlegen eines neuen Kurses
-     */
-    String kostenstelleAnlegenQuerry(){
 
-        return "INSERT INTO `itwisse_kursverwaltung`.`Kostenstelle` (`Kostenstelle`, `BezeichnungKST`, `KostenstelleVerantPerson`) VALUES " +
-                "('" + kostenstelle + "', '" + bezeichnungKst + "', '" + kostenstelleVerantPerson + "')";
-
-    }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode zur Bearbeitung einer Kostenstelle
 
      */
-    void kostenstelleBearbeiten(){
+    void kostenstelleMutieren(){
 
         String[] spaltenArray = {"Kostenstellennummer","Bezeichnung der Kostenstelle","Verantwortliche Person der Kostenstelle"};
         String vornamen;
@@ -151,8 +142,8 @@ public class Kostenstelle {
             switch (auswahl) {
 
                 case 1:
-                    System.out.println("Aktuell: " + kostenstelle);
-                    kostenstelle = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie die neue Kostenstellennummer ein: ");
+                    System.out.println("Aktuell: " + kostenstelleNr);
+                    kostenstelleNr = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie die neue Kostenstellennummer ein: ");
                     break;
                 case 2:
                     System.out.println("Aktuell: " + bezeichnungKst);
@@ -167,15 +158,15 @@ public class Kostenstelle {
             }
 
             BefehlsZeilenSchnittstelle.bildReinigen();
-            System.out.println("Kostenstellen Bezeichnung: " + bezeichnungKst + "\tKostenstellen Nummer: " + kostenstelle + "\tVerantwortliche Person: " + kostenstelleVerantPerson);
+            System.out.println("Kostenstellen Bezeichnung: " + bezeichnungKst + "\tKostenstellen Nummer: " + kostenstelleNr + "\tVerantwortliche Person: " + kostenstelleVerantPerson);
             System.out.println();
             System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1:
-                    AdministrativesDatenbank administrativesDatenbank = new AdministrativesDatenbank();
-                    administrativesDatenbank.datenBearbeiten(updateKostenstelle());
+                    KostenstelleDatenbank kostenstelleDatenbank = new KostenstelleDatenbank();
+                    kostenstelleDatenbank.datenMutation(this);
                     ;
                     abschliessen = true;
                     break;
@@ -186,33 +177,12 @@ public class Kostenstelle {
                     abschliessen = true;
                     break;
             }
-
         }while(!abschliessen);
-
-
     }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Methode zur Erstellung eines Querrys für einen Update von Kostenstelle
-
-     */
-
-    String updateKostenstelle(){
-
-        String querry;
-
-        querry = "UPDATE `itwisse_kursverwaltung`.`Kostenstelle` SET " +
-                " `Kostenstelle` = " + kostenstelle +
-                ", `BezeichnungKST` = \"" + bezeichnungKst +
-                "\", `KostenstelleVerantPerson` = \"" + kostenstelleVerantPerson +
-                "\" WHERE `ID` = " + kostenstelleId + ";";
-        return querry;
-    }
-
 
     @Override
     public String toString() {
-        return "Kostenstelle: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(this.kostenstelle), 10) +
+        return "Kostenstelle: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(this.kostenstelleNr), 10) +
                 "Verantwortliche Person: " + BefehlsZeilenSchnittstelle.textFormatieren(kostenstelleVerantPerson, 20) +
                 "Bezeichnung: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(bezeichnungKst), 25);
     }

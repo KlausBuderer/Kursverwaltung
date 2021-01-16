@@ -10,15 +10,44 @@ public class MitarbeiterDatenbank extends Datenbank{
 
     HashMap<Mitarbeiter,Integer> mitarbeiterHashMap = new HashMap<>();
 
-public void mitarbeiterAnlegen(String query){
-    datenInDbAnlegen(query);
+
+    public void mitarbeiterAnlegen(Mitarbeiter mitarbeiter){
+
+    datenInDbAnlegen(anlegenQuerry(mitarbeiter));
 
 
-}
-public HashMap<Mitarbeiter,Integer> mitarbeiterSuchen(String query){
+    }
+    public HashMap<Mitarbeiter,Integer> mitarbeiterSuchen(String query){
     mitarbeiterListeAusgeben(query);
     return mitarbeiterHashMap;
-}
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode zum erstellen des Sql Querry
+     */
+
+    String anlegenQuerry(Mitarbeiter mitarbeiter){
+        if (mitarbeiter.mitarbeiterStatus) {
+
+            mitarbeiter.mitarbeiterStatusString = "angestellt";
+
+        }else{
+            mitarbeiter.mitarbeiterStatusString = "nicht angestellt";
+        }
+
+        return "INSERT INTO `itwisse_kursverwaltung`.`Mitarbeiter`" +
+                " (`PersonalNr`, `Anrede`, `Vorname`, `Nachname`, `Jobtitel`, `Geburtsdatum`, `Statusmitarbeiter`, `KostenstelleID`)" +
+                " VALUES ('" + mitarbeiter.personalNummer +
+                "', '" + mitarbeiter.anrede +
+                "', '" + mitarbeiter.vorname +
+                "', '" + mitarbeiter.nachname +
+                "', '" + mitarbeiter.jobTitel +
+                "', '" + mitarbeiter.geburtstag +
+                "', '" + mitarbeiter.mitarbeiterStatusString +
+                "', '" + mitarbeiter.kostenstelleId +"')";
+
+    }
+
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
@@ -36,18 +65,20 @@ public HashMap<Mitarbeiter,Integer> mitarbeiterSuchen(String query){
             String anrede = dbInhalt.getString("Anrede");
             int id = dbInhalt.getInt("ID");
             String jobTitel = dbInhalt.getString("Jobtitel");
-            int organisationsId = dbInhalt.getInt("OrganisationsId");
+            int kostenstelleId = dbInhalt.getInt("KostenstelleId");
             String vorname = dbInhalt.getString("Vorname");
             String nachname = dbInhalt.getString("Nachname");
             int personalNummer= dbInhalt.getInt("PersonalNr");
             String geburtstag = dbInhalt.getString("Geburtsdatum");
             String statusAnstellung = dbInhalt.getString("Statusmitarbeiter");
-            mitarbeiter = new Mitarbeiter(id ,personalNummer, organisationsId, anrede, vorname, nachname ,jobTitel, geburtstag, statusAnstellung);
+            mitarbeiter = new Mitarbeiter(id ,personalNummer, kostenstelleId, anrede, vorname, nachname ,jobTitel, geburtstag, statusAnstellung);
 
             mitarbeiterHash.put(mitarbeiter,id);
         }
         mitarbeiterHashMap = mitarbeiterHash;
     }
+
+
 
 
 }

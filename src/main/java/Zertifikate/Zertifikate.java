@@ -1,22 +1,22 @@
 package Zertifikate;
 
-import Datenbank.Datenbank;
+import Datenbank.ZertifikatsDatenbank;
 import Utilities.BefehlsZeilenSchnittstelle;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Zertifikate extends Datenbank {
+public class Zertifikate{
 
-    String [] unterMenue = {"Zertifikate", "1. Zertifikate anlegen", "2. Zertifikate bearbeiten", "3. Hauptmenü"};
-    int zertifikatsId;
-    int kosten;
-    String waehrung;
-    String zertifikatsTitel;
-    String zertifikatsBeschreibung;
-    String anbieter;
-    String sprache;
+    String [] unterMenue = {"Zertifikate", "1. Zertifikate Anlegen", "2. Zertifikate Mutation", "3. Hauptmenue"};
+    public int zertifikatsId;
+    public int kosten;
+    public String waehrung;
+    public String zertifikatsTitel;
+    public String zertifikatsBeschreibung;
+    public String anbieter;
+    public String sprache;
 
     Scanner scan = new Scanner(System.in);
 
@@ -100,7 +100,8 @@ public class Zertifikate extends Datenbank {
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1:
-                    datenInDbAnlegen(anlegenQuerry());
+                    ZertifikatsDatenbank zertifikatsDatenbank = new ZertifikatsDatenbank();
+                    zertifikatsDatenbank.datenAnlegen(this);
                     abschliessen = true;
                     break;
                 case 2:
@@ -191,7 +192,9 @@ public class Zertifikate extends Datenbank {
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
-                case 1: datenBearbeiten(updateQuerry());
+                case 1:
+                    ZertifikatsDatenbank zertifikatsDatenbank = new ZertifikatsDatenbank();
+                    zertifikatsDatenbank.datenMutation(this);
                     abschliessen = true;
                     break;
                 case 2: abschliessen = false;
@@ -213,8 +216,10 @@ public class Zertifikate extends Datenbank {
         int arrayLaenge;
         int auswahl;
 
+        ZertifikatsDatenbank zertifikatsDatenbank = new ZertifikatsDatenbank();
+
         // Abfrage Datenbank.Datenbank nach Zertifikaten
-        HashMap<Zertifikate, Integer> zertifikatMap = (HashMap<Zertifikate, Integer>) datenAuslesenfuerAbfrage("Zertifikate");
+        HashMap<Zertifikate, Integer> zertifikatMap = (HashMap<Zertifikate, Integer>) zertifikatsDatenbank.dbHashMap("Zertifikate");
 
 
         // Schreiben der Kostenstellen in ein Array
@@ -241,34 +246,6 @@ public class Zertifikate extends Datenbank {
         anbieter = zertifikatArray[auswahl].anbieter;
         zertifikatsBeschreibung = zertifikatArray[auswahl].zertifikatsBeschreibung;
         sprache = zertifikatArray[auswahl].sprache;
-    }
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Methode zur Erstellung eines Querrys für einen Update von Kostenstelle
-     */
-    String updateQuerry(){
-
-        return  "UPDATE `itwisse_kursverwaltung`.`Zertifikate` SET " +
-                " `Titel` = '" + zertifikatsTitel +
-                "', `Beschreibung` = '" + zertifikatsBeschreibung +
-                "', `Anbieter` = '" + anbieter +
-                "', `Sprache` = '" + sprache +
-                "', `Kosten` = " + kosten +
-                ", `Waehrung` = '" + waehrung +
-                "' WHERE `ID` = " + zertifikatsId + ";";
-    }
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Methode zur Erstellung eines Querrys für ein Anlegen eines neuen Kurses
-     */
-    String anlegenQuerry(){
-
-        return "INSERT INTO `itwisse_kursverwaltung`.`Zertifikate`" +
-                " (`Titel`, `Beschreibung`, `Anbieter`, `Sprache`, `Kosten`, `Waehrung`)" +
-                " VALUES ('" + zertifikatsTitel + "', '" + zertifikatsBeschreibung + "', '" + anbieter + "', '" + sprache + "', '" + kosten + "', '" +
-                waehrung + "')";
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

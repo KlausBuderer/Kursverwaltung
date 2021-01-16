@@ -7,20 +7,13 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 public class KursDatenbank extends Datenbank {
-
-
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
     /*
-     Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank.Datenbank
-
-    Parameter: Inhalt der Utilities.Tabelle der Datenbank.Datenbank
-
+    Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank
+    Parameter: Inhalt der Utilities.Tabelle der Datenbank
     Rückgabewert: Hashmap mit Objekten für jeden Tuple
-
      */
-
-    HashMap<Kurse, Integer> kurseAusgeben(ResultSet dbInhalt) throws SQLException {
+    public HashMap<Kurse, Integer> kurseAusgeben(ResultSet dbInhalt) throws SQLException {
 
         HashMap<Kurse, Integer> kursHash = new HashMap<>();
         Kurse kurs;
@@ -39,22 +32,59 @@ public class KursDatenbank extends Datenbank {
             kurs = new Kurse(id, kosten, waehrung, kursCode, anbieter, kursBeschreibung, datumVon, datumBis, durchfuehrungsOrt);
 
             kursHash.put(kurs, id);
-
-
         }
         return kursHash;
     }
-
-    public HashMap<?,Integer> dbHashMap(String tabelle){
-        return datenAuslesenfuerAbfrage(tabelle);
-    }
-
-    public boolean datenInDbAnlegen(String querry){
-        datenInDbAnlegen(querry);
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+    Parameter: Objekt des Aufrufers
+     */
+    public boolean datenAnlegen(Kurse kurs){
+        datenInDbAnlegen(anlegenQuerry(kurs));
         return false;
     }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+    Parameter: Objekt des Aufrufers
+     */
+    public void datenMutation(Kurse kurs){
+        datenBearbeiten(updateQuerry(kurs));
+    }
 
-    public void datenMutation(String query){
-        datenBearbeiten(query);
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Methode zur Erstellung eines Querys für ein Anlegen eines neuen Datensatzes in der Datenbank
+     */
+    private String anlegenQuerry(Kurse kurs){
+
+        return "INSERT INTO `itwisse_kursverwaltung`.`Kurse`" +
+                " (`KursCode`, `Anbieter`, `Kursbeschreibung`, `Kosten`, `Waehrung`, `DatumVon`, `DatumBis`, `Durchfuehrungsort`)" +
+                " VALUES ('"    + kurs.kursCode +
+                "', '"          + kurs.anbieter +
+                "', '"          + kurs.kursBeschreibung +
+                "', '"          + kurs.kosten +
+                "', '"          + kurs.waehrung +
+                "', '"          + kurs.datumVon +
+                "', '"          + kurs.datumBis +
+                "', '"          + kurs.durchfuehrungsOrt +"')";
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Methode zur Erstellung eines Querrys für einen Update von Kostenstelle
+     */
+    private String updateQuerry(Kurse kurs){
+
+        return  "UPDATE `itwisse_kursverwaltung`.`Kurse` SET " +
+                " `KursCode` = "            + kurs.kursCode +
+                ", `Anbieter` = '"          + kurs.anbieter +
+                "', `Kursbeschreibung` = '" + kurs.kursBeschreibung +
+                "', `Kosten` = "            + kurs.kosten +
+                ", `Waehrung` = '"          + kurs.waehrung +
+                "', `DatumVon` = "          + kurs.datumVon +
+                ", `DatumBis` = "           + kurs.datumBis +
+                ", `Durchfuehrungsort` = '" + kurs.durchfuehrungsOrt +
+                "' WHERE `ID` = "           + kurs.kurseId + ";";
     }
 }

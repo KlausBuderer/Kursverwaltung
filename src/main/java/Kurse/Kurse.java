@@ -1,24 +1,24 @@
 package Kurse;
 
-import Datenbank.Datenbank;
+import Datenbank.KursDatenbank;
 import Utilities.BefehlsZeilenSchnittstelle;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Kurse extends Datenbank {
+public class Kurse{
 
-    private String [] unterMenue = {"Kurse", "1. Kurse anlegen", "2. Kurse bearbeiten", "3. Hauptmenue"};
-    private int kurseId;
-    private int kosten = 1;
-    private String waehrung;
-    private String kursCode;
-    private String anbieter;
-    private String kursBeschreibung;
-    private String datumVon;
-    private String datumBis;
-    private String durchfuehrungsOrt;
+    private String [] unterMenue = {"Kurse", "1. Kurse Anlegen", "2. Kurse Mutation", "3. Hauptmenue"};
+    public int kurseId;
+    public int kosten = 1;
+    public String waehrung;
+    public String kursCode;
+    public String anbieter;
+    public String kursBeschreibung;
+    public String datumVon;
+    public String datumBis;
+    public String durchfuehrungsOrt;
 
 
     Scanner scan = new Scanner(System.in);
@@ -109,7 +109,8 @@ public class Kurse extends Datenbank {
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1:
-                    datenInDbAnlegen(anlegenQuerry());
+                    KursDatenbank kursDatenbank = new KursDatenbank();
+                        kursDatenbank.datenAnlegen(this);
                     abschliessen = true;
                     break;
                 case 2:
@@ -213,7 +214,9 @@ public class Kurse extends Datenbank {
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
-                case 1: datenBearbeiten(updateQuerry());
+                case 1:
+                    KursDatenbank kursDatenbank = new KursDatenbank();
+                    kursDatenbank.datenMutation(this);
                     abschliessen = true;
                     break;
                 case 2: abschliessen = false;
@@ -237,8 +240,10 @@ public class Kurse extends Datenbank {
         int arrayLaenge;
         int auswahl;
 
+        KursDatenbank kursDatenbank = new KursDatenbank();
+
         // Abfrage Datenbank.Datenbank nach Kursen
-        HashMap<Kurse, Integer> kursMap = (HashMap<Kurse, Integer>) datenAuslesenfuerAbfrage("Kurse");
+        HashMap<Kurse, Integer> kursMap = (HashMap<Kurse, Integer>) kursDatenbank.dbHashMap("Kurse");
 
 
         // Schreiben der Kostenstellen in ein Array
@@ -267,45 +272,6 @@ public class Kurse extends Datenbank {
         datumVon = kursArray[auswahl].datumVon;
         datumBis = kursArray[auswahl].datumBis;
         durchfuehrungsOrt = kursArray[auswahl].durchfuehrungsOrt;
-
-    }
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Methode zur Erstellung eines Querrys für einen Update von Kostenstelle
-
-     */
-
-    String updateQuerry(){
-
-        String querry;
-
-        querry = "UPDATE `itwisse_kursverwaltung`.`Kurse` SET " +
-                " `KursCode` = " + kursCode +
-                ", `Anbieter` = '" + anbieter +
-                "', `Kursbeschreibung` = '" + kursBeschreibung +
-                "', `Kosten` = " + kosten +
-                ", `Waehrung` = '" + waehrung +
-                "', `DatumVon` = " + datumVon +
-                ", `DatumBis` = " + datumBis +
-                ", `Durchfuehrungsort` = '" + durchfuehrungsOrt +
-                "' WHERE `ID` = " + kurseId + ";";
-
-        return querry;
-    }
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Methode zur Erstellung eines Querrys für ein Anlegen eines neuen Kurses
-
-     */
-
-    String anlegenQuerry(){
-
-        return "INSERT INTO `itwisse_kursverwaltung`.`Kurse`" +
-                " (`KursCode`, `Anbieter`, `Kursbeschreibung`, `Kosten`, `Waehrung`, `DatumVon`, `DatumBis`, `Durchfuehrungsort`)" +
-                " VALUES ('" + kursCode + "', '" + anbieter + "', '" + kursBeschreibung + "', '" + kosten + "', '" + waehrung + "', '" +
-                datumVon + "', '" + datumBis + "', '" + durchfuehrungsOrt +"')";
 
     }
 
