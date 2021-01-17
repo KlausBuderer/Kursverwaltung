@@ -126,13 +126,13 @@ public final class BefehlsZeilenSchnittstelle {
                 System.out.println(untermenue);
             }
             System.out.println();
-            System.out.print("Wählen sie das gewünschte Untermenü (1-" + (unterMenue.length - 1) + "): ");
+            System.out.print("Wählen sie das gewünschte Untermenü (1-" + (unterMenue.length - 2) + ") oder (99 Menue verlassen): ");
 
             //Liest Eingabe als String ein um zu überpfüfen ob die Eingabe gültig ist
             auswahlString = scan.next();
 
-            // Überprüft ob die Eingabe eine Ganzzahl [1-(länge des Untermenüs)] ist
-            if(!auswahlString.matches("[1-" + (unterMenue.length - 1) + "]")){
+            // Überprüft ob die Eingabe eine Ganzzahl [1-(länge des Untermenüs)] oder 99 ist
+            if(!auswahlString.matches("[1-" + (unterMenue.length - 1) + "]") & !auswahlString.equals("99")){
 
                 BefehlsZeilenSchnittstelle.bildReinigen();
                 System.out.println("Bitte geben sie einen gültigen Wert ein!");

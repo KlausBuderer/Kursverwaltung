@@ -10,7 +10,7 @@ import java.util.Scanner;
 
         public class Einstellungen {
 
-            private final String[] UNTERMENUE = {"Einstellungen", "1. Datenbank Verbindungsdaten ändern", "2. Hauptmenü"};
+            private final String[] UNTERMENUE = {"Einstellungen", "1.  Datenbank Verbindungsdaten ändern", "99. Hauptmenü"};
             private final String[] KOPFZEILETABELLE = {"Url", "Benutzer", "Passwort"};
             private String[] angabenTabelle = {url, benutzer, passwort};
 
@@ -52,7 +52,7 @@ import java.util.Scanner;
                         case 1:
                             nachVerbindungFragen();
                             break;
-                        case 2:
+                        case 99:
                             gueltigeEingabe = true;
                             break;
                         default:

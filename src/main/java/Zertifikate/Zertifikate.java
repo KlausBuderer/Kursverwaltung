@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Zertifikate{
 
-    String [] unterMenue = {"Zertifikate", "1. Zertifikate Anlegen", "2. Zertifikate Mutation", "3. Hauptmenue"};
+    String [] unterMenue = {"Zertifikate", "1.  Zertifikate Anlegen", "2.  Zertifikate Mutation", "99. Hauptmenue"};
     public int zertifikatsId;
     public int kosten;
     public String waehrung;
@@ -55,7 +55,7 @@ public class Zertifikate{
                 case 2:
                     zertifikatBearbeiten();
                     break;
-                case 3:
+                case 99:
                     //zurück ins Hauptmenü;
                     System.out.println("Hauptmenü");
                     gueltigeEingabe = false;

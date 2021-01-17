@@ -1,5 +1,7 @@
 package Datenbank;
+
 import Einstellungen.Einstellungen;
+import Mitarbeiter.Mitarbeiter;
 import Utilities.BefehlsZeilenSchnittstelle;
 
 import java.sql.*;
@@ -250,10 +252,12 @@ public class Datenbank {
 
     Rückgabewert: HashMap mit Objekt als Key und ID als Value
      */
-    public void mitarbeiterListeAusgeben(String query) {
+    public HashMap<Mitarbeiter,Integer> mitarbeiterListeAusgeben(String query) {
 
         Connection connection = null;
         Statement statement = null;
+
+        HashMap<Mitarbeiter,Integer> mitarbeiterHashMap = null;
 
         ResultSet dbInhalt = null;
         try {
@@ -261,9 +265,9 @@ public class Datenbank {
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
             statement = connection.createStatement();
 
-            dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`." + query);
-
-            new MitarbeiterDatenbank().mitarbeiterSuchen(dbInhalt);
+            dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`.`Mitarbeiter`" + query);
+            System.out.println("SELECT * FROM `itwisse_kursverwaltung`. `Mitarbeiter`" + query);
+            mitarbeiterHashMap = new MitarbeiterDatenbank().mitarbeiterListeErstellen(dbInhalt);
 
         } catch (SQLException | ClassNotFoundException sqlException) {
 
@@ -276,6 +280,7 @@ public class Datenbank {
                 sqlException.printStackTrace();
             }
         }
+        return mitarbeiterHashMap;
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

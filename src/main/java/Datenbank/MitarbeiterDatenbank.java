@@ -18,22 +18,26 @@ public class MitarbeiterDatenbank extends Datenbank{
 
     }
     public HashMap<Mitarbeiter,Integer> mitarbeiterSuchen(String query){
-    mitarbeiterListeAusgeben(query);
-    return mitarbeiterHashMap;
+
+        System.out.println(query);
+    return mitarbeiterListeAusgeben(query);
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+    Parameter: Objekt des Aufrufers
+     */
+    public void datenMutation(Mitarbeiter mitarbeiter){
+        datenBearbeiten(updateQuerry(mitarbeiter));
+    }
+
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Methode zum erstellen des Sql Querry
      */
 
     String anlegenQuerry(Mitarbeiter mitarbeiter){
-        if (mitarbeiter.mitarbeiterStatus) {
-
-            mitarbeiter.mitarbeiterStatusString = "angestellt";
-
-        }else{
-            mitarbeiter.mitarbeiterStatusString = "nicht angestellt";
-        }
 
         return "INSERT INTO `itwisse_kursverwaltung`.`Mitarbeiter`" +
                 " (`PersonalNr`, `Anrede`, `Vorname`, `Nachname`, `Jobtitel`, `Geburtsdatum`, `Statusmitarbeiter`, `KostenstelleID`)" +
@@ -43,7 +47,7 @@ public class MitarbeiterDatenbank extends Datenbank{
                 "', '" + mitarbeiter.nachname +
                 "', '" + mitarbeiter.jobTitel +
                 "', '" + mitarbeiter.geburtstag +
-                "', '" + mitarbeiter.mitarbeiterStatusString +
+                "', '" + mitarbeiter.mitarbeiterStatus +
                 "', '" + mitarbeiter.kostenstelleId +"')";
 
     }
@@ -54,7 +58,7 @@ public class MitarbeiterDatenbank extends Datenbank{
     Methode zum Erstellen eines Hashmap von Objekten der Klasse Auswertungen.MitarbeiterAuswertung
      */
 
-    public void mitarbeiterSuchen(ResultSet dbInhalt) throws SQLException {
+    public HashMap mitarbeiterListeErstellen(ResultSet dbInhalt) throws SQLException {
 
         HashMap<Mitarbeiter,Integer> mitarbeiterHash = new HashMap<>();
         Mitarbeiter mitarbeiter;
@@ -62,23 +66,50 @@ public class MitarbeiterDatenbank extends Datenbank{
 
         while (dbInhalt.next()) {
 
-            String anrede = dbInhalt.getString("Anrede");
             int id = dbInhalt.getInt("ID");
-            String jobTitel = dbInhalt.getString("Jobtitel");
-            int kostenstelleId = dbInhalt.getInt("KostenstelleId");
+            int personalNummer= dbInhalt.getInt("PersonalNr");
+            String anrede = dbInhalt.getString("Anrede");
             String vorname = dbInhalt.getString("Vorname");
             String nachname = dbInhalt.getString("Nachname");
-            int personalNummer= dbInhalt.getInt("PersonalNr");
+            String jobTitel = dbInhalt.getString("Jobtitel");
             String geburtstag = dbInhalt.getString("Geburtsdatum");
             String statusAnstellung = dbInhalt.getString("Statusmitarbeiter");
+            int kostenstelleId = dbInhalt.getInt("KostenstelleId");
+
             mitarbeiter = new Mitarbeiter(id ,personalNummer, kostenstelleId, anrede, vorname, nachname ,jobTitel, geburtstag, statusAnstellung);
 
             mitarbeiterHash.put(mitarbeiter,id);
         }
-        mitarbeiterHashMap = mitarbeiterHash;
+        return mitarbeiterHash;
     }
 
+    /*--------------------------------------------------------------------------------------------------------------------------------------
+      Methode die den query aus den Angaben des Bedieners zusammensetzt
+     Rückgabewert: query als String
+       */
+    public String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
 
+        String query = " where `";
+        String suche =  suchkriterium + "` Like \"" + suchText + "%\"";
+        System.out.println(query + suche);
+        return query + suche;
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Methode zur Erstellung eines Querrys für einen Update von Kostenstelle
+     */
+    private String updateQuerry(Mitarbeiter mitarbeiter){
 
+        return "Update `itwisse_kursverwaltung`.`Mitarbeiter` SET" +
+                "`PersonalNr` = '"            + mitarbeiter.personalNummer +
+                "', `Anrede` = '"           + mitarbeiter.anrede +
+                "', `Vorname` = '"           + mitarbeiter.vorname +
+                "', `Nachname` = '"          + mitarbeiter.nachname +
+                "', `Jobtitel` = '"          + mitarbeiter.jobTitel +
+                "', `Geburtsdatum` = '"      + mitarbeiter.geburtstag +
+                "', `Statusmitarbeiter` = '" + mitarbeiter.mitarbeiterStatus +
+                "', `KostenstelleID` = '"    + mitarbeiter.kostenstelleId +
+                "' WHERE `ID` = "              + mitarbeiter.mitarbeiterId +";";
+    }
 
 }

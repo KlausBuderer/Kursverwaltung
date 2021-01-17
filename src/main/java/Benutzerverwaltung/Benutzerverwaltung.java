@@ -4,7 +4,7 @@ import Utilities.BefehlsZeilenSchnittstelle;
 
 public class Benutzerverwaltung {
 
-    String [] unterMenue = {"Benutzerverwaltung", "1. Benutzer anlegen", "2. Benutzer sperren", "3. Benutzer ändern", "4. Hauptmenü"};
+    String [] unterMenue = {"Benutzerverwaltung", "1.  Benutzer anlegen", "2.  Benutzer sperren", "3.  Benutzer ändern", "99. Hauptmenü"};
 
     public Benutzerverwaltung(){
 
@@ -28,7 +28,7 @@ public class Benutzerverwaltung {
                 case 3:
                     System.out.println(unterMenue[3]);
                     break;
-                case 4:
+                case 99:
                     System.out.println(unterMenue[4]);
                     gueltigeEingabe = false;
                     break;

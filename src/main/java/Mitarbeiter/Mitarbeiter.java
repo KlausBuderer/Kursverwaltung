@@ -7,11 +7,11 @@ import Utilities.BefehlsZeilenSchnittstelle;
 public class Mitarbeiter{
 
 
-    private String[] unterMenue = {"Mitarbeitermenue", "1. Mitarbeiter Anlegen","2. Mitarbeiter Kurszuordnung", "3. Mitarbeiter Zertifikatszuordnung", "4. Zertifikat Verlängern",
-            "5. Mitarbeiter Mutation", "6. Mitarbeiter Massenimport", "7. Hauptmenue"};
+    private String[] unterMenue = {"Mitarbeitermenue", "1.  Mitarbeiter Anlegen","2.  Mitarbeiter Kurszuordnung", "3.  Mitarbeiter Zertifikatszuordnung", "4.  Zertifikat Verlängern",
+            "5.  Mitarbeiter Mutation", "6.  Mitarbeiter Massenimport", "99. Hauptmenue"};
     private String[] anredeArray = {"Frau", "Herr", "Andere"};
+    private String[] statusArray = {"angestellt", "ausgetreten"};
 
-    public boolean mitarbeiterStatus;
     public int mitarbeiterId;
     public int personalNummer;
     public int kostenstelleId;
@@ -20,7 +20,7 @@ public class Mitarbeiter{
     public String nachname;
     public String jobTitel;
     public String geburtstag;
-    public String mitarbeiterStatusString;
+    public String mitarbeiterStatus;
 
     public Mitarbeiter() {
         untermenueAnzeigen();
@@ -35,7 +35,7 @@ public class Mitarbeiter{
         this.nachname = nachname;
         this.jobTitel = jobTitel;
         this.geburtstag = geburtstag;
-        this.mitarbeiterStatusString = mitarbeiterStatusString;
+        this.mitarbeiterStatus = mitarbeiterStatusString;
     }
 
     private void untermenueAnzeigen() {
@@ -57,12 +57,13 @@ public class Mitarbeiter{
                     System.out.println(unterMenue[4]);
                     break;
                 case 5:
+                    mitarbeiterMutieren();
                     System.out.println(unterMenue[5]);
                     break;
                 case 6:
                     System.out.println(unterMenue[6]);
                     break;
-                case 7:
+                case 99:
                     System.out.println(unterMenue[7]);
                     gueltigeEingabe = true;
                     break;
@@ -98,13 +99,13 @@ public class Mitarbeiter{
             //Nachname
             nachname = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Nachname: ");
             //Geburtsdatum
-            geburtstag = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geburtsdatumg (dd.MM.yyyy): ");
+            geburtstag = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geburtsdatum (dd.MM.yyyy): ");
             //Personal Nummer
             personalNummer = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Personalnummer: ");
             //Jobtitel
             jobTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Jobtitel: ");
             //Status beim Anlegen automatisch true
-            mitarbeiterStatus = true;
+            mitarbeiterStatus = statusArray[0];
             //kostenstelle (organisation)
 
             Kostenstelle kostenstelle = new Kostenstelle();
@@ -139,7 +140,7 @@ public class Mitarbeiter{
      */
     private void mitarbeiterMutieren() {
 
-        String[] spaltenArray = {"Personalnummer","Nachname","Vorname","Geburtstag","Abteilung","Jobtitel","Status"};
+        String[] spaltenArray = {"Personalnummer","Anrede","Nachname","Vorname","Geburtsdatum","Abteilung","Jobtitel","Status"};
         int arrayLaenge;
         int auswahl;
         boolean abschliessen = true;
@@ -153,8 +154,9 @@ public class Mitarbeiter{
             return;
         }
 
-      /*  do {
-            Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
+        System.out.println(mitarbeiter.toString());
+        do {
+            BefehlsZeilenSchnittstelle.bildReinigen();
             int i = 1;
             for (String spalte : spaltenArray) {
 
@@ -164,53 +166,67 @@ public class Mitarbeiter{
             arrayLaenge = spaltenArray.length;
 
             System.out.print("Welchen Spalte möchten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
-            auswahl = Utilities.BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
+            auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
             switch (auswahl) {
 
                 case 1:
+                    //Personalnummer
+                    System.out.println("Aktuell: " + personalNummer);
+                    personalNummer = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie die Personalnummer ein: ");
+                    break;
+                case 2:
                     Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
                     //Anrede
-                    System.out.println("Aktuell: " + mitarbeiter.anrede);
+                    System.out.println("Aktuell: " + anrede);
                     System.out.println("Anrede: ");
                     int j = 1;
 
-                    for (String waehrung : anredeArray) {
-                        System.out.println(j + ". " + waehrung);
+                    for (String anrede : anredeArray) {
+                        System.out.println(j + ". " + anrede);
                         j++;
                     }
                     System.out.println("Anrede (1-3): ");
                     anrede = anredeArray[Utilities.BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
                     break;
-                case 2:
-                    Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Aktuell: " + anbieter);
-                    System.out.print("Geben sie einen neuen Anbieter an: ");
-                    anbieter = scan.next();
-                    break;
                 case 3:
-                    Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Aktuell: " + zertifikatsBeschreibung);
-                    System.out.print("Geben sie eine neue Kursbeschreibung ein: ");
-                    zertifikatsBeschreibung = scan.next();
+                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    System.out.println("Aktuell: " + nachname);
+                    nachname = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Nachnamen ein: ");
                     break;
                 case 4:
                     Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Aktuell: " + kosten);
-                    System.out.print("Geben sie die neuen Kosten ein: ");
-                    kosten = Utilities.BefehlsZeilenSchnittstelle.eingabeAufIntegerPruefen();
+                    System.out.println("Aktuell: " + vorname);
+                    vorname = Utilities.BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Vornamen ein: ");
                     break;
                 case 5:
                     Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Aktuell: " + waehrung);
-                    waehrung = Utilities.BefehlsZeilenSchnittstelle.abfrageWaehrung();
+                    System.out.println("Aktuell: " + geburtstag);
+                    geburtstag = Utilities.BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben sie das Geburtsdatum ein: ");
                     break;
                 case 6:
                     Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Aktuell: " + sprache);
-                    System.out.print("Geben sie eine neue Sprache ein: ");
-                    sprache = Utilities.BefehlsZeilenSchnittstelle.pruefeDatum();
+                    System.out.println("Aktuell: " + kostenstelleId);
+                    Kostenstelle kostenstelle = new Kostenstelle();
+                    kostenstelle.auswahlListeKostenstelleAusgeben();
+                    kostenstelleId = kostenstelle.kostenstelleId;
                     break;
+                case 7:
+                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    System.out.println("Aktuell: " + jobTitel);
+                    jobTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Jobtitel ein: ");
+                case 8:
+                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    System.out.println("Aktuell: " + mitarbeiterStatus);
+                    System.out.println("Mitarbeiterstatus: ");
+                    int p = 1;
+
+                    for (String anrede : statusArray) {
+                        System.out.println(p + ". " + anrede);
+                        p++;
+                    }
+                    System.out.println("Anrede (1-2): ");
+                    mitarbeiterStatus = statusArray[Utilities.BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1];
                 default:
                     System.out.println("Falsche Eingabe!");
                     break;
@@ -223,7 +239,8 @@ public class Mitarbeiter{
 
             switch (Utilities.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
-                case 1: datenBearbeiten(updateQuerry());
+                case 1:
+                    new MitarbeiterDatenbank().datenMutation(this);
                     abschliessen = true;
                     break;
                 case 2: abschliessen = false;
@@ -232,7 +249,7 @@ public class Mitarbeiter{
                     break;
             }
 
-        }while(!abschliessen);*/
+        }while(!abschliessen);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
@@ -246,7 +263,7 @@ public class Mitarbeiter{
         this.personalNummer = mitarbeiter.personalNummer;
         this.vorname = mitarbeiter.vorname;
         this.nachname = mitarbeiter.nachname;
-        this.mitarbeiterStatusString = mitarbeiter.mitarbeiterStatusString;
+        this.mitarbeiterStatus = mitarbeiter.mitarbeiterStatus;
         this.geburtstag = mitarbeiter.geburtstag;
         this.mitarbeiterId = mitarbeiter.mitarbeiterId;
         this.kostenstelleId = mitarbeiter.kostenstelleId;

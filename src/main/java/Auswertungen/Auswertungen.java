@@ -5,10 +5,10 @@ import Utilities.BefehlsZeilenSchnittstelle;
 
 public class Auswertungen{
 
-    private String[] unterMenue = {"Auswertungen", "1. Mitarbeiter","2. Kurse Anzeigen","3. Budget", "4. Hauptmenue"};
-    private String[] unterMenueMitarbeiter = {"Mitarbeiter", "1. Aktive Mitarbeiter", "2. Auswertung Anzahl Mitarbeiter pro Kostenstelle", "3. Abgelaufene Zertifikate","4. Zurueck"};
-    private String[] unterMenueKurse = {"Kurse", "1. Kurse pro Anbieter", "2. Kurse nach Land", "3. Zurueck"};
-    private String[] unterMenueBudget = {"Budget", "1. Budgetuebersicht pro Kostenstelle", "2. Budget Ist/Soll Vergleich", "3. Zurueck"};
+    private String[] unterMenue = {"Auswertungen", "1.  Mitarbeiter","2.  Kurse Anzeigen","3.  Budget", "99. Hauptmenue"};
+    private String[] unterMenueMitarbeiter = {"Mitarbeiter", "1.  Aktive Mitarbeiter", "2.  Auswertung Anzahl Mitarbeiter pro Kostenstelle", "3.  Abgelaufene Zertifikate","99. Zurueck"};
+    private String[] unterMenueKurse = {"Kurse", "1.  Kurse pro Anbieter", "2.  Kurse nach Land", "99.  Zurueck"};
+    private String[] unterMenueBudget = {"Budget", "1.  Budgetuebersicht pro Kostenstelle", "2.  Budget Ist/Soll Vergleich", "99.  Zurueck"};
     private final String[] viewBefehle = {"view_Bruno_TEST","view_kurse_auswertung"};
 
     public Auswertungen() {
@@ -35,7 +35,7 @@ public class Auswertungen{
                 case 3:
                     unterMenueBudgetAnzeigen();
                     break;
-                case 4:
+                case 99:
                     System.out.println("Hauptmenue");
                     gueltigeEingabe = true;
                     break;
@@ -65,7 +65,7 @@ public class Auswertungen{
                 case 3:
                     System.out.println(unterMenueMitarbeiter[2]);
                     break;
-                case 4:
+                case 99:
                     System.out.println(unterMenueMitarbeiter[3]);
                     gueltigeEingabe = true;
                     break;
@@ -90,7 +90,7 @@ public class Auswertungen{
                 case 2:
                     System.out.println(unterMenueKurse[1]);
                     break;
-                case 3:
+                case 99:
                     System.out.println(unterMenueKurse[2]);
                     gueltigeEingabe = true;
                     break;
@@ -116,7 +116,7 @@ public class Auswertungen{
                 case 2:
                     System.out.println(unterMenueBudget[1]);
                     break;
-                case 3:
+                case 99:
                     System.out.println(unterMenueBudget[2]);
                     gueltigeEingabe = true;
                     break;

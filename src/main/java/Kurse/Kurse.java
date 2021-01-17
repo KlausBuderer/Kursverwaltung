@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Kurse{
 
-    private String [] unterMenue = {"Kurse", "1. Kurse Anlegen", "2. Kurse Mutation", "3. Hauptmenue"};
+    private String [] unterMenue = {"Kurse", "1.  Kurse Anlegen", "2.  Kurse Mutation", "99. Hauptmenue"};
     public int kurseId;
     public int kosten = 1;
     public String waehrung;
@@ -59,7 +59,7 @@ public class Kurse{
                 case 2:
                     kurseBearbeiten();
                     break;
-                case 3:
+                case 99:
                     //zurück ins Hauptmenü;
                     System.out.println("Hauptmenü");
                     gueltigeEingabe = false;
