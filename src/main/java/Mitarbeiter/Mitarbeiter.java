@@ -48,7 +48,7 @@ public class Mitarbeiter{
                     mitarbeiterAnlegen();
                     break;
                 case 2:
-                    System.out.println(unterMenue[2]);
+                    new MitarbeiterBescheinigung().kursZuweisen();
                     break;
                 case 3:
                     System.out.println(unterMenue[3]);

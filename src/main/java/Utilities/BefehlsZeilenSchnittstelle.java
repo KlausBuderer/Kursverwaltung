@@ -90,6 +90,7 @@ public final class BefehlsZeilenSchnittstelle {
                 break;
             case 7:
                 Einstellungen einstellungen = new Einstellungen();
+                break;
             default:
                 System.out.println("Bitte geben sie einen gültigen Wert ein!");
                 try {
@@ -132,7 +133,7 @@ public final class BefehlsZeilenSchnittstelle {
             auswahlString = scan.next();
 
             // Überprüft ob die Eingabe eine Ganzzahl [1-(länge des Untermenüs)] oder 99 ist
-            if(!auswahlString.matches("[1-" + (unterMenue.length - 1) + "]") & !auswahlString.equals("99")){
+            if(!auswahlString.matches("[1-" + (unterMenue.length - 2) + "]") & !auswahlString.equals("99")){
 
                 BefehlsZeilenSchnittstelle.bildReinigen();
                 System.out.println("Bitte geben sie einen gültigen Wert ein!");

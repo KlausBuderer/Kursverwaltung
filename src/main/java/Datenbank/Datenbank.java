@@ -1,7 +1,6 @@
 package Datenbank;
 
 import Einstellungen.Einstellungen;
-import Mitarbeiter.Mitarbeiter;
 import Utilities.BefehlsZeilenSchnittstelle;
 
 import java.sql.*;
@@ -69,6 +68,8 @@ public class Datenbank {
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
             statement = connection.createStatement();
 
+            System.out.println(query);
+
             statement.execute(query);
 
             anlegenErfolgreich = true;
@@ -124,7 +125,7 @@ public class Datenbank {
                     datenAuflistung = new BudgetDatenbank().budgetAusgeben(dbInhalt);
                     break;
                 case "Kurse":
-                    datenAuflistung = new KursDatenbank().kurseAusgeben(dbInhalt);
+                    datenAuflistung = new KursDatenbank().kursListeErstellen(dbInhalt);
                     break;
                 case "Zertifikate":
                     datenAuflistung = new ZertifikatsDatenbank().zertifikateAusgeben(dbInhalt);
@@ -252,12 +253,12 @@ public class Datenbank {
 
     Rückgabewert: HashMap mit Objekt als Key und ID als Value
      */
-    public HashMap<Mitarbeiter,Integer> mitarbeiterListeAusgeben(String query) {
+    public HashMap<?, Integer> datenListeAusgeben(String query) {
 
         Connection connection = null;
         Statement statement = null;
 
-        HashMap<Mitarbeiter,Integer> mitarbeiterHashMap = null;
+        HashMap<?,Integer> rueckgabeHashMap = null;
 
         ResultSet dbInhalt = null;
         try {
@@ -265,9 +266,14 @@ public class Datenbank {
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
             statement = connection.createStatement();
 
-            dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`.`Mitarbeiter`" + query);
-            System.out.println("SELECT * FROM `itwisse_kursverwaltung`. `Mitarbeiter`" + query);
-            mitarbeiterHashMap = new MitarbeiterDatenbank().mitarbeiterListeErstellen(dbInhalt);
+            dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`." + query);
+
+            if(query.contains("Mitarbeiter")){
+            rueckgabeHashMap = new MitarbeiterDatenbank().mitarbeiterListeErstellen(dbInhalt);
+
+            }else if(query.contains("Kurse")){
+                rueckgabeHashMap = new KursDatenbank().kursListeErstellen(dbInhalt);
+            }
 
         } catch (SQLException | ClassNotFoundException sqlException) {
 
@@ -280,7 +286,7 @@ public class Datenbank {
                 sqlException.printStackTrace();
             }
         }
-        return mitarbeiterHashMap;
+        return rueckgabeHashMap;
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

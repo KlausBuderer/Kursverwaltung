@@ -56,10 +56,9 @@ import java.util.Scanner;
                             gueltigeEingabe = true;
                             break;
                         default:
-                            System.out.println("Bitte geben sie einen gültigen Wert ein!");
+                            System.out.println("???");
                     }
                 } while (!gueltigeEingabe);
-
             }
 
 
@@ -110,7 +109,7 @@ import java.util.Scanner;
                 switch (scan.nextInt()){
                     case 1:
                         standardVerbindungsDaten = true;
-                        System.out.println("Standart Verbindungsdaten aktiviert");
+                        System.out.println("Standard Verbindungsdaten aktiviert");
                         url = URLDEFAULT;
                         benutzer = BENUTZERDEFAULT;
                         passwort = PASSWORTDEFAULT;

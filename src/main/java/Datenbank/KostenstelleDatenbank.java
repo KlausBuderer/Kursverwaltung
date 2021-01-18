@@ -70,7 +70,7 @@ public class KostenstelleDatenbank extends Datenbank {
      */
     String anlegenQuery(Kostenstelle kostenstelle){
 
-        return "INSERT INTO `itwisse_kursverwaltung`.`Kostenstelle` (`KostenstellenNr`, `BezeichnungKST`, `KostenstelleVerantPerson`) VALUES " +
+        return "INSERT INTO `itwisse_kursverwaltung`.`Kostenstelle` (`KostenstelleNr`, `BezeichnungKST`, `KostenstelleVerantPerson`) VALUES " +
                 "('"    + kostenstelle.kostenstelleNr +
                 "', '"  + kostenstelle.bezeichnungKst +
                 "', '"  + kostenstelle.kostenstelleVerantPerson + "')";

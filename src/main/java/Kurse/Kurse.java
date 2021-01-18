@@ -3,8 +3,6 @@ package Kurse;
 import Datenbank.KursDatenbank;
 import Utilities.BefehlsZeilenSchnittstelle;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Kurse{
@@ -46,18 +44,15 @@ public class Kurse{
      */
     public void untermenueAnzeigen(){
 
-
-
         boolean gueltigeEingabe = true;
 
         do {
-
             switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue)) {
                 case 1:
                     kurseAnlegen();
                     break;
                 case 2:
-                    kurseBearbeiten();
+                    kurseMutieren();
                     break;
                 case 99:
                     //zurück ins Hauptmenü;
@@ -73,10 +68,7 @@ public class Kurse{
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode zum Anlegen von Kursen
-
      */
-
-
     void kurseAnlegen() {
 
         boolean abschliessen = true;
@@ -119,11 +111,8 @@ public class Kurse{
                 case 3:
                     abschliessen = true;
                     break;
-
             }
         }while (!abschliessen) ;
-
-
 
     }
 
@@ -131,15 +120,22 @@ public class Kurse{
        /*
     Methode zur Bearbeitung eines Budget
      */
-    void kurseBearbeiten() {
+    void kurseMutieren() {
 
         String[] spaltenArray = {"Kurs Code","Anbieter","Kursbeschreibung", "Kosten", "Waehrung", "Start Datum", "End Datum", "Durchfuehrungs Ort"};
         int arrayLaenge;
         int auswahl;
         boolean abschliessen = true;
+        Kurse kurs;
 
-        auswahlListeKurseAusgeben();
+        KursSuchen kursSuchen = new KursSuchen();
 
+        try {
+            kurs = kursSuchen.kursSuchen();
+            objektUebergeben(kurs);
+        }catch (NullPointerException exception0){
+            return;
+        }
         do {
             BefehlsZeilenSchnittstelle.bildReinigen();
             int i = 1;
@@ -230,48 +226,20 @@ public class Kurse{
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Ausgabe einer Auswahlliste Kostenstelle für den Benutzer
+    Methode zum übergeben eines Objekt in dieses Objekt
 
      */
+    public void objektUebergeben(Kurse kurs){
 
-    public void auswahlListeKurseAusgeben() {
-
-        int i = 1;
-        int arrayLaenge;
-        int auswahl;
-
-        KursDatenbank kursDatenbank = new KursDatenbank();
-
-        // Abfrage Datenbank.Datenbank nach Kursen
-        HashMap<Kurse, Integer> kursMap = (HashMap<Kurse, Integer>) kursDatenbank.dbHashMap("Kurse");
-
-
-        // Schreiben der Kostenstellen in ein Array
-        Kurse[] kursArray = new Kurse[kursMap.size() + 1];
-
-        for (Map.Entry<Kurse, Integer> map : kursMap.entrySet()) {
-            kursArray[i] = map.getKey();
-            // Ausgeben des Array
-            System.out.println(i + ". " + map.getKey().toString());
-            i++;
-        }
-
-        arrayLaenge = kursArray.length;
-
-        //Der Bediener wird zu Auswahl einer der Objekte aufgefordert
-        System.out.print("Bitte wählen sie einen Kurs aus der Liste (1-" + (arrayLaenge-1) + ")");
-        auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
-
-        // Die Daten des gewählten Objekts werden in das sich vorhandene Objekt geschrieben
-        kurseId = kursArray[auswahl].kurseId;
-        kosten = kursArray[auswahl].kosten;
-        waehrung = kursArray[auswahl].waehrung;
-        kursCode = kursArray[auswahl].kursCode;
-        anbieter = kursArray[auswahl].anbieter;
-        kursBeschreibung = kursArray[auswahl].kursBeschreibung;
-        datumVon = kursArray[auswahl].datumVon;
-        datumBis = kursArray[auswahl].datumBis;
-        durchfuehrungsOrt = kursArray[auswahl].durchfuehrungsOrt;
+        this.kurseId =            kurs.kurseId;
+        this.kosten =             kurs.kosten;
+        this.waehrung =           kurs.waehrung;
+        this.kursCode =           kurs.kursCode;
+        this.anbieter =           kurs.anbieter;
+        this.kursBeschreibung =   kurs.kursBeschreibung;
+        this.datumVon =           kurs.datumVon;
+        this.datumBis =           kurs.datumBis;
+        this.durchfuehrungsOrt =  kurs.durchfuehrungsOrt;
 
     }
 

@@ -7,13 +7,20 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 public class KursDatenbank extends Datenbank {
+
+
+    public HashMap<?,Integer> kursSuchen(String query){
+
+        System.out.println(query);
+        return datenListeAusgeben(query);
+    }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank
     Parameter: Inhalt der Utilities.Tabelle der Datenbank
     Rückgabewert: Hashmap mit Objekten für jeden Tuple
      */
-    public HashMap<Kurse, Integer> kurseAusgeben(ResultSet dbInhalt) throws SQLException {
+    public HashMap<Kurse, Integer> kursListeErstellen(ResultSet dbInhalt) throws SQLException {
 
         HashMap<Kurse, Integer> kursHash = new HashMap<>();
         Kurse kurs;
@@ -77,14 +84,25 @@ public class KursDatenbank extends Datenbank {
     private String updateQuerry(Kurse kurs){
 
         return  "UPDATE `itwisse_kursverwaltung`.`Kurse` SET " +
-                " `KursCode` = "            + kurs.kursCode +
-                ", `Anbieter` = '"          + kurs.anbieter +
+                " `KursCode` = '"            + kurs.kursCode +
+                "', `Anbieter` = '"          + kurs.anbieter +
                 "', `Kursbeschreibung` = '" + kurs.kursBeschreibung +
                 "', `Kosten` = "            + kurs.kosten +
                 ", `Waehrung` = '"          + kurs.waehrung +
-                "', `DatumVon` = "          + kurs.datumVon +
-                ", `DatumBis` = "           + kurs.datumBis +
-                ", `Durchfuehrungsort` = '" + kurs.durchfuehrungsOrt +
+                "', `DatumVon` = '"          + kurs.datumVon +
+                "', `DatumBis` = '"           + kurs.datumBis +
+                "', `Durchfuehrungsort` = '" + kurs.durchfuehrungsOrt +
                 "' WHERE `ID` = "           + kurs.kurseId + ";";
+    }
+
+    /*--------------------------------------------------------------------------------------------------------------------------------------
+      Methode die den query aus den Angaben des Bedieners zusammensetzt
+     Rückgabewert: query als String
+       */
+    public String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
+
+        String query = "`Kurse` where `";
+        String suche =  suchkriterium + "` Like \"%" + suchText + "%\"";
+        return query + suche;
     }
 }

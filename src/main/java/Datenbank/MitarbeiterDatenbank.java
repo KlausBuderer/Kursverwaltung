@@ -1,6 +1,6 @@
 package Datenbank;
 
-import Mitarbeiter.Mitarbeiter;
+import Mitarbeiter.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,10 +17,18 @@ public class MitarbeiterDatenbank extends Datenbank{
 
 
     }
-    public HashMap<Mitarbeiter,Integer> mitarbeiterSuchen(String query){
+    public HashMap<?, Integer> mitarbeiterSuchen(String query){
 
         System.out.println(query);
-    return mitarbeiterListeAusgeben(query);
+    return datenListeAusgeben(query);
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+    Parameter: Objekt des Aufrufers
+     */
+    public void mitarbeiterBescheinigungAnlegen(MitarbeiterBescheinigung mitarbeiterBescheinigung){
+        datenInDbAnlegen(kursZuweisungQuerry(mitarbeiterBescheinigung));
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -89,7 +97,7 @@ public class MitarbeiterDatenbank extends Datenbank{
        */
     public String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
 
-        String query = " where `";
+        String query = "`Mitarbeiter` where `";
         String suche =  suchkriterium + "` Like \"" + suchText + "%\"";
         System.out.println(query + suche);
         return query + suche;
@@ -112,4 +120,14 @@ public class MitarbeiterDatenbank extends Datenbank{
                 "' WHERE `ID` = "              + mitarbeiter.mitarbeiterId +";";
     }
 
+    String kursZuweisungQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung){
+
+        return "INSERT INTO `itwisse_kursverwaltung`.`MitarbeiterBescheinigung`" +
+                " (`ZertifikatAblaufDatum`, `MitarbeiterID`, `KurseID`)" +
+                " VALUES ('" + mitarbeiterBescheinigung.zertifikatsAblaufDatum +
+                "', '" + mitarbeiterBescheinigung.mitarbeiterId +
+                "', '" + mitarbeiterBescheinigung.kurseId +
+                 "')";
+
+    }
 }

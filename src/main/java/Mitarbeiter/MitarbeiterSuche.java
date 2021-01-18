@@ -25,7 +25,7 @@ public class MitarbeiterSuche{
         int arrayLaenge;
         int auswahl;
         boolean abbruchBedingung = false;
-        HashMap<Mitarbeiter,Integer> mitarbeiterHash;
+        HashMap<?, Integer> mitarbeiterHash;
 
         do {
             //Suchkriterium Abfragen
@@ -89,15 +89,18 @@ public class MitarbeiterSuche{
             break;
             case 2: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Nachnamen ein nach dem sie suchen möchten: ");
             break;
-            case 3: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Vornamen nach dem sie suchen möchten: ");break;
-            case 4: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Gebn sie das Geburtsdatum ein nach dem sie suchen möchten: ");break;
+            case 3: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Vornamen nach dem sie suchen möchten: ");
+            break;
+            case 4: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Gebn sie das Geburtsdatum ein nach dem sie suchen möchten: ");
+            break;
             case 5:
                 Kostenstelle kostenstelle = new Kostenstelle();
                 kostenstelle.auswahlListeKostenstelleAusgeben();
                 suchZahl = kostenstelle.kostenstelleId;
                 suchText = String.valueOf(suchZahl);
                 break;
-            case 6: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Jobtitel an nach dem sie suchen möchten: ");break;
+            case 6: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Jobtitel an nach dem sie suchen möchten: ");
+            break;
             case 7:
                 BefehlsZeilenSchnittstelle.bildReinigen();
                 System.out.println("Mitarbeiterstatus: ");
@@ -134,15 +137,16 @@ public class MitarbeiterSuche{
     Parameter: Hashmap mit den Mitarbeiter.Mitarbeiter
     Rückgabewert: objekt des Typ Mitarbeiter.Mitarbeiter
      */
-    private Mitarbeiter mitarbeiterListeAusgeben(HashMap<Mitarbeiter,Integer> mitarbeiterHash) {
+    private Mitarbeiter mitarbeiterListeAusgeben(HashMap mitarbeiterHash) {
 
         int arrayLaenge;
         int auswahl;
 
+        HashMap<Mitarbeiter,Integer> mitarbeiterHashmap = mitarbeiterHash;
         Mitarbeiter[] mitarbeiterArray = new Mitarbeiter[mitarbeiterHash.size() + 1];
 
         int i = 1;
-        for (Map.Entry<Mitarbeiter, Integer> map : mitarbeiterHash.entrySet()) {
+        for (Map.Entry<Mitarbeiter, Integer> map : mitarbeiterHashmap.entrySet()) {
             mitarbeiterArray[i] = map.getKey();
             // Ausgeben des Array
             System.out.println(i + ". " + map.getKey().toString());
