@@ -255,11 +255,21 @@ public class Kurse{
 
                 " KursCode: " + kursCode +
                 " Anbieter: " + anbieter +
-                        " Kosten: " + kosten +
+                " Kosten: " + kosten +
                 " KursBeschreibung: " + kursBeschreibung +
                 " DatumVon: " + datumVon +
                 " DatumBis: " + datumBis +
                 " DurchfuerungsOrt: " + durchfuehrungsOrt +
                 " Waehrung: " + waehrung;
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Diese Methode packt die Membervariablen in ein Array für die Ausgabe in einer Tabelle
+     */
+    public String[] attributenString() {
+
+        String[] attributenString = {"",kursCode,anbieter, String.valueOf(kosten),kursBeschreibung,datumVon,datumBis,durchfuehrungsOrt,waehrung};
+
+        return attributenString;
     }
 }

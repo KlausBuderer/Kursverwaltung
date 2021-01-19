@@ -5,7 +5,7 @@ import Utilities.BefehlsZeilenSchnittstelle;
 public class Administratives{
 
 
-    private String[] unterMenue = {"Administratives", "1.  Kostenstelle Anlegen", "2.  Kostenstelle Mutation", "3.  Budget pro Kostenstelle erfassen", "4.  Budget Mutation", "5.  Oranisation Anlegen", "6.  Oranisation Mutation", "99. Hauptmenü"};
+    private String[] unterMenue = {"Administratives", "1.  Kostenstelle Anlegen", "2.  Kostenstelle Mutation", "3.  Budget pro Kostenstelle erfassen", "4.  Budget Mutation", "99. Hauptmenü"};
 
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -39,12 +39,6 @@ public class Administratives{
                     break;
                 case 4:
                     new Budget().budgetMutieren();
-                    break;
-                case 5:
-                    new Organisation().organisationAnlegen();
-                    break;
-                case 6:
-                    System.out.println("Organisation().oraganisationMutieren()");
                     break;
                 case 99:
                     //zurück ins Hauptmenü;

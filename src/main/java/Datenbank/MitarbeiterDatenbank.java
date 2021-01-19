@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import static Mitarbeiter.MitarbeiterBescheinigung.kontextAnlegen.KURS;
+import static Mitarbeiter.MitarbeiterBescheinigung.kontextAnlegen.ZERTIFIKAT;
+
 public class MitarbeiterDatenbank extends Datenbank{
 
     HashMap<Mitarbeiter,Integer> mitarbeiterHashMap = new HashMap<>();
@@ -27,8 +30,13 @@ public class MitarbeiterDatenbank extends Datenbank{
     Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
     Parameter: Objekt des Aufrufers
      */
-    public void mitarbeiterBescheinigungAnlegen(MitarbeiterBescheinigung mitarbeiterBescheinigung){
-        datenInDbAnlegen(kursZuweisungQuerry(mitarbeiterBescheinigung));
+    public void mitarbeiterBescheinigungAnlegen(MitarbeiterBescheinigung mitarbeiterBescheinigung,  MitarbeiterBescheinigung.kontextAnlegen kontext){
+
+        if(kontext == KURS) {
+            datenInDbAnlegen(kursZuweisungQuerry(mitarbeiterBescheinigung));
+        }else if (kontext == ZERTIFIKAT) {
+            datenInDbAnlegen(zertifikatZuweisungQuerry(mitarbeiterBescheinigung));
+        }
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -130,4 +138,16 @@ public class MitarbeiterDatenbank extends Datenbank{
                  "')";
 
     }
+
+    String zertifikatZuweisungQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung){
+
+        return "INSERT INTO `itwisse_kursverwaltung`.`MitarbeiterBescheinigung`" +
+                " (`ZertifikatAblaufDatum`, `MitarbeiterID`, `ZertifikatID`)" +
+                " VALUES ('" + mitarbeiterBescheinigung.zertifikatsAblaufDatum +
+                "', '" + mitarbeiterBescheinigung.mitarbeiterId +
+                "', '" + mitarbeiterBescheinigung.zertifikatId +
+                "')";
+
+    }
+
 }

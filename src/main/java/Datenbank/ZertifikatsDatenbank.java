@@ -14,7 +14,7 @@ public class ZertifikatsDatenbank extends Datenbank{
     Parameter: Inhalt der Utilities.Tabelle der Datenbank.Datenbank
     Rückgabewert: Hashmap mit Objekten für jeden Tuple
      */
-    HashMap<Zertifikate, Integer> zertifikateAusgeben(ResultSet dbInhalt) throws SQLException {
+    HashMap<Zertifikate, Integer> zertifikateListeErstellen(ResultSet dbInhalt) throws SQLException {
 
         HashMap<Zertifikate, Integer> zertifikateHash = new HashMap<>();
         Zertifikate zertifikate;
@@ -33,6 +33,12 @@ public class ZertifikatsDatenbank extends Datenbank{
             zertifikateHash.put(zertifikate, id);
         }
         return zertifikateHash;
+    }
+
+    public HashMap<?,Integer> zertifikatSuchen(String query){
+
+        System.out.println(query);
+        return datenListeAusgeben(query);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
@@ -82,4 +88,14 @@ public class ZertifikatsDatenbank extends Datenbank{
                 "', '"          + zerttifikat.waehrung + "')";
     }
 
+    /*--------------------------------------------------------------------------------------------------------------------------------------
+     Methode die den query aus den Angaben des Bedieners zusammensetzt
+    Rückgabewert: query als String
+      */
+    public String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
+
+        String query = "`Zertifikate` where `";
+        String suche =  suchkriterium + "` Like \"%" + suchText + "%\"";
+        return query + suche;
+    }
 }

@@ -51,7 +51,7 @@ public class Mitarbeiter{
                     new MitarbeiterBescheinigung().kursZuweisen();
                     break;
                 case 3:
-                    System.out.println(unterMenue[3]);
+                    new MitarbeiterBescheinigung().zertifikatZuweisen();
                     break;
                 case 4:
                     System.out.println(unterMenue[4]);
@@ -281,5 +281,14 @@ public class Mitarbeiter{
                 "Geburtstag " + BefehlsZeilenSchnittstelle.textFormatieren(geburtstag, 15) +
                 "JobTitel " + BefehlsZeilenSchnittstelle.textFormatieren(jobTitel, 25);
 
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Diese Methode packt die Membervariablen in ein Array für die Ausgabe in einer Tabelle
+     */
+    String[] attributenArrayFuerTabelle(){
+        String[] attributenArray = {"",String.valueOf(personalNummer),nachname,vorname, geburtstag, String.valueOf(kostenstelleId), jobTitel, mitarbeiterStatus, anrede};
+        return attributenArray;
     }
 }

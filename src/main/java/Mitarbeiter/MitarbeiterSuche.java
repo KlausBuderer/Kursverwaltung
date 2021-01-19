@@ -3,6 +3,7 @@ package Mitarbeiter;
 import Administratives.Kostenstelle;
 import Datenbank.MitarbeiterDatenbank;
 import Utilities.BefehlsZeilenSchnittstelle;
+import Utilities.Tabelle;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +13,7 @@ public class MitarbeiterSuche{
 
     private String suchText;
     private String query;
+    private final String[] TABELLENHEADER = {"Nr.","Personalnummer","Nachname","Vorname","Geburtsdatum","Abteilung","Jobtitel","Status", "Anrede"};
     private final String[] SUCHKRITERIEN = {"Personalnummer","Nachname","Vorname","Geburtsdatum","Abteilung","Jobtitel","Status", "Anrede"};
     private final String[] MYSQLSPALTENNAMEN = {"PersonalNr","Nachname","Vorname","Geburtsdatum","KostenstelleID","Jobtitel","Statusmitarbeiter","Anrede"};
     private String[] statusArray = {"angestellt", "ausgetreten"};
@@ -144,15 +146,22 @@ public class MitarbeiterSuche{
 
         HashMap<Mitarbeiter,Integer> mitarbeiterHashmap = mitarbeiterHash;
         Mitarbeiter[] mitarbeiterArray = new Mitarbeiter[mitarbeiterHash.size() + 1];
+       // Erstellen der Tabelle
+        Tabelle tabelle = new Tabelle();
+        tabelle.setHeaders(TABELLENHEADER);
+        tabelle.setVertikaleLinie(true);
 
         int i = 1;
         for (Map.Entry<Mitarbeiter, Integer> map : mitarbeiterHashmap.entrySet()) {
             mitarbeiterArray[i] = map.getKey();
             // Ausgeben des Array
-            System.out.println(i + ". " + map.getKey().toString());
+            String[] tempArray = map.getKey().attributenArrayFuerTabelle();
+            tempArray[0] = i + ".";
+            tabelle.zeileHinzufuegen(tempArray);
             i++;
         }
 
+        tabelle.ausgabe();
         arrayLaenge = mitarbeiterArray.length;
 
         //Der Bediener wird zu Auswahl einer der Objekte aufgefordert

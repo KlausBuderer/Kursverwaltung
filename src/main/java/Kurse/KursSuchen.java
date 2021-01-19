@@ -2,6 +2,7 @@ package Kurse;
 
 import Datenbank.KursDatenbank;
 import Utilities.BefehlsZeilenSchnittstelle;
+import Utilities.Tabelle;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +11,8 @@ public class KursSuchen {
 
     private String suchText;
     private String query;
-    private final String[] SUCHKRITERIEN = {"1. Kurs Code", "2. Anbieter", "3. Kursbeschreibung", "4. Kosten", "5. Waehrung", "6. Start-Datum", "7.End-Datum", "8.Durchführungsort"};
+    private final String[] TABELLENHEADER = {"Nr.","Kurs Code", "Anbieter", "Kursbeschreibung", "Kosten", "Waehrung", "Start-Datum", "End-Datum", "Durchführungsort"};
+    private final String[] SUCHKRITERIEN = {"Kurs Code", "Anbieter", "Kursbeschreibung", "Kosten", "Waehrung", "Start-Datum", "End-Datum", "Durchführungsort"};
     private final String[] SPALTENBEZEICHNUNG = {"KursCode", "Anbieter", "Kursbeschreibung", "Kosten", "Waehrung", "DatumVon", "DatumBis", "Durchführungsort"};
 
 
@@ -55,18 +57,27 @@ public class KursSuchen {
         */
     private int suchkriterienAbfragen() {
 
+        String[] HEADER = {"Nr.","Suchkriterium"};
+
         BefehlsZeilenSchnittstelle.bildReinigen();
         System.out.println("Bitte wählen sie ein Suchkriterium: ");
 
         int auswahlNummer = 1;
 
-        for (String suchkriterium : SUCHKRITERIEN) {
+        Tabelle tabelle = new Tabelle();
+        tabelle.setHeaders(HEADER);
+        tabelle.setVertikaleLinie(true);
 
-            System.out.println(auswahlNummer + ". " + suchkriterium);
+        for (String suchkriterium : SUCHKRITERIEN) {
+            String[] tempArray = {"",""};
+            tempArray[0] = auswahlNummer + ".";
+            tempArray[1] = suchkriterium;
+            tabelle.zeileHinzufuegen(tempArray);
+           // System.out.println(auswahlNummer + ". " + suchkriterium);
             auswahlNummer++;
         }
-
-
+        tabelle.ausgabe();
+        System.out.print("Nach welchem Kriterium möchten sie suchen: ");
         return BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(SUCHKRITERIEN.length);
     }
 
@@ -125,39 +136,33 @@ public class KursSuchen {
         int arrayLaenge;
         int auswahl;
 
-        KursDatenbank kursDatenbank = new KursDatenbank();
-
         // Abfrage Datenbank.Datenbank nach Kursen
         HashMap<Kurse, Integer> kursMap = kursHash;
 
         // Schreiben der Kostenstellen in ein Array
         Kurse[] kursArray = new Kurse[kursMap.size() + 1];
+        //Tabelle erstellen
+
+        Tabelle tabelle = new Tabelle();
+        tabelle.setHeaders(TABELLENHEADER);
+        tabelle.setVertikaleLinie(true);
 
         for (Map.Entry<Kurse, Integer> map : kursMap.entrySet()) {
             kursArray[i] = map.getKey();
             // Ausgeben des Array
-            System.out.println(i + ". " + map.getKey().toString());
+            String[] tempArray = map.getKey().attributenString();
+            tempArray[0] = i + ".";
+            tabelle.zeileHinzufuegen(tempArray);
             i++;
-        }
 
+        }
+        tabelle.ausgabe();
         arrayLaenge = kursArray.length;
 
         //Der Bediener wird zu Auswahl einer der Objekte aufgefordert
         System.out.print("Bitte wählen sie einen Kurs aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
-        // Die Daten des gewählten Objekts werden in das sich vorhandene Objekt geschrieben
-        Kurse kurs = new Kurse(kursArray[auswahl].kurseId,
-                kursArray[auswahl].kosten,
-                kursArray[auswahl].waehrung,
-                kursArray[auswahl].kursCode,
-                kursArray[auswahl].anbieter,
-                kursArray[auswahl].kursBeschreibung,
-                kursArray[auswahl].datumVon,
-                kursArray[auswahl].datumBis,
-                kursArray[auswahl].durchfuehrungsOrt);
-
-
-        return kurs;
+        return kursArray[auswahl];
     }
 }

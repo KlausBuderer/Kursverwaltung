@@ -129,7 +129,16 @@ public class Zertifikate{
         int auswahl;
         boolean abschliessen = true;
 
-        auswahlListeZertifikateAusgeben();
+        ZertifikateSuchen zertifikateSuchen = new ZertifikateSuchen();
+        Zertifikate zertifikat;
+
+        try {
+            zertifikat = zertifikateSuchen.zertifikatSuchen();
+            objektUebergabe(zertifikat);
+        }catch (NullPointerException exception){
+            System.out.println("Kein Treffer");
+            return;
+        }
 
         do {
             BefehlsZeilenSchnittstelle.bildReinigen();
@@ -247,7 +256,21 @@ public class Zertifikate{
         zertifikatsBeschreibung = zertifikatArray[auswahl].zertifikatsBeschreibung;
         sprache = zertifikatArray[auswahl].sprache;
     }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Methode für die Übergabe von den Attributen eines Objekts
+     */
+    public void objektUebergabe(Zertifikate zertifikat) {
 
+        // Die Daten des gewählten Objekts werden in das sich vorhandene Objekt geschrieben
+        this.zertifikatsId =             zertifikat.zertifikatsId;
+        this.kosten =                    zertifikat.kosten;
+        this.waehrung =                  zertifikat.waehrung;
+        this.zertifikatsTitel =          zertifikat.zertifikatsTitel;
+        this.anbieter =                  zertifikat.anbieter;
+        this.zertifikatsBeschreibung =   zertifikat.zertifikatsBeschreibung;
+        this.sprache =                   zertifikat.sprache;
+    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     ToString Methode
@@ -260,5 +283,13 @@ public class Zertifikate{
                 "Sprache: " + BefehlsZeilenSchnittstelle.textFormatieren(sprache, 10 ) +
                 "Kosten: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(kosten), 10 ) +
                 "Waehrung: " + BefehlsZeilenSchnittstelle.textFormatieren(waehrung, 30 ) ;
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    ToString Methode
+     */
+    public String[] attributenArrayFuerTabelle(){
+        String[] attributenArray = {"" ,zertifikatsTitel,zertifikatsBeschreibung,anbieter,sprache, String.valueOf(kosten),waehrung};
+     return attributenArray;
     }
 }

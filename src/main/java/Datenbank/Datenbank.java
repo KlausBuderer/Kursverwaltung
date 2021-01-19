@@ -118,9 +118,6 @@ public class Datenbank {
                 case "Kostenstelle":
                     datenAuflistung = new KostenstelleDatenbank().kostenstelleAusgeben(dbInhalt);
                     break;
-                case "Organisation":
-                    datenAuflistung = new OrganisationsDatenbank().organisationAusgeben(dbInhalt);
-                    break;
                 case "BudgetPeriode":
                     datenAuflistung = new BudgetDatenbank().budgetAusgeben(dbInhalt);
                     break;
@@ -128,7 +125,7 @@ public class Datenbank {
                     datenAuflistung = new KursDatenbank().kursListeErstellen(dbInhalt);
                     break;
                 case "Zertifikate":
-                    datenAuflistung = new ZertifikatsDatenbank().zertifikateAusgeben(dbInhalt);
+                    datenAuflistung = new ZertifikatsDatenbank().zertifikateListeErstellen(dbInhalt);
                     break;
                 case "Auswertung":
                     break;
@@ -273,6 +270,8 @@ public class Datenbank {
 
             }else if(query.contains("Kurse")){
                 rueckgabeHashMap = new KursDatenbank().kursListeErstellen(dbInhalt);
+            }else if (query.contains("Zertifikate")){
+                rueckgabeHashMap = new ZertifikatsDatenbank().zertifikateListeErstellen(dbInhalt);
             }
 
         } catch (SQLException | ClassNotFoundException sqlException) {
