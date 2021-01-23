@@ -299,4 +299,52 @@ public class Datenbank {
     public HashMap<?,Integer> dbHashMap(String tabelle){
         return datenAuslesenfuerAbfrage(tabelle);
     }
+
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Die Methode untermenueAnzeige zeigt das Untermenü und führt anhand der Eingabe des Benutzers eine Aktion aus
+     */
+    public HashMap storeProcedureAufrufen(String query, int parameter) {
+
+        boolean anlegenErfolgreich;
+
+        Connection connection = null;
+        CallableStatement statement = null;
+        ResultSet dbInhalt = null;
+        HashMap rueckgabeHash = null;
+
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
+            statement = connection.prepareCall(query);
+
+
+            statement.setInt(1,parameter);
+
+            System.out.println("Store Procedure erfolgreich");
+
+            dbInhalt = statement.executeQuery();
+
+           rueckgabeHash = new MitarbeiterDatenbank().zertifikatVerlaengern(dbInhalt);
+
+        } catch (SQLException | ClassNotFoundException sqlException) {
+
+            System.out.println("Hat geklappt");
+
+            sqlException.printStackTrace();
+        }
+
+
+            try {
+                connection.close();
+                statement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+            return rueckgabeHash;
+
+    }
 }

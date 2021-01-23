@@ -40,6 +40,25 @@ public class MitarbeiterDatenbank extends Datenbank{
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+ Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+ Parameter: Objekt des Aufrufers
+  */
+    public HashMap zertifikatVerlaengernListe(int mitarbeiterId){
+
+       return storeProcedureAufrufen("{ call SP_SHOW_MA_ZERT(?) }",mitarbeiterId);
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+ Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+ Parameter: Objekt des Aufrufers
+  */
+    public void zertifikatVerlaengernSpeichern(MitarbeiterBescheinigung mitarbeiterBescheinigung){
+
+        datenBearbeiten(updateQuerry(mitarbeiterBescheinigung));
+
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
     Parameter: Objekt des Aufrufers
@@ -110,9 +129,38 @@ public class MitarbeiterDatenbank extends Datenbank{
         System.out.println(query + suche);
         return query + suche;
     }
+
+
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Erstellung eines Querrys für einen Update von Kostenstelle
+    Methode zum Erstellen eines Hashmap von Objekten der Klasse Auswertungen.MitarbeiterAuswertung
+     */
+
+    public HashMap zertifikatVerlaengern(ResultSet dbInhalt) throws SQLException {
+
+        HashMap<MitarbeiterBescheinigung,Integer> mitarbeiterBescheinigungHashMap = new HashMap<>();
+        MitarbeiterBescheinigung mitarbeiterBescheinigung;
+
+
+        while (dbInhalt.next()) {
+
+            int mitarbeiterID = dbInhalt.getInt("MitarbeiterID");
+            String vorname = dbInhalt.getString("Vorname");
+            String nachname = dbInhalt.getString("Nachname");
+            int maBescheinigungId = dbInhalt.getInt("MABescheinigungID");
+            String zertAblDatum = dbInhalt.getString("ZertAblDatum");
+            String zertifikatsTitel = dbInhalt.getString("Zertifikatstitel");
+            String zertifikatsbeschreibung = dbInhalt.getString("Zertifikatsbeschreibung");
+
+            mitarbeiterBescheinigung = new MitarbeiterBescheinigung(maBescheinigungId ,zertAblDatum, mitarbeiterID, vorname, nachname, zertifikatsTitel,zertifikatsbeschreibung);
+
+            mitarbeiterBescheinigungHashMap.put(mitarbeiterBescheinigung,maBescheinigungId);
+        }
+        return mitarbeiterBescheinigungHashMap;
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Methode zur Erstellung eines Querrys für einen Update
      */
     private String updateQuerry(Mitarbeiter mitarbeiter){
 
@@ -135,7 +183,7 @@ public class MitarbeiterDatenbank extends Datenbank{
                 " VALUES ('" + mitarbeiterBescheinigung.zertifikatsAblaufDatum +
                 "', '" + mitarbeiterBescheinigung.mitarbeiterId +
                 "', '" + mitarbeiterBescheinigung.kurseId +
-                 "')";
+                "')";
 
     }
 
@@ -150,4 +198,14 @@ public class MitarbeiterDatenbank extends Datenbank{
 
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Methode zur Erstellung eines Querrys für einen Update
+     */
+    private String updateQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung){
+
+        return "Update `itwisse_kursverwaltung`.`MitarbeiterBescheinigung` SET" +
+                " `ZertifikatAblaufDatum` = '"           + mitarbeiterBescheinigung.zertifikatsAblaufDatum +
+                "' Where `ID` = " + mitarbeiterBescheinigung.id + ";";
+    }
 }

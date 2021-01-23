@@ -54,6 +54,7 @@ public class Mitarbeiter{
                     new MitarbeiterBescheinigung().zertifikatZuweisen();
                     break;
                 case 4:
+                    new MitarbeiterBescheinigung().zertifikatVerlaengern();
                     System.out.println(unterMenue[4]);
                     break;
                 case 5:
