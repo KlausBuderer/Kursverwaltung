@@ -17,7 +17,7 @@ import java.util.Scanner;
 // Utility Klasse für Ausgaben und Eingaben in der Konsole
 public final class BefehlsZeilenSchnittstelle {
 
-   private static String[] hauptmenuAdmin =  {"Hauptmenü","", "1. Mitarbeiter", "2. Kurse", "3. Zertifikate","4. Auswertungen", "5. Administratives",
+   private static String[] hauptmenuAdmin =  {"Hauptmenue","", "1. Mitarbeiter", "2. Kurse", "3. Zertifikate","4. Auswertungen", "5. Administratives",
             "6. Benutzerverwaltung", "7. Einstellungen", "Mit welchen Menüpunkt wollen sie weiterfahren?"};
 
     // Privater Konstruktor um keine Instanzierung zu erlauben

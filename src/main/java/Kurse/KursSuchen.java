@@ -11,9 +11,9 @@ public class KursSuchen {
 
     private String suchText;
     private String query;
-    private final String[] TABELLENHEADER = {"Nr.","Kurs Code", "Anbieter", "Kursbeschreibung", "Kosten", "Waehrung", "Start-Datum", "End-Datum", "Durchführungsort"};
-    private final String[] SUCHKRITERIEN = {"Kurs Code", "Anbieter", "Kursbeschreibung", "Kosten", "Waehrung", "Start-Datum", "End-Datum", "Durchführungsort"};
-    private final String[] SPALTENBEZEICHNUNG = {"KursCode", "Anbieter", "Kursbeschreibung", "Kosten", "Waehrung", "DatumVon", "DatumBis", "Durchführungsort"};
+    private final String[] TABELLENHEADER = {"Nr.","Kurs Code", "Anbieter", "Kursbeschreibung", "Kosten", "Waehrung", "Start-Datum", "End-Datum", "Durchfuehrungsort"};
+    private final String[] SUCHKRITERIEN = {"Kurs Code", "Anbieter", "Kursbeschreibung", "Durchfuehrungsort"};
+    private final String[] SPALTENBEZEICHNUNG = {"KursCode", "Anbieter", "Kursbeschreibung", "Durchfuehrungsort"};
 
 
 
@@ -102,20 +102,6 @@ public class KursSuchen {
                 suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie die Kursbeschreibung ein nach dem sie suchen möchten: ");
                 break;
             case 4:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Gebn sie die Kosten des Kurses ein nach dem sie suchen möchten: ");
-                break;
-            case 5:
-                suchText = BefehlsZeilenSchnittstelle.abfrageWaehrung();
-                break;
-            case 6:
-                System.out.println("Geben sie das Startdatum des Kurses ein nach dem sie suchen möchten: ");
-                suchText = BefehlsZeilenSchnittstelle.pruefeDatum();
-                break;
-            case 7:
-                System.out.println("Geben sie das Enddatum des Kurses ein nach dem sie suchen möchten: ");
-                suchText = BefehlsZeilenSchnittstelle.pruefeDatum();
-                break;
-            case 8:
                 suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Durchfuehrungsort ein nach dem sie suchen möchten: ");
                 break;
             default:

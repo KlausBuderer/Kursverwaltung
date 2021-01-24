@@ -46,7 +46,7 @@ public class MitarbeiterDatenbank extends Datenbank{
   */
     public HashMap zertifikatVerlaengernListe(int mitarbeiterId){
 
-       return storeProcedureAufrufen("{ call SP_SHOW_MA_ZERT(?) }",mitarbeiterId);
+       return storeProcedureAufrufen("{ call SP_ANZEIGEN_MA_ZERT(?) }",mitarbeiterId);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
@@ -69,7 +69,7 @@ public class MitarbeiterDatenbank extends Datenbank{
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum erstellen des Sql Querry
+    Methode zum Erstellen des Sql Querry
      */
 
     String anlegenQuerry(Mitarbeiter mitarbeiter){

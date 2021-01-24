@@ -25,7 +25,7 @@ public class MitarbeiterBescheinigung {
     public String zertifikatsBeschreibung;
 
     public enum kontextAnlegen  {KURS,ZERTIFIKAT};
-    String[] TABELLENHEADER = {"Nr.","Vorname","Nachname","Zertifikat","Ablaufdatumg","Zertifikatsbeschreibung"};
+    String[] TABELLENHEADER = {"Nr.","Vorname","Nachname","Zertifikat","Ablaufdatum","Zertifikatsbeschreibung"};
 
     public MitarbeiterBescheinigung() {
     }
