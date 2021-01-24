@@ -9,7 +9,7 @@ public class Mitarbeiter{
 
     private String[] unterMenue = {"Mitarbeitermenue", "1.  Mitarbeiter Anlegen","2.  Mitarbeiter Kurszuordnung", "3.  Mitarbeiter Zertifikatszuordnung", "4.  Zertifikat Verlängern",
             "5.  Mitarbeiter Mutation", "6.  Mitarbeiter Massenimport", "99. Hauptmenue"};
-    private String[] anredeArray = {"Frau", "Herr", "Andere"};
+    private String[] anredeArray = {"Frau", "Herr", "Neutral"};
     private String[] statusArray = {"angestellt", "ausgetreten"};
 
     public int mitarbeiterId;
