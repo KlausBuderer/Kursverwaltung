@@ -8,6 +8,9 @@ import java.util.HashMap;
 
 public class ZertifikatsDatenbank extends Datenbank{
 
+    STORE_PROCEDURE_KONTEXT kontext;
+
+
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank.Datenbank
@@ -39,6 +42,15 @@ public class ZertifikatsDatenbank extends Datenbank{
 
         System.out.println(query);
         return datenListeAusgeben(query);
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+ Aufruf eines Store Procedure um ein Zertifikat zu löschen
+ Parameter: Id des Zertifikats
+  */
+    public void zertifikatLoeschen(int kursId){
+
+        storeProcedureAufrufen("{ call SP_AENDERN_ZERT_LOESCHEN(?,?) }",kursId, kontext.ZERTIFIKAT_LOESCHEN);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*

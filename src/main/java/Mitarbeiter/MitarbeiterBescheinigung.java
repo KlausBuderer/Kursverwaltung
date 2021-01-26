@@ -25,7 +25,7 @@ public class MitarbeiterBescheinigung {
     public String zertifikatsBeschreibung;
 
     public enum kontextAnlegen  {KURS,ZERTIFIKAT};
-    String[] TABELLENHEADER = {"Nr.","Vorname","Nachname","Zertifikat","Ablaufdatumg","Zertifikatsbeschreibung"};
+    String[] TABELLENHEADER = {"Nr.","Vorname","Nachname","Zertifikat","Ablaufdatum","Zertifikatsbeschreibung"};
 
     public MitarbeiterBescheinigung() {
     }
@@ -137,8 +137,11 @@ public class MitarbeiterBescheinigung {
 
         } while (!abschliessen) ;
     }
-
-    void zertifikatVerlaengern(){
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode um eine Zertifikat zu verlängern
+     */
+    public void zertifikatVerlaengern(){
 
         Mitarbeiter mitarbeiter;
         int mitarbeiterId;

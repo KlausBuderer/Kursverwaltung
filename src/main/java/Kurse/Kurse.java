@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Kurse{
 
-    private String [] unterMenue = {"Kurse", "1.  Kurse Anlegen", "2.  Kurse Mutation", "99. Hauptmenue"};
+    private String [] unterMenue = {"Kurse", "1.  Kurse Anlegen", "2.  Kurse Mutation","3.  Kurs loeschen", "99. Hauptmenue"};
     public int kurseId;
     public int kosten = 1;
     public String waehrung;
@@ -53,6 +53,9 @@ public class Kurse{
                     break;
                 case 2:
                     kurseMutieren();
+                    break;
+                case 3:
+                    kursLoeschen();
                     break;
                 case 99:
                     //zurück ins Hauptmenü;
@@ -224,6 +227,39 @@ public class Kurse{
         }while(!abschliessen);
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Methode zum Loeschen eines Kurses
+     */
+
+    private void kursLoeschen(){
+        boolean abschliessen = false;
+        Kurse kurs;
+
+        do {
+            //Abfrage welchen Kurs gelöscht werden soll
+            //Aufrufen von MitarbeiterSuchen()
+            kurs = new KursSuchen().kursSuchen();
+            //Ausgabe der Daten des ausgewählten Kurses
+            BefehlsZeilenSchnittstelle.bildReinigen();
+            System.out.println(kurs.toString());
+            //Abfrage ob der Kurs wirklich gelöscht werden soll
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
+
+                case 1: //1.Ja-> MitarbeiterLoeschenQuery aufrufen und Methode beenden
+                    new KursDatenbank().kursLoeschen(kurs.kurseId);
+                    abschliessen = true;
+                    break;
+                case 2: //2.Nein-> Springe zu Aufrufen MitarbeiterSuchen()
+                    abschliessen = false;
+                    break;
+                case 3: //3.Abbrechen-> Methode Beenden
+                    abschliessen = true;
+                    break;
+            }
+
+        }while(!abschliessen);
+    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode zum übergeben eines Objekt in dieses Objekt
