@@ -305,7 +305,7 @@ public class Datenbank {
     /*
     Die Methode untermenueAnzeige zeigt das Untermenü und führt anhand der Eingabe des Benutzers eine Aktion aus
      */
-    public HashMap storeProcedureAufrufen(String query, int parameter) {
+    public HashMap storeProcedureAufrufen(String query, int parameter, STORE_PROCEDURE_KONTEXT kontext) {
 
         boolean anlegenErfolgreich;
 
@@ -313,6 +313,7 @@ public class Datenbank {
         CallableStatement statement = null;
         ResultSet dbInhalt = null;
         HashMap rueckgabeHash = null;
+        String statusSP;
 
         try {
 
@@ -320,14 +321,26 @@ public class Datenbank {
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
             statement = connection.prepareCall(query);
 
-
             statement.setInt(1,parameter);
 
             System.out.println("Store Procedure erfolgreich");
 
-            dbInhalt = statement.executeQuery();
+            switch (kontext){
+                case ZERTIFIKATE_PRO_MITARBEITER:
+                    dbInhalt = statement.executeQuery();
+                    rueckgabeHash = new MitarbeiterDatenbank().zertifikatVerlaengern(dbInhalt);
+                    break;
+                case MITARBEITER_LOESCHEN: case KURS_LOESCHEN: case ZERTIFIKAT_LOESCHEN:
+                    statement.executeQuery();
+                    statusSP = statement.getString(2);
+                    System.out.println(statusSP);
+                    BefehlsZeilenSchnittstelle.verzoegerung(3000);
+                    break;
 
-           rueckgabeHash = new MitarbeiterDatenbank().zertifikatVerlaengern(dbInhalt);
+            }
+
+
+
 
         } catch (SQLException | ClassNotFoundException sqlException) {
 

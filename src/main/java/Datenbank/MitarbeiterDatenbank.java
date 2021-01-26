@@ -9,17 +9,26 @@ import java.util.HashMap;
 import static Mitarbeiter.MitarbeiterBescheinigung.kontextAnlegen.KURS;
 import static Mitarbeiter.MitarbeiterBescheinigung.kontextAnlegen.ZERTIFIKAT;
 
+
 public class MitarbeiterDatenbank extends Datenbank{
 
     HashMap<Mitarbeiter,Integer> mitarbeiterHashMap = new HashMap<>();
+    STORE_PROCEDURE_KONTEXT kontext;
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+    Parameter: Objekt des Aufrufers
+     */
+    public void mitarbeiterAnlegen(Mitarbeiter mitarbeiter) {
 
-
-    public void mitarbeiterAnlegen(Mitarbeiter mitarbeiter){
-
-    datenInDbAnlegen(anlegenQuerry(mitarbeiter));
-
-
+        datenInDbAnlegen(anlegenQuerry(mitarbeiter));
     }
+
+        //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Aufruf zum Mitarbeiter suchen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+   Parameter: MySql Query
+     */
     public HashMap<?, Integer> mitarbeiterSuchen(String query){
 
         System.out.println(query);
@@ -41,12 +50,21 @@ public class MitarbeiterDatenbank extends Datenbank{
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
- Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
- Parameter: Objekt des Aufrufers
+ Aufruf eines Store Procedure der Datenbank umd eine Liste von Zertifikaten die einem Mitarbeiter zugewiesen sind auszugeben
+ Parameter: Id des Mitarbeiters
   */
     public HashMap zertifikatVerlaengernListe(int mitarbeiterId){
 
-       return storeProcedureAufrufen("{ call SP_ANZEIGEN_MA_ZERT(?) }",mitarbeiterId);
+       return storeProcedureAufrufen("{ call SP_ANZEIGEN_MA_ZERT(?) }",mitarbeiterId,kontext.ZERTIFIKATE_PRO_MITARBEITER);
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+ Aufruf eines Store Procedure der Datenbank umd eine Liste von Zertifikaten die einem Mitarbeiter zugewiesen sind auszugeben
+ Parameter: Id des Mitarbeiters
+  */
+    public void mitarbeiterLoeschen(int mitarbeiterId){
+
+         storeProcedureAufrufen("{ call SP_AENDERN_MA_LOESCHEN(?,?) }",mitarbeiterId, kontext.MITARBEITER_LOESCHEN);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
@@ -208,4 +226,6 @@ public class MitarbeiterDatenbank extends Datenbank{
                 " `ZertifikatAblaufDatum` = '"           + mitarbeiterBescheinigung.zertifikatsAblaufDatum +
                 "' Where `ID` = " + mitarbeiterBescheinigung.id + ";";
     }
+
+
 }
