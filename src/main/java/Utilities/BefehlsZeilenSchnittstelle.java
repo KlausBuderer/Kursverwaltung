@@ -17,8 +17,8 @@ import java.util.Scanner;
 // Utility Klasse für Ausgaben und Eingaben in der Konsole
 public final class BefehlsZeilenSchnittstelle {
 
-   private static String[] hauptmenuAdmin =  {"Hauptmenü","", "1. Mitarbeiter", "2. Kurse", "3. Zertifikate","4. Auswertungen", "5. Administratives",
-            "6. Benutzerverwaltung", "7. Einstellungen", "Mit welchen Menüpunkt wollen sie weiterfahren?"};
+   private static final String[] HAUPTMENU_ADMIN =  {"Hauptmenue","", "1. Mitarbeiter", "2. Kurse", "3. Zertifikate","4. Auswertungen", "5. Administratives",
+            "6. Benutzerverwaltung", "7. Einstellungen","8. Programm Beenden", "Mit welchen Menüpunkt wollen sie weiterfahren?"};
 
     // Privater Konstruktor um keine Instanzierung zu erlauben
     private BefehlsZeilenSchnittstelle(){
@@ -44,19 +44,19 @@ public final class BefehlsZeilenSchnittstelle {
 
         do {
             // Ausgabe des Menü Arrays
-            for (String menue : hauptmenuAdmin) {
+            for (String menue : HAUPTMENU_ADMIN) {
                 System.out.println(menue);
             }
 
             System.out.println();
 
-            System.out.print("Wählen sie das gewünschte (1-6): ");
+            System.out.print("Wählen sie das gewünschte (1-8): ");
 
 
             auswahlString = scan.next();
 
             // Überprüft ob die Eingabe eine Ganzzahl [1-(länge des Untermenüs)] ist
-            if(!auswahlString.matches("[1-" + (hauptmenuAdmin.length - 1) + "]")){
+            if(!auswahlString.matches("[1-" + (HAUPTMENU_ADMIN.length - 3) + "]")){
 
                 System.out.println("Bitte geben sie einen gültigen Wert ein!");
                 verzoegerung(1500);
@@ -90,6 +90,9 @@ public final class BefehlsZeilenSchnittstelle {
                 break;
             case 7:
                 Einstellungen einstellungen = new Einstellungen();
+                break;
+            case 8:
+                programmBeenden();
                 break;
             default:
                 System.out.println("Bitte geben sie einen gültigen Wert ein!");
@@ -210,7 +213,7 @@ public final class BefehlsZeilenSchnittstelle {
         int auswahl = 0;
 
         System.out.println("Sind sie sicher ob sie alles richtig eingegeben haben?");
-        System.out.println("1. Ja, Daten speichern");
+        System.out.println("1. Ja");
         System.out.println("2. Nein, neu beginnen");
         System.out.println("3. Abbrechen");
 
@@ -512,7 +515,43 @@ public final class BefehlsZeilenSchnittstelle {
 
         return waehrungsArray[eingabeMitWertpruefung(waehrungsArray.length)-1];
     }
+  private static void programmBeenden(){
 
+      Scanner scan = new Scanner(System.in);
+      boolean korrekteEingabe;
+      int auswahlInt = 0;
+      do {
+
+
+
+          bildReinigen();
+          System.out.println("Sind sie sicher, dass sie das Programm Beenden möchten?");
+          System.out.println("1. Ja \n2. Nein");
+          String auswahl = scan.next();
+
+
+          // Überprüft ob die Eingabe eine Ganzzahl [1-2]
+          if(!auswahl.matches("[1-2]")){
+
+             bildReinigen();
+              System.out.println("Bitte geben sie einen gültigen Wert ein!");
+              System.out.println();
+
+              verzoegerung(1500);
+              korrekteEingabe = false;
+
+          }else {
+              auswahlInt = Integer.parseInt(auswahl);
+              korrekteEingabe = true;
+          }
+
+          if(auswahlInt == 1){
+              System.out.println("Das Programm wird beendet");
+              Runtime.getRuntime().exit(0);
+          }
+
+      } while (!korrekteEingabe);
+        }
 }
 
 
