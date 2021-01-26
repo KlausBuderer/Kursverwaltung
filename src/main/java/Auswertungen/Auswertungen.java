@@ -9,7 +9,7 @@ public class Auswertungen{
     private String[] unterMenueMitarbeiter = {"Mitarbeiter", "1.  Aktive Mitarbeiter", "2.  Auswertung Anzahl Mitarbeiter pro Kostenstelle", "3.  Abgelaufene Zertifikate","99. Zurueck"};
     private String[] unterMenueKurse = {"Kurse", "1.  Kurse pro Anbieter", "2.  Kurse nach Land", "99.  Zurueck"};
     private String[] unterMenueBudget = {"Budget", "1.  Budgetuebersicht pro Kostenstelle", "2.  Budget Ist/Soll Vergleich", "99.  Zurueck"};
-    private String[] unterMenueAusgaben = {"Ausgaben", "1.  ", "2.  Ausgaben", "99.  Zurueck"};
+    private String[] unterMenueAusgaben = {"Ausgaben", "1.  Kurskosten pro Anbieter und Jahr", "2.  Kurskosten pro Jahr / Anbieter und Kostenstelle ", "99.  Zurueck"};
     private final String[] viewBefehle = {"view_Bruno_TEST","view_kurse_auswertung"};
 
     public Auswertungen() {
@@ -130,9 +130,11 @@ public class Auswertungen{
             }
         }while(!gueltigeEingabe);
     }
+
+
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
- Methode zum Anzeigen des Untermenüs für die Auswertung der Ausgaben
+ Methode zum Anzeigen des Untermenüs für die Auswertungen der Ausgaben
   */
     private void unterMenueAusgabenAnzeigen(){
         boolean gueltigeEingabe = false;
@@ -144,10 +146,6 @@ public class Auswertungen{
                     break;
                 case 2:
                     System.out.println(unterMenueAusgaben[1]);
-                    break;
-                case 99:
-                    System.out.println(unterMenueAusgaben[2]);
-                    gueltigeEingabe = true;
                     break;
                 default:
                     System.out.println("Falsche Eingabe");
