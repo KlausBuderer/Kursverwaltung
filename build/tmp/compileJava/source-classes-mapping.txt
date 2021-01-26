@@ -58,3 +58,5 @@ Administratives/Administratives.java
  Administratives.Administratives
 Auswertungen/ZertifikateAuswertung.java
  Auswertungen.ZertifikateAuswertung
+Auswertungen/AusgabenAuswertung.java
+ Auswertungen.AusgabenAuswertung
