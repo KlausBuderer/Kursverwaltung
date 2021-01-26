@@ -8,9 +8,10 @@ import java.util.HashMap;
 
 public class KursDatenbank extends Datenbank {
 
+    STORE_PROCEDURE_KONTEXT kontext;
+
 
     public HashMap<?,Integer> kursSuchen(String query){
-
         System.out.println(query);
         return datenListeAusgeben(query);
     }
@@ -60,6 +61,15 @@ public class KursDatenbank extends Datenbank {
         datenBearbeiten(updateQuerry(kurs));
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+ Aufruf eines Store Procedure um einen Kurs zu löschen
+ Parameter: Id des Kurses
+  */
+    public void kursLoeschen(int kursId){
+
+        storeProcedureAufrufen("{ call SP_AENDERN_KURS_LOESCHEN(?,?) }",kursId, kontext.KURS_LOESCHEN);
+    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode zur Erstellung eines Querys für ein Anlegen eines neuen Datensatzes in der Datenbank

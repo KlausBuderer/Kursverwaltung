@@ -3,13 +3,11 @@ package Zertifikate;
 import Datenbank.ZertifikatsDatenbank;
 import Utilities.BefehlsZeilenSchnittstelle;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Zertifikate{
 
-    String [] unterMenue = {"Zertifikate", "1.  Zertifikate Anlegen", "2.  Zertifikate Mutation", "99. Hauptmenue"};
+    String [] unterMenue = {"Zertifikate", "1.  Zertifikate Anlegen", "2.  Zertifikate Mutation","3.  Zertifikat Loeschen", "99. Hauptmenue"};
     public int zertifikatsId;
     public int kosten;
     public String waehrung;
@@ -54,6 +52,9 @@ public class Zertifikate{
                     break;
                 case 2:
                     zertifikatBearbeiten();
+                    break;
+                case 3:
+                    zertifikatLoeschen();
                     break;
                 case 99:
                     //zurück ins Hauptmenü;
@@ -217,44 +218,36 @@ public class Zertifikate{
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Ausgabe einer Auswahlliste Kostenstelle für den Benutzer
+    Methode zum Loeschen eines Zertifikats
      */
-    public void auswahlListeZertifikateAusgeben() {
 
-        int i = 1;
-        int arrayLaenge;
-        int auswahl;
+    private void zertifikatLoeschen(){
+        boolean abschliessen = false;
+        Zertifikate zertifikat;
 
-        ZertifikatsDatenbank zertifikatsDatenbank = new ZertifikatsDatenbank();
+        do {
+            //Abfrage welchen Kurs gelöscht werden soll
+            //Aufrufen von MitarbeiterSuchen()
+            zertifikat = new ZertifikateSuchen().zertifikatSuchen();
+            //Ausgabe der Daten des ausgewählten Kurses
+            BefehlsZeilenSchnittstelle.bildReinigen();
+            System.out.println(zertifikat.toString());
+            //Abfrage ob der Kurs wirklich gelöscht werden soll
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
-        // Abfrage Datenbank.Datenbank nach Zertifikaten
-        HashMap<Zertifikate, Integer> zertifikatMap = (HashMap<Zertifikate, Integer>) zertifikatsDatenbank.dbHashMap("Zertifikate");
+                case 1: //1.Ja-> MitarbeiterLoeschenQuery aufrufen und Methode beenden
+                    new ZertifikatsDatenbank().zertifikatLoeschen(zertifikat.zertifikatsId);
+                    abschliessen = true;
+                    break;
+                case 2: //2.Nein-> Springe zu Aufrufen MitarbeiterSuchen()
+                    abschliessen = false;
+                    break;
+                case 3: //3.Abbrechen-> Methode Beenden
+                    abschliessen = true;
+                    break;
+            }
 
-
-        // Schreiben der Kostenstellen in ein Array
-        Zertifikate[] zertifikatArray = new Zertifikate[zertifikatMap.size() + 1];
-
-        for (Map.Entry<Zertifikate, Integer> map : zertifikatMap.entrySet()) {
-            zertifikatArray[i] = map.getKey();
-            // Ausgeben des Array
-            System.out.println(i + ". " + map.getKey().toString());
-            i++;
-        }
-
-        arrayLaenge = zertifikatArray.length;
-
-        //Der Bediener wird zu Auswahl einer der Objekte aufgefordert
-        System.out.print("Bitte wählen sie ein Zertifikat aus der Liste (1-" + (arrayLaenge-1) + ")");
-        auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
-
-        // Die Daten des gewählten Objekts werden in das sich vorhandene Objekt geschrieben
-        zertifikatsId = zertifikatArray[auswahl].zertifikatsId;
-        kosten = zertifikatArray[auswahl].kosten;
-        waehrung = zertifikatArray[auswahl].waehrung;
-        zertifikatsTitel = zertifikatArray[auswahl].zertifikatsTitel;
-        anbieter = zertifikatArray[auswahl].anbieter;
-        zertifikatsBeschreibung = zertifikatArray[auswahl].zertifikatsBeschreibung;
-        sprache = zertifikatArray[auswahl].sprache;
+        }while(!abschliessen);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*

@@ -8,8 +8,8 @@ public class Mitarbeiter{
 
 
     private String[] unterMenue = {"Mitarbeitermenue", "1.  Mitarbeiter Anlegen","2.  Mitarbeiter Kurszuordnung", "3.  Mitarbeiter Zertifikatszuordnung", "4.  Zertifikat Verlängern",
-            "5.  Mitarbeiter Mutation", "6.  Mitarbeiter Massenimport", "99. Hauptmenue"};
-    private String[] anredeArray = {"Frau", "Herr", "Andere"};
+            "5.  Mitarbeiter Mutation", "6.  Mitarbeiter loeschen", "99. Hauptmenue"};
+    private String[] anredeArray = {"Frau", "Herr", "Neutral"};
     private String[] statusArray = {"angestellt", "ausgetreten"};
 
     public int mitarbeiterId;
@@ -55,14 +55,12 @@ public class Mitarbeiter{
                     break;
                 case 4:
                     new MitarbeiterBescheinigung().zertifikatVerlaengern();
-                    System.out.println(unterMenue[4]);
                     break;
                 case 5:
                     mitarbeiterMutieren();
-                    System.out.println(unterMenue[5]);
                     break;
                 case 6:
-                    System.out.println(unterMenue[6]);
+                    mitarbeiterLoeschen();
                     break;
                 case 99:
                     System.out.println(unterMenue[7]);
@@ -137,7 +135,7 @@ public class Mitarbeiter{
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Bearbeitung eines Budget
+    Methode zur Bearbeitung eines Mitarbeiter
      */
     private void mitarbeiterMutieren() {
 
@@ -252,6 +250,40 @@ public class Mitarbeiter{
 
         }while(!abschliessen);
     }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Methode zur Bearbeitung eines Mitarbeiter
+     */
+
+    private void mitarbeiterLoeschen(){
+        boolean abschliessen = false;
+        Mitarbeiter mitarbeiter;
+
+        do {
+            //Abfrage welchen Mitarbeiter gelöscht werden soll
+            //Aufrufen von MitarbeiterSuchen()
+            mitarbeiter = new MitarbeiterSuche().mitarbeiterSuchen();
+            //Ausgabe der Daten des ausgewählten Mitarbeiters
+            BefehlsZeilenSchnittstelle.bildReinigen();
+            System.out.println(mitarbeiter.toString());
+            //Abfrage ob der Mitarbeiter wirklich gelöscht werden soll
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
+
+                case 1: //1.Ja-> MitarbeiterLoeschenQuery aufrufen und Methode beenden
+                    new MitarbeiterDatenbank().mitarbeiterLoeschen(mitarbeiter.mitarbeiterId);
+                    abschliessen = true;
+                    break;
+                case 2: //2.Nein-> Springe zu Aufrufen MitarbeiterSuchen()
+                    abschliessen = false;
+                    break;
+                case 3: //3.Abbrechen-> Methode Beenden
+                    abschliessen = true;
+                    break;
+            }
+
+        }while(!abschliessen);
+    }
+
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Die Methode übergibt ein Objekt in das jetztige

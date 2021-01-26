@@ -19,10 +19,14 @@ public class MitarbeiterSuche{
     private String[] statusArray = {"angestellt", "ausgetreten"};
     private String[] anredeArray = {"Frau", "Herr", "Andere"};
 
+
+    public MitarbeiterSuche() {
+    }
+
     /*--------------------------------------------------------------------------------------------------------------------------------------
-    Methode die eine Auswahl an Suchkriterien Ausgibt und eine Auswahl vom Bediener liest
-    Rückgabewert: Objekt von Mitarbeiter oder null
-     */
+        Methode die eine Auswahl an Suchkriterien Ausgibt und eine Auswahl vom Bediener liest
+        Rückgabewert: Objekt von Mitarbeiter oder null
+         */
     public Mitarbeiter mitarbeiterSuchen(){
         int arrayLaenge;
         int auswahl;
