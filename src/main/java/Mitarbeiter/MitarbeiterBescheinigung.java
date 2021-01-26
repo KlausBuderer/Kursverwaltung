@@ -137,8 +137,11 @@ public class MitarbeiterBescheinigung {
 
         } while (!abschliessen) ;
     }
-
-    void zertifikatVerlaengern(){
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode um eine Zertifikat zu verlängern
+     */
+    public void zertifikatVerlaengern(){
 
         Mitarbeiter mitarbeiter;
         int mitarbeiterId;
