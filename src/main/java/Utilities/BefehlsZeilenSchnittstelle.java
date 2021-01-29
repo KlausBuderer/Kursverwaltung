@@ -2,7 +2,7 @@ package Utilities;
 
 import Administratives.Administratives;
 import Auswertungen.Auswertungen;
-import Benutzerverwaltung.Benutzerverwaltung;
+import Benutzerverwaltung.*;
 import Einstellungen.Einstellungen;
 import Kurse.Kurse;
 import Mitarbeiter.Mitarbeiter;
@@ -18,7 +18,10 @@ import java.util.Scanner;
 public final class BefehlsZeilenSchnittstelle {
 
    private static final String[] HAUPTMENU_ADMIN =  {"Hauptmenue","", "1. Mitarbeiter", "2. Kurse", "3. Zertifikate","4. Auswertungen", "5. Administratives",
-            "6. Benutzerverwaltung", "7. Einstellungen","8. Programm Beenden", "Mit welchen Menüpunkt wollen sie weiterfahren?"};
+            "6. Benutzerverwaltung", "7. Einstellungen","90.  Abmelden","99. Programm Beenden", "Mit welchen Menüpunkt wollen sie weiterfahren?"};
+
+    private static final String[] HAUPTMENU_BENUTZER =  {"Hauptmenue","", "1. Mitarbeiter", "2. Kurse", "3. Zertifikate","4. Auswertungen", "5. Administratives", "90.  Abmelden",
+            "99. Programm Beenden", "Mit welchen Menüpunkt wollen sie weiterfahren?"};
 
     // Privater Konstruktor um keine Instanzierung zu erlauben
     private BefehlsZeilenSchnittstelle(){
@@ -27,15 +30,59 @@ public final class BefehlsZeilenSchnittstelle {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
+     Anmeldefenster ausgeben
+     */
+
+    public static void anmeldeFensterAusgeben(){
+
+        boolean benutzerAngemeldet = false;
+        String benutzerEingabe;
+        String passwortEingabe;
+
+        do{
+
+            System.out.println("Bitte melden sie sich an");
+                System.out.println();
+                   benutzerEingabe = abfrageMitEingabeFrei("Benutzername: ");
+                   passwortEingabe = abfrageMitEingabeFrei("Passwort: ");
+                     benutzerAngemeldet = new Benutzer().benutzerAnmelden(benutzerEingabe,passwortEingabe);
+
+        }while (!benutzerAngemeldet);
+
+
+    }
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+     Anmeldefenster ausgeben
+     */
+
+    public static void hauptmenuAufruf(){
+
+        if(Benutzer.angemeldeteGruppe == BENUTZERGRUPPEN.ADMINISTRATOR){
+            hauptmenueAusgeben(HAUPTMENU_ADMIN);
+        }else{
+         hauptmenueAusgeben(HAUPTMENU_BENUTZER);
+        }
+
+
+    }
+
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
      Anzeige des Hauptmenüs für Benutzer mit Adminrecht
      */
-    public static void hauptmenueAusgeben() {
+    public static void hauptmenueAusgeben(String[] menu) {
 
         int auswahlInt = 0;
         boolean gueltigeEingabe;
         String auswahlString;
+        String[] hauptmenu = menu;
 
         Scanner scan = new Scanner(System.in);
+
+
 
         //Ausgabe des Hauptmenüs und Einlesen der Auswahl
         bildReinigen();
@@ -44,7 +91,7 @@ public final class BefehlsZeilenSchnittstelle {
 
         do {
             // Ausgabe des Menü Arrays
-            for (String menue : HAUPTMENU_ADMIN) {
+            for (String menue : hauptmenu) {
                 System.out.println(menue);
             }
 
@@ -56,7 +103,7 @@ public final class BefehlsZeilenSchnittstelle {
             auswahlString = scan.next();
 
             // Überprüft ob die Eingabe eine Ganzzahl [1-(länge des Untermenüs)] ist
-            if(!auswahlString.matches("[1-" + (HAUPTMENU_ADMIN.length - 3) + "]")){
+            if(!auswahlString.matches("[1-" + (hauptmenu.length - 3) + "]") & (!auswahlString.matches("90") & !auswahlString.matches("99"))){
 
                 System.out.println("Bitte geben sie einen gültigen Wert ein!");
                 verzoegerung(1500);
@@ -91,7 +138,11 @@ public final class BefehlsZeilenSchnittstelle {
             case 7:
                 Einstellungen einstellungen = new Einstellungen();
                 break;
-            case 8:
+            case 90:
+                Benutzer.angemeldeterBenutzer = "";
+                Benutzer.angemeldeteGruppe = null;
+                anmeldeFensterAusgeben();
+            case 99:
                 programmBeenden();
                 break;
             default:

@@ -213,8 +213,6 @@ public class Datenbank {
 
             dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`.`" + view + "`");
 
-
-
             switch (view) {
                 case "view_Bruno_TEST":
                    auswertungsListe = new AuswertungenDatenbank().mitarbeiterAuswerten(dbInhalt);
@@ -336,11 +334,7 @@ public class Datenbank {
                     System.out.println(statusSP);
                     BefehlsZeilenSchnittstelle.verzoegerung(3000);
                     break;
-
             }
-
-
-
 
         } catch (SQLException | ClassNotFoundException sqlException) {
 
@@ -348,7 +342,6 @@ public class Datenbank {
 
             sqlException.printStackTrace();
         }
-
 
             try {
                 connection.close();

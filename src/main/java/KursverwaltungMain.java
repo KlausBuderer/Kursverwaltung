@@ -1,3 +1,4 @@
+import Benutzerverwaltung.Benutzer;
 import Datenbank.Datenbank;
 import Einstellungen.Einstellungen;
 import Utilities.BefehlsZeilenSchnittstelle;
@@ -22,11 +23,13 @@ public class KursverwaltungMain {
                 einstellungen.nachVerbindungFragen();
             }
 
+            new Benutzer().benutzerAusDateiLesen();
 
         }while(!verbindungAufgebaut);
 
         while(true) {
-            BefehlsZeilenSchnittstelle.hauptmenueAusgeben();
+            BefehlsZeilenSchnittstelle.anmeldeFensterAusgeben();
+            BefehlsZeilenSchnittstelle.hauptmenuAufruf();
         }
 
 
