@@ -149,7 +149,7 @@ public class Kurse{
             }
             arrayLaenge = spaltenArray.length;
 
-            System.out.print("Welchen Spalte möchten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
+            System.out.print("Welchen Spalte moechten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
             auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
             switch (auswahl) {

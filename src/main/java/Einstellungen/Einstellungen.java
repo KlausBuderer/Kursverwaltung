@@ -102,7 +102,7 @@ import java.util.Scanner;
             // Abfrage welche Verbindungsdaten verwendet werden sollen
             public void nachVerbindungFragen(){
 
-                System.out.println("Welche Verbindungsdaten möchten sie nutzen?");
+                System.out.println("Welche Verbindungsdaten moechten sie nutzen?");
                 System.out.println("1. Standart Verbindungsdaten");
                 System.out.println("2. Benutzerdefinierte Verbindungsdaten");
 

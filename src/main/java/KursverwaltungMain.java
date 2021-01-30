@@ -28,8 +28,12 @@ public class KursverwaltungMain {
         }while(!verbindungAufgebaut);
 
         while(true) {
-            BefehlsZeilenSchnittstelle.anmeldeFensterAusgeben();
+            if(Benutzer.angemeldeterBenutzer.equals("")) {
+                BefehlsZeilenSchnittstelle.anmeldeFensterAusgeben();
+            }
+            Benutzer benutzer = new Benutzer();
             BefehlsZeilenSchnittstelle.hauptmenuAufruf();
+
         }
 
 

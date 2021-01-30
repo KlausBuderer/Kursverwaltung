@@ -18,10 +18,10 @@ import java.util.Scanner;
 public final class BefehlsZeilenSchnittstelle {
 
    private static final String[] HAUPTMENU_ADMIN =  {"Hauptmenue","", "1. Mitarbeiter", "2. Kurse", "3. Zertifikate","4. Auswertungen", "5. Administratives",
-            "6. Benutzerverwaltung", "7. Einstellungen","90.  Abmelden","99. Programm Beenden", "Mit welchen Menüpunkt wollen sie weiterfahren?"};
+            "6. Benutzerverwaltung", "7. Einstellungen","90. Abmelden","99. Programm Beenden"};
 
-    private static final String[] HAUPTMENU_BENUTZER =  {"Hauptmenue","", "1. Mitarbeiter", "2. Kurse", "3. Zertifikate","4. Auswertungen", "5. Administratives", "90.  Abmelden",
-            "99. Programm Beenden", "Mit welchen Menüpunkt wollen sie weiterfahren?"};
+    private static final String[] HAUPTMENU_BENUTZER =  {"Hauptmenue","", "1. Mitarbeiter", "2. Kurse", "3. Zertifikate","4. Auswertungen", "5. Administratives", "90. Abmelden",
+            "99. Programm Beenden"};
 
     // Privater Konstruktor um keine Instanzierung zu erlauben
     private BefehlsZeilenSchnittstelle(){
@@ -59,7 +59,7 @@ public final class BefehlsZeilenSchnittstelle {
 
     public static void hauptmenuAufruf(){
 
-        if(Benutzer.angemeldeteGruppe == BENUTZERGRUPPEN.ADMINISTRATOR){
+        if(Benutzer.angemeldeteGruppe.equals("ADMINISTRATOR")){
             hauptmenueAusgeben(HAUPTMENU_ADMIN);
         }else{
          hauptmenueAusgeben(HAUPTMENU_BENUTZER);
@@ -97,15 +97,15 @@ public final class BefehlsZeilenSchnittstelle {
 
             System.out.println();
 
-            System.out.print("Wählen sie das gewünschte (1-8): ");
+            System.out.print("Waehlen sie das gewuenschte Menue (1-7 oder 90 / 99): ");
 
 
             auswahlString = scan.next();
 
             // Überprüft ob die Eingabe eine Ganzzahl [1-(länge des Untermenüs)] ist
-            if(!auswahlString.matches("[1-" + (hauptmenu.length - 3) + "]") & (!auswahlString.matches("90") & !auswahlString.matches("99"))){
+            if(!auswahlString.matches("[1-" + (hauptmenu.length - 2) + "]") & (!auswahlString.matches("90") & !auswahlString.matches("99"))){
 
-                System.out.println("Bitte geben sie einen gültigen Wert ein!");
+                System.out.println("Bitte geben sie einen gueltigen Wert ein!");
                 verzoegerung(1500);
                 gueltigeEingabe = false;
 
@@ -142,11 +142,12 @@ public final class BefehlsZeilenSchnittstelle {
                 Benutzer.angemeldeterBenutzer = "";
                 Benutzer.angemeldeteGruppe = null;
                 anmeldeFensterAusgeben();
+                break;
             case 99:
                 programmBeenden();
                 break;
             default:
-                System.out.println("Bitte geben sie einen gültigen Wert ein!");
+                System.out.println("Bitte geben sie einen gueltigen Wert ein!");
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
@@ -181,7 +182,7 @@ public final class BefehlsZeilenSchnittstelle {
                 System.out.println(untermenue);
             }
             System.out.println();
-            System.out.print("Wählen sie das gewünschte Untermenü (1-" + (unterMenue.length - 2) + ") oder (99 Menue verlassen): ");
+            System.out.print("Waehlen sie das gewuenschte Untermenue (1-" + (unterMenue.length - 2) + ") oder (99 Menue verlassen): ");
 
             //Liest Eingabe als String ein um zu überpfüfen ob die Eingabe gültig ist
             auswahlString = scan.next();
@@ -190,7 +191,7 @@ public final class BefehlsZeilenSchnittstelle {
             if(!auswahlString.matches("[1-" + (unterMenue.length - 2) + "]") & !auswahlString.equals("99")){
 
                 BefehlsZeilenSchnittstelle.bildReinigen();
-                System.out.println("Bitte geben sie einen gültigen Wert ein!");
+                System.out.println("Bitte geben sie einen gueltigen Wert ein!");
                 System.out.println();
 
                 verzoegerung(1500);
@@ -305,7 +306,7 @@ public final class BefehlsZeilenSchnittstelle {
                 } else {
                     // Gibt eine Fehlermeldung bei nicht korrekter Eingabe und lässt die Abfrage nochmals beginnen
                     BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Bitte geben sie einen gültigen Wert ein!");
+                    System.out.println("Bitte geben sie einen gueltigen Wert ein!");
                     System.out.println();
 
                     verzoegerung(1500);
@@ -314,7 +315,7 @@ public final class BefehlsZeilenSchnittstelle {
             } else {
                 // Gibt eine Fehlermeldung bei nicht korrekter Eingabe und lässt die Abfrage nochmals beginnen
                 BefehlsZeilenSchnittstelle.bildReinigen();
-                System.out.println("Bitte geben sie einen gültigen Wert ein!");
+                System.out.println("Bitte geben sie einen gueltigen Wert ein!");
                 System.out.println();
 
                 verzoegerung(1500);
@@ -379,7 +380,7 @@ public final class BefehlsZeilenSchnittstelle {
                 return korrekterWert = Integer.parseInt(eingabe);
             }else {
                 korrekteEingabe = false;
-                System.out.println("Bitte geben sie einen gültigen Wert ein");
+                System.out.println("Bitte geben sie einen gueltigen Wert ein");
             }
         }
             return korrekterWert;
@@ -603,6 +604,16 @@ public final class BefehlsZeilenSchnittstelle {
 
       } while (!korrekteEingabe);
         }
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+        Ausgabe einer Auswahl von Währungen mit Erwartung einer korrekten Eingabe
+        Parameter = Ausgabe
+
+     */
+        public static void ausgabe(String ausgabe){
+            System.out.println(ausgabe);
+        }
+
 }
 
 

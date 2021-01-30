@@ -4,7 +4,7 @@ import Utilities.BefehlsZeilenSchnittstelle;
 
 public class Benutzerverwaltung {
 
-    String [] unterMenue = {"Benutzerverwaltung", "1.  Benutzer anlegen", "2.  Benutzer sperren", "3.  Benutzer ändern", "99. Hauptmenü"};
+    String [] unterMenue = {"Benutzerverwaltung", "1.  Benutzer Anlegen", "2.  Benutzer Loeschen", "3.  Benutzer Passwort mutieren", "99. Hauptmenü"};
 
     public Benutzerverwaltung(){
 
@@ -20,10 +20,10 @@ public class Benutzerverwaltung {
 
             switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue)) {
                 case 1:
-                    System.out.println(unterMenue[1]);
+                    new Benutzer().benutzerAnlegen();
                     break;
                 case 2:
-                    System.out.println(unterMenue[2]);
+                    new Benutzer().benutzerLoeschen();
                     break;
                 case 3:
                     System.out.println(unterMenue[3]);

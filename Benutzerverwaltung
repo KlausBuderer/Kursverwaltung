@@ -1,2 +1,8 @@
+Benutzer;Passwort;Status;Benutzergruppe
 Klaus,abcd,AKTIV,ADMINISTRATOR
-Bruno,abcd,DEAKTIVIERT,BENUTZER
+Bruno,abcd,DEAKTIVIERT,ADMINISTRATOR
+
+TestAdmin,123abc,DEAKTIVIERT,ADMINISTRATOR
+TestUser,123abc,AKTIV,BENUTZER
+
+

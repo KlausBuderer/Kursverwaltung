@@ -77,7 +77,7 @@ public class KursSuchen {
             auswahlNummer++;
         }
         tabelle.ausgabe();
-        System.out.print("Nach welchem Kriterium möchten sie suchen: ");
+        System.out.print("Nach welchem Kriterium moechten sie suchen: ");
         return BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(SUCHKRITERIEN.length);
     }
 
@@ -96,13 +96,13 @@ public class KursSuchen {
                 suchText = String.valueOf(suchZahl);
                 break;
             case 2:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Anbieter des Kurses ein nach dem sie suchen möchten: ");
+                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Anbieter des Kurses ein nach dem sie suchen moechten: ");
                 break;
             case 3:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie die Kursbeschreibung ein nach dem sie suchen möchten: ");
+                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie die Kursbeschreibung ein nach dem sie suchen moechten: ");
                 break;
             case 4:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Durchfuehrungsort ein nach dem sie suchen möchten: ");
+                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Durchfuehrungsort ein nach dem sie suchen moechten: ");
                 break;
             default:
                 System.out.println("Falsche Eingabe!");
