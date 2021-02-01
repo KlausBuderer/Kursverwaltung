@@ -11,7 +11,7 @@ public class KursSuchen {
 
     private String suchText;
     private String query;
-    private final String[] TABELLENHEADER = {"Nr.","Kurs Code", "Anbieter", "Kursbeschreibung", "Kosten", "Waehrung", "Start-Datum", "End-Datum", "Durchfuehrungsort"};
+    private final String[] TABELLENHEADER = {"Nr.","Kurs Code", "Anbieter", "Kursbeschreibung",  "Kosten", "Waehrung", "Start-Datum", "End-Datum", "Durchfuehrungsort"};
     private final String[] SUCHKRITERIEN = {"Kurs Code", "Anbieter", "Kursbeschreibung", "Durchfuehrungsort"};
     private final String[] SPALTENBEZEICHNUNG = {"KursCode", "Anbieter", "Kursbeschreibung", "Durchfuehrungsort"};
 
@@ -34,7 +34,7 @@ public class KursSuchen {
 
             BefehlsZeilenSchnittstelle.bildReinigen();
 
-            if (kursHash.size() > 20) {
+            if (kursHash.size() > 30) {
                 System.out.println("Zuviele Treffer!");
                 System.out.println("Bitte geben sie genauere Angaben an");
                 BefehlsZeilenSchnittstelle.verzoegerung(2000);
@@ -93,7 +93,6 @@ public class KursSuchen {
         switch (auswahl) {
             case 1:
                 suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Geben sie den Kurs Code ein nach dem sie suchen: ");
-                suchText = String.valueOf(suchZahl);
                 break;
             case 2:
                 suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Anbieter des Kurses ein nach dem sie suchen moechten: ");

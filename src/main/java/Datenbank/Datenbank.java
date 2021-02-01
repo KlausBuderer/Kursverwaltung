@@ -36,7 +36,7 @@ public class Datenbank {
 
         } catch (SQLException | ClassNotFoundException sqlException) {
 
-            System.out.println("Verbindung zur Datenbank.Datenbank nicht erfolgreich!");
+            System.out.println("Verbindung zur Datenbank nicht erfolgreich!");
             verbindungErfolgreich = false;
         }
 

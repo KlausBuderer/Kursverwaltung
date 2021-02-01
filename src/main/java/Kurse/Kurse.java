@@ -304,7 +304,7 @@ public class Kurse{
      */
     public String[] attributenString() {
 
-        String[] attributenString = {"",kursCode,anbieter, String.valueOf(kosten),kursBeschreibung,datumVon,datumBis,durchfuehrungsOrt,waehrung};
+        String[] attributenString = {"",kursCode,anbieter, kursBeschreibung,String.valueOf(kosten), waehrung, datumVon,datumBis,durchfuehrungsOrt};
 
         return attributenString;
     }
