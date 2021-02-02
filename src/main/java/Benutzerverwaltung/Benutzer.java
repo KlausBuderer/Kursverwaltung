@@ -19,23 +19,26 @@ public class Benutzer {
     private String benutzer;
     private String passwort;
     private String benutzergruppe;
-    private BENUTZER_STATUS benutzerStatus;
-    private BENUTZERGRUPPEN benutzergruppen;
-    private List<String> alleBenutzerString;
-    private String[] benutzerArray;
-    private List<Benutzer> alleBenutzer = new ArrayList<>();
-    private String[] BENUTZERGRUPPENa = {"ADMINISTRATOR", "BENUTZER"};
+    private final List<Benutzer> ALLEBENUTZER = new ArrayList<>();
+    private final String[] BENUTZERGRUPPEN = {"ADMINISTRATOR", "BENUTZER"};
 
     public static String angemeldeterBenutzer = "";
     public static String angemeldeteGruppe;
 
-    public Benutzer(String benutzer, String passwort, BENUTZER_STATUS benutzerStatus, String benutzergruppe) {
+    //-----------------------------------------------------------------------------------------------------------------------------
+    /*
+    Konstruktor: Anlegen von Benutzer
+     */
+    public Benutzer(String benutzer, String passwort, String benutzergruppe) {
         this.benutzer = benutzer;
         this.passwort = passwort;
-        this.benutzerStatus = benutzerStatus;
         this.benutzergruppe = benutzergruppe;
     }
 
+    //-----------------------------------------------------------------------------------------------------------------------------
+    /*
+    Konstruktor
+     */
     public Benutzer() {
     }
 
@@ -76,6 +79,11 @@ public class Benutzer {
         return false;
     }
 
+    //-----------------------------------------------------------------------------------------------------------------------------
+    /*
+   Methode um neuen Benutzer anzulegen
+     */
+
     public void benutzerAnlegen(){
         boolean bereitsVorhanden = true;
         boolean abschliessen = false;
@@ -105,13 +113,10 @@ public class Benutzer {
             int auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1;
 
             //Einlesen der Auswahl der Benutzergruppe
-            benutzergruppe = BENUTZERGRUPPENa[auswahl];
-
-            //Status auf Aktiv setzen
-            benutzerStatus = BENUTZER_STATUS.AKTIV;
+            benutzergruppe = BENUTZERGRUPPEN[auswahl];
 
             //Zusammen setzen des String
-            String zusammengesetzt = benutzer + "," + passwort + "," + benutzerStatus + "," + benutzergruppe;
+            String zusammengesetzt = benutzer + "," + passwort + "," + benutzergruppe;
 
             //Aufezeigen der Eingabe und abfrgage ob in Ordnung
             BefehlsZeilenSchnittstelle.ausgabe(toString());
@@ -134,7 +139,7 @@ public class Benutzer {
 
     //-----------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode um Benutzer in die Datei zu schreiben
+    Methode um neuen Benutzer in die Datei zu schreiben
      */
     public void neuenBenutzerSchreiben(String benutzerDaten){
         try {
@@ -158,7 +163,7 @@ public class Benutzer {
 
     //-----------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode um Benutzer zu sperren
+    Methode um Benutzer aus der Datei zu loeschen
      */
     public void benutzerLoeschen() {
 
@@ -182,7 +187,6 @@ public class Benutzer {
         int auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(benutzerListe.size())-1;
         this.benutzer = benutzerListe.get(auswahl).benutzer;
         this.passwort = benutzerListe.get(auswahl).passwort;
-        this.benutzerStatus = benutzerListe.get(auswahl).benutzerStatus;
         this.benutzergruppe = benutzerListe.get(auswahl).benutzergruppe;
 
         //Ausgabe sind sie sicher das sie den Benutzer loeschen moechten
@@ -197,38 +201,102 @@ public class Benutzer {
         textInDateiUeberschreiben(angabenLoeschen,aktuelleAngaben);
         }
     }
+
+    //-----------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode um das Passwort des Benutzers zu aendern
+     */
+
+    public void passwortAendern(){
+
+        //Suche nach dem momentan angemeldeten Benutzer in der Datei
+        Benutzer benutzer;
+
+        benutzer = benutzerSuchen(benutzerAusDateiLesen(),angemeldeterBenutzer);
+        this.benutzer = benutzer.benutzer;
+        this.passwort = benutzer.passwort;
+        this.benutzergruppe = benutzer.benutzergruppe;
+
+        //Ausgabe: Geben sie das aktuelle Passwort ein
+        //Einlesen der Eingabe und vergleichen mit dem Aktuellen
+
+        BefehlsZeilenSchnittstelle.bildReinigen();
+
+        String eingegebenesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Geben sie das aktuelle Passwort ein: ");
+        if (!this.passwort.equals(eingegebenesPasswort)){
+            //Drei Wiederholungen , falls alle falsch wird die Methode beendet
+            for (int i = 0; i < 3; i++) {
+                 eingegebenesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Falsches Passwort! \n Geben sie das aktuelle Passwort ein: ");
+                // Falls das Passwort uebereinstimmt wird die Schleife abgebrochen
+                 if (this.passwort.equals(eingegebenesPasswort)){
+                     break;
+                 }else if(i == 2){
+                     BefehlsZeilenSchnittstelle.ausgabe("Zuviele Versuche!");
+                     BefehlsZeilenSchnittstelle.verzoegerung(5000);
+                     return;
+                }
+            }
+        }
+        // Ausgabe: Geben sie das neue Passwort ein
+        String erstesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Geben sie ein neues Passwort ein: ");
+        String zweitesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Wiederholen sie das Passwort ein: ");//Ausgabe: Wiederholen sie das Passwort
+        //Drei Wiederholungen , falls alle falsch wird die Methode beendet
+        if (!erstesPasswort.equals(zweitesPasswort)){
+            for (int i = 0; i < 3; i++) {
+                erstesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Passwort stimmt nicht ueberein, versuchen sie es erneut: ");
+                zweitesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Wiederholen sie das Passwort ein: ");//Ausgabe: Wiederholen sie das Passwort
+                // Falls das Passwort uebereinstimmt wird die Schleife abgebrochen
+                if (erstesPasswort.equals(zweitesPasswort)){
+                    break;
+                }else if(i == 2){
+                    BefehlsZeilenSchnittstelle.ausgabe("Zuviele Versuche!");
+                    BefehlsZeilenSchnittstelle.verzoegerung(5000);
+                    return;
+                }
+            }
+        }
+
+        //String für Text in Datei mit altem Passwort zusammensetzen
+        String altesPasswort = benutzer.benutzerAngabenZusammensetzen();
+        // String für Text in Datei mit neuem Passwort zusammensetzen
+        this.passwort = zweitesPasswort;
+        String neuesPasswort = benutzerAngabenZusammensetzen();
+        //Ausgabe: Überschreiben des aktuell gespeicherten Eintrag mit neuen Daten
+        textInDateiUeberschreiben(neuesPasswort,altesPasswort);
+
+    }
+
+
+
         //-----------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode um Benutzer zu suchen
+    Methode um Benutzer zu suchen -> Wird verwendet um zu pruefen ob der Benutzer bereits vorhanden ist
      */
         public List benutzerAusDateiLesen(){
-
-            int benutzerIndex;
 
             try {
                 //Benutzerverwaltung File einlesen
                 Stream<String> zeilen = Files.lines(Paths.get("Benutzerverwaltung"));
                 //Zeile für Zeile in Liste schreiben
-                alleBenutzerString = zeilen.collect(Collectors.toList());
+                List<String> alleBenutzerString = zeilen.collect(Collectors.toList());
                 zeilen.close();
 
 
                 for (String benutzer: alleBenutzerString) {
                     //Zeile durch Delimiter "," trennen in vier Strings
-                    benutzerArray = benutzer.split(",");
+                    String[] benutzerArray = benutzer.split(",");
                     // Überprüfen ob die Anzahl Wörter korrekt ist
-                    if (benutzerArray.length == 4) {
-                       if(benutzerArray[2].equals(BENUTZER_STATUS.AKTIV.toString())  || benutzerArray[2].equals(BENUTZER_STATUS.DEAKTIVIERT.toString()));
-                            if(benutzerArray[3].equals("ADMINISTRATOR") || benutzerArray[3].equals("BENUTZER"))
-                                    //Liste mit Benutzer befüllen und die Benutzer initialisieren
-                                     alleBenutzer.add(new Benutzer(benutzerArray[0], benutzerArray[1], BENUTZER_STATUS.valueOf(benutzerArray[2]), benutzergruppe = benutzerArray[3]));
+                    if (benutzerArray.length == 3) {
+                        if(benutzerArray[2].equals("ADMINISTRATOR") || benutzerArray[2].equals("BENUTZER"))
+                            //Liste mit Benutzer befüllen und die Benutzer initialisieren
+                                ALLEBENUTZER.add(new Benutzer(benutzerArray[0], benutzerArray[1], benutzergruppe = benutzerArray[2]));
                     }
                 }
 
             } catch (IOException e) {
                 e.printStackTrace();
                 }
-            return alleBenutzer;
+            return ALLEBENUTZER;
         }
 
     //-----------------------------------------------------------------------------------------------------------------------------
@@ -263,19 +331,21 @@ public class Benutzer {
 
     @Override
     public String toString() {
-        return "Benutzer{" +
-                "benutzer='" + benutzer + '\'' +
-                ", passwort='" + passwort + '\'' +
-                ", benutzerStatus=" + benutzerStatus +
-                ", benutzergruppen=" + benutzergruppe +
-                '}';
+        return "Benutzer" +
+                "benutzer = " + benutzer + '\n' +
+                ", passwort = " + passwort + '\n' +
+                ", benutzergruppen = " + benutzergruppe + "\n";
     }
 
     private String benutzerAngabenZusammensetzen(){
         //Zusammen setzen des String
-       return  benutzer + "," + passwort + "," + benutzerStatus + "," + benutzergruppe;
+       return  benutzer + "," + passwort + "," + benutzergruppe;
     }
 
+    //-----------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode um ein Benutzer der Datei entweder zu loeschen oder das Passwort zu aendern
+     */
     private void textInDateiUeberschreiben(String neuerText, String aktuellerText){
 
         try {
@@ -301,4 +371,6 @@ public class Benutzer {
             e.printStackTrace();
         }
     }
+
+
 }

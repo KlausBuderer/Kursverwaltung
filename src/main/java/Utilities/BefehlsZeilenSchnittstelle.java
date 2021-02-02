@@ -567,6 +567,14 @@ public final class BefehlsZeilenSchnittstelle {
 
         return waehrungsArray[eingabeMitWertpruefung(waehrungsArray.length)-1];
     }
+
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    /*
+       Methode um das Programm zu beenden
+     */
+
+
   private static void programmBeenden(){
 
       Scanner scan = new Scanner(System.in);
