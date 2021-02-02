@@ -26,7 +26,7 @@ public class Benutzerverwaltung {
                     new Benutzer().benutzerLoeschen();
                     break;
                 case 3:
-                    System.out.println(unterMenue[3]);
+                    new Benutzer().passwortAendern();
                     break;
                 case 99:
                     System.out.println(unterMenue[4]);

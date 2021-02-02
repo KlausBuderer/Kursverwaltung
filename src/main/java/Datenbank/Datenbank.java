@@ -22,7 +22,6 @@ public class Datenbank {
         boolean verbindungErfolgreich;
 
         Connection connection = null;
-        Statement statement = null;
 
         try {
 
@@ -53,11 +52,9 @@ public class Datenbank {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Die Methode untermenueAnzeige zeigt das Untermenü und führt anhand der Eingabe des Benutzers eine Aktion aus
+    Methode um Datein in der DB anzulegen
      */
-    public boolean datenInDbAnlegen(String query) {
-
-        boolean anlegenErfolgreich;
+    public void datenInDbAnlegen(String query) {
 
         Connection connection = null;
         Statement statement = null;
@@ -72,15 +69,12 @@ public class Datenbank {
 
             statement.execute(query);
 
-            anlegenErfolgreich = true;
 
         } catch (SQLException | ClassNotFoundException sqlException) {
 
             sqlException.printStackTrace();
-            anlegenErfolgreich = false;
-        }
 
-        if (anlegenErfolgreich) {
+        }
 
             try {
                 connection.close();
@@ -88,8 +82,6 @@ public class Datenbank {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        }
-        return anlegenErfolgreich;
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -131,6 +123,8 @@ public class Datenbank {
                     break;
                 default:
                     break;
+
+
             }
         } catch (SQLException | ClassNotFoundException sqlException) {
 
@@ -228,7 +222,8 @@ public class Datenbank {
         } catch (SQLException | ClassNotFoundException sqlException) {
 
             sqlException.printStackTrace();
-        }finally {
+        }
+
             try {
                 statement.close();
                 connection.close();
@@ -236,7 +231,7 @@ public class Datenbank {
                 sqlException.printStackTrace();
             }
 
-        }
+
         return auswertungsListe;
     }
 
@@ -275,14 +270,15 @@ public class Datenbank {
         } catch (SQLException | ClassNotFoundException sqlException) {
 
             sqlException.printStackTrace();
-        }finally {
+        }
+
             try {
                 statement.close();
                 connection.close();
             } catch (SQLException sqlException) {
                 sqlException.printStackTrace();
             }
-        }
+
         return rueckgabeHashMap;
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
