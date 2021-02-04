@@ -1,6 +1,7 @@
 package Datenbank;
 
 import Auswertungen.MitarbeiterAuswertung;
+import Auswertungen.WeiterbildungAlleMitarbeiterZeitraum;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,11 @@ import java.util.List;
 
 public class AuswertungenDatenbank extends Datenbank {
 
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public List storeproduceWeiterbildungAlleMitarbeiterZeitraum(String datumVon, String datumBis){
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_WEITERBILDUNG_DATUM(?,?)}",datumVon, datumBis,STORE_PROCEDURE_KONTEXT.AUSWERTUNG_MITARBEITER);
+    }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
@@ -16,26 +22,26 @@ public class AuswertungenDatenbank extends Datenbank {
     Parameter: Inhalt der Tabelle der Datenbank
     Rückgabewert: Liste mit Objekten für jeden Tuple
      */
-    public List<MitarbeiterAuswertung> mitarbeiterAuswerten(ResultSet dbInhalt) throws SQLException {
+    public List<WeiterbildungAlleMitarbeiterZeitraum> ausfuehrenWeiterbildungAlleMitarbeiterZeitraum(ResultSet dbInhalt) throws SQLException {
 
-        List<MitarbeiterAuswertung> mitarbeiterAuswertungsliste = new ArrayList<>();
-        MitarbeiterAuswertung mitarbeiterAuswertung;
+        List<WeiterbildungAlleMitarbeiterZeitraum> weiterbildungAlleMitarbeiterliste = new ArrayList<>();
+        WeiterbildungAlleMitarbeiterZeitraum weiterbildungAlleMitarbeiter;
 
         while (dbInhalt.next()) {
 
             String anrede = dbInhalt.getString("Anrede");
-            int id = dbInhalt.getInt("ID");
-            String kursCode = dbInhalt.getString("KursCode");
-            String vorname = dbInhalt.getString("Vorname");
             String nachname = dbInhalt.getString("Nachname");
-            int personalNummer = dbInhalt.getInt("PersonalNr");
-            String abteilungBezeichnung = dbInhalt.getString("Abteilungbezeichnung");
-            int idMitarbeiterBescheinigung = dbInhalt.getInt("ID Mitarbeiterbescheinigung");
-            mitarbeiterAuswertung = new MitarbeiterAuswertung(vorname,nachname ,abteilungBezeichnung , kursCode,id ,personalNummer,anrede,idMitarbeiterBescheinigung);
+            String vorname = dbInhalt.getString("Vorname");
+            String kennung = dbInhalt.getString("Kennung");
+            String kursbeschreibung = dbInhalt.getString("Kursbeschreibung");
+            int kosten = dbInhalt.getInt("KOSTEN");
+            String waehrung = dbInhalt.getString("Waehrung");
+            String zertifikatsablaufdatum = dbInhalt.getString("Zertifikatsablaufdatum");
+            weiterbildungAlleMitarbeiter = new WeiterbildungAlleMitarbeiterZeitraum(anrede,nachname,vorname,kennung,kursbeschreibung,kosten, waehrung,zertifikatsablaufdatum);
 
-            mitarbeiterAuswertungsliste.add(mitarbeiterAuswertung);
+            weiterbildungAlleMitarbeiterliste.add(weiterbildungAlleMitarbeiter);
         }
-        return mitarbeiterAuswertungsliste;
+        return weiterbildungAlleMitarbeiterliste;
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*

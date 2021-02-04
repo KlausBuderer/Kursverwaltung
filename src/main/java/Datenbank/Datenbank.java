@@ -209,7 +209,7 @@ public class Datenbank {
 
             switch (view) {
                 case "view_Bruno_TEST":
-                   auswertungsListe = new AuswertungenDatenbank().mitarbeiterAuswerten(dbInhalt);
+                   // auswertungsListe = new AuswertungenDatenbank().(dbInhalt);
                     break;
                 case "view_kurse_auswertung":
                     System.out.println("Kursauswertung");
@@ -350,6 +350,60 @@ public class Datenbank {
             }
 
             return rueckgabeHash;
+
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Die Methode untermenueAnzeige zeigt das Untermenü und führt anhand der Eingabe des Benutzers eine Aktion aus
+     */
+    public List storeProcedureAufrufen(String query, String parameter1,String parameter2, STORE_PROCEDURE_KONTEXT kontext) {
+
+        boolean anlegenErfolgreich;
+
+        Connection connection = null;
+        CallableStatement statement = null;
+        ResultSet dbInhalt = null;
+        List rueckgabeList = null;
+        String statusSP;
+
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
+            statement = connection.prepareCall(query);
+
+
+
+            System.out.println("Store Procedure erfolgreich");
+
+            switch (kontext){
+                case AUSWERTUNG_MITARBEITER:
+                    System.out.println(parameter1 + parameter2);
+                    statement.setString(1,parameter1);
+                    statement.setString(2,parameter2);
+
+
+                    dbInhalt = statement.executeQuery();
+                    rueckgabeList = new AuswertungenDatenbank().ausfuehrenWeiterbildungAlleMitarbeiterZeitraum(dbInhalt);
+                    break;
+         }
+
+        } catch (SQLException | ClassNotFoundException sqlException) {
+
+            System.out.println("Hat geklappt");
+
+            sqlException.printStackTrace();
+        }
+
+        try {
+            connection.close();
+            statement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return rueckgabeList;
 
     }
 }
