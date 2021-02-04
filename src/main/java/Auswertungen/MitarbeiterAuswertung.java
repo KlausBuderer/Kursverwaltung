@@ -17,6 +17,7 @@ public class MitarbeiterAuswertung {
     private int idMitarbeiterBescheinigung;
     static int anzahlMitarbeiter;
 
+    // Konstruktor
     public MitarbeiterAuswertung(String vorname, String nachname, String abteilungsBezeichnung, String kursCode, int id, int personalNr, String anrede, int idMitarbeiterBescheinigung) {
         this.vorname = vorname;
         this.nachname = nachname;
@@ -29,6 +30,7 @@ public class MitarbeiterAuswertung {
         anzahlMitarbeiter++;
     }
 
+    //Standardkonstruktor
     public MitarbeiterAuswertung(){
 
     }
@@ -36,7 +38,6 @@ public class MitarbeiterAuswertung {
        /*
     Methode zum Erstellen einer Liste von Objekten der Klasse Auswertungen.MitarbeiterAuswertung
      */
-
     public List<MitarbeiterAuswertung> mitarbeiterAuswerten(ResultSet dbInhalt) throws SQLException {
 
         List<MitarbeiterAuswertung> mitarbeiterAuswertungsliste = new ArrayList<>();

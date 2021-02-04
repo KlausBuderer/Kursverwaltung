@@ -315,16 +315,19 @@ public class Datenbank {
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
             statement = connection.prepareCall(query);
 
-            statement.setInt(1,parameter);
+
 
             System.out.println("Store Procedure erfolgreich");
 
             switch (kontext){
                 case ZERTIFIKATE_PRO_MITARBEITER:
+                    statement.setInt(1,parameter);
+
                     dbInhalt = statement.executeQuery();
                     rueckgabeHash = new MitarbeiterDatenbank().zertifikatVerlaengern(dbInhalt);
                     break;
                 case MITARBEITER_LOESCHEN: case KURS_LOESCHEN: case ZERTIFIKAT_LOESCHEN:
+                    statement.setInt(1,parameter);
                     statement.executeQuery();
                     statusSP = statement.getString(2);
                     System.out.println(statusSP);

@@ -118,25 +118,25 @@ public final class BefehlsZeilenSchnittstelle {
 
         switch (auswahlInt) {
             case 1:
-                Mitarbeiter mitarbeiter = new Mitarbeiter();
+                new Mitarbeiter();
                 break;
             case 2:
-                Kurse kurse = new Kurse();
+                new Kurse();
                 break;
             case 3:
-                Zertifikate zertifikate = new Zertifikate();
+                new Zertifikate();
                 break;
             case 4:
-                Auswertungen auswertungen = new Auswertungen();
+                new Auswertungen();
                 break;
             case 5:
-                Administratives administratives = new Administratives();
+                new Administratives();
                 break;
             case 6:
-                Benutzerverwaltung benutzerverwaltung = new Benutzerverwaltung();
+                new Benutzerverwaltung();
                 break;
             case 7:
-                Einstellungen einstellungen = new Einstellungen();
+                new Einstellungen();
                 break;
             case 90:
                 Benutzer.angemeldeterBenutzer = "";
@@ -327,14 +327,12 @@ public final class BefehlsZeilenSchnittstelle {
         }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
     /*
     Methode zur Formatierung einer Ausgabe in Tabellenform
 
     Parameter
     spaltenInhalt: Text der in der Spalte ausgegeben werden soll
     spaltenBreite: Anzahl Zeichen pro Spalte
-
      */
 
     public static String textFormatieren(String spaltenInhalt, int spaltenBreite){
@@ -361,9 +359,7 @@ public final class BefehlsZeilenSchnittstelle {
 
     /*
         Diese Methode prüft ob die Eingage nur Zahlen verwendet werden
-
      */
-
     public static int eingabeAufIntegerPruefen() {
 
         int korrekterWert = 0;
