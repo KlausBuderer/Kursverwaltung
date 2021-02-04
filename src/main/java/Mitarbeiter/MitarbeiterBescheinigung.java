@@ -110,7 +110,7 @@ public class MitarbeiterBescheinigung {
             this.zertifikatId = zertifikat.zertifikatsId;
 
             //
-            System.out.println("Geben sie das Ablaufdatum des Zertifikats ein");
+            System.out.println("Geben sie das Ablaufdatum des Zertifikats ein (TT.MM.JJJJ): ");
             this.zertifikatsAblaufDatum = BefehlsZeilenSchnittstelle.pruefeDatum();
 
 
@@ -119,7 +119,7 @@ public class MitarbeiterBescheinigung {
             System.out.println();
             System.out.println("Mitarbeiter: " + mitarbeiter.vorname + " " + mitarbeiter.nachname);
             System.out.println();
-            System.out.println("Zertifikat: " + zertifikat.anbieter + " " + zertifikat.zertifikatsBeschreibung + " " + zertifikatsAblaufDatum);
+            System.out.println("Zertifikat: " + zertifikat.anbieter + "\nZertifikatsbeschreibung: " + zertifikat.zertifikatsBeschreibung + "\nAblaufdatum: " + zertifikatsAblaufDatum + "\n");
 
             switch (Utilities.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
@@ -164,7 +164,7 @@ public class MitarbeiterBescheinigung {
             tabelleAlt.ausgabe();
 
             //Eingabe eines neuen Datum anfordern
-            System.out.println("Bitte geben sie das neue Datum ein");
+            System.out.println("Bitte geben sie das neue Datum ein (TT.MM.JJJJ): ");
             zertifikatsAblaufDatum = BefehlsZeilenSchnittstelle.pruefeDatum();
 
             //Eingabe zeigen und bestätigung verlangen

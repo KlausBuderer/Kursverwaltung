@@ -22,7 +22,6 @@ public class Datenbank {
         boolean verbindungErfolgreich;
 
         Connection connection = null;
-        Statement statement = null;
 
         try {
 
@@ -36,7 +35,7 @@ public class Datenbank {
 
         } catch (SQLException | ClassNotFoundException sqlException) {
 
-            System.out.println("Verbindung zur Datenbank.Datenbank nicht erfolgreich!");
+            System.out.println("Verbindung zur Datenbank nicht erfolgreich!");
             verbindungErfolgreich = false;
         }
 
@@ -53,11 +52,9 @@ public class Datenbank {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Die Methode untermenueAnzeige zeigt das Untermenü und führt anhand der Eingabe des Benutzers eine Aktion aus
+    Methode um Datein in der DB anzulegen
      */
-    public boolean datenInDbAnlegen(String query) {
-
-        boolean anlegenErfolgreich;
+    public void datenInDbAnlegen(String query) {
 
         Connection connection = null;
         Statement statement = null;
@@ -72,15 +69,12 @@ public class Datenbank {
 
             statement.execute(query);
 
-            anlegenErfolgreich = true;
 
         } catch (SQLException | ClassNotFoundException sqlException) {
 
             sqlException.printStackTrace();
-            anlegenErfolgreich = false;
-        }
 
-        if (anlegenErfolgreich) {
+        }
 
             try {
                 connection.close();
@@ -88,8 +82,6 @@ public class Datenbank {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-        }
-        return anlegenErfolgreich;
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -131,6 +123,8 @@ public class Datenbank {
                     break;
                 default:
                     break;
+
+
             }
         } catch (SQLException | ClassNotFoundException sqlException) {
 
@@ -213,8 +207,6 @@ public class Datenbank {
 
             dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`.`" + view + "`");
 
-
-
             switch (view) {
                 case "view_Bruno_TEST":
                    auswertungsListe = new AuswertungenDatenbank().mitarbeiterAuswerten(dbInhalt);
@@ -230,7 +222,8 @@ public class Datenbank {
         } catch (SQLException | ClassNotFoundException sqlException) {
 
             sqlException.printStackTrace();
-        }finally {
+        }
+
             try {
                 statement.close();
                 connection.close();
@@ -238,7 +231,7 @@ public class Datenbank {
                 sqlException.printStackTrace();
             }
 
-        }
+
         return auswertungsListe;
     }
 
@@ -277,14 +270,15 @@ public class Datenbank {
         } catch (SQLException | ClassNotFoundException sqlException) {
 
             sqlException.printStackTrace();
-        }finally {
+        }
+
             try {
                 statement.close();
                 connection.close();
             } catch (SQLException sqlException) {
                 sqlException.printStackTrace();
             }
-        }
+
         return rueckgabeHashMap;
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -321,26 +315,25 @@ public class Datenbank {
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
             statement = connection.prepareCall(query);
 
-            statement.setInt(1,parameter);
+
 
             System.out.println("Store Procedure erfolgreich");
 
             switch (kontext){
                 case ZERTIFIKATE_PRO_MITARBEITER:
+                    statement.setInt(1,parameter);
+
                     dbInhalt = statement.executeQuery();
                     rueckgabeHash = new MitarbeiterDatenbank().zertifikatVerlaengern(dbInhalt);
                     break;
                 case MITARBEITER_LOESCHEN: case KURS_LOESCHEN: case ZERTIFIKAT_LOESCHEN:
+                    statement.setInt(1,parameter);
                     statement.executeQuery();
                     statusSP = statement.getString(2);
                     System.out.println(statusSP);
                     BefehlsZeilenSchnittstelle.verzoegerung(3000);
                     break;
-
             }
-
-
-
 
         } catch (SQLException | ClassNotFoundException sqlException) {
 
@@ -348,7 +341,6 @@ public class Datenbank {
 
             sqlException.printStackTrace();
         }
-
 
             try {
                 connection.close();
