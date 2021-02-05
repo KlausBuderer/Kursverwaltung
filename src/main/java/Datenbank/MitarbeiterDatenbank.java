@@ -68,6 +68,17 @@ public class MitarbeiterDatenbank extends Datenbank{
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
+       //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+ Aufruf eines Store Procedure der Datenbank umd eine Liste von Zertifikaten die einem Mitarbeiter zugewiesen sind auszugeben
+ Parameter: Id des Mitarbeiters
+  */
+    public String nummerAufExistenzPruefen(int mitarbeiterId){
+
+      return  storeProcedureAufrufen("{ call SP_PRUEFEN_MA_NR(?,?) }",mitarbeiterId);
+    }
+
+    /*
  Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
  Parameter: Objekt des Aufrufers
   */

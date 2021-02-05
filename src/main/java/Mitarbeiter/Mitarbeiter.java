@@ -100,7 +100,14 @@ public class Mitarbeiter{
             //Geburtsdatum
             geburtstag = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geburtsdatum (dd.MM.yyyy): ");
             //Personal Nummer
-            personalNummer = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Personalnummer: ");
+            int zaehler = 0;
+            do {
+                if(zaehler > 0){BefehlsZeilenSchnittstelle.ausgabe("Personalnummer bereits vergeben!");};
+                personalNummer = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Personalnummer: ");
+                zaehler++;
+            }while(new MitarbeiterDatenbank().nummerAufExistenzPruefen(personalNummer).equals("EXISTIERT"));
+
+
             //Jobtitel
             jobTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Jobtitel: ");
             //Status beim Anlegen automatisch true

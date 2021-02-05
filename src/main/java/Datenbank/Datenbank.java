@@ -406,4 +406,45 @@ public class Datenbank {
         return rueckgabeList;
 
     }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Die Methode ruft ein Store Procedure um die Existenz einer Mitarbeiternummer zu pruefen
+     */
+    public String storeProcedureAufrufen(String query, int parameter) {
+
+        boolean anlegenErfolgreich;
+
+        Connection connection = null;
+        CallableStatement statement = null;
+        ResultSet dbInhalt = null;
+        String statusSP = "";
+
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
+            statement = connection.prepareCall(query);
+
+                    statement.setInt(1,parameter);
+                    statement.executeQuery();
+                    statusSP = statement.getString(2);
+                    BefehlsZeilenSchnittstelle.verzoegerung(3000);
+
+        } catch (SQLException | ClassNotFoundException sqlException) {
+
+            System.out.println("Hat geklappt");
+
+            sqlException.printStackTrace();
+        }
+
+        try {
+            connection.close();
+            statement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return statusSP;
+    }
+
 }
