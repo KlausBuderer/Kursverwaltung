@@ -56,7 +56,7 @@ import java.util.Scanner;
                             gueltigeEingabe = true;
                             break;
                         default:
-                            System.out.println("???");
+                            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("???");
                     }
                 } while (!gueltigeEingabe);
             }
@@ -68,17 +68,17 @@ import java.util.Scanner;
                 try {
 
                     FileWriter fileWriter = new FileWriter("DatenbankVerbindungsdaten.txt");
-                    System.out.println("Geben sie die URL der Datenbank.Datenbank ein");
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Geben sie die URL der Datenbank.Datenbank ein");
                     fileWriter.write(scan.next() + "\n");
-                    System.out.println("Geben sie den Benutzer der Datenbank.Datenbank ein");
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Geben sie den Benutzer der Datenbank.Datenbank ein");
                     fileWriter.write(scan.next() + "\n");
-                    System.out.println("Geben sie das Passwort des Benutzers ein");
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Geben sie das Passwort des Benutzers ein");
                     fileWriter.write(scan.next() + "\n");
                     fileWriter.close();
 
                 }catch (Exception e){
 
-                    System.out.println("Datei erzeugen nicht erfolgreich!");
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Datei erzeugen nicht erfolgreich!");
                 }
 
             }
@@ -102,14 +102,14 @@ import java.util.Scanner;
             // Abfrage welche Verbindungsdaten verwendet werden sollen
             public void nachVerbindungFragen(){
 
-                System.out.println("Welche Verbindungsdaten moechten sie nutzen?");
-                System.out.println("1. Standart Verbindungsdaten");
-                System.out.println("2. Benutzerdefinierte Verbindungsdaten");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welche Verbindungsdaten moechten sie nutzen?");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("1. Standart Verbindungsdaten");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("2. Benutzerdefinierte Verbindungsdaten");
 
                 switch (scan.nextInt()){
                     case 1:
                         standardVerbindungsDaten = true;
-                        System.out.println("Standard Verbindungsdaten aktiviert");
+                        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Standard Verbindungsdaten aktiviert");
                         url = URLDEFAULT;
                         benutzer = BENUTZERDEFAULT;
                         passwort = PASSWORTDEFAULT;
@@ -121,13 +121,13 @@ import java.util.Scanner;
                         } catch (FileNotFoundException fileNotFoundException) {
                             fileNotFoundException.printStackTrace();
                         }
-                        System.out.println("Benutzerdefinierte Verbindungsdaten aktiviert");
+                        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Benutzerdefinierte Verbindungsdaten aktiviert");
                         url = urlBenutzerdefiniert;
                         benutzer = benutzerBenutzerdefiniert;
                         passwort = passwortBenutzerdefiniert;
                         break;
                     default:
-                        System.out.println("Bitte geben sie einen gültigen Wert ein!");
+                        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie einen gültigen Wert ein!");
 
                 }
 
@@ -142,13 +142,13 @@ import java.util.Scanner;
 
                 verbindungsdatenAusDateiLesen();
                 BefehlsZeilenSchnittstelle.bildReinigen();
-                System.out.println();
-                System.out.println("Datenbank.Datenbank URL: " + urlBenutzerdefiniert + "\t" + "Benutzer: " + benutzerBenutzerdefiniert + "\t" + "Passwort: " + passwortBenutzerdefiniert);
-                System.out.println();
-                System.out.println("Bitte überprüfen sie die Daten auf ihre Korrektheit");
-                System.out.println("Sind die Daten korrekt?");
-                System.out.println("1. Verbindungsdaten verwenden");
-                System.out.println("2. Neue Verbindungsdaten eingeben");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Datenbank.Datenbank URL: " + urlBenutzerdefiniert + "\t" + "Benutzer: " + benutzerBenutzerdefiniert + "\t" + "Passwort: " + passwortBenutzerdefiniert);
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Daten auf ihre Korrektheit");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Sind die Daten korrekt?");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("1. Verbindungsdaten verwenden");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("2. Neue Verbindungsdaten eingeben");
 
                 do {
                     switch (scan.nextInt()) {
@@ -162,7 +162,7 @@ import java.util.Scanner;
                             korrekteEingabe = true;
                             break;
                         default:
-                            System.out.println("Bitte geben sie einen gültigen Wert ein!");
+                            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie einen gültigen Wert ein!");
                             korrekteEingabe = false;
                     }
                 }while(!korrekteEingabe);

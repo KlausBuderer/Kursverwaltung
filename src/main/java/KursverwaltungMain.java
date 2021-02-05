@@ -9,6 +9,12 @@ public class KursverwaltungMain {
 
         //Start Prozedere
 
+       /* try {
+            Animationen.kaffee();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+*/
         // Verbindungsdaten setzen
         Einstellungen einstellungen = new Einstellungen("Start");
 

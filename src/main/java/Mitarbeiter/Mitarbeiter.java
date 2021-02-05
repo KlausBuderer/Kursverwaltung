@@ -63,7 +63,7 @@ public class Mitarbeiter{
                     mitarbeiterLoeschen();
                     break;
                 case 99:
-                    System.out.println(unterMenue[7]);
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(unterMenue[7]);
                     gueltigeEingabe = true;
                     break;
                 default:
@@ -82,16 +82,16 @@ public class Mitarbeiter{
 
         do {
             BefehlsZeilenSchnittstelle.bildReinigen();
-            System.out.println("Bitte geben sie folgende Daten ein");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie folgende Daten ein");
             //Anrede
-            System.out.println("Anrede: ");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede: ");
             int i = 1;
 
             for (String waehrung : anredeArray) {
-                System.out.println(i + ". " + waehrung);
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(i + ". " + waehrung);
                 i++;
             }
-            System.out.println("Anrede (1-3): ");
+            BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Anrede (1-3): ");
             anrede = anredeArray[BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
             //Vorname
             vorname = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Vorname: ");
@@ -102,7 +102,7 @@ public class Mitarbeiter{
             //Personal Nummer
             int zaehler = 0;
             do {
-                if(zaehler > 0){BefehlsZeilenSchnittstelle.ausgabe("Personalnummer bereits vergeben!");};
+                if(zaehler > 0){BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Personalnummer bereits vergeben!");};
                 personalNummer = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Personalnummer: ");
                 zaehler++;
             }while(new MitarbeiterDatenbank().nummerAufExistenzPruefen(personalNummer).equals("EXISTIERT"));
@@ -119,9 +119,9 @@ public class Mitarbeiter{
             kostenstelleId = kostenstelle.kostenstelleId;
 
             BefehlsZeilenSchnittstelle.bildReinigen();
-            System.out.println(toString());
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
             System.out.println();
-            System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
@@ -160,7 +160,7 @@ public class Mitarbeiter{
             return;
         }
 
-        System.out.println(mitarbeiter.toString());
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(mitarbeiter.toString());
         do {
             BefehlsZeilenSchnittstelle.bildReinigen();
             int i = 1;
@@ -171,77 +171,77 @@ public class Mitarbeiter{
             }
             arrayLaenge = spaltenArray.length;
 
-            System.out.print("Welchen Spalte moechten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
+            BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Welchen Spalte moechten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
             auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
             switch (auswahl) {
 
                 case 1:
                     //Personalnummer
-                    System.out.println("Aktuell: " + personalNummer);
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + personalNummer);
                     personalNummer = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie die Personalnummer ein: ");
                     break;
                 case 2:
                     Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
                     //Anrede
-                    System.out.println("Aktuell: " + anrede);
-                    System.out.println("Anrede: ");
+                   BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + anrede);
+                   BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede: ");
                     int j = 1;
 
                     for (String anrede : anredeArray) {
                         System.out.println(j + ". " + anrede);
                         j++;
                     }
-                    System.out.println("Anrede (1-3): ");
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede (1-3): ");
                     anrede = anredeArray[Utilities.BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
                     break;
                 case 3:
                     BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Aktuell: " + nachname);
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + nachname);
                     nachname = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Nachnamen ein: ");
                     break;
                 case 4:
                     Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Aktuell: " + vorname);
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + vorname);
                     vorname = Utilities.BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Vornamen ein: ");
                     break;
                 case 5:
                     Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Aktuell: " + geburtstag);
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + geburtstag);
                     geburtstag = Utilities.BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben sie das Geburtsdatum ein: ");
                     break;
                 case 6:
                     Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Aktuell: " + kostenstelleId);
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + kostenstelleId);
                     Kostenstelle kostenstelle = new Kostenstelle();
                     kostenstelle.auswahlListeKostenstelleAusgeben();
                     kostenstelleId = kostenstelle.kostenstelleId;
                     break;
                 case 7:
                     BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Aktuell: " + jobTitel);
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + jobTitel);
                     jobTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Jobtitel ein: ");
                 case 8:
                     BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Aktuell: " + mitarbeiterStatus);
-                    System.out.println("Mitarbeiterstatus: ");
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + mitarbeiterStatus);
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiterstatus: ");
                     int p = 1;
 
                     for (String anrede : statusArray) {
-                        System.out.println(p + ". " + anrede);
+                        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(p + ". " + anrede);
                         p++;
                     }
                     System.out.println("Anrede (1-2): ");
                     mitarbeiterStatus = statusArray[Utilities.BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1];
                 default:
-                    System.out.println("Falsche Eingabe!");
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsche Eingabe!");
                     break;
             }
 
             Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
-            System.out.println(toString());
-            System.out.println();
-            System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
+            System.out.println();;
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             switch (Utilities.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
@@ -272,7 +272,7 @@ public class Mitarbeiter{
             mitarbeiter = new MitarbeiterSuche().mitarbeiterSuchen();
             //Ausgabe der Daten des ausgewählten Mitarbeiters
             BefehlsZeilenSchnittstelle.bildReinigen();
-            System.out.println(mitarbeiter.toString());
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(mitarbeiter.toString());
             //Abfrage ob der Mitarbeiter wirklich gelöscht werden soll
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 

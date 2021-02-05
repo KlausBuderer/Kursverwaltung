@@ -29,7 +29,6 @@ public class Benutzerverwaltung {
                     new Benutzer().passwortAendern();
                     break;
                 case 99:
-                    System.out.println(unterMenue[4]);
                     gueltigeEingabe = false;
                     break;
                 default:

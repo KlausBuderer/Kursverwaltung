@@ -41,7 +41,7 @@ public final class BefehlsZeilenSchnittstelle {
 
         do{
 
-            System.out.println("Bitte melden sie sich an");
+            ausgabeMitAbsatz("Bitte melden sie sich an");
                 System.out.println();
                    benutzerEingabe = abfrageMitEingabeFrei("Benutzername: ");
                    passwortEingabe = abfrageMitEingabeFrei("Passwort: ");
@@ -92,12 +92,12 @@ public final class BefehlsZeilenSchnittstelle {
         do {
             // Ausgabe des Menü Arrays
             for (String menue : hauptmenu) {
-                System.out.println(menue);
+                ausgabeMitAbsatz(menue);
             }
 
             System.out.println();
 
-            System.out.print("Waehlen sie das gewuenschte Menue (1-7 oder 90 / 99): ");
+            ausgabeOhneAbsatz("Waehlen sie das gewuenschte Menue (1-7 oder 90 / 99): ");
 
 
             auswahlString = scan.next();
@@ -105,7 +105,7 @@ public final class BefehlsZeilenSchnittstelle {
             // Überprüft ob die Eingabe eine Ganzzahl [1-(länge des Untermenüs)] ist
             if(!auswahlString.matches("[1-" + (hauptmenu.length - 2) + "]") & (!auswahlString.matches("90") & !auswahlString.matches("99"))){
 
-                System.out.println("Bitte geben sie einen gueltigen Wert ein!");
+                ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein!");
                 verzoegerung(1500);
                 gueltigeEingabe = false;
 
@@ -147,7 +147,7 @@ public final class BefehlsZeilenSchnittstelle {
                 programmBeenden();
                 break;
             default:
-                System.out.println("Bitte geben sie einen gueltigen Wert ein!");
+                ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein!");
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
@@ -179,10 +179,10 @@ public final class BefehlsZeilenSchnittstelle {
 
         do {
             for (String untermenue : unterMenue) {
-                System.out.println(untermenue);
+                ausgabeMitAbsatz(untermenue);
             }
             System.out.println();
-            System.out.print("Waehlen sie das gewuenschte Untermenue (1-" + (unterMenue.length - 2) + ") oder (99 Menue verlassen): ");
+            ausgabeOhneAbsatz("Waehlen sie das gewuenschte Untermenue (1-" + (unterMenue.length - 2) + ") oder (99 Menue verlassen): ");
 
             //Liest Eingabe als String ein um zu überpfüfen ob die Eingabe gültig ist
             auswahlString = scan.next();
@@ -191,7 +191,7 @@ public final class BefehlsZeilenSchnittstelle {
             if(!auswahlString.matches("[1-" + (unterMenue.length - 2) + "]") & !auswahlString.equals("99")){
 
                 BefehlsZeilenSchnittstelle.bildReinigen();
-                System.out.println("Bitte geben sie einen gueltigen Wert ein!");
+                ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein!");
                 System.out.println();
 
                 verzoegerung(1500);
@@ -240,21 +240,6 @@ public final class BefehlsZeilenSchnittstelle {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Gibt Daten in einer Utilities.Tabelle aus
-         */
-    public static void tabelleAusgeben(String[] kopfzeile,String[] angaben){
-
-        BefehlsZeilenSchnittstelle.bildReinigen();
-        Tabelle tabelle = new Tabelle();
-        tabelle.setVertikaleLinie(true);
-        tabelle.setHeaders(kopfzeile);
-        tabelle.zeileHinzufuegen(angaben);
-        tabelle.ausgabe();
-        System.out.println();
-    }
-
-    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    /*
     Die Methode korrekteEingabeBestätigen fragt den Benutzer ab ob die soeben Eingegebene Eingabe korrekt ist. Der Benutzer
     hat die Möglichkeit die Eingabe nochmals zu wiederholen oder die Eingabe abzubrechen, falls die Eingabe korrekt ist,
     kann die Eingabe gespeichert werden.
@@ -264,10 +249,10 @@ public final class BefehlsZeilenSchnittstelle {
 
         int auswahl = 0;
 
-        System.out.println("Sind sie sicher ob sie alles richtig eingegeben haben?");
-        System.out.println("1. Ja");
-        System.out.println("2. Nein, neu beginnen");
-        System.out.println("3. Abbrechen");
+        ausgabeMitAbsatz("Sind sie sicher ob sie alles richtig eingegeben haben?");
+        ausgabeMitAbsatz("1. Ja");
+        ausgabeMitAbsatz("2. Nein, neu beginnen");
+        ausgabeMitAbsatz("3. Abbrechen");
 
         auswahl = eingabeMitWertpruefung(4);
 
@@ -306,7 +291,7 @@ public final class BefehlsZeilenSchnittstelle {
                 } else {
                     // Gibt eine Fehlermeldung bei nicht korrekter Eingabe und lässt die Abfrage nochmals beginnen
                     BefehlsZeilenSchnittstelle.bildReinigen();
-                    System.out.println("Bitte geben sie einen gueltigen Wert ein!");
+                    ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein!");
                     System.out.println();
 
                     verzoegerung(1500);
@@ -315,7 +300,7 @@ public final class BefehlsZeilenSchnittstelle {
             } else {
                 // Gibt eine Fehlermeldung bei nicht korrekter Eingabe und lässt die Abfrage nochmals beginnen
                 BefehlsZeilenSchnittstelle.bildReinigen();
-                System.out.println("Bitte geben sie einen gueltigen Wert ein!");
+                ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein!");
                 System.out.println();
 
                 verzoegerung(1500);
@@ -376,7 +361,7 @@ public final class BefehlsZeilenSchnittstelle {
                 return korrekterWert = Integer.parseInt(eingabe);
             }else {
                 korrekteEingabe = false;
-                System.out.println("Bitte geben sie einen gueltigen Wert ein");
+                ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein");
             }
         }
             return korrekterWert;
@@ -430,12 +415,12 @@ public final class BefehlsZeilenSchnittstelle {
                 korrekteEingabe = true;
 
             } catch (ParseException e) {
-                System.out.println("Ungültiges Datum oder falsches Format");
-                System.out.println("Bitte verwenden sie folgendes Format: dd.MM.yyyy");
+                ausgabeMitAbsatz("Ungültiges Datum oder falsches Format");
+                ausgabeMitAbsatz("Bitte verwenden sie folgendes Format: dd.MM.yyyy");
                 korrekteEingabe = false;
 
             } catch (IllegalArgumentException e) {
-                System.out.println("Fehler");
+                ausgabeMitAbsatz("Fehler");
                 korrekteEingabe = false;
             }
         }while (!korrekteEingabe);
@@ -456,7 +441,7 @@ public final class BefehlsZeilenSchnittstelle {
         boolean korrekteEingabe = false;
         String eingabe = "";
         do {
-            System.out.print(abfrage);
+            ausgabeOhneAbsatz(abfrage);
 
             try {
                 eingabe = scan.nextLine();
@@ -466,14 +451,14 @@ public final class BefehlsZeilenSchnittstelle {
 
                     }else {
                         korrekteEingabe = false;
-                        System.out.println("Diese Eingabe darf keine Zahlen enthalten!");
+                        ausgabeMitAbsatz("Diese Eingabe darf keine Zahlen enthalten!");
                         break;
                     }
                     korrekteEingabe = true;
                 }
 
             } catch (Exception e) {
-                System.out.println("Fehler bei der Verarbeitung der Eingabe");
+                ausgabeMitAbsatz("Fehler bei der Verarbeitung der Eingabe");
                 korrekteEingabe = false;
             }
         } while (!korrekteEingabe);
@@ -494,7 +479,7 @@ public final class BefehlsZeilenSchnittstelle {
        int eingabe = -1;
        Scanner scan = new Scanner(System.in);
 
-        System.out.print(ausgabe);
+        ausgabeOhneAbsatz(ausgabe);
         eingabe = eingabeAufIntegerPruefen();
 
         return eingabe;
@@ -514,7 +499,7 @@ public final class BefehlsZeilenSchnittstelle {
         String eingabe = "";
         Scanner scan = new Scanner(System.in);
 
-        System.out.print(ausgabe);
+        ausgabeOhneAbsatz(ausgabe);
         eingabe = pruefeDatum();
 
         return eingabe;
@@ -534,7 +519,7 @@ public final class BefehlsZeilenSchnittstelle {
 
         Scanner scan = new Scanner(System.in);
 
-        System.out.print(ausgabe);
+        ausgabeOhneAbsatz(ausgabe);
 
         return scan.nextLine();
     }
@@ -556,10 +541,10 @@ public final class BefehlsZeilenSchnittstelle {
         int i = 1;
 
         for (String waehrung: waehrungsArray) {
-            System.out.println(i + ". " + waehrung);
+            ausgabeMitAbsatz(i + ". " + waehrung);
             i++;
         }
-        System.out.println("Waehrung (1-" + waehrungsArray.length + "): ");
+        ausgabeOhneAbsatz("Waehrung (1-" + waehrungsArray.length + "): ");
 
         return waehrungsArray[eingabeMitWertpruefung(waehrungsArray.length)-1];
     }
@@ -581,8 +566,8 @@ public final class BefehlsZeilenSchnittstelle {
 
 
           bildReinigen();
-          System.out.println("Sind sie sicher, dass sie das Programm Beenden möchten?");
-          System.out.println("1. Ja \n2. Nein");
+          ausgabeMitAbsatz("Sind sie sicher, dass sie das Programm Beenden möchten?");
+          ausgabeMitAbsatz("1. Ja \n2. Nein");
           String auswahl = scan.next();
 
 
@@ -590,7 +575,7 @@ public final class BefehlsZeilenSchnittstelle {
           if(!auswahl.matches("[1-2]")){
 
              bildReinigen();
-              System.out.println("Bitte geben sie einen gültigen Wert ein!");
+              ausgabeMitAbsatz("Bitte geben sie einen gültigen Wert ein!");
               System.out.println();
 
               verzoegerung(1500);
@@ -602,7 +587,7 @@ public final class BefehlsZeilenSchnittstelle {
           }
 
           if(auswahlInt == 1){
-              System.out.println("Das Programm wird beendet");
+              ausgabeMitAbsatz("Das Programm wird beendet");
               Runtime.getRuntime().exit(0);
           }
 
@@ -610,12 +595,37 @@ public final class BefehlsZeilenSchnittstelle {
         }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
+        Ausgabe einer Auswahl von Währungen mit Erwartung einer korrekten Eingabe mit Absatz
+        Parameter = Ausgabe
+     */
+        public static void ausgabeMitAbsatz(String ausgabe){
+
+            System.out.println(seitenAbstandgenerieren(5) + ausgabe);
+
+
+        }  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
         Ausgabe einer Auswahl von Währungen mit Erwartung einer korrekten Eingabe
         Parameter = Ausgabe
-
      */
-        public static void ausgabe(String ausgabe){
-            System.out.println(ausgabe);
+    public static void ausgabeOhneAbsatz(String ausgabe){
+
+        System.out.print(seitenAbstandgenerieren(5) + ausgabe);
+
+
+    }
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+        Erstellen eines Abstandes von der Linkenseite bis zum ausgegebenen Text
+        Parameter = Anzahl der Leerschlaege die eingefuegt werden muessen
+        Ausgabe = String mit den Leerschlaegen
+     */
+        public static String seitenAbstandgenerieren(int anzahlLeerschlaege){
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < anzahlLeerschlaege; i++) {
+             stringBuilder.append(" ");
+            }
+            return stringBuilder.toString();
         }
 
 }

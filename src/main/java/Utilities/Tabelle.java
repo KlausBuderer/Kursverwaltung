@@ -13,14 +13,14 @@ public class Tabelle {
         private String kreuzungLinie;
         private String[] kopfzeile;
         private List<String[]> zeile = new ArrayList<>();
-        private boolean rightAlign;
+        private boolean rechtsBuendig;
 
         public Tabelle() {
             setVertikaleLinie(false);
         }
 
         public void setRightAlign(boolean rightAlign) {
-            this.rightAlign = rightAlign;
+            this.rechtsBuendig = rightAlign;
         }
 
         public void setVertikaleLinie(boolean zeigeVertikaleLinie) {
@@ -67,6 +67,7 @@ public class Tabelle {
         }
 
         private void schreibeLinie(int[] spaltenBreite) {
+            BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("");
             for (int i = 0; i < spaltenBreite.length; i++) {
                 String linie = String.join("", Collections.nCopies(spaltenBreite[i] +
                         vertikaleLinie.length() + 1, HORIZONTALE_LINIE));
@@ -76,10 +77,11 @@ public class Tabelle {
         }
 
         private void schreibeZeile(String[] zellen, int[] maximaleBreite) {
+            BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("");
             for (int i = 0; i < zellen.length; i++) {
                 String s = zellen[i];
                 String verStrTemp = i == zellen.length - 1 ? vertikaleLinie : "";
-                if (rightAlign) {
+                if (rechtsBuendig) {
                     System.out.printf("%s %" + maximaleBreite[i] + "s %s", vertikaleLinie, s, verStrTemp);
                 } else {
                     System.out.printf("%s %-" + maximaleBreite[i] + "s %s", vertikaleLinie, s, verStrTemp);
@@ -90,6 +92,4 @@ public class Tabelle {
 
 
 
-    public static class Anlegen {
-    }
 }

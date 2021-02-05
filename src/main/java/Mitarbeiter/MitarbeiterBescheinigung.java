@@ -53,21 +53,21 @@ public class MitarbeiterBescheinigung {
 
         do {
             //Mitarbeiter auswählen
-            System.out.println("Welchem Mitarbeiter moechten sie einen Kurs zuweisen?");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welchem Mitarbeiter moechten sie einen Kurs zuweisen?");
             mitarbeiter = new MitarbeiterSuche().mitarbeiterSuchen();
             this.mitarbeiterId = mitarbeiter.mitarbeiterId;
 
             //Kurs auswählen
-            System.out.println("Welchen Kurs moechten sie dem Mitarbeiter zuweisen?");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welchen Kurs moechten sie dem Mitarbeiter zuweisen?");
             kurs = new KursSuchen().kursSuchen();
             this.kurseId = kurs.kurseId;
 
 
             Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
-            System.out.println("Bitte bestätigen sie die richtige Eingabe");
-            System.out.println();
-            System.out.println("Mitarbeiter: " + mitarbeiter.vorname + " " + mitarbeiter.nachname);
-            System.out.println("Kurs: " + kurs.anbieter + " " + kurs.kursBeschreibung + " " + kurs.datumVon);
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte bestätigen sie die richtige Eingabe");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiter: " + mitarbeiter.vorname + " " + mitarbeiter.nachname);
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Kurs: " + kurs.anbieter + " " + kurs.kursBeschreibung + " " + kurs.datumVon);
 
             switch (Utilities.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
@@ -100,26 +100,26 @@ public class MitarbeiterBescheinigung {
 
         do {
             //Mitarbeiter auswählen
-            System.out.println("Welchem Mitarbeiter moechten sie ein Zertifikat zuweisen?");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welchem Mitarbeiter moechten sie ein Zertifikat zuweisen?");
             mitarbeiter = new MitarbeiterSuche().mitarbeiterSuchen();
             this.mitarbeiterId = mitarbeiter.mitarbeiterId;
 
             //Zertifikat auswählen
-            System.out.println("Welches Zertifikat moechten sie dem Mitarbeiter zuweisen?");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welches Zertifikat moechten sie dem Mitarbeiter zuweisen?");
             zertifikat = new ZertifikateSuchen().zertifikatSuchen();
             this.zertifikatId = zertifikat.zertifikatsId;
 
             //
-            System.out.println("Geben sie das Ablaufdatum des Zertifikats ein (TT.MM.JJJJ): ");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Geben sie das Ablaufdatum des Zertifikats ein (TT.MM.JJJJ): ");
             this.zertifikatsAblaufDatum = BefehlsZeilenSchnittstelle.pruefeDatum();
 
 
             Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
-            System.out.println("Bitte bestätigen sie die richtige Eingabe");
-            System.out.println();
-            System.out.println("Mitarbeiter: " + mitarbeiter.vorname + " " + mitarbeiter.nachname);
-            System.out.println();
-            System.out.println("Zertifikat: " + zertifikat.anbieter + "\nZertifikatsbeschreibung: " + zertifikat.zertifikatsBeschreibung + "\nAblaufdatum: " + zertifikatsAblaufDatum + "\n");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte bestätigen sie die richtige Eingabe");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiter: " + mitarbeiter.vorname + " " + mitarbeiter.nachname);
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zertifikat: " + zertifikat.anbieter + "\nZertifikatsbeschreibung: " + zertifikat.zertifikatsBeschreibung + "\nAblaufdatum: " + zertifikatsAblaufDatum + "\n");
 
             switch (Utilities.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
@@ -164,7 +164,7 @@ public class MitarbeiterBescheinigung {
             tabelleAlt.ausgabe();
 
             //Eingabe eines neuen Datum anfordern
-            System.out.println("Bitte geben sie das neue Datum ein (TT.MM.JJJJ): ");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie das neue Datum ein (TT.MM.JJJJ): ");
             zertifikatsAblaufDatum = BefehlsZeilenSchnittstelle.pruefeDatum();
 
             //Eingabe zeigen und bestätigung verlangen
@@ -175,8 +175,8 @@ public class MitarbeiterBescheinigung {
             tabelleNeu.ausgabe();
 
             BefehlsZeilenSchnittstelle.bildReinigen();
-            System.out.println();
-            System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             switch (Utilities.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
@@ -233,7 +233,7 @@ public class MitarbeiterBescheinigung {
         tabelle.ausgabe();
         arrayLaenge = mitarbeiterBescheinigungsArray.length;
 
-        System.out.print("Bitte wählen sie ein Zertifikat aus der Liste (1-" + (arrayLaenge - 1) + ")");
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte wählen sie ein Zertifikat aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
         return mitarbeiterBescheinigungsArray[auswahl];

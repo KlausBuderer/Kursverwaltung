@@ -35,15 +35,15 @@ public class KursSuchen {
             BefehlsZeilenSchnittstelle.bildReinigen();
 
             if (kursHash.size() > 30) {
-                System.out.println("Zuviele Treffer!");
-                System.out.println("Bitte geben sie genauere Angaben an");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zuviele Treffer!");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie genauere Angaben an");
                 BefehlsZeilenSchnittstelle.verzoegerung(2000);
             } else if (kursHash.size() > 0) {
                 // Mitarbeiterliste ausgeben und Auswahl Einlesen
                 abbruchBedingung = true;
                 return auswahlListeKurseAusgeben(kursHash);
             } else {
-                System.out.println("Keine Treffer");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Keine Treffer");
             }
         }while(!abbruchBedingung);
         return null;
@@ -60,7 +60,7 @@ public class KursSuchen {
         String[] HEADER = {"Nr.","Suchkriterium"};
 
         BefehlsZeilenSchnittstelle.bildReinigen();
-        System.out.println("Bitte wählen sie ein Suchkriterium: ");
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte wählen sie ein Suchkriterium: ");
 
         int auswahlNummer = 1;
 
@@ -73,11 +73,11 @@ public class KursSuchen {
             tempArray[0] = auswahlNummer + ".";
             tempArray[1] = suchkriterium;
             tabelle.zeileHinzufuegen(tempArray);
-           // System.out.println(auswahlNummer + ". " + suchkriterium);
+           // BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(auswahlNummer + ". " + suchkriterium);
             auswahlNummer++;
         }
         tabelle.ausgabe();
-        System.out.print("Nach welchem Kriterium moechten sie suchen: ");
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Nach welchem Kriterium moechten sie suchen: ");
         return BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(SUCHKRITERIEN.length);
     }
 
@@ -104,7 +104,7 @@ public class KursSuchen {
                 suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Durchfuehrungsort ein nach dem sie suchen moechten: ");
                 break;
             default:
-                System.out.println("Falsche Eingabe!");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsche Eingabe!");
         }
 
         return suchText;
@@ -145,7 +145,7 @@ public class KursSuchen {
         arrayLaenge = kursArray.length;
 
         //Der Bediener wird zu Auswahl einer der Objekte aufgefordert
-        System.out.print("Bitte wählen sie einen Kurs aus der Liste (1-" + (arrayLaenge - 1) + ")");
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie einen Kurs aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
         return kursArray[auswahl];

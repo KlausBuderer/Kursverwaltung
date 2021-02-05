@@ -13,6 +13,7 @@ public class Kostenstelle {
     public String bezeichnungKst = " ";
     public String kostenstelleVerantPerson;
 
+
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Konstruktor erstellen eines Objekts mit Angaben der Kostenstelle
     public Kostenstelle(int kostenstelleId, int konstenstelle, String bezeichnungKst, String kostenstelleVerantPerson){
@@ -39,7 +40,7 @@ public class Kostenstelle {
         do {
 
             BefehlsZeilenSchnittstelle.bildReinigen();
-            System.out.println("Bitte geben sie folgende Daten ein");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie folgende Daten ein");
             //Kostenstellennummer
             kostenstelleNr = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Kostenstelle Nummer: ");
             //Bezeichnung Kostenstelle
@@ -48,9 +49,9 @@ public class Kostenstelle {
             kostenstelleVerantPerson = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Verantwortliche Person der Kostenstelle: ");
 
             BefehlsZeilenSchnittstelle.bildReinigen();
-            System.out.println("Kostenstelle: " + kostenstelleNr + "\tBezeichnung der Kostenstelle: " + bezeichnungKst + "\tVerantwortliche Person der Kostenstelle: " + kostenstelleVerantPerson);
-            System.out.println();
-            System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Kostenstelle: " + kostenstelleNr + "\tBezeichnung der Kostenstelle: " + bezeichnungKst + "\tVerantwortliche Person der Kostenstelle: " + kostenstelleVerantPerson);
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
@@ -91,13 +92,13 @@ public class Kostenstelle {
         for (Map.Entry<Kostenstelle, Integer> map : kostenstelleMap.entrySet()) {
             kostenstelleArray[i] = map.getKey();
             // Ausgeben des Array
-            System.out.println(i + ". " + map.getKey().toString());
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(i + ". " + map.getKey().toString());
             i++;
         }
 
         arrayLaenge = kostenstelleArray.length;
 
-        System.out.print("Bitte wählen sie eine Kostenstelle aus der Liste (1-" + (arrayLaenge - 1) + ")");
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie eine Kostenstelle aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
         kostenstelleId = kostenstelleArray[auswahl].kostenstelleId;
@@ -117,8 +118,6 @@ public class Kostenstelle {
     void kostenstelleMutieren(){
 
         String[] spaltenArray = {"Kostenstellennummer","Bezeichnung der Kostenstelle","Verantwortliche Person der Kostenstelle"};
-        String vornamen;
-        String nachnamen;
         int arrayLaenge;
         int auswahl;
         boolean abschliessen = true;
@@ -131,36 +130,36 @@ public class Kostenstelle {
             int i = 1;
             for (String spalte : spaltenArray) {
 
-                System.out.println(i + ": " + spalte);
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(i + ": " + spalte);
                 i++;
             }
             arrayLaenge = spaltenArray.length;
 
-            System.out.print("Welchen Spalte moechten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
+            BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Welchen Spalte moechten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
             auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
             switch (auswahl) {
 
                 case 1:
-                    System.out.println("Aktuell: " + kostenstelleNr);
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + kostenstelleNr);
                     kostenstelleNr = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie die neue Kostenstellennummer ein: ");
                     break;
                 case 2:
-                    System.out.println("Aktuell: " + bezeichnungKst);
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + bezeichnungKst);
                     bezeichnungKst = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie die neue Bezeichnung ein: ");
                     break;
                 case 3:
-                    System.out.println("Aktuell: " + kostenstelleVerantPerson);
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + kostenstelleVerantPerson);
                     kostenstelleVerantPerson = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie die neue verantwortliche Person ein: ");
                     break;
                 default:
-                    System.out.println("Falsche Eingabe!");
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsche Eingabe!");
             }
 
             BefehlsZeilenSchnittstelle.bildReinigen();
-            System.out.println("Kostenstellen Bezeichnung: " + bezeichnungKst + "\tKostenstellen Nummer: " + kostenstelleNr + "\tVerantwortliche Person: " + kostenstelleVerantPerson);
-            System.out.println();
-            System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Kostenstellen Bezeichnung: " + bezeichnungKst + "\tKostenstellen Nummer: " + kostenstelleNr + "\tVerantwortliche Person: " + kostenstelleVerantPerson);
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 

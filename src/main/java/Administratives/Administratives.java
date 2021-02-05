@@ -42,7 +42,6 @@ public class Administratives{
                     break;
                 case 99:
                     //zurück ins Hauptmenü;
-                    System.out.println("Hauptmenü");
                     gueltigeEingabe = false;
                     break;
                 default:

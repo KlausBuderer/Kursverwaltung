@@ -46,15 +46,15 @@ public class MitarbeiterSuche{
             BefehlsZeilenSchnittstelle.bildReinigen();
 
             if (mitarbeiterHash.size() > 20) {
-                System.out.println("Zuviele Treffer!");
-                System.out.println("Bitte geben sie genauere Angaben an");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zuviele Treffer!");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie genauere Angaben an");
                 BefehlsZeilenSchnittstelle.verzoegerung(2000);
             } else if (mitarbeiterHash.size() > 0) {
                 // Mitarbeiterliste ausgeben und Auswahl Einlesen
                 abbruchBedingung = true;
                 return mitarbeiterListeAusgeben(mitarbeiterHash);
             } else {
-                System.out.println("Keine Treffer");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Keine Treffer");
             }
         }while(!abbruchBedingung);
         return null;
@@ -66,13 +66,13 @@ public class MitarbeiterSuche{
     private int suchkriterienAbfragen(){
 
         BefehlsZeilenSchnittstelle.bildReinigen();
-        System.out.println("Bitte wählen sie ein Suchkriterium: ");
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte wählen sie ein Suchkriterium: ");
 
         int auswahlNummer = 1;
 
         for (String suchkriterium:SUCHKRITERIEN) {
 
-            System.out.println(auswahlNummer + ". " + suchkriterium);
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(auswahlNummer + ". " + suchkriterium);
             auswahlNummer++;
         }
 
@@ -109,30 +109,30 @@ public class MitarbeiterSuche{
             break;
             case 7:
                 BefehlsZeilenSchnittstelle.bildReinigen();
-                System.out.println("Mitarbeiterstatus: ");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiterstatus: ");
                 int p = 1;
 
                 for (String status : statusArray) {
-                    System.out.println(p + ". " + status);
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(p + ". " + status);
                     p++;
                 }
-                System.out.println("Status (1-2): ");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Status (1-2): ");
                 suchText = statusArray[Utilities.BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1];
                 break;
             case 8:
                 BefehlsZeilenSchnittstelle.bildReinigen();
-                System.out.println("Anrede: ");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede: ");
                 int i = 1;
 
                 for (String waehrung : anredeArray) {
-                    System.out.println(i + ". " + waehrung);
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(i + ". " + waehrung);
                     i++;
                 }
-                System.out.println("Anrede (1-3): ");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede (1-3): ");
                 suchText = anredeArray[BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
                 break;
             default:
-                System.out.println("Falsche Eingabe!");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsche Eingabe!");
         }
 
         return suchText;
@@ -169,7 +169,7 @@ public class MitarbeiterSuche{
         arrayLaenge = mitarbeiterArray.length;
 
         //Der Bediener wird zu Auswahl einer der Objekte aufgefordert
-        System.out.print("Bitte wählen sie einen Mitarbeiter aus der Liste (1-" + (arrayLaenge-1) + ")");
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie einen Mitarbeiter aus der Liste (1-" + (arrayLaenge-1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
         return mitarbeiterArray[auswahl];

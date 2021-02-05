@@ -53,7 +53,7 @@ public class Benutzer {
 
         // Ausgabe, Bitte melden sie sich an
         if (benutzerListe.isEmpty()){
-            System.out.println("Es sind keine Benutzer auffindbar");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Es sind keine Benutzer auffindbar");
             return false;
         }
         // Prüfen ob der Benutzer existiert
@@ -62,7 +62,7 @@ public class Benutzer {
             b = benutzerSuchen(benutzerListe,benutzername);
 
         if(b.benutzer == null){
-            System.out.println("Dieser Benutzer ist nicht vorhanden");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Dieser Benutzer ist nicht vorhanden");
             return false;
         }
         // Prüfen ob das Passwort korrekt ist
@@ -73,7 +73,7 @@ public class Benutzer {
             angemeldeteGruppe = b.benutzergruppe;
             return true;
         }else{
-            System.out.println("Falsches Passwort");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsches Passwort");
 
         }
         return false;
@@ -92,7 +92,7 @@ public class Benutzer {
             do {
                 //Ausgabe Benutzer Anlegen
                 BefehlsZeilenSchnittstelle.bildReinigen();
-                BefehlsZeilenSchnittstelle.ausgabe("Benutzer Anlegen");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Benutzer Anlegen");
 
                 //Ausgabe Benutzername und einlesen der Eingabe
                 benutzer = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Benutzername: ");
@@ -100,7 +100,7 @@ public class Benutzer {
                 //Prüfen ob Benutzer bereits vorhanden
                 bereitsVorhanden = benutzerBereitsVorhandenPruefen(benutzerAusDateiLesen(), benutzer);
                 if(bereitsVorhanden){
-                    BefehlsZeilenSchnittstelle.ausgabe("Benutzername bereits vergeben!");
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Benutzername bereits vergeben!");
                     BefehlsZeilenSchnittstelle.verzoegerung(2000);
                 }
             } while (bereitsVorhanden);
@@ -109,7 +109,7 @@ public class Benutzer {
             passwort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Passwort: ");
 
             //Ausgabe der Auswahl an Benutzergruppen
-            BefehlsZeilenSchnittstelle.ausgabe("Benutzergruppen: \n1. Administrator\n2. Benutzer");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Benutzergruppen: \n1. Administrator\n2. Benutzer");
             int auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1;
 
             //Einlesen der Auswahl der Benutzergruppe
@@ -119,7 +119,7 @@ public class Benutzer {
             String zusammengesetzt = benutzer + "," + passwort + "," + benutzergruppe;
 
             //Aufezeigen der Eingabe und abfrgage ob in Ordnung
-            BefehlsZeilenSchnittstelle.ausgabe(toString());
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1: //1.Ja -> Benutzer speichern
@@ -169,7 +169,7 @@ public class Benutzer {
 
         //Ausgabe Benutzer loeschen
         BefehlsZeilenSchnittstelle.bildReinigen();
-        BefehlsZeilenSchnittstelle.ausgabe("Benutzer Loeschen");
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Benutzer Loeschen");
 
         //Auswahlliste von Benutzern ausgeben
         List<Benutzer> benutzerListe = benutzerAusDateiLesen();
@@ -178,10 +178,10 @@ public class Benutzer {
 
         for (Benutzer benutzer:benutzerListe) {
             i++;
-            BefehlsZeilenSchnittstelle.ausgabe(i + ". " + benutzer.toString());
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(i + ". " + benutzer.toString());
         }
         //Ausgabe welchen Benutzer moechten sie loeschen
-        BefehlsZeilenSchnittstelle.ausgabe("Welchen Benutzer moechten sie Loeschen?");
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welchen Benutzer moechten sie Loeschen?");
 
         //Auswahl einlesen
         int auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(benutzerListe.size())-1;
@@ -190,8 +190,8 @@ public class Benutzer {
         this.benutzergruppe = benutzerListe.get(auswahl).benutzergruppe;
 
         //Ausgabe sind sie sicher das sie den Benutzer loeschen moechten
-        BefehlsZeilenSchnittstelle.ausgabe(toString());
-        BefehlsZeilenSchnittstelle.ausgabe("Sind sie sicher?\n 1. Ja\n 2. Nein");
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Sind sie sicher?\n 1. Ja\n 2. Nein");
 
         //Eingabe einlesen
         if(BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) == 1) {
@@ -231,7 +231,7 @@ public class Benutzer {
                  if (this.passwort.equals(eingegebenesPasswort)){
                      break;
                  }else if(i == 2){
-                     BefehlsZeilenSchnittstelle.ausgabe("Zuviele Versuche!");
+                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zuviele Versuche!");
                      BefehlsZeilenSchnittstelle.verzoegerung(5000);
                      return;
                 }
@@ -249,7 +249,7 @@ public class Benutzer {
                 if (erstesPasswort.equals(zweitesPasswort)){
                     break;
                 }else if(i == 2){
-                    BefehlsZeilenSchnittstelle.ausgabe("Zuviele Versuche!");
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zuviele Versuche!");
                     BefehlsZeilenSchnittstelle.verzoegerung(5000);
                     return;
                 }

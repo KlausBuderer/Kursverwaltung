@@ -1,5 +1,7 @@
 package Auswertungen;
 
+import Utilities.BefehlsZeilenSchnittstelle;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -66,14 +68,14 @@ public class MitarbeiterAuswertung {
      */
     public void ausgabeListe(List<?> list){
 
-        System.out.println("MitarbeiterAuswertung");
-        System.out.println();
-        System.out.println("Anzahl Mitarbeiter: " + MitarbeiterAuswertung.anzahlMitarbeiter);
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("MitarbeiterAuswertung");
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anzahl Mitarbeiter: " + MitarbeiterAuswertung.anzahlMitarbeiter);
 
 
         for (int i = 0; i < list.size(); i++) {
 
-            System.out.println(list.toString());
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(list.toString());
         }
 
     }
