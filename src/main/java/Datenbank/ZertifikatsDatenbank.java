@@ -75,7 +75,7 @@ public class ZertifikatsDatenbank extends Datenbank{
      */
     String updateQuerry(Zertifikate zertifikat){
 
-        return  "UPDATE `itwisse_kursverwaltung`.`Zertifikate` SET " +
+        return  "UPDATE `itwisse_kursverwaltung`.`tblZertifikate` SET " +
                 " `Titel` = '"          + zertifikat.zertifikatsTitel +
                 "', `Beschreibung` = '" + zertifikat.zertifikatsBeschreibung +
                 "', `Anbieter` = '"     + zertifikat.anbieter +
@@ -90,7 +90,7 @@ public class ZertifikatsDatenbank extends Datenbank{
      */
     String anlegenQuerry(Zertifikate zerttifikat){
 
-        return "INSERT INTO `itwisse_kursverwaltung`.`Zertifikate`" +
+        return "INSERT INTO `itwisse_kursverwaltung`.`tblZertifikate`" +
                 " (`Titel`, `Beschreibung`, `Anbieter`, `Sprache`, `Kosten`, `Waehrung`)" +
                 " VALUES ('"    + zerttifikat.zertifikatsTitel +
                 "', '"          + zerttifikat.zertifikatsBeschreibung +
@@ -106,7 +106,7 @@ public class ZertifikatsDatenbank extends Datenbank{
       */
     public String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
 
-        String query = "`Zertifikate` where `";
+        String query = "`tblZertifikate` where `";
         String suche =  suchkriterium + "` Like \"%" + suchText + "%\"";
         return query + suche;
     }

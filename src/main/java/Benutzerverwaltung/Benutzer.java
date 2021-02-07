@@ -191,7 +191,9 @@ public class Benutzer {
 
         //Ausgabe sind sie sicher das sie den Benutzer loeschen moechten
         BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
-        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Sind sie sicher?\n 1. Ja\n 2. Nein");
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Sind sie sicher?");
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("1. Ja");
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("2. Nein");
 
         //Eingabe einlesen
         if(BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) == 1) {
@@ -226,7 +228,7 @@ public class Benutzer {
         if (!this.passwort.equals(eingegebenesPasswort)){
             //Drei Wiederholungen , falls alle falsch wird die Methode beendet
             for (int i = 0; i < 3; i++) {
-                 eingegebenesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Falsches Passwort! \n Geben sie das aktuelle Passwort ein: ");
+                 eingegebenesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Falsches Passwort! \n     Geben sie das aktuelle Passwort ein: ");
                 // Falls das Passwort uebereinstimmt wird die Schleife abgebrochen
                  if (this.passwort.equals(eingegebenesPasswort)){
                      break;
@@ -332,9 +334,9 @@ public class Benutzer {
     @Override
     public String toString() {
         return "Benutzer" +
-                "benutzer = " + benutzer + '\n' +
-                ", passwort = " + passwort + '\n' +
-                ", benutzergruppen = " + benutzergruppe + "\n";
+                "benutzer = " + benutzer +
+                "\t passwort = " + passwort +
+                "\t benutzergruppen = " + benutzergruppe + "\n";
     }
 
     private String benutzerAngabenZusammensetzen(){

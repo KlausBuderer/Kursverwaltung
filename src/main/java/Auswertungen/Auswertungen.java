@@ -52,7 +52,6 @@ public class Auswertungen {
     private void unterMenuMitarbeiterAnzeigen() {
         boolean gueltigeEingabe = false;
 
-
         do {
             switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenueMitarbeiter)) {
                 case 1:
