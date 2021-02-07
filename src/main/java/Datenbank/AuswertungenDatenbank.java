@@ -92,5 +92,4 @@ public class AuswertungenDatenbank extends Datenbank {
         MitarbeiterAuswertung mitarbeiterAuswertung = new MitarbeiterAuswertung();
         mitarbeiterAuswertung.ausgabeListe(mitarbeiterAuswertung.mitarbeiterAuswerten(dbInhalt));
     }
-
 }
