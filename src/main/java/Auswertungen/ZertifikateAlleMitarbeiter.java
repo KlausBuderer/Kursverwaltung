@@ -2,7 +2,6 @@
 package Auswertungen;
 
 import Datenbank.AuswertungenDatenbank;
-import Utilities.BefehlsZeilenSchnittstelle;
 import Utilities.Tabelle;
 
 import java.util.List;
@@ -28,7 +27,6 @@ public class ZertifikateAlleMitarbeiter {
     }
 
     public ZertifikateAlleMitarbeiter() {
-
     }
 
     public void auswertungAusgeben() {
