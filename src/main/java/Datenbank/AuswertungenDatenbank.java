@@ -2,6 +2,7 @@ package Datenbank;
 
 import Auswertungen.MitarbeiterAuswertung;
 import Auswertungen.WeiterbildungAlleMitarbeiterZeitraum;
+import Auswertungen.ZertifikateAlleMitarbeiter;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,11 +11,19 @@ import java.util.List;
 
 public class AuswertungenDatenbank extends Datenbank {
 
+
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public List storeproduceWeiterbildungAlleMitarbeiterZeitraum(String datumVon, String datumBis){
         return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_WEITERBILDUNG_DATUM(?,?)}",datumVon, datumBis,STORE_PROCEDURE_KONTEXT.AUSWERTUNG_MITARBEITER);
     }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public List storeproduceZertifikateAlleMitarbeiter(){
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_ZERTITIFKATE()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ZERTIFIKATE);
+    }
+
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
@@ -42,6 +51,31 @@ public class AuswertungenDatenbank extends Datenbank {
             weiterbildungAlleMitarbeiterliste.add(weiterbildungAlleMitarbeiter);
         }
         return weiterbildungAlleMitarbeiterliste;
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank
+    Parameter: Inhalt der Tabelle der Datenbank
+    Rückgabewert: Liste mit Objekten für jeden Tuple
+     */
+    public List<ZertifikateAlleMitarbeiter> ausfuehrenZertifikateAlleMitarbeiter(ResultSet dbInhalt) throws SQLException {
+
+        List<ZertifikateAlleMitarbeiter> zertifikateAlleMitarbeiterliste = new ArrayList<>();
+        ZertifikateAlleMitarbeiter zertifikateAlleMitarbeiter;
+
+        while (dbInhalt.next()) {
+
+            int personalnummer = dbInhalt.getInt("personalnummer");
+            String nachname = dbInhalt.getString("nachname");
+            String vorname = dbInhalt.getString("vorname");
+            String zertifikatstitel = dbInhalt.getString("zertifikatstitel");
+            String zertifikatsbeschreibung = dbInhalt.getString("zertifikatsbeschreibung");
+            String zertAblDatum = dbInhalt.getString("zertAblDatum");
+            zertifikateAlleMitarbeiter = new ZertifikateAlleMitarbeiter(personalnummer,nachname,vorname,zertifikatstitel,zertifikatsbeschreibung,zertAblDatum);
+
+            zertifikateAlleMitarbeiterliste.add(zertifikateAlleMitarbeiter);
+        }
+        return zertifikateAlleMitarbeiterliste;
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*

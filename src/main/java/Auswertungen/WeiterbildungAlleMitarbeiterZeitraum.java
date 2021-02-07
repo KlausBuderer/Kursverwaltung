@@ -1,7 +1,4 @@
-/**
- * @author: Bruno Thurnherr <bruno.thurnherr@it-wissen.ch>
- * @version: 1.0
- */
+
 package Auswertungen;
 
 import Datenbank.AuswertungenDatenbank;
