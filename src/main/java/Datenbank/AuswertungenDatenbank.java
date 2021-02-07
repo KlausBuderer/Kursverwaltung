@@ -1,5 +1,6 @@
 package Datenbank;
 
+import Auswertungen.KurseAlleMitarbeiter;
 import Auswertungen.MitarbeiterAuswertung;
 import Auswertungen.WeiterbildungAlleMitarbeiterZeitraum;
 import Auswertungen.ZertifikateAlleMitarbeiter;
@@ -22,6 +23,12 @@ public class AuswertungenDatenbank extends Datenbank {
 
     public List storeproduceZertifikateAlleMitarbeiter(){
         return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_ZERTITIFKATE()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ZERTIFIKATE);
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public List storeproduceKurseAlleMitarbeiter(){
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_KURSE()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ALLE_KURSE);
     }
 
 
@@ -77,6 +84,32 @@ public class AuswertungenDatenbank extends Datenbank {
         }
         return zertifikateAlleMitarbeiterliste;
     }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank
+    Parameter: Inhalt der Tabelle der Datenbank
+    Rückgabewert: Liste mit Objekten für jeden Tuple
+     */
+    public List<KurseAlleMitarbeiter> ausfuehrenKurseAlleMitarbeiter(ResultSet dbInhalt) throws SQLException {
+
+        List<KurseAlleMitarbeiter> kurseAlleMitarbeiterliste = new ArrayList<>();
+        KurseAlleMitarbeiter kurseAlleMitarbeiter;
+
+        while (dbInhalt.next()) {
+
+            int personalnummer = dbInhalt.getInt("personalnummer");
+            String nachname = dbInhalt.getString("nachname");
+            String vorname = dbInhalt.getString("vorname");
+            String zertifikatstitel = dbInhalt.getString("kurscode");
+            String kursbeschreibung = dbInhalt.getString("kursbeschreibung");
+            String anbieter = dbInhalt.getString("anbieter");
+            kurseAlleMitarbeiter = new KurseAlleMitarbeiter(personalnummer,nachname,vorname,zertifikatstitel,kursbeschreibung,anbieter);
+
+            kurseAlleMitarbeiterliste.add(kurseAlleMitarbeiter);
+        }
+        return kurseAlleMitarbeiterliste;
+    }
+
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank

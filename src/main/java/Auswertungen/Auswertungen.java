@@ -6,7 +6,7 @@ public class Auswertungen {
 
     private String[] unterMenue = {"Auswertungen", "1.  Mitarbeiter", "2.  Weiterbildung", "3.  Budget / Ausgaben", "99. Hauptmenue"};
     private String[] unterMenueMitarbeiter = {"Mitarbeiter", "1. Kursuebersicht fuer gewuenschten Mitarbeiter ", "2. Zertifikatsuebersicht fuer gewuenschten Mitarbeiter", "99. Zurueck"};
-    private String[] unterMenueWeiterbildung = {"Weiterbildung", "1.  Weiterbildung aller Mitarbeiter", "2.  Zertifikate aller Mitarbeiter", "3.  Pruefung ablaufende Zertifikate", "99.  Zurueck"};
+    private String[] unterMenueWeiterbildung = {"Weiterbildung", "1.  Weiterbildung aller Mitarbeiter", "2.  Zertifikate aller Mitarbeiter", "3. Kurse aller Mitarbeiter", "4.  Pruefung ablaufende Zertifikate", "99.  Zurueck"};
     private String[] unterMenueBudgetAusgaben = {"Budget / Ausgaben", "1. 99Budget pro Kostenstelle / Jahr", "2. Kurskosten fuer gewuenschte Kostenstelle mit Anbieter / Waehrung / Zeitraum ","3. Kurskosten alle Kostenstellen / Waehrung / Anbieter ", "99.  Zurueck"};
 
     public Auswertungen() {
@@ -88,6 +88,9 @@ public class Auswertungen {
                     new ZertifikateAlleMitarbeiter().auswertungAusgeben();
                     break;
                 case 3:
+                    new KurseAlleMitarbeiter().auswertungAusgeben();
+                    break;
+                case 4:
                     System.out.println(unterMenueWeiterbildung[1]);
                     break;
                 case 99:
