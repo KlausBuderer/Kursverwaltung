@@ -76,7 +76,7 @@ public class KursDatenbank extends Datenbank {
      */
     private String anlegenQuerry(Kurse kurs){
 
-        return "INSERT INTO `itwisse_kursverwaltung`.`Kurse`" +
+        return "INSERT INTO `itwisse_kursverwaltung`.`tblKurse`" +
                 " (`KursCode`, `Anbieter`, `Kursbeschreibung`, `Kosten`, `Waehrung`, `DatumVon`, `DatumBis`, `Durchfuehrungsort`)" +
                 " VALUES ('"    + kurs.kursCode +
                 "', '"          + kurs.anbieter +
@@ -93,7 +93,7 @@ public class KursDatenbank extends Datenbank {
      */
     private String updateQuerry(Kurse kurs){
 
-        return  "UPDATE `itwisse_kursverwaltung`.`Kurse` SET " +
+        return  "UPDATE `itwisse_kursverwaltung`.`tblKurse` SET " +
                 " `KursCode` = '"            + kurs.kursCode +
                 "', `Anbieter` = '"          + kurs.anbieter +
                 "', `Kursbeschreibung` = '" + kurs.kursBeschreibung +
@@ -111,7 +111,7 @@ public class KursDatenbank extends Datenbank {
        */
     public String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
 
-        String query = "`Kurse` where `";
+        String query = "`tblKurse` where `";
         String suche =  suchkriterium + "` Like \"%" + suchText + "%\"";
         return query + suche;
     }

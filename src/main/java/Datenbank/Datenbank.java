@@ -66,8 +66,6 @@ public class Datenbank {
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
             statement = connection.createStatement();
 
-            System.out.println(query);
-
             statement.execute(query);
 
 
@@ -108,19 +106,19 @@ public class Datenbank {
             ResultSet dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`.`" + tabelle + "`");
 
             switch (tabelle) {
-                case "Kostenstelle":
+                case "tblKostenstelle":
                     datenAuflistung = new KostenstelleDatenbank().kostenstelleAusgeben(dbInhalt);
                     break;
-                case "BudgetPeriode":
+                case "tblBudgetPeriode":
                     datenAuflistung = new BudgetDatenbank().budgetAusgeben(dbInhalt);
                     break;
-                case "Kurse":
+                case "tblKurse":
                     datenAuflistung = new KursDatenbank().kursListeErstellen(dbInhalt);
                     break;
-                case "Zertifikate":
+                case "tblZertifikate":
                     datenAuflistung = new ZertifikatsDatenbank().zertifikateListeErstellen(dbInhalt);
                     break;
-                case "Auswertung":
+                case "tblAuswertung":
                     break;
                 default:
                     break;
@@ -259,12 +257,12 @@ public class Datenbank {
 
             dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`." + query);
 
-            if(query.contains("Mitarbeiter")){
+            if(query.contains("tblMitarbeiter")){
             rueckgabeHashMap = new MitarbeiterDatenbank().mitarbeiterListeErstellen(dbInhalt);
 
-            }else if(query.contains("Kurse")){
+            }else if(query.contains("tblKurse")){
                 rueckgabeHashMap = new KursDatenbank().kursListeErstellen(dbInhalt);
-            }else if (query.contains("Zertifikate")){
+            }else if (query.contains("tblZertifikate")){
                 rueckgabeHashMap = new ZertifikatsDatenbank().zertifikateListeErstellen(dbInhalt);
             }
 
@@ -380,11 +378,11 @@ public class Datenbank {
             System.out.println("Store Procedure erfolgreich");
 
 
-            switch (kontext){
+            switch (kontext) {
                 case AUSWERTUNG_MITARBEITER:
                     System.out.println(parameter1 + parameter2);
-                    statement.setString(1,parameter1);
-                    statement.setString(2,parameter2);
+                    statement.setString(1, parameter1);
+                    statement.setString(2, parameter2);
 
                     dbInhalt = statement.executeQuery();
                     rueckgabeList = new AuswertungenDatenbank().ausfuehrenWeiterbildungAlleMitarbeiterZeitraum(dbInhalt);
@@ -395,7 +393,8 @@ public class Datenbank {
                     dbInhalt = statement.executeQuery();
                     rueckgabeList = new AuswertungenDatenbank().ausfuehrenZertifikateAlleMitarbeiter(dbInhalt);
                     break;
-         }
+
+            }
 
         } catch (SQLException | ClassNotFoundException sqlException) {
 
@@ -425,7 +424,7 @@ public class Datenbank {
         Connection connection = null;
         CallableStatement statement = null;
         ResultSet dbInhalt = null;
-        String statusSP = "";
+        String antwortDatenbank = "";
 
         try {
 
@@ -433,14 +432,15 @@ public class Datenbank {
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
             statement = connection.prepareCall(query);
 
-                    statement.setInt(1,parameter);
+
+                    statement.setInt(1, parameter);
                     statement.executeQuery();
-                    statusSP = statement.getString(2);
-                    BefehlsZeilenSchnittstelle.verzoegerung(3000);
+                    antwortDatenbank = statement.getString(2);
+
 
         } catch (SQLException | ClassNotFoundException sqlException) {
 
-            System.out.println("Hat geklappt");
+            System.out.println("Hat nicht geklappt");
 
             sqlException.printStackTrace();
         }
@@ -452,7 +452,7 @@ public class Datenbank {
             throwables.printStackTrace();
         }
 
-        return statusSP;
+        return antwortDatenbank;
     }
 
 }

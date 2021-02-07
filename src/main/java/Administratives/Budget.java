@@ -2,7 +2,9 @@ package Administratives;
 
 
 import Datenbank.BudgetDatenbank;
+import Datenbank.KostenstelleDatenbank;
 import Utilities.BefehlsZeilenSchnittstelle;
+import Utilities.Tabelle;
 
 import java.time.Year;
 import java.util.HashMap;
@@ -15,8 +17,9 @@ public class Budget{
     public int budgetJahr;
     public int budgetBetrag;
     public String waehrung;
-    public String abteilungsBezeichnung;
+    public String kostenstellenBezeichnung;
 
+    private String[] KOPFZEILE = {" ","Kostenstelle", "Jahr", "Betrag", "Waehrung"};
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Konstruktor erstellen eines Objekts mit Angaben der Utilities.Tabelle BudgetPeriode
@@ -27,6 +30,7 @@ public class Budget{
         this.budgetBetrag = budgetBetrag;
         this.budgetId = budgetID;
         this.waehrung = waehrung;
+        this.kostenstellenBezeichnung = new KostenstelleDatenbank().kostenstelleBezichnungAusgeben(kostenstelleId);
     }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Konstruktor erstellen eines Objekts mit Angaben der Utilities.Tabelle BudgetPeriode
@@ -61,13 +65,17 @@ public class Budget{
             Kostenstelle kostenstelle = new Kostenstelle();
             kostenstelle.auswahlListeKostenstelleAusgeben();
             kostenstelleId = kostenstelle.kostenstelleId;
+            kostenstellenBezeichnung = new KostenstelleDatenbank().kostenstelleBezichnungAusgeben(kostenstelleId);
 
 
             BefehlsZeilenSchnittstelle.bildReinigen();
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Kostenstelle: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(kostenstelleId),20) +
-                    "\tBudget: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(budgetBetrag),10) +
-                    "\tBudget Jahr: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(budgetJahr), 10));
+
+            Tabelle tabelle = new Tabelle();
+            tabelle.setHeaders(KOPFZEILE);
+            tabelle.zeileHinzufuegen(attributenArrayFuerTabelle());
+            tabelle.ausgabe();
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
+
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
@@ -100,18 +108,28 @@ public class Budget{
         BudgetDatenbank budgetDatenbank = new BudgetDatenbank();
 
         // Abfrage Datenbank.Datenbank nach Kostenstellen
-        HashMap<Budget, Integer> budgetMap = (HashMap<Budget, Integer>) budgetDatenbank.datenAuslesenfuerAbfrage("BudgetPeriode");
+        HashMap<Budget, Integer> budgetMap = (HashMap<Budget, Integer>) budgetDatenbank.datenAuslesenfuerAbfrage("tblBudgetPeriode");
 
 
         // Schreiben der Kostenstellen in ein budgetArray
         Budget[] budgetArray = new Budget[budgetMap.size() + 1];
 
+        Tabelle tabelle = new Tabelle();
+        tabelle.setHeaders(KOPFZEILE);
+        tabelle.setVertikaleLinie(true);
+
         for (Map.Entry<Budget, Integer> map : budgetMap.entrySet()) {
             budgetArray[i] = map.getKey();
-            // Ausgeben des budgetArray
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(i + ". " + map.getKey().toString());
+            String[] tempArray = map.getKey().attributenArrayFuerTabelle();
+            tempArray[0] = i + ". ";
+
+            tabelle.zeileHinzufuegen(tempArray);
+
             i++;
         }
+
+        tabelle.ausgabe();
+
 
         arrayLaenge = budgetArray.length;
 
@@ -123,7 +141,7 @@ public class Budget{
         budgetBetrag = budgetArray[auswahl].budgetBetrag;
         budgetJahr = budgetArray[auswahl].budgetJahr;
         waehrung = budgetArray[auswahl].waehrung;
-        abteilungsBezeichnung = budgetArray[auswahl].abteilungsBezeichnung;
+        kostenstellenBezeichnung = budgetArray[auswahl].kostenstellenBezeichnung;
 
     }
 
@@ -185,8 +203,12 @@ public class Budget{
             }
 
             BefehlsZeilenSchnittstelle.bildReinigen();
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Budget Betrag: " + budgetBetrag + "\tBudget Jahr: " + budgetJahr + "\tKostenstelle: " + kostenstelleId);
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
+
+            Tabelle tabelle = new Tabelle();
+            tabelle.setHeaders(KOPFZEILE);
+            tabelle.zeileHinzufuegen(attributenArrayFuerTabelle());
+            tabelle.ausgabe();
+
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
@@ -205,10 +227,17 @@ public class Budget{
 
     @Override
     public String toString() {
-        return  "Kostenstelle: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(this.kostenstelleId), 10) +
+        return  "Kostenstelle: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(this.kostenstellenBezeichnung), 10) +
                 "Budget Jahr: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(budgetJahr), 20) +
                 "Budget Betrag: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(budgetBetrag), 25) +
                 "Waehrung: " + waehrung;
     }
-
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Diese Methode packt die Membervariablen in ein Array für die Ausgabe in einer Tabelle
+     */
+    String[] attributenArrayFuerTabelle(){
+        String[] attributenArray = {" ",kostenstellenBezeichnung, String.valueOf(budgetJahr), String.valueOf(budgetBetrag),waehrung};
+        return attributenArray;
+    }
 }

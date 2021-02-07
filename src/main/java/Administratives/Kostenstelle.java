@@ -2,6 +2,7 @@ package Administratives;
 
 import Datenbank.KostenstelleDatenbank;
 import Utilities.BefehlsZeilenSchnittstelle;
+import Utilities.Tabelle;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +14,7 @@ public class Kostenstelle {
     public String bezeichnungKst = " ";
     public String kostenstelleVerantPerson;
 
+    private String[] KOPFZEILE = {"Nr.","Kostenstellen Nr.", "Verant. Person", "Bezeichnung"};
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Konstruktor erstellen eines Objekts mit Angaben der Kostenstelle
@@ -82,22 +84,31 @@ public class Kostenstelle {
 
        KostenstelleDatenbank kostenstelleDatenbank = new KostenstelleDatenbank();
         // Abfrage Datenbank.Datenbank nach Kostenstellen
-        HashMap<Kostenstelle, Integer> kostenstelleMap = (HashMap<Kostenstelle, Integer>) kostenstelleDatenbank.datenAuslesenfuerAbfrage("Kostenstelle");
+        HashMap<Kostenstelle, Integer> kostenstelleMap = (HashMap<Kostenstelle, Integer>) kostenstelleDatenbank.datenAuslesenfuerAbfrage("tblKostenstelle");
 
 
         // Schreiben der Kostenstellen in ein Array
         Kostenstelle[] kostenstelleArray = new Kostenstelle[kostenstelleMap.size() + 1];
 
         BefehlsZeilenSchnittstelle.bildReinigen();
+        Tabelle tabelle = new Tabelle();
+        tabelle.setVertikaleLinie(true);
+        tabelle.setHeaders(KOPFZEILE);
+
+        //Schleife durch ganze Hashmap für die Ausgabe in einer Tabelle
         for (Map.Entry<Kostenstelle, Integer> map : kostenstelleMap.entrySet()) {
             kostenstelleArray[i] = map.getKey();
+            //Temporäres Array für die Ausgabe in der Tabelle
+            String[] tempArray = map.getKey().attributenArrayFuerTabelle();
+            tempArray[0] = i + ".";
             // Ausgeben des Array
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(i + ". " + map.getKey().toString());
+            tabelle.zeileHinzufuegen(tempArray);
             i++;
         }
 
-        arrayLaenge = kostenstelleArray.length;
+        tabelle.ausgabe();
 
+        arrayLaenge = kostenstelleArray.length;
         BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie eine Kostenstelle aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
@@ -184,5 +195,14 @@ public class Kostenstelle {
         return "Kostenstelle: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(this.kostenstelleNr), 10) +
                 "Verantwortliche Person: " + BefehlsZeilenSchnittstelle.textFormatieren(kostenstelleVerantPerson, 20) +
                 "Bezeichnung: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(bezeichnungKst), 25);
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Diese Methode packt die Membervariablen in ein Array für die Ausgabe in einer Tabelle
+     */
+    String[] attributenArrayFuerTabelle(){
+        String[] attributenArray = {"",String.valueOf(kostenstelleNr),kostenstelleVerantPerson,bezeichnungKst};
+        return attributenArray;
     }
 }

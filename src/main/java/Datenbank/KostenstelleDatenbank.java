@@ -39,6 +39,14 @@ public class KostenstelleDatenbank extends Datenbank {
         datenInDbAnlegen(anlegenQuery(kostenstelle));
         return false;
     }
+    /*
+   Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+   Parameter: Objekt des Aufrufers
+   */
+    public String kostenstelleBezichnungAusgeben(int kostenstellenId){
+        return  storeProcedureAufrufen("{ call SP_ANZEIGEN_KOSTENSTELLE_MIT_ID(?,?) }",
+                kostenstellenId);
+    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
@@ -55,7 +63,7 @@ public class KostenstelleDatenbank extends Datenbank {
      */
     String updatequery(Kostenstelle kostenstelle){
 
-        return "UPDATE `itwisse_kursverwaltung`.`Kostenstelle` SET " +
+        return "UPDATE `itwisse_kursverwaltung`.`tblKostenstelle` SET " +
                 " `Kostenstelle` = "                     + kostenstelle.kostenstelleNr +
                 ", `BezeichnungKST` = \""                + kostenstelle.bezeichnungKst +
                 "\", `KostenstelleVerantPerson` = \""    + kostenstelle.kostenstelleVerantPerson +
@@ -70,7 +78,7 @@ public class KostenstelleDatenbank extends Datenbank {
      */
     String anlegenQuery(Kostenstelle kostenstelle){
 
-        return "INSERT INTO `itwisse_kursverwaltung`.`Kostenstelle` (`KostenstelleNr`, `BezeichnungKST`, `KostenstelleVerantPerson`) VALUES " +
+        return "INSERT INTO `itwisse_kursverwaltung`.`tblKostenstelle` (`KostenstelleNr`, `BezeichnungKST`, `KostenstelleVerantPerson`) VALUES " +
                 "('"    + kostenstelle.kostenstelleNr +
                 "', '"  + kostenstelle.bezeichnungKst +
                 "', '"  + kostenstelle.kostenstelleVerantPerson + "')";

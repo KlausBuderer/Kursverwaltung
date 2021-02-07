@@ -59,7 +59,7 @@ public class BudgetDatenbank extends Datenbank {
      */
     String updateQuery(Budget budget) {
 
-        return "UPDATE `itwisse_kursverwaltung`.`BudgetPeriode` SET " +
+        return "UPDATE `itwisse_kursverwaltung`.`tblBudgetPeriode` SET " +
                 " `Jahr` = " + budget.budgetJahr +
                 ", `Betrag` = " + budget.budgetBetrag +
                 " WHERE `ID` = " + budget.budgetId + ";";
@@ -72,7 +72,7 @@ public class BudgetDatenbank extends Datenbank {
      */
     String anlegenQuery(Budget budget){
 
-        return "INSERT INTO `itwisse_kursverwaltung`.`BudgetPeriode` (`Jahr`, `Betrag`, `Waehrung`, `KostenstelleID`) VALUES" +
+        return "INSERT INTO `itwisse_kursverwaltung`.`tblBudgetPeriode` (`Jahr`, `Betrag`, `Waehrung`, `KostenstelleID`) VALUES" +
                 " ('"  + budget.budgetJahr +
                 "', '" + budget.budgetBetrag +
                 "', '" + budget.waehrung +

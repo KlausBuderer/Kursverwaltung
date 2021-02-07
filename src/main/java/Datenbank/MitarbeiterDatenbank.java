@@ -20,7 +20,6 @@ public class MitarbeiterDatenbank extends Datenbank{
     Parameter: Objekt des Aufrufers
      */
     public void mitarbeiterAnlegen(Mitarbeiter mitarbeiter) {
-
         datenInDbAnlegen(anlegenQuerry(mitarbeiter));
     }
 
@@ -30,8 +29,6 @@ public class MitarbeiterDatenbank extends Datenbank{
    Parameter: MySql Query
      */
     public HashMap<?, Integer> mitarbeiterSuchen(String query){
-
-        System.out.println(query);
     return datenListeAusgeben(query);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -103,7 +100,7 @@ public class MitarbeiterDatenbank extends Datenbank{
 
     String anlegenQuerry(Mitarbeiter mitarbeiter){
 
-        return "INSERT INTO `itwisse_kursverwaltung`.`Mitarbeiter`" +
+        return "INSERT INTO `itwisse_kursverwaltung`.`tblMitarbeiter`" +
                 " (`PersonalNr`, `Anrede`, `Vorname`, `Nachname`, `Jobtitel`, `Geburtsdatum`, `Statusmitarbeiter`, `KostenstelleID`)" +
                 " VALUES ('" + mitarbeiter.personalNummer +
                 "', '" + mitarbeiter.anrede +
@@ -153,7 +150,7 @@ public class MitarbeiterDatenbank extends Datenbank{
        */
     public String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
 
-        String query = "`Mitarbeiter` where `";
+        String query = "`tblMitarbeiter` where `";
         String suche =  suchkriterium + "` Like \"" + suchText + "%\"";
         System.out.println(query + suche);
         return query + suche;
@@ -193,7 +190,7 @@ public class MitarbeiterDatenbank extends Datenbank{
      */
     private String updateQuerry(Mitarbeiter mitarbeiter){
 
-        return "Update `itwisse_kursverwaltung`.`Mitarbeiter` SET" +
+        return "Update `itwisse_kursverwaltung`.`tblMitarbeiter` SET" +
                 "`PersonalNr` = '"            + mitarbeiter.personalNummer +
                 "', `Anrede` = '"           + mitarbeiter.anrede +
                 "', `Vorname` = '"           + mitarbeiter.vorname +
@@ -207,7 +204,7 @@ public class MitarbeiterDatenbank extends Datenbank{
 
     String kursZuweisungQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung){
 
-        return "INSERT INTO `itwisse_kursverwaltung`.`MitarbeiterBescheinigung`" +
+        return "INSERT INTO `itwisse_kursverwaltung`.`tblMitarbeiterBescheinigung`" +
                 " (`ZertifikatAblaufDatum`, `MitarbeiterID`, `KurseID`)" +
                 " VALUES ('" + mitarbeiterBescheinigung.zertifikatsAblaufDatum +
                 "', '" + mitarbeiterBescheinigung.mitarbeiterId +
@@ -218,7 +215,7 @@ public class MitarbeiterDatenbank extends Datenbank{
 
     String zertifikatZuweisungQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung){
 
-        return "INSERT INTO `itwisse_kursverwaltung`.`MitarbeiterBescheinigung`" +
+        return "INSERT INTO `itwisse_kursverwaltung`.`tblMitarbeiterBescheinigung`" +
                 " (`ZertifikatAblaufDatum`, `MitarbeiterID`, `ZertifikatID`)" +
                 " VALUES ('" + mitarbeiterBescheinigung.zertifikatsAblaufDatum +
                 "', '" + mitarbeiterBescheinigung.mitarbeiterId +
@@ -233,7 +230,7 @@ public class MitarbeiterDatenbank extends Datenbank{
      */
     private String updateQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung){
 
-        return "Update `itwisse_kursverwaltung`.`MitarbeiterBescheinigung` SET" +
+        return "Update `itwisse_kursverwaltung`.`tblMitarbeiterBescheinigung` SET" +
                 " `ZertifikatAblaufDatum` = '"           + mitarbeiterBescheinigung.zertifikatsAblaufDatum +
                 "' Where `ID` = " + mitarbeiterBescheinigung.id + ";";
     }

@@ -120,7 +120,7 @@ public class Mitarbeiter{
 
             BefehlsZeilenSchnittstelle.bildReinigen();
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
-            System.out.println();
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
@@ -166,7 +166,7 @@ public class Mitarbeiter{
             int i = 1;
             for (String spalte : spaltenArray) {
 
-                System.out.println(i + ": " + spalte);
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(i + ": " + spalte);
                 i++;
             }
             arrayLaenge = spaltenArray.length;
@@ -189,7 +189,7 @@ public class Mitarbeiter{
                     int j = 1;
 
                     for (String anrede : anredeArray) {
-                        System.out.println(j + ". " + anrede);
+                        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(j + ". " + anrede);
                         j++;
                     }
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede (1-3): ");
@@ -231,7 +231,7 @@ public class Mitarbeiter{
                         BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(p + ". " + anrede);
                         p++;
                     }
-                    System.out.println("Anrede (1-2): ");
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede (1-2): ");
                     mitarbeiterStatus = statusArray[Utilities.BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1];
                 default:
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsche Eingabe!");
@@ -240,7 +240,7 @@ public class Mitarbeiter{
 
             Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
-            System.out.println();;
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");;
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             switch (Utilities.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){

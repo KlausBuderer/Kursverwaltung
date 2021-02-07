@@ -98,8 +98,6 @@ public final class BefehlsZeilenSchnittstelle {
             System.out.println();
 
             ausgabeOhneAbsatz("Waehlen sie das gewuenschte Menue (1-7 oder 90 / 99): ");
-
-
             auswahlString = scan.next();
 
             // Überprüft ob die Eingabe eine Ganzzahl [1-(länge des Untermenüs)] ist
@@ -279,6 +277,7 @@ public final class BefehlsZeilenSchnittstelle {
 
         do {
             //Liest Eingabe als String ein um zu überpfüfen ob die Eingabe gültig ist
+            ausgabeOhneAbsatz("");
             eingabeString = scan.next();
 
             // Überprüft ob die Eingabe eine Ganzzahl [1-99] ist
@@ -417,6 +416,7 @@ public final class BefehlsZeilenSchnittstelle {
             } catch (ParseException e) {
                 ausgabeMitAbsatz("Ungültiges Datum oder falsches Format");
                 ausgabeMitAbsatz("Bitte verwenden sie folgendes Format: dd.MM.yyyy");
+                ausgabeOhneAbsatz("");
                 korrekteEingabe = false;
 
             } catch (IllegalArgumentException e) {
@@ -567,7 +567,8 @@ public final class BefehlsZeilenSchnittstelle {
 
           bildReinigen();
           ausgabeMitAbsatz("Sind sie sicher, dass sie das Programm Beenden möchten?");
-          ausgabeMitAbsatz("1. Ja \n2. Nein");
+          ausgabeMitAbsatz("1. Ja");
+          ausgabeMitAbsatz("2. Nein");
           String auswahl = scan.next();
 
 
@@ -627,6 +628,7 @@ public final class BefehlsZeilenSchnittstelle {
             }
             return stringBuilder.toString();
         }
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 }
 
