@@ -143,7 +143,7 @@ public class Benutzer {
      */
     public void neuenBenutzerSchreiben(String benutzerDaten){
         try {
-            FileWriter fileWriter = new FileWriter("Benutzerverwaltung",true);
+            FileWriter fileWriter = new FileWriter("Benutzerverwaltung.txt",true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             // Fügt neue Zeile hinzu
@@ -276,7 +276,7 @@ public class Benutzer {
 
             try {
                 //Benutzerverwaltung File einlesen
-                Stream<String> zeilen = Files.lines(Paths.get("Benutzerverwaltung"));
+                Stream<String> zeilen = Files.lines(Paths.get("Benutzerverwaltung.txt"));
                 //Zeile für Zeile in Liste schreiben
                 List<String> alleBenutzerString = zeilen.collect(Collectors.toList());
                 zeilen.close();
@@ -350,7 +350,7 @@ public class Benutzer {
 
         try {
             //Benutzerverwaltung File einlesen
-            Scanner scan = new Scanner(new File("Benutzerverwaltung"));
+            Scanner scan = new Scanner(new File("Benutzerverwaltung.txt"));
             StringBuffer buffer = new StringBuffer();
             while (scan.hasNextLine()){
                 buffer.append(scan.nextLine() + System.lineSeparator());
@@ -361,7 +361,7 @@ public class Benutzer {
             String geaenderteListe = inhaltDerDatei.replaceAll(aktuellerText,neuerText);
             scan.close();
             //Geaenderte Liste in die Datei schreiben
-            FileWriter fileWriter = new FileWriter("Benutzerverwaltung");
+            FileWriter fileWriter = new FileWriter("Benutzerverwaltung.txt");
             fileWriter.append(geaenderteListe);
             fileWriter.flush();
             fileWriter.close();

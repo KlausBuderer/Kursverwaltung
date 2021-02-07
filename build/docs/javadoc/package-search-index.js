@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"Administratives"},{"l":"All Packages","url":"allpackages-index.html"},{"l":"Auswertungen"},{"l":"Benutzerverwaltung"},{"l":"Datenbank"},{"l":"Einstellungen"},{"l":"Kurse"},{"l":"Mitarbeiter"},{"l":"Utilities"},{"l":"Zertifikate"}]

@@ -9,12 +9,7 @@ public class KursverwaltungMain {
 
         //Start Prozedere
 
-       /* try {
-            Animationen.kaffee();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-*/
+
         // Verbindungsdaten setzen
         Einstellungen einstellungen = new Einstellungen("Start");
 
@@ -37,7 +32,7 @@ public class KursverwaltungMain {
             if(Benutzer.angemeldeterBenutzer.equals("")) {
                 BefehlsZeilenSchnittstelle.anmeldeFensterAusgeben();
             }
-            Benutzer benutzer = new Benutzer();
+            new Benutzer();
             BefehlsZeilenSchnittstelle.hauptmenuAufruf();
 
         }
