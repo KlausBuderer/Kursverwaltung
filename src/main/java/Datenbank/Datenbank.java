@@ -401,6 +401,13 @@ public class Datenbank {
                     dbInhalt = statement.executeQuery();
                     rueckgabeList = new AuswertungenDatenbank().ausfuehrenKurseAlleMitarbeiter(dbInhalt);
                     break;
+
+                case AUSWERTUNG_ALLE_ZERTIFIKATE_GUELTIG:
+                    System.out.println(parameter1);
+                    statement.setString(1,parameter1);
+                    dbInhalt = statement.executeQuery(parameter1);
+                    rueckgabeList = new AuswertungenDatenbank().ausfuehrenZertifikateAlleMitarbeiterGueltigkeit(dbInhalt);
+                    break;
          }
 
         } catch (SQLException | ClassNotFoundException sqlException) {
