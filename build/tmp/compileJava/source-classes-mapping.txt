@@ -3,8 +3,8 @@ Datenbank/Datenbank.java
  Datenbank.Datenbank$1
 Einstellungen/Einstellungen.java
  Einstellungen.Einstellungen
-Utilities/BefehlsZeilenSchnittstelle.java
- Utilities.BefehlsZeilenSchnittstelle
+Datenbank/STORE_PROCEDURE_KONTEXT.java
+ Datenbank.STORE_PROCEDURE_KONTEXT
 Kurse/Kurse.java
  Kurse.Kurse
 Zertifikate/Zertifikate.java
@@ -21,8 +21,8 @@ Datenbank/AuswertungenDatenbank.java
  Datenbank.AuswertungenDatenbank
 Auswertungen/MitarbeiterAuswertung.java
  Auswertungen.MitarbeiterAuswertung
-Auswertungen/Auswertungen.java
- Auswertungen.Auswertungen
+Administratives/Administratives.java
+ Administratives.Administratives
 Benutzerverwaltung/Benutzerverwaltung.java
  Benutzerverwaltung.Benutzerverwaltung
 Mitarbeiter/Mitarbeiter.java
@@ -42,6 +42,8 @@ Zertifikate/ZertifikateSuchen.java
  Zertifikate.ZertifikateSuchen
 Kurse/KursSuchen.java
  Kurse.KursSuchen
+Auswertungen/ZertifikateAlleMitarbeiterGueltigkeit.java
+ Auswertungen.ZertifikateAlleMitarbeiterGueltigkeit
 Auswertungen/KurseAlleMitarbeiter.java
  Auswertungen.KurseAlleMitarbeiter
 Datenbank/ZertifikatsDatenbank.java
@@ -54,7 +56,7 @@ Benutzerverwaltung/Benutzer.java
  Benutzerverwaltung.Benutzer
 Utilities/Tabelle.java
  Utilities.Tabelle
-Datenbank/STORE_PROCEDURE_KONTEXT.java
- Datenbank.STORE_PROCEDURE_KONTEXT
-Administratives/Administratives.java
- Administratives.Administratives
+Auswertungen/Auswertungen.java
+ Auswertungen.Auswertungen
+Utilities/BefehlsZeilenSchnittstelle.java
+ Utilities.BefehlsZeilenSchnittstelle
