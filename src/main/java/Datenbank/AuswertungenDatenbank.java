@@ -1,9 +1,6 @@
 package Datenbank;
 
-import Auswertungen.KurseAlleMitarbeiter;
-import Auswertungen.MitarbeiterAuswertung;
-import Auswertungen.WeiterbildungAlleMitarbeiterZeitraum;
-import Auswertungen.ZertifikateAlleMitarbeiter;
+import Auswertungen.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,6 +26,12 @@ public class AuswertungenDatenbank extends Datenbank {
 
     public List storeproduceKurseAlleMitarbeiter(){
         return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_KURSE()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ALLE_KURSE);
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public List storeproduceZertifikateAlleMitarbeiterGueltigkeit(String datumVon){
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_NICHT_GUELTIG_ALLE_MA_ZERT()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ALLE_ZERTIFIKATE_GUELTIG);
     }
 
 
@@ -108,6 +111,32 @@ public class AuswertungenDatenbank extends Datenbank {
             kurseAlleMitarbeiterliste.add(kurseAlleMitarbeiter);
         }
         return kurseAlleMitarbeiterliste;
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank
+    Parameter: Inhalt der Tabelle der Datenbank
+    Rückgabewert: Liste mit Objekten für jeden Tuple
+     */
+    public List<ZertifikateAlleMitarbeiterGueltigkeit> ausfuehrenZertifikateAlleMitarbeiterGueltigkeit(ResultSet dbInhalt) throws SQLException {
+
+        List<ZertifikateAlleMitarbeiterGueltigkeit> ZertifikateAlleMitarbeiterGueltigkeitliste = new ArrayList<>();
+        ZertifikateAlleMitarbeiterGueltigkeit zertifikateAlleMitarbeiterGueltigkeit;
+
+        while (dbInhalt.next()) {
+
+            String nachname = dbInhalt.getString("nachname");
+            String vorname = dbInhalt.getString("vorname");
+            String zertAblDatum = dbInhalt.getString("zertAblDatum");
+            String zertifikatstitel = dbInhalt.getString("zertifikatstitel");
+            String zertifikatsbeschreibung = dbInhalt.getString("zertifikatsbeschreibung");
+            zertifikateAlleMitarbeiterGueltigkeit = new ZertifikateAlleMitarbeiterGueltigkeit(nachname,vorname,zertAblDatum,zertifikatstitel,zertifikatsbeschreibung);
+
+
+            ZertifikateAlleMitarbeiterGueltigkeitliste.add(zertifikateAlleMitarbeiterGueltigkeit);
+        }
+        return ZertifikateAlleMitarbeiterGueltigkeitliste;
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
