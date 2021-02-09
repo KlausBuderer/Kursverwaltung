@@ -25,7 +25,7 @@ public class MitarbeiterSuche{
 
     /*--------------------------------------------------------------------------------------------------------------------------------------
         Methode die eine Auswahl an Suchkriterien Ausgibt und eine Auswahl vom Bediener liest
-        Rückgabewert: Objekt von Mitarbeiter oder null
+        Rueckgabewert: Objekt von Mitarbeiter oder null
          */
     public Mitarbeiter mitarbeiterSuchen(){
         int arrayLaenge;
@@ -36,7 +36,7 @@ public class MitarbeiterSuche{
         do {
             //Suchkriterium Abfragen
             int suchkriterium = suchkriterienAbfragen();
-            //Suchtext zum gewählten Kriterium Abfragen
+            //Suchtext zum gewaehlten Kriterium Abfragen
             suchText = suchTextEinlesen(suchkriterium);
             //Datenbankquery zusammenstellen anhand den Angaben
             query = new MitarbeiterDatenbank().queryFuerAnzahlAbfrage(MYSQLSPALTENNAMEN[suchkriterium - 1], suchText);
@@ -61,12 +61,12 @@ public class MitarbeiterSuche{
     }
     /*--------------------------------------------------------------------------------------------------------------------------------------
     Methode die eine Auswahl an Suchkriterien Ausgibt und eine Auswahl vom Bediener liest
-   +Rückgabewert: Auswahl als Integer
+   +Rueckgabewert: Auswahl als Integer
      */
     private int suchkriterienAbfragen(){
 
         BefehlsZeilenSchnittstelle.bildReinigen("Suchkriterien fuer die Mitarbeitersuche", 2);
-        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte wählen sie ein Suchkriterium: ");
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte waehlen sie ein Suchkriterium: ");
 
         int auswahlNummer = 1;
 
@@ -82,7 +82,7 @@ public class MitarbeiterSuche{
 
     /*--------------------------------------------------------------------------------------------------------------------------------------
     Methode die die Eingabe des Suchtextes einliest
-   Rückgabewert: Suchtext als String
+   Rueckgabewert: Suchtext als String
      */
     private String suchTextEinlesen(int auswahl){
 
@@ -90,14 +90,14 @@ public class MitarbeiterSuche{
 BefehlsZeilenSchnittstelle.bildReinigen("Mitarbeitersuche",2);
 
         switch (auswahl){
-            case 1: suchZahl = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie die Personalnummer ein nach der sie suchen möchten: ");
+            case 1: suchZahl = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie die Personalnummer ein nach der sie suchen moechten: ");
                 suchText = String.valueOf(suchZahl);
             break;
-            case 2: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Nachnamen ein nach dem sie suchen möchten: ");
+            case 2: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Nachnamen ein nach dem sie suchen moechten: ");
             break;
-            case 3: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Vornamen nach dem sie suchen möchten: ");
+            case 3: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Vornamen nach dem sie suchen moechten: ");
             break;
-            case 4: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Gebn sie das Geburtsdatum ein nach dem sie suchen möchten: ");
+            case 4: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Gebn sie das Geburtsdatum ein nach dem sie suchen moechten: ");
             break;
             case 5:
                 Kostenstelle kostenstelle = new Kostenstelle();
@@ -105,7 +105,7 @@ BefehlsZeilenSchnittstelle.bildReinigen("Mitarbeitersuche",2);
                 suchZahl = kostenstelle.kostenstelleId;
                 suchText = String.valueOf(suchZahl);
                 break;
-            case 6: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Jobtitel an nach dem sie suchen möchten: ");
+            case 6: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Jobtitel an nach dem sie suchen moechten: ");
             break;
             case 7:
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiterstatus: ");
@@ -137,9 +137,9 @@ BefehlsZeilenSchnittstelle.bildReinigen("Mitarbeitersuche",2);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zum Erstellen einer Liste von Objekten der Klasse Mitarbeiter.Mitarbeiter zur Auswahl für den Bediener
+    Methode zum Erstellen einer Liste von Objekten der Klasse Mitarbeiter.Mitarbeiter zur Auswahl fuer den Bediener
     Parameter: Hashmap mit den Mitarbeiter.Mitarbeiter
-    Rückgabewert: objekt des Typ Mitarbeiter.Mitarbeiter
+    Rueckgabewert: objekt des Typ Mitarbeiter.Mitarbeiter
      */
     private Mitarbeiter mitarbeiterListeAusgeben(HashMap mitarbeiterHash) {
 
@@ -167,7 +167,7 @@ BefehlsZeilenSchnittstelle.bildReinigen("Mitarbeitersuche",2);
         arrayLaenge = mitarbeiterArray.length;
 
         //Der Bediener wird zu Auswahl einer der Objekte aufgefordert
-        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie einen Mitarbeiter aus der Liste (1-" + (arrayLaenge-1) + ")");
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte waehlen sie einen Mitarbeiter aus der Liste (1-" + (arrayLaenge-1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
         return mitarbeiterArray[auswahl];

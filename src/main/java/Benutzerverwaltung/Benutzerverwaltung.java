@@ -4,7 +4,7 @@ import Utilities.BefehlsZeilenSchnittstelle;
 
 public class Benutzerverwaltung {
 
-    String [] unterMenue = {"1.  Benutzer Anlegen", "2.  Benutzer Loeschen", "3.  Benutzer Passwort mutieren", "99. Hauptmenü"};
+    String [] unterMenue = {"1.  Benutzer Anlegen", "2.  Benutzer Loeschen", "3.  Benutzer Passwort mutieren", "99. Hauptmenue"};
 
     public Benutzerverwaltung(){
 

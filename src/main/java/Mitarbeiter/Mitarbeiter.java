@@ -7,7 +7,7 @@ import Utilities.BefehlsZeilenSchnittstelle;
 public class Mitarbeiter{
 
 
-    private String[] unterMenue = {"1.  Mitarbeiter Anlegen","2.  Mitarbeiter Kurszuordnung", "3.  Mitarbeiter Zertifikatszuordnung", "4.  Zertifikat Verlängern",
+    private String[] unterMenue = {"1.  Mitarbeiter Anlegen","2.  Mitarbeiter Kurszuordnung", "3.  Mitarbeiter Zertifikatszuordnung", "4.  Zertifikat Verlaengern",
             "5.  Mitarbeiter Mutation", "6.  Mitarbeiter loeschen", "99. Hauptmenue"};
     private String[] anredeArray = {"Frau", "Herr", "Neutral"};
     private String[] statusArray = {"angestellt", "ausgetreten"};
@@ -121,7 +121,7 @@ public class Mitarbeiter{
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
@@ -242,7 +242,7 @@ public class Mitarbeiter{
             Utilities.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");;
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
             switch (Utilities.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
@@ -269,13 +269,13 @@ public class Mitarbeiter{
         Mitarbeiter mitarbeiter;
 
         do {
-            //Abfrage welchen Mitarbeiter gelöscht werden soll
+            //Abfrage welchen Mitarbeiter geloescht werden soll
             //Aufrufen von MitarbeiterSuchen()
             mitarbeiter = new MitarbeiterSuche().mitarbeiterSuchen();
-            //Ausgabe der Daten des ausgewählten Mitarbeiters
+            //Ausgabe der Daten des ausgewaehlten Mitarbeiters
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(mitarbeiter.toString());
-            //Abfrage ob der Mitarbeiter wirklich gelöscht werden soll
+            //Abfrage ob der Mitarbeiter wirklich geloescht werden soll
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
                 case 1: //1.Ja-> MitarbeiterLoeschenQuery aufrufen und Methode beenden
@@ -295,8 +295,8 @@ public class Mitarbeiter{
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Die Methode übergibt ein Objekt in das jetztige
-    Parameter: Objekt welches übergeben werden soll
+    Die Methode uebergibt ein Objekt in das jetztige
+    Parameter: Objekt welches uebergeben werden soll
      */
     void objektUebergeben(Mitarbeiter mitarbeiter){
 
@@ -327,7 +327,7 @@ public class Mitarbeiter{
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Diese Methode packt die Membervariablen in ein Array für die Ausgabe in einer Tabelle
+    Diese Methode packt die Membervariablen in ein Array fuer die Ausgabe in einer Tabelle
      */
     String[] attributenArrayFuerTabelle(){
         String[] attributenArray = {"",String.valueOf(personalNummer),nachname,vorname, geburtstag, String.valueOf(kostenstelleId), jobTitel, mitarbeiterStatus, anrede};

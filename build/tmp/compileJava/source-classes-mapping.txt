@@ -5,6 +5,7 @@ Einstellungen/Einstellungen.java
  Einstellungen.Einstellungen
 Utilities/BefehlsZeilenSchnittstelle.java
  Utilities.BefehlsZeilenSchnittstelle
+ Utilities.BefehlsZeilenSchnittstelle$1
 Kurse/Kurse.java
  Kurse.Kurse
 Zertifikate/Zertifikate.java
@@ -15,6 +16,8 @@ Auswertungen/WeiterbildungAlleMitarbeiterZeitraum.java
  Auswertungen.WeiterbildungAlleMitarbeiterZeitraum
 Auswertungen/ZertifikateAlleMitarbeiter.java
  Auswertungen.ZertifikateAlleMitarbeiter
+Auswertungen/KursProMitarbeiter.java
+ Auswertungen.KursProMitarbeiter
 Administratives/Kostenstelle.java
  Administratives.Kostenstelle
 Datenbank/AuswertungenDatenbank.java
@@ -48,6 +51,8 @@ Auswertungen/KurseAlleMitarbeiter.java
  Auswertungen.KurseAlleMitarbeiter
 Datenbank/ZertifikatsDatenbank.java
  Datenbank.ZertifikatsDatenbank
+Utilities/Farbschema.java
+ Utilities.Farbschema
 Datenbank/KostenstelleDatenbank.java
  Datenbank.KostenstelleDatenbank
 Datenbank/BudgetDatenbank.java

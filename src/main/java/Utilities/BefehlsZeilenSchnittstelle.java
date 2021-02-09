@@ -2,7 +2,8 @@ package Utilities;
 
 import Administratives.Administratives;
 import Auswertungen.Auswertungen;
-import Benutzerverwaltung.*;
+import Benutzerverwaltung.Benutzer;
+import Benutzerverwaltung.Benutzerverwaltung;
 import Einstellungen.Einstellungen;
 import Kurse.Kurse;
 import Mitarbeiter.Mitarbeiter;
@@ -11,13 +12,12 @@ import Zertifikate.Zertifikate;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Scanner;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
 
-// Utility Klasse für Ausgaben und Eingaben in der Konsole
+// Utility Klasse fuer Ausgaben und Eingaben in der Konsole
 public final class BefehlsZeilenSchnittstelle {
 
    private static final String[] HAUPTMENU_ADMIN =  {"1. Mitarbeiter", "2. Kurse", "3. Zertifikate","4. Auswertungen", "5. Administratives",
@@ -28,14 +28,17 @@ public final class BefehlsZeilenSchnittstelle {
 
     // Konsolenfarben
     public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_BLACK = "\u001B[30m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_YELLOW = "\u001B[33m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_PURPLE = "\u001B[35m";
-    public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_WHITE = "\u001B[37m";
+    public static final String ANSI_SCHWARZ = "\u001B[30m";
+    public static final String ANSI_ROT = "\u001B[31m";
+    public static final String ANSI_GRUEN = "\u001B[32m";
+    public static final String ANSI_GELB = "\u001B[33m";
+    public static final String ANSI_BLAU = "\u001B[34m";
+    public static final String ANSI_VIOLETT = "\u001B[35m";
+    public static final String ANSI_TUERKIS = "\u001B[36m";
+    public static final String ANSI_WEISS = "\u001B[37m";
+    public static final String ANSI_USICHTBARER_TEXT = "\u001B[8m";
+    public static String schriftfarbe = "";
+
 
     // Privater Konstruktor um keine Instanzierung zu erlauben
     private BefehlsZeilenSchnittstelle(){
@@ -58,9 +61,9 @@ public final class BefehlsZeilenSchnittstelle {
             ausgabeMitAbsatz("Bitte melden sie sich an");
                 System.out.println();
                    benutzerEingabe = abfrageMitEingabeFrei45("Benutzername: ");
-                   passwortEingabe = abfrageMitEingabeFrei45("Passwort: ");
+                   passwortEingabe = abfrageMitEingabeFrei45("Passwort: " + ANSI_USICHTBARER_TEXT);
                      benutzerAngemeldet = new Benutzer().benutzerAnmelden(benutzerEingabe,passwortEingabe);
-
+            System.out.println(ANSI_RESET);
         }while (!benutzerAngemeldet);
 
 
@@ -85,7 +88,7 @@ public final class BefehlsZeilenSchnittstelle {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-     Anzeige des Hauptmenüs für Benutzer mit Adminrecht
+     Anzeige des Hauptmenues fuer Benutzer mit Adminrecht
      */
     public static void hauptmenueAusgeben(String[] menu) {
 
@@ -96,25 +99,26 @@ public final class BefehlsZeilenSchnittstelle {
 
         Scanner scan = new Scanner(System.in);
 
+        //Schriftfarbe bestimmen
+        farbschemaWaehlen(Farbschema.BLAU);
 
-
-        //Ausgabe des Hauptmenüs und Einlesen der Auswahl
+        //Ausgabe des Hauptmenues und Einlesen der Auswahl
         bildReinigen("Hauptmenue", 1);
         do {
-            // Ausgabe des Menü Arrays
+            // Ausgabe des Menue Arrays
             for (String menue : hauptmenu) {
-                ausgabeMitAbsatz(ANSI_BLUE + menue + ANSI_RESET);
+                ausgabeMitAbsatz(schriftfarbe + menue + ANSI_RESET);
             }
 
             System.out.println();
 
-            ausgabeOhneAbsatz(ANSI_BLUE + "Waehlen sie das gewuenschte Menue (1-7 oder 90 / 99): " + ANSI_RESET);
+            ausgabeOhneAbsatz(schriftfarbe + "Waehlen sie das gewuenschte Menue (1-7 oder 90 / 99): " + ANSI_RESET);
             auswahlString = scan.next();
 
-            // Überprüft ob die Eingabe eine Ganzzahl [1-(länge des Untermenüs)] ist
+            // ueberprueft ob die Eingabe eine Ganzzahl [1-(laenge des Untermenues)] ist
             if(!auswahlString.matches("[1-" + (hauptmenu.length) + "]") & (!auswahlString.matches("90") & !auswahlString.matches("99"))){
 
-                ausgabeMitAbsatz(ANSI_BLUE + "Bitte geben sie einen gueltigen Wert ein!" + ANSI_RESET);
+                ausgabeMitAbsatz(schriftfarbe + "Bitte geben sie einen gueltigen Wert ein!" + ANSI_RESET);
                 verzoegerung(1500);
                 gueltigeEingabe = false;
 
@@ -127,24 +131,31 @@ public final class BefehlsZeilenSchnittstelle {
 
         switch (auswahlInt) {
             case 1:
+                farbschemaWaehlen(Farbschema.ROT);
                 new Mitarbeiter();
                 break;
             case 2:
+                farbschemaWaehlen(Farbschema.GELB);
                 new Kurse();
                 break;
             case 3:
+                farbschemaWaehlen(Farbschema.VIOLETT);
                 new Zertifikate();
                 break;
             case 4:
+                farbschemaWaehlen(Farbschema.GRUEN);
                 new Auswertungen();
                 break;
             case 5:
+                farbschemaWaehlen(Farbschema.TUERKIS);
                 new Administratives();
                 break;
             case 6:
+                farbschemaWaehlen(Farbschema.VIOLETT);
                 new Benutzerverwaltung();
                 break;
             case 7:
+                farbschemaWaehlen(Farbschema.WEISS);
                 new Einstellungen();
                 break;
             case 90:
@@ -156,7 +167,7 @@ public final class BefehlsZeilenSchnittstelle {
                 programmBeenden();
                 break;
             default:
-                ausgabeMitAbsatz(ANSI_BLUE + "Bitte geben sie einen gueltigen Wert ein!" + ANSI_RESET);
+                ausgabeMitAbsatz(schriftfarbe + "Bitte geben sie einen gueltigen Wert ein!" + ANSI_RESET);
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
@@ -168,11 +179,11 @@ public final class BefehlsZeilenSchnittstelle {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-      Anzeige der Untermenüs => Untermenü wird als String Array als Parameter übergeben,
-      das Menü wird ausgegeben und die Auswahl wird als Integer zurückgegeben
+      Anzeige der Untermenues => Untermenue wird als String Array als Parameter uebergeben,
+      das Menue wird ausgegeben und die Auswahl wird als Integer zurueckgegeben
 
     Parameter: Array von Strings mit dem Auswahltext der angezeigt werden soll
-    Rückgabe: Die Auswahl des Bedieners als Integer Wert
+    Rueckgabe: Die Auswahl des Bedieners als Integer Wert
    */
     public static int unterMenue(String[] unterMenue, String menueTitel) {
 
@@ -185,15 +196,15 @@ public final class BefehlsZeilenSchnittstelle {
 
         do {
             for (String untermenue : unterMenue) {
-                ausgabeMitAbsatz(ANSI_CYAN + untermenue + ANSI_RESET);
+                ausgabeMitAbsatz(schriftfarbe + untermenue + ANSI_RESET);
             }
             System.out.println();
-            ausgabeOhneAbsatz(ANSI_CYAN + "Waehlen sie das gewuenschte Untermenue (1-" + (unterMenue.length) + ") oder (99 Menue verlassen): " + ANSI_RESET);
+            ausgabeOhneAbsatz(schriftfarbe + "Waehlen sie das gewuenschte Untermenue (1-" + (unterMenue.length) + ") oder (99 Menue verlassen): " + ANSI_RESET);
 
-            //Liest Eingabe als String ein um zu überpfüfen ob die Eingabe gültig ist
+            //Liest Eingabe als String ein um zu ueberpfuefen ob die Eingabe gueltig ist
             auswahlString = scan.next();
 
-            // Überprüft ob die Eingabe eine Ganzzahl [1-(länge des Untermenüs)] oder 99 ist
+            // ueberprueft ob die Eingabe eine Ganzzahl [1-(laenge des Untermenues)] oder 99 ist
             if(!auswahlString.matches("[1-" + (unterMenue.length) + "]") & !auswahlString.equals("99")){
 
                 BefehlsZeilenSchnittstelle.bildReinigen(menueTitel,1);
@@ -235,10 +246,10 @@ public final class BefehlsZeilenSchnittstelle {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Die Methode verzoegerung generiert eine Verzögerung von einer vordefinierten Dauer, um zum Beispiel eine Meldung aus-
+    Die Methode verzoegerung generiert eine Verzoegerung von einer vordefinierten Dauer, um zum Beispiel eine Meldung aus-
     zugeben.
 
-    Parameter: Verzögerungsdauer in ms
+    Parameter: Verzoegerungsdauer in ms
      */
     public static void verzoegerung(int dauer){
         try {
@@ -250,8 +261,8 @@ public final class BefehlsZeilenSchnittstelle {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Die Methode korrekteEingabeBestätigen fragt den Benutzer ab ob die soeben Eingegebene Eingabe korrekt ist. Der Benutzer
-    hat die Möglichkeit die Eingabe nochmals zu wiederholen oder die Eingabe abzubrechen, falls die Eingabe korrekt ist,
+    Die Methode korrekteEingabeBestaetigen fragt den Benutzer ab ob die soeben Eingegebene Eingabe korrekt ist. Der Benutzer
+    hat die Moeglichkeit die Eingabe nochmals zu wiederholen oder die Eingabe abzubrechen, falls die Eingabe korrekt ist,
     kann die Eingabe gespeichert werden.
      */
 
@@ -272,11 +283,11 @@ public final class BefehlsZeilenSchnittstelle {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /*
-    Die Methode eingabeMitWertpruefung prüft ob der eingegebene Wert des Users eine Ganzzahl ist und sich
+    Die Methode eingabeMitWertpruefung prueft ob der eingegebene Wert des Users eine Ganzzahl ist und sich
     im Wertebereich des Arrays befindet.
 
-    Parameter: Länge des gültigen Eingabebereiches -> Von 1-99 möglich
-    Rückgabe: Die gültige Eingabe als Integer Wert
+    Parameter: Laenge des gueltigen Eingabebereiches -> Von 1-99 moeglich
+    Rueckgabe: Die gueltige Eingabe als Integer Wert
     */
     public static int eingabeMitWertpruefung(int arrayLaenge){
 
@@ -288,19 +299,19 @@ public final class BefehlsZeilenSchnittstelle {
         Scanner scan = new Scanner(System.in);
 
         do {
-            //Liest Eingabe als String ein um zu überpfüfen ob die Eingabe gültig ist
+            //Liest Eingabe als String ein um zu ueberpfuefen ob die Eingabe gueltig ist
             ausgabeOhneAbsatz("");
             eingabeString = scan.next();
 
-            // Überprüft ob die Eingabe eine Ganzzahl [1-99] ist
+            // ueberprueft ob die Eingabe eine Ganzzahl [1-99] ist
             if (eingabeString.matches("^([1-9][0-9]?)$")) {
-                // Überprüft ob die Eingabe in der Range des Arrays ist
+                // ueberprueft ob die Eingabe in der Range des Arrays ist
                 if ((Integer.parseInt(eingabeString) <= (arrayLaenge)) && Integer.parseInt(eingabeString) > 0) {
 
                     eingabeInt = Integer.parseInt(eingabeString);
                     gueltigeEingabe = true;
                 } else {
-                    // Gibt eine Fehlermeldung bei nicht korrekter Eingabe und lässt die Abfrage nochmals beginnen
+                    // Gibt eine Fehlermeldung bei nicht korrekter Eingabe und laesst die Abfrage nochmals beginnen
                     ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein!");
                     System.out.println();
 
@@ -308,7 +319,7 @@ public final class BefehlsZeilenSchnittstelle {
                     gueltigeEingabe = false;
                 }
             } else {
-                // Gibt eine Fehlermeldung bei nicht korrekter Eingabe und lässt die Abfrage nochmals beginnen
+                // Gibt eine Fehlermeldung bei nicht korrekter Eingabe und laesst die Abfrage nochmals beginnen
                 ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein!");
                 System.out.println();
 
@@ -331,7 +342,7 @@ public final class BefehlsZeilenSchnittstelle {
 
     public static String textFormatieren(String spaltenInhalt, int spaltenBreite){
 
-        StringBuffer leerzeichen = new StringBuffer("");// Stringbuilder für die Lehrzeichen nach dem Text
+        StringBuffer leerzeichen = new StringBuffer("");// Stringbuilder fuer die Lehrzeichen nach dem Text
 
         int anzahlLeerzeichen = (spaltenBreite - spaltenInhalt.length()); // Berechnen der fehlenden Leerzeichen
 
@@ -339,7 +350,7 @@ public final class BefehlsZeilenSchnittstelle {
             anzahlLeerzeichen = 5;
         }
 
-        for (int i = 0; i != anzahlLeerzeichen; i++) { // Hinzufügen von Leerzeichen
+        for (int i = 0; i != anzahlLeerzeichen; i++) { // Hinzufuegen von Leerzeichen
             char lehrzeichenA = ' ';
             leerzeichen.append(lehrzeichenA);
         }
@@ -352,7 +363,7 @@ public final class BefehlsZeilenSchnittstelle {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /*
-        Diese Methode prüft ob die Eingage nur Zahlen verwendet werden
+        Diese Methode prueft ob die Eingage nur Zahlen verwendet werden
      */
     public static int eingabeAufIntegerPruefen() {
 
@@ -362,7 +373,7 @@ public final class BefehlsZeilenSchnittstelle {
 
         Scanner scan = new Scanner(System.in);
 
-        //Prüft ob die Eingabe eine Zahl ist und keine Sonderzeichen enthält
+        //Prueft ob die Eingabe eine Zahl ist und keine Sonderzeichen enthaelt
         do {
             eingabe = scan.next();
             if(!(eingabe.length() > 11 || eingabe.isEmpty())) {
@@ -386,7 +397,7 @@ public final class BefehlsZeilenSchnittstelle {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /*
-        Diese Methode prüft ob die Eingage nur Zahlen verwendet werden
+        Diese Methode prueft ob die Eingage nur Zahlen verwendet werden
      */
     public static boolean eingabeIntPruefen(String eingabe){
 
@@ -405,9 +416,9 @@ public final class BefehlsZeilenSchnittstelle {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /*
-        Eingabe auf korrektes Datum und korrektes Format prüfen
+        Eingabe auf korrektes Datum und korrektes Format pruefen
 
-    Rückgabe = Korrektes Datum als String
+    Rueckgabe = Korrektes Datum als String
 
      */
 
@@ -431,7 +442,7 @@ public final class BefehlsZeilenSchnittstelle {
                 korrekteEingabe = true;
 
             } catch (ParseException e) {
-                ausgabeMitAbsatz("Ungültiges Datum oder falsches Format");
+                ausgabeMitAbsatz("Ungueltiges Datum oder falsches Format");
                 ausgabeMitAbsatz("Bitte verwenden sie folgendes Format: dd.MM.yyyy");
                 ausgabeOhneAbsatz("");
                 korrekteEingabe = false;
@@ -447,11 +458,11 @@ public final class BefehlsZeilenSchnittstelle {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /*
-        Ausgabe eines Textes mit Erwartung einer Eingabe die keine Sonderzeichnen oder Zahlen enthält (z.B Namen), ebenfalls wird
+        Ausgabe eines Textes mit Erwartung einer Eingabe die keine Sonderzeichnen oder Zahlen enthaelt (z.B Namen), ebenfalls wird
         die maximale und minimale Laenge des String geprueft
 
         Parameter = Ausgabe
-        Rückgabe = Korrektes Eingabe als String
+        Rueckgabe = Korrektes Eingabe als String
      */
     public static String abfrageMitEingabeString(String abfrage) {
         Scanner scan = new Scanner(System.in);
@@ -490,10 +501,10 @@ public final class BefehlsZeilenSchnittstelle {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /*
-        Ausgabe eines Textes mit Erwartung einer Eingabe die keine Sonderzeichnen oder Buchstaben enthält
+        Ausgabe eines Textes mit Erwartung einer Eingabe die keine Sonderzeichnen oder Buchstaben enthaelt
 
         Parameter = Ausgabe
-        Rückgabe = Korrektes Eingabe als int
+        Rueckgabe = Korrektes Eingabe als int
 
      */
 
@@ -512,7 +523,7 @@ public final class BefehlsZeilenSchnittstelle {
         Ausgabe eines Textes mit Erwartung einer Eingabe eines Datum im richtigen Format
 
         Parameter = Ausgabe
-        Rückgabe = Korrektes Eingabe als int
+        Rueckgabe = Korrektes Eingabe als int
 
      */
 
@@ -531,8 +542,8 @@ public final class BefehlsZeilenSchnittstelle {
     /*
         Ausgabe eines Textes mit Erwartung einer Eingabe mit maximal 45 und mindestens 1 Zeichen
 
-        Parameter = Ausgabe -> Die Ausgabe die für die Fragestellung ausgegeben wird
-        Rückgabe = Korrektes Eingabe als String
+        Parameter = Ausgabe -> Die Ausgabe die fuer die Fragestellung ausgegeben wird
+        Rueckgabe = Korrektes Eingabe als String
      */
     public static String abfrageMitEingabeFrei45(String ausgabe){
 
@@ -560,8 +571,8 @@ public final class BefehlsZeilenSchnittstelle {
     /*
         Ausgabe eines Textes mit Erwartung einer Eingabe mit maximal 45 und mindestens 1 Zeichen
 
-        Parameter = Ausgabe -> Die Ausgabe die für die Fragestellung ausgegeben wird
-        Rückgabe = Korrektes Eingabe als String
+        Parameter = Ausgabe -> Die Ausgabe die fuer die Fragestellung ausgegeben wird
+        Rueckgabe = Korrektes Eingabe als String
      */
     public static String abfrageMitEingabeFrei255(String ausgabe){
 
@@ -588,10 +599,10 @@ public final class BefehlsZeilenSchnittstelle {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /*
-        Ausgabe einer Auswahl von Währungen mit Erwartung einer korrekten Eingabe
+        Ausgabe einer Auswahl von Waehrungen mit Erwartung einer korrekten Eingabe
 
         Parameter = Ausgabe
-        Rückgabe = Auswahl als String
+        Rueckgabe = Auswahl als String
 
      */
 
@@ -628,16 +639,16 @@ public final class BefehlsZeilenSchnittstelle {
 
 
           bildReinigen("Programm Beenden",2);
-          ausgabeMitAbsatz("Sind sie sicher, dass sie das Programm Beenden möchten?");
+          ausgabeMitAbsatz("Sind sie sicher, dass sie das Programm Beenden moechten?");
           ausgabeMitAbsatz("1. Ja");
           ausgabeMitAbsatz("2. Nein");
           String auswahl = scan.next();
 
 
-          // Überprüft ob die Eingabe eine Ganzzahl [1-2]
+          // ueberprueft ob die Eingabe eine Ganzzahl [1-2]
           if(!auswahl.matches("[1-2]")){
 
-              ausgabeMitAbsatz("Bitte geben sie einen gültigen Wert ein!");
+              ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein!");
               System.out.println();
 
               verzoegerung(1500);
@@ -663,7 +674,7 @@ public final class BefehlsZeilenSchnittstelle {
      */
         public static void ausgabeMitAbsatz(String ausgabe){
 
-            System.out.println(seitenAbstandgenerieren(5) + ausgabe);
+            System.out.println(schriftfarbe + seitenAbstandgenerieren(5) + ausgabe + ANSI_RESET);
 
 
         }  //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -674,7 +685,7 @@ public final class BefehlsZeilenSchnittstelle {
      */
     public static void ausgabeOhneAbsatz(String ausgabe){
 
-        System.out.print(seitenAbstandgenerieren(5) + ausgabe);
+        System.out.print(schriftfarbe + seitenAbstandgenerieren(5) + ausgabe + ANSI_RESET);
 
 
     }
@@ -706,7 +717,8 @@ public final class BefehlsZeilenSchnittstelle {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-       Methode um das Programm zu Pausieren und mit beliebiger Taste weiterzufahren
+       In dieser Methode wird die Titelzeile Gebildet
+       Parameter: Text der in der Titelzeile ausgegeben werden soll, kontext -> Auswahl zwischen 1.Haupt- oder 2.Untermenue
      */
 
     public static void titelZeile(String text, int kontext){
@@ -715,15 +727,15 @@ public final class BefehlsZeilenSchnittstelle {
             int nachEinmitten = ((120 - text.length()) % 2) + vorEinmitten;// Berechnung Leer zeichen nach dem Text
 
 
-            StringBuilder vor = new StringBuilder("");// Stringbuilder für die Lehrzeichen vor dem Text
-            StringBuffer nach = new StringBuffer("");// Stringbuilder für die Lehrzeichen nach dem Text
+            StringBuilder vor = new StringBuilder("");// Stringbuilder fuer die Lehrzeichen vor dem Text
+            StringBuffer nach = new StringBuffer("");// Stringbuilder fuer die Lehrzeichen nach dem Text
 
-            // Hinzufügen von Lehrzeichen zum Einmitten des Textes -> vor + (Anzahl benötigten Leerzeichen * char (' '))
+            // Hinzufuegen von Lehrzeichen zum Einmitten des Textes -> vor + (Anzahl benoetigten Leerzeichen * char (' '))
             for (int i = 0; i != vorEinmitten; i++) {
                 char lehrzeichenA = ' ';
                 vor.append(lehrzeichenA);
             }
-            // Hinzufügen von Lehrzeichen zum Einmitten des Textes -> nach + (Anzahl benötigten Leerzeichen * char (' '))
+            // Hinzufuegen von Lehrzeichen zum Einmitten des Textes -> nach + (Anzahl benoetigten Leerzeichen * char (' '))
             for (int i = 0; i != nachEinmitten; i++) {
                 char lehrzeichenB = ' ';
                 nach.append(lehrzeichenB);
@@ -735,16 +747,37 @@ public final class BefehlsZeilenSchnittstelle {
 
             if (kontext == 1) {
                 text.toString();
-                System.out.println(ANSI_BLUE +"\n" + "                                                                                Angemeldeter Benutzer: " + Benutzer.angemeldeterBenutzer +"\t" +dtf.format(LocalDateTime.now()) + ANSI_RESET);
+                System.out.println(schriftfarbe +"\n" + "                                                                                Angemeldeter Benutzer: " + Benutzer.angemeldeterBenutzer +"\t" +dtf.format(LocalDateTime.now()) + ANSI_RESET);
 
-                System.out.println(ANSI_BLUE + "╔==========================================================================================================================╗" + ANSI_RESET);
-                System.out.println(ANSI_BLUE + "║" + vor + text + nach + "  ║" + ANSI_RESET);
-                System.out.println(ANSI_BLUE + "╚==========================================================================================================================╝" + ANSI_RESET);
+                System.out.println(schriftfarbe + "╔==========================================================================================================================╗" + ANSI_RESET);
+                System.out.println(schriftfarbe + "║" + vor + text + nach + "  ║" + ANSI_RESET);
+                System.out.println(schriftfarbe + "╚==========================================================================================================================╝" + ANSI_RESET);
             }  else if(kontext == 2){
-                System.out.println(ANSI_CYAN + "┌--------------------------------------------------------------------------------------------------------------------------┐" + ANSI_RESET);
-                System.out.println(ANSI_CYAN + "|" + vor+ text + nach + "  |" + ANSI_RESET);
-                System.out.println(ANSI_CYAN + "└--------------------------------------------------------------------------------------------------------------------------┘" + ANSI_RESET);
+                System.out.println(schriftfarbe + "┌--------------------------------------------------------------------------------------------------------------------------┐" + ANSI_RESET);
+                System.out.println(schriftfarbe + "|" + vor+ text + nach + "  |" + ANSI_RESET);
+                System.out.println(schriftfarbe + "└--------------------------------------------------------------------------------------------------------------------------┘" + ANSI_RESET);
             }
+
+        }
+    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+       In dieser Methode zur Wahl des Farbschemas
+       Parameter: Farbschema Wahl der Schriftfarbe
+       Rueckgabewert: Farbschema
+     */
+
+        public static void farbschemaWaehlen(Farbschema farbschema){
+
+        switch (farbschema){
+            case ROT: schriftfarbe = ANSI_ROT; break;
+            case BLAU: schriftfarbe = ANSI_BLAU; break;
+            case VIOLETT: schriftfarbe = ANSI_VIOLETT;  break;
+            case GELB:schriftfarbe = ANSI_GELB;  break;
+            case TUERKIS: schriftfarbe = ANSI_TUERKIS;  break;
+            case SCHWARZ: schriftfarbe = ANSI_SCHWARZ; break;
+            case WEISS: schriftfarbe = ANSI_WEISS;  break;
+            case GRUEN: schriftfarbe = ANSI_GRUEN; break;
+        }
 
         }
     }

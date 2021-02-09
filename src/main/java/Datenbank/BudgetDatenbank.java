@@ -11,9 +11,9 @@ public class BudgetDatenbank extends Datenbank {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank
+    Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
     Parameter: Inhalt der Tabelle der Datenbank
-    Rückgabewert: Hashmap mit Objekten für jeden Tuple
+    Rueckgabewert: Hashmap mit Objekten fuer jeden Tuple
      */
     public HashMap<Budget, Integer> budgetAusgeben(ResultSet dbInhalt) throws SQLException {
 
@@ -53,9 +53,9 @@ public class BudgetDatenbank extends Datenbank {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Erstellung eines Querys für ein Update eines Budgets
+    Methode zur Erstellung eines Querys fuer ein Update eines Budgets
     Parameter: Objekt des Aufrufers
-    Rückgabe: query als String
+    Rueckgabe: query als String
      */
     String updateQuery(Budget budget) {
 
@@ -66,9 +66,9 @@ public class BudgetDatenbank extends Datenbank {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Erstellung eines Querys für ein Anlegen eines neuen Budget
+    Methode zur Erstellung eines Querys fuer ein Anlegen eines neuen Budget
      Parameter: Objekt des Aufrufers
-     Rückgabe: query als String
+     Rueckgabe: query als String
      */
     String anlegenQuery(Budget budget){
 

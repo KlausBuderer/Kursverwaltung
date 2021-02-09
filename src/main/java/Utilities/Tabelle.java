@@ -31,7 +31,7 @@ public class Tabelle {
         public void setHeaders(String... headers) {
             this.kopfzeile = headers;
         }
-        // Neuer String in Arraylist übergeben
+        // Neuer String in Arraylist uebergeben
         public void zeileHinzufuegen(String... zellen) {
             zeile.add(zellen);
         }
@@ -46,7 +46,7 @@ public class Tabelle {
                     maximaleBreite = new int[zellen.length];
                 }
                 if (zellen.length != maximaleBreite.length) {
-                    throw new IllegalArgumentException("Die Anazahl Zelle der Zeilen und des Headers müssen gleich sein");
+                    throw new IllegalArgumentException("Die Anazahl Zelle der Zeilen und des Headers muessen gleich sein");
                 }
                 for (int i = 0; i < zellen.length; i++) {
                     maximaleBreite[i] = Math.max(maximaleBreite[i], zellen[i].length());
@@ -71,7 +71,7 @@ public class Tabelle {
             for (int i = 0; i < spaltenBreite.length; i++) {
                 String linie = String.join("", Collections.nCopies(spaltenBreite[i] +
                         vertikaleLinie.length() + 1, HORIZONTALE_LINIE));
-                System.out.print(kreuzungLinie + linie + (i == spaltenBreite.length - 1 ? kreuzungLinie : ""));
+                System.out.print(BefehlsZeilenSchnittstelle.schriftfarbe + kreuzungLinie + linie + (i == spaltenBreite.length - 1 ? kreuzungLinie : "") + BefehlsZeilenSchnittstelle.ANSI_RESET);
             }
             System.out.println();
         }
@@ -82,9 +82,9 @@ public class Tabelle {
                 String s = zellen[i];
                 String verStrTemp = i == zellen.length - 1 ? vertikaleLinie : "";
                 if (rechtsBuendig) {
-                    System.out.printf("%s %" + maximaleBreite[i] + "s %s", vertikaleLinie, s, verStrTemp);
+                    System.out.printf(BefehlsZeilenSchnittstelle.schriftfarbe +"%s %" + maximaleBreite[i] + "s %s", vertikaleLinie, s, verStrTemp + BefehlsZeilenSchnittstelle.ANSI_RESET);
                 } else {
-                    System.out.printf("%s %-" + maximaleBreite[i] + "s %s", vertikaleLinie, s, verStrTemp);
+                    System.out.printf(BefehlsZeilenSchnittstelle.schriftfarbe + "%s %-" + maximaleBreite[i] + "s %s", vertikaleLinie, s, verStrTemp + BefehlsZeilenSchnittstelle.ANSI_RESET);
                 }
             }
             System.out.println();

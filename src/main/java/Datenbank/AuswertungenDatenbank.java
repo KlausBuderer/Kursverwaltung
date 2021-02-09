@@ -31,15 +31,21 @@ public class AuswertungenDatenbank extends Datenbank {
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public List storeproduceZertifikateAlleMitarbeiterGueltigkeit(String datumVon, String datumBis){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_NICHT_GUELTIG_ALLE_MA_ZERT()}",datumVon,datumBis,STORE_PROCEDURE_KONTEXT.ZERTIFIKAT_ALLE_MITARBEITER_GUELTIGKEIT);
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_NICHT_GUELTIG_ALLE_MA_ZERT()}",datumBis," ",STORE_PROCEDURE_KONTEXT.ZERTIFIKAT_ALLE_MITARBEITER_GUELTIGKEIT);
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public List storeproduceKursProMitarbeiter(String mitarbeiterIdentification){
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_MA_KURSE()}",mitarbeiterIdentification," ",STORE_PROCEDURE_KONTEXT.KURS_PRO_MITARBEITER);
     }
 
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
     Parameter: Inhalt der Tabelle der Datenbank
-    Rückgabewert: Liste mit Objekten für jeden Tuple
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
      */
     public List<WeiterbildungAlleMitarbeiterZeitraum> ausfuehrenWeiterbildungAlleMitarbeiterZeitraum(ResultSet dbInhalt) throws SQLException {
 
@@ -64,9 +70,9 @@ public class AuswertungenDatenbank extends Datenbank {
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
     Parameter: Inhalt der Tabelle der Datenbank
-    Rückgabewert: Liste mit Objekten für jeden Tuple
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
      */
     public List<ZertifikateAlleMitarbeiter> ausfuehrenZertifikateAlleMitarbeiter(ResultSet dbInhalt) throws SQLException {
 
@@ -89,9 +95,9 @@ public class AuswertungenDatenbank extends Datenbank {
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
     Parameter: Inhalt der Tabelle der Datenbank
-    Rückgabewert: Liste mit Objekten für jeden Tuple
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
      */
     public List<KurseAlleMitarbeiter> ausfuehrenKurseAlleMitarbeiter(ResultSet dbInhalt) throws SQLException {
 
@@ -115,9 +121,9 @@ public class AuswertungenDatenbank extends Datenbank {
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
     Parameter: Inhalt der Tabelle der Datenbank
-    Rückgabewert: Liste mit Objekten für jeden Tuple
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
      */
     public List<ZertifikateAlleMitarbeiterGueltigkeit> ausfuehrenZertifikateAlleMitarbeiterGueltigkeit(ResultSet dbInhalt) throws SQLException {
 
@@ -141,9 +147,39 @@ public class AuswertungenDatenbank extends Datenbank {
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
     Parameter: Inhalt der Tabelle der Datenbank
-    Rückgabewert: Liste mit Objekten für jeden Tuple
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
+     */
+    public List<KursProMitarbeiter> ausfuehrenKurseProMitarbeiter(ResultSet dbInhalt) throws SQLException {
+
+        List<KursProMitarbeiter> KurseProMitarbeiterliste = new ArrayList<>();
+        KursProMitarbeiter kurseProMitarbeiter;
+
+        while (dbInhalt.next()) {
+
+            int mitarbeiterID = dbInhalt.getInt("mitarbeiterID");
+            String nachname = dbInhalt.getString("nachname");
+            String vorname = dbInhalt.getString("vorname");
+            String kurscode = dbInhalt.getString("kurscode");
+            String kursbeschreibung = dbInhalt.getString("kursbeschreibung");
+            String anbieter = dbInhalt.getString("anbieter");
+            int kosten = dbInhalt.getInt("kosten");
+            String waehrung = dbInhalt.getString("waehrung");
+            kurseProMitarbeiter = new KursProMitarbeiter(mitarbeiterID, nachname, vorname, kurscode, kursbeschreibung, anbieter, kosten, waehrung);
+
+
+            KurseProMitarbeiterliste.add(kurseProMitarbeiter);
+        }
+        return KurseProMitarbeiterliste;
+    }
+
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
+    Parameter: Inhalt der Tabelle der Datenbank
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
      */
     public List<?> auswertungAusDbLesen(String query){
         return  auswertungAusgeben(query);

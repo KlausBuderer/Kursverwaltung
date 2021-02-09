@@ -60,7 +60,7 @@ public class Budget{
             budgetJahr = jahr + (BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(6) - 1);
             //Budget Betrag
             budgetBetrag = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Budget Betrag: ");
-            //Gibt Währung zur Auswahl
+            //Gibt Waehrung zur Auswahl
             waehrung = BefehlsZeilenSchnittstelle.abfrageWaehrung();
             //Gibt Kostenstellen zur Auswahl aus
             Kostenstelle kostenstelle = new Kostenstelle();
@@ -77,7 +77,7 @@ public class Budget{
             tabelle.ausgabe();
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
 
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
@@ -96,7 +96,7 @@ public class Budget{
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Ausgabe einer Auswahlliste Kostenstelle für den Benutzer
+    Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzer
 
      */
     public void auswahlListeBudgetAusgeben() {
@@ -134,10 +134,10 @@ public class Budget{
 
         arrayLaenge = budgetArray.length;
 
-        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie ein Budget aus der Liste (1-" + (arrayLaenge - 1) + ")");
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte waehlen sie ein Budget aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
-        //Schreiben der Attributen der ausgewählten Daten in die Membervariablen
+        //Schreiben der Attributen der ausgewaehlten Daten in die Membervariablen
         budgetId = budgetArray[auswahl].budgetId;
         budgetBetrag = budgetArray[auswahl].budgetBetrag;
         budgetJahr = budgetArray[auswahl].budgetJahr;
@@ -210,7 +210,7 @@ public class Budget{
             tabelle.zeileHinzufuegen(attributenArrayFuerTabelle());
             tabelle.ausgabe();
 
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
@@ -235,7 +235,7 @@ public class Budget{
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Diese Methode packt die Membervariablen in ein Array für die Ausgabe in einer Tabelle
+    Diese Methode packt die Membervariablen in ein Array fuer die Ausgabe in einer Tabelle
      */
     String[] attributenArrayFuerTabelle(){
         String[] attributenArray = {" ",kostenstellenBezeichnung, String.valueOf(budgetJahr), String.valueOf(budgetBetrag),waehrung};
