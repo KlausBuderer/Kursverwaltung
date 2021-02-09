@@ -9,10 +9,13 @@ import Mitarbeiter.Mitarbeiter;
 import Zertifikate.Zertifikate;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 // Utility Klasse für Ausgaben und Eingaben in der Konsole
 public final class BefehlsZeilenSchnittstelle {
@@ -728,17 +731,19 @@ public final class BefehlsZeilenSchnittstelle {
             // Ausgabe einer Antwort in einem Frame
             // Ausgabe einer Frage in einem Frame
 
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+
             if (kontext == 1) {
                 text.toString();
-                System.out.println(ANSI_BLUE + "                                                                                                                 " + Benutzer.angemeldeterBenutzer + ANSI_RESET);
+                System.out.println(ANSI_BLUE + "\n" +"                                                 Angemeldeter Benutzer: " + Benutzer.angemeldeterBenutzer  +"\t" +"\t" +"\t" +"Anmeldezeit: " +dtf.format(LocalDateTime.now())  + ANSI_RESET);
 
-                System.out.println(ANSI_BLUE + "==========================================================================================================================" + ANSI_RESET);
-                System.out.println(ANSI_BLUE + "|" + vor + text + nach + "|" + ANSI_RESET);
-                System.out.println(ANSI_BLUE + "==========================================================================================================================" + ANSI_RESET);
+                System.out.println(ANSI_BLUE + "╔==========================================================================================================================╗" + ANSI_RESET);
+                System.out.println(ANSI_BLUE + "║" + vor + text + nach + "  ║" + ANSI_RESET);
+                System.out.println(ANSI_BLUE + "╚==========================================================================================================================╝" + ANSI_RESET);
             }  else if(kontext == 2){
-                System.out.println(ANSI_CYAN +"--------------------------------------------------------------------------------------------------------------------------" + ANSI_RESET);
-                System.out.println(ANSI_CYAN +"|" + vor+ text + nach + "|" + ANSI_RESET);
-                System.out.println(ANSI_CYAN +"--------------------------------------------------------------------------------------------------------------------------" + ANSI_RESET);
+                System.out.println(ANSI_CYAN + "┌--------------------------------------------------------------------------------------------------------------------------┐" + ANSI_RESET);
+                System.out.println(ANSI_CYAN + "|" + vor+ text + nach + "  |" + ANSI_RESET);
+                System.out.println(ANSI_CYAN + "└--------------------------------------------------------------------------------------------------------------------------┘" + ANSI_RESET);
             }
 
         }

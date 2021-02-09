@@ -30,8 +30,8 @@ public class AuswertungenDatenbank extends Datenbank {
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public List storeproduceZertifikateAlleMitarbeiterGueltigkeit(String datumVon){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_NICHT_GUELTIG_ALLE_MA_ZERT()}","","", STORE_PROCEDURE_KONTEXT.ZERTIFIKAT_ALLE_MITARBEITER_GUELTIGKEIT);
+    public List storeproduceZertifikateAlleMitarbeiterGueltigkeit(String datumVon, String datumBis){
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_NICHT_GUELTIG_ALLE_MA_ZERT()}",datumVon,datumBis,STORE_PROCEDURE_KONTEXT.ZERTIFIKAT_ALLE_MITARBEITER_GUELTIGKEIT);
     }
 
 
