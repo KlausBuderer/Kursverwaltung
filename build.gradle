@@ -20,3 +20,4 @@ application {
     // Define the main class for the application.
     mainClassName = 'KursverwaltungMain'
 }
+compileJava {options.encoding = "UTF-8"}

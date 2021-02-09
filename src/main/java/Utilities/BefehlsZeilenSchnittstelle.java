@@ -730,15 +730,15 @@ public final class BefehlsZeilenSchnittstelle {
 
             if (kontext == 1) {
                 text.toString();
-                System.out.println(ANSI_BLUE + "                                                                                                                 " + Benutzer.angemeldeterBenutzer + ANSI_RESET);
+                System.out.println(ANSI_BLUE + "                                                                             Angemeldeter Benutzer: " + Benutzer.angemeldeterBenutzer + ANSI_RESET);
 
-                System.out.println(ANSI_BLUE + "==========================================================================================================================" + ANSI_RESET);
-                System.out.println(ANSI_BLUE + "|" + vor + text + nach + "|" + ANSI_RESET);
-                System.out.println(ANSI_BLUE + "==========================================================================================================================" + ANSI_RESET);
+                System.out.println(ANSI_BLUE + "╔==========================================================================================================================╗" + ANSI_RESET);
+                System.out.println(ANSI_BLUE + "║" + vor + text + nach + "  ║" + ANSI_RESET);
+                System.out.println(ANSI_BLUE + "╚==========================================================================================================================╝" + ANSI_RESET);
             }  else if(kontext == 2){
-                System.out.println(ANSI_CYAN +"--------------------------------------------------------------------------------------------------------------------------" + ANSI_RESET);
-                System.out.println(ANSI_CYAN +"|" + vor+ text + nach + "|" + ANSI_RESET);
-                System.out.println(ANSI_CYAN +"--------------------------------------------------------------------------------------------------------------------------" + ANSI_RESET);
+                System.out.println(ANSI_CYAN + "┌--------------------------------------------------------------------------------------------------------------------------┐" + ANSI_RESET);
+                System.out.println(ANSI_CYAN + "|" + vor+ text + nach + "  |" + ANSI_RESET);
+                System.out.println(ANSI_CYAN + "└--------------------------------------------------------------------------------------------------------------------------┘" + ANSI_RESET);
             }
 
         }
