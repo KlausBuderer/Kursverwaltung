@@ -26,7 +26,7 @@ public class KursSuchen {
         do {
             //Suchkriterium Abfragen
             int suchkriterium = suchkriterienAbfragen();
-            //Suchtext zum gewählten Kriterium Abfragen
+            //Suchtext zum gewaehlten Kriterium Abfragen
             suchText = suchTextEinlesen(suchkriterium);
             //Datenbankquery zusammenstellen anhand den Angaben
             query = new KursDatenbank().queryFuerAnzahlAbfrage(SPALTENBEZEICHNUNG[suchkriterium - 1], suchText);
@@ -54,14 +54,14 @@ public class KursSuchen {
 
     /*--------------------------------------------------------------------------------------------------------------------------------------
        Methode die eine Auswahl an Suchkriterien Ausgibt und eine Auswahl vom Bediener liest
-      +Rückgabewert: Auswahl als Integer
+      +Rueckgabewert: Auswahl als Integer
         */
     private int suchkriterienAbfragen() {
 
         String[] HEADER = {"Nr.","Suchkriterium"};
 
         BefehlsZeilenSchnittstelle.bildReinigen("Suchkriterien fuer die Kurssuche",2);
-        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte wählen sie ein Suchkriterium: ");
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte waehlen sie ein Suchkriterium: ");
 
         int auswahlNummer = 1;
 
@@ -84,7 +84,7 @@ public class KursSuchen {
 
     /*--------------------------------------------------------------------------------------------------------------------------------------
     Methode die die Eingabe des Suchtextes einliest
-   Rückgabewert: Suchtext als String
+   Rueckgabewert: Suchtext als String
      */
     private String suchTextEinlesen(int auswahl) {
 
@@ -113,7 +113,7 @@ public class KursSuchen {
     }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Ausgabe einer Auswahlliste Kostenstelle für den Benutzer
+    Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzer
      */
 
     public Kurse auswahlListeKurseAusgeben(HashMap kursHash) {
@@ -146,7 +146,7 @@ public class KursSuchen {
         arrayLaenge = kursArray.length;
 
         //Der Bediener wird zu Auswahl einer der Objekte aufgefordert
-        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie einen Kurs aus der Liste (1-" + (arrayLaenge - 1) + ")");
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte waehlen sie einen Kurs aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
         return kursArray[auswahl];

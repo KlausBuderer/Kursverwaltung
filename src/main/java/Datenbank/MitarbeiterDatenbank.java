@@ -146,7 +146,7 @@ public class MitarbeiterDatenbank extends Datenbank{
 
     /*--------------------------------------------------------------------------------------------------------------------------------------
       Methode die den query aus den Angaben des Bedieners zusammensetzt
-     Rückgabewert: query als String
+     Rueckgabewert: query als String
        */
     public String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
 
@@ -186,7 +186,7 @@ public class MitarbeiterDatenbank extends Datenbank{
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Erstellung eines Querrys für einen Update
+    Methode zur Erstellung eines Querrys fuer einen Update
      */
     private String updateQuerry(Mitarbeiter mitarbeiter){
 
@@ -226,7 +226,7 @@ public class MitarbeiterDatenbank extends Datenbank{
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Erstellung eines Querrys für einen Update
+    Methode zur Erstellung eines Querrys fuer einen Update
      */
     private String updateQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung){
 

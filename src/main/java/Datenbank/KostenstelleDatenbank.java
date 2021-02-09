@@ -11,9 +11,9 @@ public class KostenstelleDatenbank extends Datenbank {
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank.Datenbank
+    Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank.Datenbank
     Parameter: Inhalt der Utilities.Tabelle der Datenbank.Datenbank
-    Rückgabewert: Hashmap mit Objekten für jeden Tuple
+    Rueckgabewert: Hashmap mit Objekten fuer jeden Tuple
      */
     HashMap<Kostenstelle, Integer> kostenstelleAusgeben(ResultSet dbInhalt) throws SQLException {
 
@@ -57,9 +57,9 @@ public class KostenstelleDatenbank extends Datenbank {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Erstellung eines Querys für ein Update einer Kostenstelle
+    Methode zur Erstellung eines Querys fuer ein Update einer Kostenstelle
     Parameter: Objekt des Aufrufers
-    Rückgabe: query als String
+    Rueckgabe: query als String
      */
     String updatequery(Kostenstelle kostenstelle){
 
@@ -72,9 +72,9 @@ public class KostenstelleDatenbank extends Datenbank {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Erstellung eines Querys für ein Anlegen einer Kostenstelle
+    Methode zur Erstellung eines Querys fuer ein Anlegen einer Kostenstelle
      Parameter: Objekt des Aufrufers
-     Rückgabe: query als String
+     Rueckgabe: query als String
      */
     String anlegenQuery(Kostenstelle kostenstelle){
 

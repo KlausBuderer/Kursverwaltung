@@ -57,8 +57,8 @@ public class Zertifikate{
                     zertifikatLoeschen();
                     break;
                 case 99:
-                    //zurück ins Hauptmenü;
-                    System.out.println("Hauptmenü");
+                    //zurueck ins Hauptmenue;
+                    System.out.println("Hauptmenue");
                     gueltigeEingabe = false;
                     break;
                 default:
@@ -97,7 +97,7 @@ public class Zertifikate{
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             System.out.println(toString());
             System.out.println();
-            System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+            System.out.println("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
@@ -153,7 +153,7 @@ public class Zertifikate{
             }
             arrayLaenge = spaltenArray.length;
 
-            System.out.print("Welchen Spalte möchten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
+            System.out.print("Welchen Spalte moechten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
             auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
             switch (auswahl) {
@@ -200,7 +200,7 @@ public class Zertifikate{
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             System.out.println(toString());
             System.out.println();
-            System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+            System.out.println("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
@@ -229,13 +229,13 @@ public class Zertifikate{
         String titelName = "Zertifikat loeschen";
 
         do {
-            //Abfrage welchen Kurs gelöscht werden soll
+            //Abfrage welchen Kurs geloescht werden soll
             //Aufrufen von MitarbeiterSuchen()
             zertifikat = new ZertifikateSuchen().zertifikatSuchen();
-            //Ausgabe der Daten des ausgewählten Kurses
+            //Ausgabe der Daten des ausgewaehlten Kurses
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             System.out.println(zertifikat.toString());
-            //Abfrage ob der Kurs wirklich gelöscht werden soll
+            //Abfrage ob der Kurs wirklich geloescht werden soll
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
                 case 1: //1.Ja-> MitarbeiterLoeschenQuery aufrufen und Methode beenden
@@ -254,11 +254,11 @@ public class Zertifikate{
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode für die Übergabe von den Attributen eines Objekts
+    Methode fuer die uebergabe von den Attributen eines Objekts
      */
     public void objektUebergabe(Zertifikate zertifikat) {
 
-        // Die Daten des gewählten Objekts werden in das sich vorhandene Objekt geschrieben
+        // Die Daten des gewaehlten Objekts werden in das sich vorhandene Objekt geschrieben
         this.zertifikatsId =             zertifikat.zertifikatsId;
         this.kosten =                    zertifikat.kosten;
         this.waehrung =                  zertifikat.waehrung;

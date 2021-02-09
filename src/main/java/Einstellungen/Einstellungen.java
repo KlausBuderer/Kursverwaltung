@@ -10,7 +10,7 @@ import java.util.Scanner;
 
         public class Einstellungen {
 
-            private final String[] UNTERMENUE = {"1.  Datenbank Verbindungsdaten ändern", "99. Hauptmenü"};
+            private final String[] UNTERMENUE = {"1.  Datenbank Verbindungsdaten aendern", "99. Hauptmenue"};
             private final String[] KOPFZEILETABELLE = {"Url", "Benutzer", "Passwort"};
             private String[] angabenTabelle = {url, benutzer, passwort};
 
@@ -33,12 +33,12 @@ import java.util.Scanner;
 
             Scanner scan = new Scanner(System.in);
 
-            //Konstruktor mit der Anzeige des Untermenüs
+            //Konstruktor mit der Anzeige des Untermenues
             public Einstellungen() {
                 unterMenueAnzeigen();
             }
 
-            //Konsruktor für das einmalige Aufstarten der Software
+            //Konsruktor fuer das einmalige Aufstarten der Software
             public Einstellungen(String start){
                 verbindunsDatenBeiStartSetzen();
             }
@@ -127,7 +127,7 @@ import java.util.Scanner;
                         passwort = passwortBenutzerdefiniert;
                         break;
                     default:
-                        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie einen gültigen Wert ein!");
+                        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein!");
 
                 }
 
@@ -145,7 +145,7 @@ import java.util.Scanner;
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Datenbank URL: " + urlBenutzerdefiniert + "\t" + "Benutzer: " + benutzerBenutzerdefiniert + "\t" + "Passwort: " + passwortBenutzerdefiniert);
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
-                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Daten auf ihre Korrektheit");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Daten auf ihre Korrektheit");
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Sind die Daten korrekt?");
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("1. Verbindungsdaten verwenden");
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("2. Neue Verbindungsdaten eingeben");
@@ -162,7 +162,7 @@ import java.util.Scanner;
                             korrekteEingabe = true;
                             break;
                         default:
-                            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie einen gültigen Wert ein!");
+                            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein!");
                             korrekteEingabe = false;
                     }
                 }while(!korrekteEingabe);

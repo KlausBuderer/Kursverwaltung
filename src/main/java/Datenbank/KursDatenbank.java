@@ -17,9 +17,9 @@ public class KursDatenbank extends Datenbank {
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank
+    Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
     Parameter: Inhalt der Utilities.Tabelle der Datenbank
-    Rückgabewert: Hashmap mit Objekten für jeden Tuple
+    Rueckgabewert: Hashmap mit Objekten fuer jeden Tuple
      */
     public HashMap<Kurse, Integer> kursListeErstellen(ResultSet dbInhalt) throws SQLException {
 
@@ -63,7 +63,7 @@ public class KursDatenbank extends Datenbank {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
- Aufruf eines Store Procedure um einen Kurs zu löschen
+ Aufruf eines Store Procedure um einen Kurs zu loeschen
  Parameter: Id des Kurses
   */
     public void kursLoeschen(int kursId){
@@ -72,7 +72,7 @@ public class KursDatenbank extends Datenbank {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Erstellung eines Querys für ein Anlegen eines neuen Datensatzes in der Datenbank
+    Methode zur Erstellung eines Querys fuer ein Anlegen eines neuen Datensatzes in der Datenbank
      */
     private String anlegenQuerry(Kurse kurs){
 
@@ -89,7 +89,7 @@ public class KursDatenbank extends Datenbank {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Erstellung eines Querrys für einen Update von Kostenstelle
+    Methode zur Erstellung eines Querrys fuer einen Update von Kostenstelle
      */
     private String updateQuerry(Kurse kurs){
 
@@ -107,7 +107,7 @@ public class KursDatenbank extends Datenbank {
 
     /*--------------------------------------------------------------------------------------------------------------------------------------
       Methode die den query aus den Angaben des Bedieners zusammensetzt
-     Rückgabewert: query als String
+     Rueckgabewert: query als String
        */
     public String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
 

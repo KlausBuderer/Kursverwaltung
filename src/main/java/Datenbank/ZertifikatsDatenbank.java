@@ -13,9 +13,9 @@ public class ZertifikatsDatenbank extends Datenbank{
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank.Datenbank
+    Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank.Datenbank
     Parameter: Inhalt der Utilities.Tabelle der Datenbank.Datenbank
-    Rückgabewert: Hashmap mit Objekten für jeden Tuple
+    Rueckgabewert: Hashmap mit Objekten fuer jeden Tuple
      */
     HashMap<Zertifikate, Integer> zertifikateListeErstellen(ResultSet dbInhalt) throws SQLException {
 
@@ -45,7 +45,7 @@ public class ZertifikatsDatenbank extends Datenbank{
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
- Aufruf eines Store Procedure um ein Zertifikat zu löschen
+ Aufruf eines Store Procedure um ein Zertifikat zu loeschen
  Parameter: Id des Zertifikats
   */
     public void zertifikatLoeschen(int kursId){
@@ -71,7 +71,7 @@ public class ZertifikatsDatenbank extends Datenbank{
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Erstellung eines Querrys für einen Update von Kostenstelle
+    Methode zur Erstellung eines Querrys fuer einen Update von Kostenstelle
      */
     String updateQuerry(Zertifikate zertifikat){
 
@@ -86,7 +86,7 @@ public class ZertifikatsDatenbank extends Datenbank{
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Erstellung eines Querrys für ein Anlegen eines neuen Kurses
+    Methode zur Erstellung eines Querrys fuer ein Anlegen eines neuen Kurses
      */
     String anlegenQuerry(Zertifikate zerttifikat){
 
@@ -102,7 +102,7 @@ public class ZertifikatsDatenbank extends Datenbank{
 
     /*--------------------------------------------------------------------------------------------------------------------------------------
      Methode die den query aus den Angaben des Bedieners zusammensetzt
-    Rückgabewert: query als String
+    Rueckgabewert: query als String
       */
     public String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
 

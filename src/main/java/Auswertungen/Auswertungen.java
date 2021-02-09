@@ -18,7 +18,7 @@ public class Auswertungen {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zum Anzeigen des Untermenüs
+    Methode zum Anzeigen des Untermenues
      */
     private void untermenuAnzeigen() {
         boolean gueltigeEingabe = false;
@@ -47,7 +47,7 @@ public class Auswertungen {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zum Anzeigen des Untermenüs für die Auswertungen der Mitarbeiter
+    Methode zum Anzeigen des Untermenues fuer die Auswertungen der Mitarbeiter
      */
     private void unterMenuMitarbeiterAnzeigen() {
         boolean gueltigeEingabe = false;
@@ -73,7 +73,7 @@ public class Auswertungen {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zum Anzeigen des Untermenüs für die Auswertungen der Kurse
+    Methode zum Anzeigen des Untermenues fuer die Auswertungen der Kurse
      */
     private void unterMenueWeiterbildungAnzeigen() {
         boolean gueltigeEingabe = false;
@@ -105,7 +105,7 @@ public class Auswertungen {
 
   //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   /*
- Methode zum Anzeigen des Untermenüs für die Auswertungen von Budget und Ausgaben
+ Methode zum Anzeigen des Untermenues fuer die Auswertungen von Budget und Ausgaben
   */
     private void unterMenueBudgetAusgabenAnzeigen() {
         boolean gueltigeEingabe = false;

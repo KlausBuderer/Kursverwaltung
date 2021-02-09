@@ -5,11 +5,11 @@ import Utilities.BefehlsZeilenSchnittstelle;
 public class Administratives{
 
 
-    private String[] unterMenue = {"1.  Kostenstelle Anlegen", "2.  Kostenstelle Mutation", "3.  Budget pro Kostenstelle erfassen", "4.  Budget Mutation", "99. Hauptmenü"};
+    private String[] unterMenue = {"1.  Kostenstelle Anlegen", "2.  Kostenstelle Mutation", "3.  Budget pro Kostenstelle erfassen", "4.  Budget Mutation", "99. Hauptmenue"};
 
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    //Konstruktor anzeigen Hauptmenü
+    //Konstruktor anzeigen Hauptmenue
     public Administratives() {
         untermenueAnzeigen();
 
@@ -18,7 +18,7 @@ public class Administratives{
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /*
-    Die Methode untermenueAnzeige zeigt das Untermenü und führt anhand der Eingabe des Benutzers eine Aktion aus
+    Die Methode untermenueAnzeige zeigt das Untermenue und fuehrt anhand der Eingabe des Benutzers eine Aktion aus
      */
 
     public void untermenueAnzeigen(){
@@ -41,7 +41,7 @@ public class Administratives{
                     new Budget().budgetMutieren();
                     break;
                 case 99:
-                    //zurück ins Hauptmenü;
+                    //zurueck ins Hauptmenue;
                     gueltigeEingabe = false;
                     break;
                 default:

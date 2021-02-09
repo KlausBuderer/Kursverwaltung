@@ -56,7 +56,7 @@ public class Benutzer {
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Es sind keine Benutzer auffindbar");
             return false;
         }
-        // Prüfen ob der Benutzer existiert
+        // Pruefen ob der Benutzer existiert
         Benutzer b;
 
             b = benutzerSuchen(benutzerListe,benutzername);
@@ -65,7 +65,7 @@ public class Benutzer {
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Dieser Benutzer ist nicht vorhanden");
             return false;
         }
-        // Prüfen ob das Passwort korrekt ist
+        // Pruefen ob das Passwort korrekt ist
         if (b.passwort.equals(passwort)){
             // Bei korrekter Eingabe Benutzer anmelden
 
@@ -98,7 +98,7 @@ public class Benutzer {
                 //Ausgabe Benutzername und einlesen der Eingabe
                 benutzer = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Benutzername: ");
 
-                //Prüfen ob Benutzer bereits vorhanden
+                //Pruefen ob Benutzer bereits vorhanden
                 bereitsVorhanden = benutzerBereitsVorhandenPruefen(benutzerAusDateiLesen(), benutzer);
                 if(bereitsVorhanden){
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Benutzername bereits vergeben!");
@@ -147,7 +147,7 @@ public class Benutzer {
             FileWriter fileWriter = new FileWriter("Benutzerverwaltung.txt",true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            // Fügt neue Zeile hinzu
+            // Fuegt neue Zeile hinzu
             bufferedWriter.newLine();
             //Schreibt den neuen Benutzer in die Liste
             bufferedWriter.write(benutzerDaten);
@@ -263,12 +263,12 @@ public class Benutzer {
             }
         }
 
-        //String für Text in Datei mit altem Passwort zusammensetzen
+        //String fuer Text in Datei mit altem Passwort zusammensetzen
         String altesPasswort = benutzer.benutzerAngabenZusammensetzen();
-        // String für Text in Datei mit neuem Passwort zusammensetzen
+        // String fuer Text in Datei mit neuem Passwort zusammensetzen
         this.passwort = zweitesPasswort;
         String neuesPasswort = benutzerAngabenZusammensetzen();
-        //Ausgabe: Überschreiben des aktuell gespeicherten Eintrag mit neuen Daten
+        //Ausgabe: ueberschreiben des aktuell gespeicherten Eintrag mit neuen Daten
         textInDateiUeberschreiben(neuesPasswort,altesPasswort);
 
     }
@@ -284,7 +284,7 @@ public class Benutzer {
             try {
                 //Benutzerverwaltung File einlesen
                 Stream<String> zeilen = Files.lines(Paths.get("Benutzerverwaltung.txt"));
-                //Zeile für Zeile in Liste schreiben
+                //Zeile fuer Zeile in Liste schreiben
                 List<String> alleBenutzerString = zeilen.collect(Collectors.toList());
                 zeilen.close();
 
@@ -292,10 +292,10 @@ public class Benutzer {
                 for (String benutzer: alleBenutzerString) {
                     //Zeile durch Delimiter "," trennen in vier Strings
                     String[] benutzerArray = benutzer.split(",");
-                    // Überprüfen ob die Anzahl Wörter korrekt ist
+                    // ueberpruefen ob die Anzahl Woerter korrekt ist
                     if (benutzerArray.length == 3) {
                         if(benutzerArray[2].equals("ADMINISTRATOR") || benutzerArray[2].equals("BENUTZER"))
-                            //Liste mit Benutzer befüllen und die Benutzer initialisieren
+                            //Liste mit Benutzer befuellen und die Benutzer initialisieren
                                 ALLEBENUTZER.add(new Benutzer(benutzerArray[0], benutzerArray[1], benutzergruppe = benutzerArray[2]));
                     }
                 }
@@ -324,7 +324,7 @@ public class Benutzer {
 
     //-----------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode um zu Prüfen ob Benutzer bereits vorhanden ist
+    Methode um zu Pruefen ob Benutzer bereits vorhanden ist
      */
     public boolean benutzerBereitsVorhandenPruefen(List<Benutzer> benutzerListe, String benutzername){
 

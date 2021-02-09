@@ -32,7 +32,7 @@ public class Kostenstelle {
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /*
-    Die Methode kostenstelleAnlegen lässt den Benutzer eine neue Kostenstelle anlegen
+    Die Methode kostenstelleAnlegen laesst den Benutzer eine neue Kostenstelle anlegen
      */
 
     void kostenstelleAnlegen(){
@@ -54,7 +54,7 @@ public class Kostenstelle {
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Kostenstelle: " + kostenstelleNr + "\tBezeichnung der Kostenstelle: " + bezeichnungKst + "\tVerantwortliche Person der Kostenstelle: " + kostenstelleVerantPerson);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
@@ -73,7 +73,7 @@ public class Kostenstelle {
 
 
        /*
-    Methode zur Ausgabe einer Auswahlliste Kostenstelle für den Benutzer
+    Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzer
 
      */
 
@@ -97,10 +97,10 @@ public class Kostenstelle {
         tabelle.setVertikaleLinie(true);
         tabelle.setHeaders(KOPFZEILE);
 
-        //Schleife durch ganze Hashmap für die Ausgabe in einer Tabelle
+        //Schleife durch ganze Hashmap fuer die Ausgabe in einer Tabelle
         for (Map.Entry<Kostenstelle, Integer> map : kostenstelleMap.entrySet()) {
             kostenstelleArray[i] = map.getKey();
-            //Temporäres Array für die Ausgabe in der Tabelle
+            //Temporaeres Array fuer die Ausgabe in der Tabelle
             String[] tempArray = map.getKey().attributenArrayFuerTabelle();
             tempArray[0] = i + ".";
             // Ausgeben des Array
@@ -111,7 +111,7 @@ public class Kostenstelle {
         tabelle.ausgabe();
 
         arrayLaenge = kostenstelleArray.length;
-        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie eine Kostenstelle aus der Liste (1-" + (arrayLaenge - 1) + ")");
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte waehlen sie eine Kostenstelle aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
         kostenstelleId = kostenstelleArray[auswahl].kostenstelleId;
@@ -173,7 +173,7 @@ public class Kostenstelle {
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Kostenstellen Bezeichnung: " + bezeichnungKst + "\tKostenstellen Nummer: " + kostenstelleNr + "\tVerantwortliche Person: " + kostenstelleVerantPerson);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
@@ -202,7 +202,7 @@ public class Kostenstelle {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Diese Methode packt die Membervariablen in ein Array für die Ausgabe in einer Tabelle
+    Diese Methode packt die Membervariablen in ein Array fuer die Ausgabe in einer Tabelle
      */
     String[] attributenArrayFuerTabelle(){
         String[] attributenArray = {"",String.valueOf(kostenstelleNr),kostenstelleVerantPerson,bezeichnungKst};

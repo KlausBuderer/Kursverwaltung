@@ -24,7 +24,7 @@ public class ZertifikateSuchen {
         do {
             //Suchkriterium Abfragen
             int suchkriterium = suchkriterienAbfragen();
-            //Suchtext zum gewählten Kriterium Abfragen
+            //Suchtext zum gewaehlten Kriterium Abfragen
             suchText = suchTextEinlesen(suchkriterium);
             //Datenbankquery zusammenstellen anhand den Angaben
             query = new ZertifikatsDatenbank().queryFuerAnzahlAbfrage(SUCHKRITERIEN[suchkriterium - 1], suchText);
@@ -49,14 +49,14 @@ public class ZertifikateSuchen {
     }
     /*--------------------------------------------------------------------------------------------------------------------------------------
       Methode die eine Auswahl an Suchkriterien Ausgibt und eine Auswahl vom Bediener liest
-     +Rückgabewert: Auswahl als Integer
+     +Rueckgabewert: Auswahl als Integer
        */
     private int suchkriterienAbfragen() {
 
         String[] HEADER = {"Nr.","Suchkriterium"};
 
         BefehlsZeilenSchnittstelle.bildReinigen("Suchkriterien fuer die Mitarbeitersuche",2);
-        System.out.println("Bitte wählen sie ein Suchkriterium: ");
+        System.out.println("Bitte waehlen sie ein Suchkriterium: ");
 
         int auswahlNummer = 1;
 
@@ -73,13 +73,13 @@ public class ZertifikateSuchen {
             auswahlNummer++;
         }
         tabelle.ausgabe();
-        System.out.print("Nach welchem Kriterium möchten sie suchen: ");
+        System.out.print("Nach welchem Kriterium moechten sie suchen: ");
         return BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(SUCHKRITERIEN.length);
     }
 
     /*--------------------------------------------------------------------------------------------------------------------------------------
    Methode die die Eingabe des Suchtextes einliest
-  Rückgabewert: Suchtext als String
+  Rueckgabewert: Suchtext als String
     */
     private String suchTextEinlesen(int auswahl) {
 
@@ -91,16 +91,16 @@ public class ZertifikateSuchen {
                 suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie den Titel des Zertifikats ein nach dem sie suchen: ");
                 break;
             case 2:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie die Zertifikatsbezeichnung ein nach dem sie suchen möchten: ");
+                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie die Zertifikatsbezeichnung ein nach dem sie suchen moechten: ");
                 break;
             case 3:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Anbieter des Zertifikats ein nach dem sie suchen möchten: ");
+                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Anbieter des Zertifikats ein nach dem sie suchen moechten: ");
                 break;
             case 4:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie die Sprache des Zertifikats ein nach dem sie suchen möchten: ");
+                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie die Sprache des Zertifikats ein nach dem sie suchen moechten: ");
                 break;
             case 5:
-                suchZahl = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Gebn sie die Kosten des Zertifikats ein nach dem sie suchen möchten: ");
+                suchZahl = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Gebn sie die Kosten des Zertifikats ein nach dem sie suchen moechten: ");
                 suchText = String.valueOf(suchZahl);
                 break;
             case 6:
@@ -115,7 +115,7 @@ public class ZertifikateSuchen {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Ausgabe einer Auswahlliste Kostenstelle für den Benutzer
+    Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzer
      */
     public Zertifikate auswahlListeZertifikateAusgeben(HashMap zertifikateHash) {
 
@@ -151,7 +151,7 @@ public class ZertifikateSuchen {
         arrayLaenge = zertifikatArray.length;
 
         //Der Bediener wird zu Auswahl einer der Objekte aufgefordert
-        System.out.print("Bitte wählen sie ein Zertifikat aus der Liste (1-" + (arrayLaenge-1) + ")");
+        System.out.print("Bitte waehlen sie ein Zertifikat aus der Liste (1-" + (arrayLaenge-1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
        return zertifikatArray[auswahl];

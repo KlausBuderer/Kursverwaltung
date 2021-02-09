@@ -14,9 +14,9 @@ public class Datenbank {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Die Methode führt einen Verbindungstest
+    Die Methode fuehrt einen Verbindungstest
 
-    Rückgabewert: Das Resultat des Verbindungstest als Boolean
+    Rueckgabewert: Das Resultat des Verbindungstest als Boolean
      */
     public boolean verbindungTesten() {
 
@@ -85,11 +85,11 @@ public class Datenbank {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Abfrage aus Datenbank.Datenbank für Integer Werte -> Gibt einen HashMap zurück Key = ID, Value = Inhalt
+    Abfrage aus Datenbank.Datenbank fuer Integer Werte -> Gibt einen HashMap zurueck Key = ID, Value = Inhalt
 
     Parameter: Tabellennamen der Datenbank.Datenbank als String
 
-    Rückgabewert: HashMap mit Objekt als Key und ID als Value
+    Rueckgabewert: HashMap mit Objekt als Key und ID als Value
      */
     public HashMap<?, Integer> datenAuslesenfuerAbfrage(String tabelle) {
 
@@ -186,11 +186,11 @@ public class Datenbank {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Abfrage aus Datenbank.Datenbank für Integer Werte -> Gibt einen HashMap zurück Key = ID, Value = Inhalt
+    Abfrage aus Datenbank.Datenbank fuer Integer Werte -> Gibt einen HashMap zurueck Key = ID, Value = Inhalt
 
     Parameter: Tabellennamen der Datenbank.Datenbank als String
 
-    Rückgabewert: HashMap mit Objekt als Key und ID als Value
+    Rueckgabewert: HashMap mit Objekt als Key und ID als Value
      */
     public List<?> auswertungAusgeben(String view) {
 
@@ -236,11 +236,11 @@ public class Datenbank {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Abfrage aus Datenbank.Datenbank für Integer Werte -> Gibt einen HashMap zurück Key = ID, Value = Inhalt
+    Abfrage aus Datenbank.Datenbank fuer Integer Werte -> Gibt einen HashMap zurueck Key = ID, Value = Inhalt
 
     Parameter: Tabellennamen der Datenbank.Datenbank als String
 
-    Rückgabewert: HashMap mit Objekt als Key und ID als Value
+    Rueckgabewert: HashMap mit Objekt als Key und ID als Value
      */
     public HashMap<?, Integer> datenListeAusgeben(String query) {
 
@@ -283,9 +283,9 @@ public class Datenbank {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     /*
-     Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befüllen der Membervariablen mit den Werten der Datenbank.Datenbank
+     Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank.Datenbank
     Parameter: Inhalt der Utilities.Tabelle der Datenbank.Datenbank
-    Rückgabewert: Hashmap mit Objekten für jeden Tuple
+    Rueckgabewert: Hashmap mit Objekten fuer jeden Tuple
 
      */
 
@@ -296,7 +296,7 @@ public class Datenbank {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Die Methode untermenueAnzeige zeigt das Untermenü und führt anhand der Eingabe des Benutzers eine Aktion aus
+    Die Methode untermenueAnzeige zeigt das Untermenue und fuehrt anhand der Eingabe des Benutzers eine Aktion aus
      */
     public HashMap storeProcedureAufrufen(String query, int parameter, STORE_PROCEDURE_KONTEXT kontext) {
 
@@ -354,7 +354,7 @@ public class Datenbank {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Die Methode untermenueAnzeige zeigt das Untermenü und führt anhand der Eingabe des Benutzers eine Aktion aus
+    Die Methode untermenueAnzeige zeigt das Untermenue und fuehrt anhand der Eingabe des Benutzers eine Aktion aus
      */
 
     public List storeProcedureAufrufen(String query, String parameter1,String parameter2, STORE_PROCEDURE_KONTEXT kontext) {

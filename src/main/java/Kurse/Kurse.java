@@ -40,7 +40,7 @@ public class Kurse{
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zum Anzeigen des Untermenüs
+    Methode zum Anzeigen des Untermenues
      */
     public void untermenueAnzeigen(){
 
@@ -58,8 +58,8 @@ public class Kurse{
                     kursLoeschen();
                     break;
                 case 99:
-                    //zurück ins Hauptmenü;
-                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Hauptmenü");
+                    //zurueck ins Hauptmenue;
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Hauptmenue");
                     gueltigeEingabe = false;
                     break;
                 default:
@@ -100,7 +100,7 @@ public class Kurse{
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
@@ -207,7 +207,7 @@ public class Kurse{
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
@@ -236,13 +236,13 @@ public class Kurse{
         Kurse kurs;
 
         do {
-            //Abfrage welchen Kurs gelöscht werden soll
+            //Abfrage welchen Kurs geloescht werden soll
             //Aufrufen von MitarbeiterSuchen()
             kurs = new KursSuchen().kursSuchen();
-            //Ausgabe der Daten des ausgewählten Kurses
+            //Ausgabe der Daten des ausgewaehlten Kurses
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(kurs.toString());
-            //Abfrage ob der Kurs wirklich gelöscht werden soll
+            //Abfrage ob der Kurs wirklich geloescht werden soll
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
                 case 1: //1.Ja-> MitarbeiterLoeschenQuery aufrufen und Methode beenden
@@ -261,7 +261,7 @@ public class Kurse{
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zum übergeben eines Objekt in dieses Objekt
+    Methode zum uebergeben eines Objekt in dieses Objekt
 
      */
     public void objektUebergeben(Kurse kurs){
@@ -299,7 +299,7 @@ public class Kurse{
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Diese Methode packt die Membervariablen in ein Array für die Ausgabe in einer Tabelle
+    Diese Methode packt die Membervariablen in ein Array fuer die Ausgabe in einer Tabelle
      */
     public String[] attributenString() {
 
