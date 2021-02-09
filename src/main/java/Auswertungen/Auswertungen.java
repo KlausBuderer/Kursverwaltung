@@ -4,10 +4,10 @@ import Utilities.BefehlsZeilenSchnittstelle;
 
 public class Auswertungen {
 
-    private String[] unterMenue = {"Auswertungen", "1.  Mitarbeiter", "2.  Weiterbildung", "3.  Budget / Ausgaben", "99. Hauptmenue"};
-    private String[] unterMenueMitarbeiter = {"Mitarbeiter", "1. Kursuebersicht fuer gewuenschten Mitarbeiter ", "2. Zertifikatsuebersicht fuer gewuenschten Mitarbeiter", "99. Zurueck"};
-    private String[] unterMenueWeiterbildung = {"Weiterbildung", "1.  Weiterbildung aller Mitarbeiter", "2.  Zertifikate aller Mitarbeiter", "3. Kurse aller Mitarbeiter", "4.  Pruefung ablaufende Zertifikate", "99.  Zurueck"};
-    private String[] unterMenueBudgetAusgaben = {"Budget / Ausgaben", "1. 99Budget pro Kostenstelle / Jahr", "2. Kurskosten fuer gewuenschte Kostenstelle mit Anbieter / Waehrung / Zeitraum ","3. Kurskosten alle Kostenstellen / Waehrung / Anbieter ", "99.  Zurueck"};
+    private String[] unterMenue = {"1.  Mitarbeiter", "2.  Weiterbildung", "3.  Budget / Ausgaben", "99. Hauptmenue"};
+    private String[] unterMenueMitarbeiter = {"1. Kursuebersicht fuer gewuenschten Mitarbeiter ", "2. Zertifikatsuebersicht fuer gewuenschten Mitarbeiter", "99. Zurueck"};
+    private String[] unterMenueWeiterbildung = {"1.  Weiterbildung aller Mitarbeiter", "2.  Zertifikate aller Mitarbeiter", "3. Kurse aller Mitarbeiter", "4.  Pruefung ablaufende Zertifikate", "99.  Zurueck"};
+    private String[] unterMenueBudgetAusgaben = {"1. 99Budget pro Kostenstelle / Jahr", "2. Kurskosten fuer gewuenschte Kostenstelle mit Anbieter / Waehrung / Zeitraum ","3. Kurskosten alle Kostenstellen / Waehrung / Anbieter ", "99.  Zurueck"};
 
     public Auswertungen() {
         untermenuAnzeigen();
@@ -24,7 +24,7 @@ public class Auswertungen {
         boolean gueltigeEingabe = false;
 
         do {
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue)) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue,"Auswertungen")) {
                 case 1:
                     unterMenuMitarbeiterAnzeigen();
                     break;
@@ -53,7 +53,7 @@ public class Auswertungen {
         boolean gueltigeEingabe = false;
 
         do {
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenueMitarbeiter)) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenueMitarbeiter,"Auswertungen Mitarbeiter")) {
                 case 1:
                     new WeiterbildungAlleMitarbeiterZeitraum().auswertungAusgeben();
                     break;
@@ -79,7 +79,7 @@ public class Auswertungen {
         boolean gueltigeEingabe = false;
 
         do {
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenueWeiterbildung)) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenueWeiterbildung,"Auswertungen Weiterbildungen")) {
                 case 1:
                     new WeiterbildungAlleMitarbeiterZeitraum().auswertungAusgeben();
                     break;
@@ -111,7 +111,7 @@ public class Auswertungen {
         boolean gueltigeEingabe = false;
 
         do {
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenueBudgetAusgaben)) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenueBudgetAusgaben,"Auswertungen Budget & Ausgaben")) {
                 case 1:
                     System.out.println(unterMenueBudgetAusgaben[0]);
                     break;

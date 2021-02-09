@@ -5,7 +5,7 @@ import Utilities.BefehlsZeilenSchnittstelle;
 public class Administratives{
 
 
-    private String[] unterMenue = {"Administratives", "1.  Kostenstelle Anlegen", "2.  Kostenstelle Mutation", "3.  Budget pro Kostenstelle erfassen", "4.  Budget Mutation", "99. Hauptmenü"};
+    private String[] unterMenue = {"1.  Kostenstelle Anlegen", "2.  Kostenstelle Mutation", "3.  Budget pro Kostenstelle erfassen", "4.  Budget Mutation", "99. Hauptmenü"};
 
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -27,7 +27,7 @@ public class Administratives{
 
         do {
 
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue)) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue,"Administratives")) {
                 case 1:
                     new Kostenstelle().kostenstelleAnlegen();
                     break;

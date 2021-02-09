@@ -38,10 +38,11 @@ public class Kostenstelle {
     void kostenstelleAnlegen(){
 
         boolean abschliessen = true;
+        String titelName = "Kostenstelle Anlegen";
 
         do {
 
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie folgende Daten ein");
             //Kostenstellennummer
             kostenstelleNr = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Kostenstelle Nummer: ");
@@ -50,7 +51,7 @@ public class Kostenstelle {
             //Verantwortliche Person
             kostenstelleVerantPerson = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Verantwortliche Person der Kostenstelle: ");
 
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Kostenstelle: " + kostenstelleNr + "\tBezeichnung der Kostenstelle: " + bezeichnungKst + "\tVerantwortliche Person der Kostenstelle: " + kostenstelleVerantPerson);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
@@ -81,6 +82,7 @@ public class Kostenstelle {
         int i = 1;
         int arrayLaenge;
         int auswahl;
+        String titelName = "Kostenstellenauswahlliste";
 
        KostenstelleDatenbank kostenstelleDatenbank = new KostenstelleDatenbank();
         // Abfrage Datenbank.Datenbank nach Kostenstellen
@@ -90,7 +92,7 @@ public class Kostenstelle {
         // Schreiben der Kostenstellen in ein Array
         Kostenstelle[] kostenstelleArray = new Kostenstelle[kostenstelleMap.size() + 1];
 
-        BefehlsZeilenSchnittstelle.bildReinigen();
+        BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
         Tabelle tabelle = new Tabelle();
         tabelle.setVertikaleLinie(true);
         tabelle.setHeaders(KOPFZEILE);
@@ -132,12 +134,13 @@ public class Kostenstelle {
         int arrayLaenge;
         int auswahl;
         boolean abschliessen = true;
+        String titelName = "Kostenstelle Mutieren";
 
 
         auswahlListeKostenstelleAusgeben();
 
         do {
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             int i = 1;
             for (String spalte : spaltenArray) {
 
@@ -167,7 +170,7 @@ public class Kostenstelle {
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsche Eingabe!");
             }
 
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Kostenstellen Bezeichnung: " + bezeichnungKst + "\tKostenstellen Nummer: " + kostenstelleNr + "\tVerantwortliche Person: " + kostenstelleVerantPerson);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");

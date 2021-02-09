@@ -58,6 +58,7 @@ public class WeiterbildungAlleMitarbeiterZeitraum {
 
         }
         tabelle.ausgabe();
+        BefehlsZeilenSchnittstelle.beliebigeTasteDrueckenAnzeigen();
          }
     private String[] attributenArrayBefuellen() {
         String[] attributenArray = {anrede,nachname,vorname,kennung,kursbeschreibung,String.valueOf(kosten),waehrung,zertifikatsablaufdatum};

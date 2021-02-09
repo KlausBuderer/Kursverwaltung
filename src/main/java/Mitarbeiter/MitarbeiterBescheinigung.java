@@ -50,6 +50,7 @@ public class MitarbeiterBescheinigung {
         Mitarbeiter mitarbeiter;
         Kurse kurs;
         boolean abschliessen = false;
+        String titelName = "Mitarbeiter Kurs zuweisen";
 
         do {
             //Mitarbeiter auswählen
@@ -63,7 +64,7 @@ public class MitarbeiterBescheinigung {
             this.kurseId = kurs.kurseId;
 
 
-            Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
+            Utilities.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte bestätigen sie die richtige Eingabe");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiter: " + mitarbeiter.vorname + " " + mitarbeiter.nachname);
@@ -97,6 +98,7 @@ public class MitarbeiterBescheinigung {
         Mitarbeiter mitarbeiter;
         Zertifikate zertifikat;
         boolean abschliessen = false;
+        String titelName = "Mitarbeiter Zertifikat zuweisen";
 
         do {
             //Mitarbeiter auswählen
@@ -114,7 +116,7 @@ public class MitarbeiterBescheinigung {
             this.zertifikatsAblaufDatum = BefehlsZeilenSchnittstelle.pruefeDatum();
 
 
-            Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
+            Utilities.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte bestätigen sie die richtige Eingabe");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiter: " + mitarbeiter.vorname + " " + mitarbeiter.nachname);
@@ -146,6 +148,7 @@ public class MitarbeiterBescheinigung {
         Mitarbeiter mitarbeiter;
         int mitarbeiterId;
         boolean abschliessen = false;
+        String titelName = "Zertifikat Verlaengern";
 
         do {
             //Abfrage von welchem Mitarbeiter das Zertifikat verlängert werden soll
@@ -157,7 +160,7 @@ public class MitarbeiterBescheinigung {
             objektUebergeben(auswahlListeZertifikateAusgeben(mitarbeiterId));
 
             //Das aktuelle Datum zeigen
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             Tabelle tabelleAlt = new Tabelle();
             tabelleAlt.setHeaders(TABELLENHEADER);
             tabelleAlt.zeileHinzufuegen(this.attributenArrayErstellen());
@@ -168,13 +171,14 @@ public class MitarbeiterBescheinigung {
             zertifikatsAblaufDatum = BefehlsZeilenSchnittstelle.pruefeDatum();
 
             //Eingabe zeigen und bestätigung verlangen
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             Tabelle tabelleNeu = new Tabelle();
             tabelleNeu.setHeaders(TABELLENHEADER);
             tabelleNeu.zeileHinzufuegen(this.attributenArrayErstellen());
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             tabelleNeu.ausgabe();
 
-            BefehlsZeilenSchnittstelle.bildReinigen();
+
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
@@ -219,7 +223,7 @@ public class MitarbeiterBescheinigung {
         tabelle.setHeaders(TABELLENHEADER);
         tabelle.setVertikaleLinie(true);
 
-        BefehlsZeilenSchnittstelle.bildReinigen();
+        BefehlsZeilenSchnittstelle.bildReinigen("Zertifikatsauswahlsliste",2);
         for (Map.Entry<MitarbeiterBescheinigung, Integer> map : mitarbeiterBescheinigungsMap.entrySet()) {
             mitarbeiterBescheinigungsArray[i] = map.getKey();
 

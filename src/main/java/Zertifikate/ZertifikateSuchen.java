@@ -19,6 +19,7 @@ public class ZertifikateSuchen {
 
         boolean abbruchBedingung = false;
         HashMap<?, Integer> zertifikatsHash;
+        String titelName = "Zertifikat Suchen";
 
         do {
             //Suchkriterium Abfragen
@@ -30,7 +31,7 @@ public class ZertifikateSuchen {
             //Hashmap mit allen Treffern erstellen
             zertifikatsHash = new ZertifikatsDatenbank().zertifikatSuchen(query);
 
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
 
             if (zertifikatsHash.size() > 20) {
                 System.out.println("Zuviele Treffer!");
@@ -54,7 +55,7 @@ public class ZertifikateSuchen {
 
         String[] HEADER = {"Nr.","Suchkriterium"};
 
-        BefehlsZeilenSchnittstelle.bildReinigen();
+        BefehlsZeilenSchnittstelle.bildReinigen("Suchkriterien fuer die Mitarbeitersuche",2);
         System.out.println("Bitte wählen sie ein Suchkriterium: ");
 
         int auswahlNummer = 1;
@@ -87,10 +88,10 @@ public class ZertifikateSuchen {
 
         switch (auswahl) {
             case 1:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Geben sie den Titel des Zertifikats ein nach dem sie suchen: ");
+                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie den Titel des Zertifikats ein nach dem sie suchen: ");
                 break;
             case 2:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Geben sie die Zertifikatsbezeichnung ein nach dem sie suchen möchten: ");
+                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie die Zertifikatsbezeichnung ein nach dem sie suchen möchten: ");
                 break;
             case 3:
                 suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Anbieter des Zertifikats ein nach dem sie suchen möchten: ");

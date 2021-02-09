@@ -10,7 +10,7 @@ import java.util.Scanner;
 
         public class Einstellungen {
 
-            private final String[] UNTERMENUE = {"Einstellungen", "1.  Datenbank Verbindungsdaten ändern", "99. Hauptmenü"};
+            private final String[] UNTERMENUE = {"1.  Datenbank Verbindungsdaten ändern", "99. Hauptmenü"};
             private final String[] KOPFZEILETABELLE = {"Url", "Benutzer", "Passwort"};
             private String[] angabenTabelle = {url, benutzer, passwort};
 
@@ -48,7 +48,7 @@ import java.util.Scanner;
                 boolean gueltigeEingabe = false;
 
                 do {
-                    switch (BefehlsZeilenSchnittstelle.unterMenue(UNTERMENUE)) {
+                    switch (BefehlsZeilenSchnittstelle.unterMenue(UNTERMENUE,"Einstellungen")) {
                         case 1:
                             nachVerbindungFragen();
                             break;
@@ -66,7 +66,7 @@ import java.util.Scanner;
             private void verbindungsdatenDateiErstellen(){
 
                 try {
-
+                    BefehlsZeilenSchnittstelle.bildReinigen("Verbindungsdaten Mutieren",2);
                     FileWriter fileWriter = new FileWriter("DatenbankVerbindungsdaten.txt");
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Geben sie die URL der Datenbank.Datenbank ein");
                     fileWriter.write(scan.next() + "\n");
@@ -141,9 +141,9 @@ import java.util.Scanner;
                 boolean korrekteEingabe;
 
                 verbindungsdatenAusDateiLesen();
-                BefehlsZeilenSchnittstelle.bildReinigen();
+                BefehlsZeilenSchnittstelle.bildReinigen("Verbindungsdaten Mutieren",2);
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
-                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Datenbank.Datenbank URL: " + urlBenutzerdefiniert + "\t" + "Benutzer: " + benutzerBenutzerdefiniert + "\t" + "Passwort: " + passwortBenutzerdefiniert);
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Datenbank URL: " + urlBenutzerdefiniert + "\t" + "Benutzer: " + benutzerBenutzerdefiniert + "\t" + "Passwort: " + passwortBenutzerdefiniert);
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Daten auf ihre Korrektheit");
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Sind die Daten korrekt?");

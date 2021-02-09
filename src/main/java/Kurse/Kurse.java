@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Kurse{
 
-    private String [] unterMenue = {"Kurse", "1.  Kurse Anlegen", "2.  Kurse Mutation","3.  Kurs loeschen", "99. Hauptmenue"};
+    private String [] unterMenue = {"1.  Kurse Anlegen", "2.  Kurse Mutation","3.  Kurs loeschen", "99. Hauptmenue"};
     public int kurseId;
     public int kosten = 1;
     public String waehrung;
@@ -47,7 +47,7 @@ public class Kurse{
         boolean gueltigeEingabe = true;
 
         do {
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue)) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue,"Kurse")) {
                 case 1:
                     kurseAnlegen();
                     break;
@@ -75,16 +75,17 @@ public class Kurse{
     void kurseAnlegen() {
 
         boolean abschliessen = true;
+        String titelName = "Kurse Anlegen";
 
         do {
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie folgende Daten ein");
             //Kurs Code
-            kursCode = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Kurs Code: ");
+            kursCode = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Kurs Code: ");
             //Anbieter
             anbieter = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Anbieter: ");
             //Kursbeschreibung
-            kursBeschreibung = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Kursbeschreibung: ");
+            kursBeschreibung = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei255("Kursbeschreibung: ");
             //Kosten
             kosten = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Kosten: ");
             //Waehrung
@@ -96,7 +97,7 @@ public class Kurse{
             //Durchfuehrungsort
             durchfuehrungsOrt = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Durchfuehrungsort: ");
 
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
@@ -129,6 +130,7 @@ public class Kurse{
         int arrayLaenge;
         int auswahl;
         boolean abschliessen = true;
+        String titelName = "Kurse Mutieren";
         Kurse kurs;
 
         KursSuchen kursSuchen = new KursSuchen();
@@ -140,7 +142,7 @@ public class Kurse{
             return;
         }
         do {
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             int i = 1;
             for (String spalte : spaltenArray) {
 
@@ -155,58 +157,54 @@ public class Kurse{
             switch (auswahl) {
 
                 case 1:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + kursCode);
-                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Geben sie einen neuen Code ein: ");
-                    kursCode = scan.next();
+                    kursCode = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie einen neuen Code ein: ");
                     break;
                 case 2:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + anbieter);
-                    BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Geben sie einen neuen Anbieter an: ");
-                    anbieter = scan.next();
+                    anbieter = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie einen neuen Anbieter an: ");
                     break;
                 case 3:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + kursBeschreibung);
-                    BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Geben sie eine neue Kursbeschreibung ein: ");
-                    kursBeschreibung = scan.next();
+                    kursBeschreibung = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei255("Geben sie eine neue Kursbeschreibung ein: ");
                     break;
                 case 4:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + kosten);
                     BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Geben sie die neuen Kosten ein: ");
                     kosten = BefehlsZeilenSchnittstelle.eingabeAufIntegerPruefen();
                     break;
                 case 5:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + waehrung);
                     waehrung = BefehlsZeilenSchnittstelle.abfrageWaehrung();
                     break;
                 case 6:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + datumVon);
                     BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Geben sie das neue Start Datum ein: ");
                     datumVon = BefehlsZeilenSchnittstelle.pruefeDatum();
                     break;
                 case 7:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + datumBis);
                     BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Geben sie das neue End Datum ein: ");
                     datumBis = BefehlsZeilenSchnittstelle.pruefeDatum();
                     break;
                 case 8:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + durchfuehrungsOrt);
-                    BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Geben sie den neuen Durchfuehrungsort ein: ");
-                    durchfuehrungsOrt = scan.next();
+                    durchfuehrungsOrt = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den neuen Durchfuehrungsort ein: ");
                     break;
                 default:
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsche Eingabe!");
                     break;
             }
 
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
@@ -234,6 +232,7 @@ public class Kurse{
 
     private void kursLoeschen(){
         boolean abschliessen = false;
+        String titelName = "Kurse loeschen";
         Kurse kurs;
 
         do {
@@ -241,7 +240,7 @@ public class Kurse{
             //Aufrufen von MitarbeiterSuchen()
             kurs = new KursSuchen().kursSuchen();
             //Ausgabe der Daten des ausgewählten Kurses
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(kurs.toString());
             //Abfrage ob der Kurs wirklich gelöscht werden soll
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){

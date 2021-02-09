@@ -2,6 +2,7 @@
 package Auswertungen;
 
 import Datenbank.AuswertungenDatenbank;
+import Utilities.BefehlsZeilenSchnittstelle;
 import Utilities.Tabelle;
 
 import java.util.List;
@@ -48,6 +49,7 @@ public class KurseAlleMitarbeiter {
 
         }
         tabelle.ausgabe();
+        BefehlsZeilenSchnittstelle.beliebigeTasteDrueckenAnzeigen();
     }
 
     private String[] attributenArrayBefuellen() {

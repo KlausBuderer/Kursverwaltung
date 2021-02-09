@@ -20,6 +20,7 @@ public class KursSuchen {
     public Kurse kursSuchen(){
 
         boolean abbruchBedingung = false;
+        String titelName = "Kurse Suchen";
         HashMap<?, Integer> kursHash;
 
         do {
@@ -32,7 +33,7 @@ public class KursSuchen {
             //Hashmap mit allen Treffern erstellen
             kursHash = new KursDatenbank().kursSuchen(query);
 
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
 
             if (kursHash.size() > 30) {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zuviele Treffer!");
@@ -59,7 +60,7 @@ public class KursSuchen {
 
         String[] HEADER = {"Nr.","Suchkriterium"};
 
-        BefehlsZeilenSchnittstelle.bildReinigen();
+        BefehlsZeilenSchnittstelle.bildReinigen("Suchkriterien fuer die Kurssuche",2);
         BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte wählen sie ein Suchkriterium: ");
 
         int auswahlNummer = 1;
@@ -92,7 +93,7 @@ public class KursSuchen {
 
         switch (auswahl) {
             case 1:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Geben sie den Kurs Code ein nach dem sie suchen: ");
+                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie den Kurs Code ein nach dem sie suchen: ");
                 break;
             case 2:
                 suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Anbieter des Kurses ein nach dem sie suchen moechten: ");

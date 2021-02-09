@@ -43,7 +43,7 @@ public class MitarbeiterSuche{
             //Hashmap mit allen Treffern erstellen
             mitarbeiterHash = new MitarbeiterDatenbank().mitarbeiterSuchen(query);
 
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen("Mitarbeitersuche",2);
 
             if (mitarbeiterHash.size() > 20) {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zuviele Treffer!");
@@ -65,7 +65,7 @@ public class MitarbeiterSuche{
      */
     private int suchkriterienAbfragen(){
 
-        BefehlsZeilenSchnittstelle.bildReinigen();
+        BefehlsZeilenSchnittstelle.bildReinigen("Suchkriterien fuer die Mitarbeitersuche", 2);
         BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte wählen sie ein Suchkriterium: ");
 
         int auswahlNummer = 1;
@@ -87,7 +87,7 @@ public class MitarbeiterSuche{
     private String suchTextEinlesen(int auswahl){
 
         int suchZahl = 0;
-
+BefehlsZeilenSchnittstelle.bildReinigen("Mitarbeitersuche",2);
 
         switch (auswahl){
             case 1: suchZahl = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie die Personalnummer ein nach der sie suchen möchten: ");
@@ -108,7 +108,6 @@ public class MitarbeiterSuche{
             case 6: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Jobtitel an nach dem sie suchen möchten: ");
             break;
             case 7:
-                BefehlsZeilenSchnittstelle.bildReinigen();
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiterstatus: ");
                 int p = 1;
 
@@ -120,7 +119,6 @@ public class MitarbeiterSuche{
                 suchText = statusArray[Utilities.BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1];
                 break;
             case 8:
-                BefehlsZeilenSchnittstelle.bildReinigen();
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede: ");
                 int i = 1;
 

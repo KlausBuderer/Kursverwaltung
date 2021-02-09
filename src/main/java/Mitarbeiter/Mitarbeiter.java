@@ -7,7 +7,7 @@ import Utilities.BefehlsZeilenSchnittstelle;
 public class Mitarbeiter{
 
 
-    private String[] unterMenue = {"Mitarbeitermenue", "1.  Mitarbeiter Anlegen","2.  Mitarbeiter Kurszuordnung", "3.  Mitarbeiter Zertifikatszuordnung", "4.  Zertifikat Verlängern",
+    private String[] unterMenue = {"1.  Mitarbeiter Anlegen","2.  Mitarbeiter Kurszuordnung", "3.  Mitarbeiter Zertifikatszuordnung", "4.  Zertifikat Verlängern",
             "5.  Mitarbeiter Mutation", "6.  Mitarbeiter loeschen", "99. Hauptmenue"};
     private String[] anredeArray = {"Frau", "Herr", "Neutral"};
     private String[] statusArray = {"angestellt", "ausgetreten"};
@@ -43,7 +43,7 @@ public class Mitarbeiter{
         boolean gueltigeEingabe = false;
 
         do {
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue)) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue,"Mitarbeiter")) {
                 case 1:
                     mitarbeiterAnlegen();
                     break;
@@ -63,7 +63,6 @@ public class Mitarbeiter{
                     mitarbeiterLoeschen();
                     break;
                 case 99:
-                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(unterMenue[7]);
                     gueltigeEingabe = true;
                     break;
                 default:
@@ -79,9 +78,10 @@ public class Mitarbeiter{
     private void mitarbeiterAnlegen() {
 
         boolean abschliessen = true;
+        String titelName = "Mitarbeiter Anlegen";
 
         do {
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie folgende Daten ein");
             //Anrede
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede: ");
@@ -109,7 +109,7 @@ public class Mitarbeiter{
 
 
             //Jobtitel
-            jobTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Jobtitel: ");
+            jobTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei255("Jobtitel: ");
             //Status beim Anlegen automatisch true
             mitarbeiterStatus = statusArray[0];
             //kostenstelle (organisation)
@@ -118,7 +118,7 @@ public class Mitarbeiter{
             kostenstelle.auswahlListeKostenstelleAusgeben();
             kostenstelleId = kostenstelle.kostenstelleId;
 
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
@@ -147,6 +147,7 @@ public class Mitarbeiter{
     private void mitarbeiterMutieren() {
 
         String[] spaltenArray = {"Personalnummer","Anrede","Nachname","Vorname","Geburtsdatum","Abteilung","Jobtitel","Status"};
+        String titelName = "Mitarbeiter Mutieren";
         int arrayLaenge;
         int auswahl;
         boolean abschliessen = true;
@@ -162,7 +163,7 @@ public class Mitarbeiter{
 
         BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(mitarbeiter.toString());
         do {
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName, 2);
             int i = 1;
             for (String spalte : spaltenArray) {
 
@@ -182,7 +183,7 @@ public class Mitarbeiter{
                     personalNummer = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie die Personalnummer ein: ");
                     break;
                 case 2:
-                    Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
+                    Utilities.BefehlsZeilenSchnittstelle.bildReinigen(titelName, 2);
                     //Anrede
                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + anrede);
                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede: ");
@@ -196,33 +197,33 @@ public class Mitarbeiter{
                     anrede = anredeArray[Utilities.BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
                     break;
                 case 3:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName, 2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + nachname);
                     nachname = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Nachnamen ein: ");
                     break;
                 case 4:
-                    Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
+                    Utilities.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + vorname);
                     vorname = Utilities.BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Vornamen ein: ");
                     break;
                 case 5:
-                    Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
+                    Utilities.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + geburtstag);
                     geburtstag = Utilities.BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben sie das Geburtsdatum ein: ");
                     break;
                 case 6:
-                    Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
+                    Utilities.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + kostenstelleId);
                     Kostenstelle kostenstelle = new Kostenstelle();
                     kostenstelle.auswahlListeKostenstelleAusgeben();
                     kostenstelleId = kostenstelle.kostenstelleId;
                     break;
                 case 7:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + jobTitel);
-                    jobTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Jobtitel ein: ");
+                    jobTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei255("Geben sie den Jobtitel ein: ");
                 case 8:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + mitarbeiterStatus);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiterstatus: ");
                     int p = 1;
@@ -238,7 +239,7 @@ public class Mitarbeiter{
                     break;
             }
 
-            Utilities.BefehlsZeilenSchnittstelle.bildReinigen();
+            Utilities.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");;
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
@@ -264,6 +265,7 @@ public class Mitarbeiter{
 
     private void mitarbeiterLoeschen(){
         boolean abschliessen = false;
+        String titelName = "Mitarbeiter Loeschen";
         Mitarbeiter mitarbeiter;
 
         do {
@@ -271,7 +273,7 @@ public class Mitarbeiter{
             //Aufrufen von MitarbeiterSuchen()
             mitarbeiter = new MitarbeiterSuche().mitarbeiterSuchen();
             //Ausgabe der Daten des ausgewählten Mitarbeiters
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(mitarbeiter.toString());
             //Abfrage ob der Mitarbeiter wirklich gelöscht werden soll
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){

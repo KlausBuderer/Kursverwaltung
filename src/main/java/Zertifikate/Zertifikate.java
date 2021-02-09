@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Zertifikate{
 
-    String [] unterMenue = {"Zertifikate", "1.  Zertifikate Anlegen", "2.  Zertifikate Mutation","3.  Zertifikat Loeschen", "99. Hauptmenue"};
+    String [] unterMenue = {"1.  Zertifikate Anlegen", "2.  Zertifikate Mutation","3.  Zertifikat Loeschen", "99. Hauptmenue"};
     public int zertifikatsId;
     public int kosten;
     public String waehrung;
@@ -46,12 +46,12 @@ public class Zertifikate{
 
         do {
 
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue)) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue,"Zertifikate")) {
                 case 1:
                     zertifikatAnlegen();
                     break;
                 case 2:
-                    zertifikatBearbeiten();
+                    zertifikatMutieren();
                     break;
                 case 3:
                     zertifikatLoeschen();
@@ -76,16 +76,17 @@ public class Zertifikate{
     void zertifikatAnlegen() {
 
         boolean abschliessen = true;
+        String titelName = "Zertifikat Anlegen";
 
         do {
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             System.out.println("Bitte geben sie folgende Daten ein");
             //Zertifikats Titel
-            zertifikatsTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Zertifikats Titel: ");
+            zertifikatsTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Zertifikats Titel: ");
             //Anbieter
             anbieter = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Anbieter: ");
             //Beschreibung
-            zertifikatsBeschreibung = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Beschreibung: ");
+            zertifikatsBeschreibung = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Beschreibung: ");
             //Kosten
             kosten = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Kosten: ");
             //Waehrung
@@ -93,7 +94,7 @@ public class Zertifikate{
             //Sprache
             sprache = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Sprache: ");
 
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             System.out.println(toString());
             System.out.println();
             System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
@@ -123,12 +124,13 @@ public class Zertifikate{
        /*
     Methode zur Bearbeitung eines Budget
      */
-    void zertifikatBearbeiten() {
+    void zertifikatMutieren() {
 
         String[] spaltenArray = {"Zertifikatstitel","Anbieter","Zertifikatsbeschreibung", "Kosten", "Waehrung", "Sprache"};
         int arrayLaenge;
         int auswahl;
         boolean abschliessen = true;
+        String titelName = "Zertifikat Mutieren";
 
         ZertifikateSuchen zertifikateSuchen = new ZertifikateSuchen();
         Zertifikate zertifikat;
@@ -142,7 +144,7 @@ public class Zertifikate{
         }
 
         do {
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             int i = 1;
             for (String spalte : spaltenArray) {
 
@@ -157,36 +159,36 @@ public class Zertifikate{
             switch (auswahl) {
 
                 case 1:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     System.out.println("Aktuell: " + zertifikatsTitel);
                     System.out.println("Geben sie einen neuen Titel ein: ");
                     zertifikatsTitel = scan.next();
                     break;
                 case 2:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     System.out.println("Aktuell: " + anbieter);
                     System.out.print("Geben sie einen neuen Anbieter an: ");
                     anbieter = scan.next();
                     break;
                 case 3:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     System.out.println("Aktuell: " + zertifikatsBeschreibung);
                     System.out.print("Geben sie eine neue Kursbeschreibung ein: ");
                     zertifikatsBeschreibung = scan.next();
                     break;
                 case 4:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     System.out.println("Aktuell: " + kosten);
                     System.out.print("Geben sie die neuen Kosten ein: ");
                     kosten = BefehlsZeilenSchnittstelle.eingabeAufIntegerPruefen();
                     break;
                 case 5:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     System.out.println("Aktuell: " + waehrung);
                     waehrung = BefehlsZeilenSchnittstelle.abfrageWaehrung();
                     break;
                 case 6:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     System.out.println("Aktuell: " + sprache);
                     sprache = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie eine neue Sprache ein: ");
                     break;
@@ -195,7 +197,7 @@ public class Zertifikate{
                     break;
             }
 
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             System.out.println(toString());
             System.out.println();
             System.out.println("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
@@ -224,13 +226,14 @@ public class Zertifikate{
     private void zertifikatLoeschen(){
         boolean abschliessen = false;
         Zertifikate zertifikat;
+        String titelName = "Zertifikat loeschen";
 
         do {
             //Abfrage welchen Kurs gelöscht werden soll
             //Aufrufen von MitarbeiterSuchen()
             zertifikat = new ZertifikateSuchen().zertifikatSuchen();
             //Ausgabe der Daten des ausgewählten Kurses
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             System.out.println(zertifikat.toString());
             //Abfrage ob der Kurs wirklich gelöscht werden soll
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){

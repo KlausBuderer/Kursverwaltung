@@ -87,15 +87,16 @@ public class Benutzer {
     public void benutzerAnlegen(){
         boolean bereitsVorhanden = true;
         boolean abschliessen = false;
+        String titelName = "Benutzer Anlegen";
 
         do {
             do {
                 //Ausgabe Benutzer Anlegen
-                BefehlsZeilenSchnittstelle.bildReinigen();
+                BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Benutzer Anlegen");
 
                 //Ausgabe Benutzername und einlesen der Eingabe
-                benutzer = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Benutzername: ");
+                benutzer = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Benutzername: ");
 
                 //Prüfen ob Benutzer bereits vorhanden
                 bereitsVorhanden = benutzerBereitsVorhandenPruefen(benutzerAusDateiLesen(), benutzer);
@@ -106,7 +107,7 @@ public class Benutzer {
             } while (bereitsVorhanden);
 
             //Ausgabe Passwort und einlesen der Eingabe
-            passwort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Passwort: ");
+            passwort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Passwort: ");
 
             //Ausgabe der Auswahl an Benutzergruppen
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Benutzergruppen: \n1. Administrator\n2. Benutzer");
@@ -167,8 +168,10 @@ public class Benutzer {
      */
     public void benutzerLoeschen() {
 
+        String titelName = "Benutzer Loeschen";
+
         //Ausgabe Benutzer loeschen
-        BefehlsZeilenSchnittstelle.bildReinigen();
+        BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
         BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Benutzer Loeschen");
 
         //Auswahlliste von Benutzern ausgeben
@@ -211,6 +214,8 @@ public class Benutzer {
 
     public void passwortAendern(){
 
+        String titelName = "Passwort Mutieren";
+
         //Suche nach dem momentan angemeldeten Benutzer in der Datei
         Benutzer benutzer;
 
@@ -222,13 +227,13 @@ public class Benutzer {
         //Ausgabe: Geben sie das aktuelle Passwort ein
         //Einlesen der Eingabe und vergleichen mit dem Aktuellen
 
-        BefehlsZeilenSchnittstelle.bildReinigen();
+        BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
 
-        String eingegebenesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Geben sie das aktuelle Passwort ein: ");
+        String eingegebenesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie das aktuelle Passwort ein: ");
         if (!this.passwort.equals(eingegebenesPasswort)){
             //Drei Wiederholungen , falls alle falsch wird die Methode beendet
             for (int i = 0; i < 3; i++) {
-                 eingegebenesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Falsches Passwort! \n     Geben sie das aktuelle Passwort ein: ");
+                 eingegebenesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Falsches Passwort! \n     Geben sie das aktuelle Passwort ein: ");
                 // Falls das Passwort uebereinstimmt wird die Schleife abgebrochen
                  if (this.passwort.equals(eingegebenesPasswort)){
                      break;
@@ -240,13 +245,13 @@ public class Benutzer {
             }
         }
         // Ausgabe: Geben sie das neue Passwort ein
-        String erstesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Geben sie ein neues Passwort ein: ");
-        String zweitesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Wiederholen sie das Passwort ein: ");//Ausgabe: Wiederholen sie das Passwort
+        String erstesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie ein neues Passwort ein: ");
+        String zweitesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Wiederholen sie das Passwort ein: ");//Ausgabe: Wiederholen sie das Passwort
         //Drei Wiederholungen , falls alle falsch wird die Methode beendet
         if (!erstesPasswort.equals(zweitesPasswort)){
             for (int i = 0; i < 3; i++) {
-                erstesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Passwort stimmt nicht ueberein, versuchen sie es erneut: ");
-                zweitesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei("Wiederholen sie das Passwort ein: ");//Ausgabe: Wiederholen sie das Passwort
+                erstesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Passwort stimmt nicht ueberein, versuchen sie es erneut: ");
+                zweitesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Wiederholen sie das Passwort ein: ");//Ausgabe: Wiederholen sie das Passwort
                 // Falls das Passwort uebereinstimmt wird die Schleife abgebrochen
                 if (erstesPasswort.equals(zweitesPasswort)){
                     break;

@@ -41,10 +41,11 @@ public class Budget{
     void budgetAnlegen(){
 
         boolean abschliessen = true;
+        String titelName = "Budget Anlegen";
 
         do{
 
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie folgende Daten ein");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
 
@@ -68,7 +69,7 @@ public class Budget{
             kostenstellenBezeichnung = new KostenstelleDatenbank().kostenstelleBezichnungAusgeben(kostenstelleId);
 
 
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
 
             Tabelle tabelle = new Tabelle();
             tabelle.setHeaders(KOPFZEILE);
@@ -155,12 +156,12 @@ public class Budget{
         String[] spaltenArray = {"Budget Jahr","Budget Betrag","Waehrung"};
         int arrayLaenge;
         int auswahl;
-        boolean abschliessen = true;
-
+        boolean abschliessen = false;
+        String titelName = "Budget Mutieren";
         auswahlListeBudgetAusgeben();
 
         do {
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             int i = 1;
             for (String spalte : spaltenArray) {
 
@@ -175,7 +176,7 @@ public class Budget{
             switch (auswahl) {
 
                 case 1:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + budgetJahr);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Waehlen sie das neue Jahr aus: ");
                     int jahr = Year.now().getValue();
@@ -189,12 +190,12 @@ public class Budget{
                     budgetJahr = jahr + (BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(6) - 1);
                     break;
                 case 2:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + budgetBetrag);
                     budgetBetrag = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie das neue Budget ein: ");
                     break;
                 case 3:
-                    BefehlsZeilenSchnittstelle.bildReinigen();
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + waehrung);
                     waehrung = BefehlsZeilenSchnittstelle.abfrageWaehrung();
                     break;
@@ -202,7 +203,7 @@ public class Budget{
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsche Eingabe!");
             }
 
-            BefehlsZeilenSchnittstelle.bildReinigen();
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
 
             Tabelle tabelle = new Tabelle();
             tabelle.setHeaders(KOPFZEILE);
