@@ -11,8 +11,11 @@ import Zertifikate.Zertifikate;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 // Utility Klasse für Ausgaben und Eingaben in der Konsole
 public final class BefehlsZeilenSchnittstelle {
@@ -728,9 +731,11 @@ public final class BefehlsZeilenSchnittstelle {
             // Ausgabe einer Antwort in einem Frame
             // Ausgabe einer Frage in einem Frame
 
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("" +"MMM dd HH:mm");
+
             if (kontext == 1) {
                 text.toString();
-                System.out.println(ANSI_BLUE + "                                                                             Angemeldeter Benutzer: " + Benutzer.angemeldeterBenutzer + ANSI_RESET);
+                System.out.println(ANSI_BLUE +"\n" + "                                                                                Angemeldeter Benutzer: " + Benutzer.angemeldeterBenutzer +"\t" +dtf.format(LocalDateTime.now()) + ANSI_RESET);
 
                 System.out.println(ANSI_BLUE + "╔==========================================================================================================================╗" + ANSI_RESET);
                 System.out.println(ANSI_BLUE + "║" + vor + text + nach + "  ║" + ANSI_RESET);
