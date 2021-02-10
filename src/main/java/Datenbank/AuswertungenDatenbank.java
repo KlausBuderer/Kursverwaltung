@@ -5,6 +5,7 @@ import Auswertungen.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class AuswertungenDatenbank extends Datenbank {
@@ -30,9 +31,16 @@ public class AuswertungenDatenbank extends Datenbank {
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public List storeproduceZertifikateAlleMitarbeiterGueltigkeit(String datumVon, String datumBis){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_NICHT_GUELTIG_ALLE_MA_ZERT()}",datumVon,datumBis,STORE_PROCEDURE_KONTEXT.ZERTIFIKAT_ALLE_MITARBEITER_GUELTIGKEIT);
+    public List storeproduceZertifikateAlleMitarbeiterGueltigkeit(String datumBis){
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_NICHT_GUELTIG_ALLE_MA_ZERT(?)}","",datumBis,STORE_PROCEDURE_KONTEXT.ZERTIFIKAT_ALLE_MITARBEITER_GUELTIGKEIT);
     }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public HashMap<KursProMitarbeiter, Integer> storeproduceKursproMitarbeiter(int mitarbeiterID){
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_MA_KURSE(?)}",mitarbeiterID,STORE_PROCEDURE_KONTEXT.KURS_PRO_MITARBEITER);
+    }
+
 
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -138,6 +146,37 @@ public class AuswertungenDatenbank extends Datenbank {
         }
         return ZertifikateAlleMitarbeiterGueltigkeitliste;
     }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
+    Parameter: Inhalt der Tabelle der Datenbank
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
+     */
+    public HashMap<KursProMitarbeiter,Integer> ausfuehrenKursProMitarbeiter(ResultSet dbInhalt) throws SQLException {
+
+        HashMap<KursProMitarbeiter, Integer> KursProMitarbeiterHashMap = new HashMap<KursProMitarbeiter, Integer>();
+        KursProMitarbeiter kursProMitarbeiter;
+
+        while (dbInhalt.next()) {
+
+            int mitarbeiterID = dbInhalt.getInt("mitarbeiterID");
+            String nachname = dbInhalt.getString("nachname");
+            String vorname = dbInhalt.getString("vorname");
+            String kurscode = dbInhalt.getString("kurscode");
+            String kursbeschreibung = dbInhalt.getString("kursbeschreibung");
+            String anbieter = dbInhalt.getString("anbieter");
+            int kosten = dbInhalt.getInt("kosten");
+            String waehrung = dbInhalt.getString("waehrung");
+
+            kursProMitarbeiter = new KursProMitarbeiter(mitarbeiterID,nachname,vorname,kurscode,kursbeschreibung,anbieter,kosten,waehrung);
+
+
+            KursProMitarbeiterHashMap.put(kursProMitarbeiter,mitarbeiterID);
+        }
+        return KursProMitarbeiterHashMap;
+    }
+
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*

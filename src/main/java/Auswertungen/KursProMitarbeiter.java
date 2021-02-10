@@ -1,11 +1,12 @@
-
 package Auswertungen;
 
 import Datenbank.AuswertungenDatenbank;
-import Utilities.BefehlsZeilenSchnittstelle;
+import Mitarbeiter.Mitarbeiter;
+import Mitarbeiter.MitarbeiterSuche;
 import Utilities.Tabelle;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class KursProMitarbeiter {
@@ -15,7 +16,7 @@ public class KursProMitarbeiter {
     // MitarbeiterID, Nachname, Vorname, Kurscode, Kursbeschreibung, Anbieter, Kosten, Waehrung
 
 
-    private final String[] TITELZEILE = {"MitarbeiterID","Nachname","Vorname","Kurscode","Kursbeschreibung","Anbieter","Kosten","Waehrung"};
+    private final String[] TITELZEILE = {"MitarbeiterID", "Nachname", "Vorname", "Kurscode", "Kursbeschreibung", "Anbieter", "Kosten", "Waehrung"};
     private int mitarbeiterID;
     private String nachname;
     private String vorname;
@@ -32,6 +33,7 @@ public class KursProMitarbeiter {
         this.vorname = vorname;
         this.kurscode = kurscode;
         this.kursbeschreibung = kursbeschreibung;
+        this.anbieter = anbieter;
         this.kosten = kosten;
         this.waehrung = waehrung;
 
@@ -43,31 +45,33 @@ public class KursProMitarbeiter {
     // Abfrage Datum
 
     public void auswertungAusgeben() {
-        int mitarbeiterIdentification;
+        Mitarbeiter mitarbeiterIdentification;
 
-        List<KursProMitarbeiter> AusgabeKursProMitarbeiter;
+        HashMap<KursProMitarbeiter, Integer> AusgabeKursProMitarbeiter;
 
-        mitarbeiterIdentification = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Bitte MitarbeiterID eingeben");
+        mitarbeiterIdentification = new MitarbeiterSuche().mitarbeiterSuchen();
+
 
         //Aufruf Store Procedure SP_ANZEIGEN_MA_KURSE
 
-        AusgabeKursProMitarbeiter = new AuswertungenDatenbank().storeproduceKursProMitarbeiter("bitte Mitarbeiter ID angeben");
+        AusgabeKursProMitarbeiter = new AuswertungenDatenbank().storeproduceKursproMitarbeiter(mitarbeiterIdentification.mitarbeiterId);
+
 
         Tabelle tabelle = new Tabelle();
         tabelle.setHeaders(TITELZEILE);
         tabelle.setVertikaleLinie(true);
-        for (KursProMitarbeiter akpm : AusgabeKursProMitarbeiter) {
 
-            tabelle.zeileHinzufuegen(akpm.attributenArrayBefuellen());
+        for (Map.Entry<KursProMitarbeiter, Integer> map : AusgabeKursProMitarbeiter.entrySet()) {
 
+            tabelle.zeileHinzufuegen(map.getKey().attributenArrayBefuellen());
         }
         tabelle.ausgabe();
-        BefehlsZeilenSchnittstelle.beliebigeTasteDrueckenAnzeigen();
-         }
-    private String[] attributenArrayBefuellen() {
-        String[] attributenArray = {String.valueOf(mitarbeiterID), nachname, vorname, kurscode, kursbeschreibung, anbieter, String.valueOf(kosten), waehrung};
-
-        return attributenArray;
-
     }
-}
+
+        private String[] attributenArrayBefuellen () {
+            String[] attributenArray = {String.valueOf(mitarbeiterID), nachname, vorname, kurscode, kursbeschreibung, anbieter, String.valueOf(kosten), waehrung};
+
+            return attributenArray;
+
+        }
+    }

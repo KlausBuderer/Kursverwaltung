@@ -319,12 +319,20 @@ public class Datenbank {
             System.out.println("Store Procedure erfolgreich");
 
             switch (kontext){
+                case KURS_PRO_MITARBEITER:
+                    statement.setInt(1,parameter);
+
+                    dbInhalt = statement.executeQuery();
+                    rueckgabeHash = new AuswertungenDatenbank().ausfuehrenKursProMitarbeiter(dbInhalt);
+                    break;
+
                 case ZERTIFIKATE_PRO_MITARBEITER:
                     statement.setInt(1,parameter);
 
                     dbInhalt = statement.executeQuery();
                     rueckgabeHash = new MitarbeiterDatenbank().zertifikatVerlaengern(dbInhalt);
                     break;
+
                 case MITARBEITER_LOESCHEN: case KURS_LOESCHEN: case ZERTIFIKAT_LOESCHEN:
                     statement.setInt(1,parameter);
                     statement.executeQuery();
@@ -400,23 +408,14 @@ public class Datenbank {
                     break;
 
                 case ZERTIFIKAT_ALLE_MITARBEITER_GUELTIGKEIT:
-                    System.out.println(parameter1 + parameter2);
+                    System.out.println(parameter1);
                     statement.setString(1, parameter1);
-                    statement.setString(2, parameter2);
 
                     dbInhalt = statement.executeQuery();
                     rueckgabeList = new AuswertungenDatenbank().ausfuehrenZertifikateAlleMitarbeiterGueltigkeit(dbInhalt);
                     break;
 
-                case KURS_PRO_MITARBEITER:
-                    System.out.println(parameter1 + parameter2);
-                    statement.setString(1, parameter1);
-                    statement.setString(2, parameter2);
-
-                    dbInhalt = statement.executeQuery();
-                    rueckgabeList = new AuswertungenDatenbank().ausfuehrenKurseAlleMitarbeiter(dbInhalt);
-                    break;
-            }
+               }
 
         } catch (SQLException | ClassNotFoundException sqlException) {
 

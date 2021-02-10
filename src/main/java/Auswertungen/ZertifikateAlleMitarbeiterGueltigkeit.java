@@ -33,18 +33,16 @@ public class ZertifikateAlleMitarbeiterGueltigkeit {
 
     public void auswertungAusgeben() {
 
-        String datumVon;
         String datumBis;
 
         List<ZertifikateAlleMitarbeiterGueltigkeit> AusgabeZertifikateAlleMitarbeiterGueltigkeit;
 
-        datumVon = " ";
         datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie ein Datum ein bis wann Sie die Gueltigkeit der Zertifikate in Zukunft pruefen wollen: ");
 
 
         //Aufruf Store Procedure SP_ANZEIGEN_NICHT_GUELTIG_ALLE_MA_ZERT
 
-        AusgabeZertifikateAlleMitarbeiterGueltigkeit = new AuswertungenDatenbank().storeproduceZertifikateAlleMitarbeiterGueltigkeit(datumVon,datumBis);
+        AusgabeZertifikateAlleMitarbeiterGueltigkeit = new AuswertungenDatenbank().storeproduceZertifikateAlleMitarbeiterGueltigkeit(datumBis);
 
         Tabelle tabelle = new Tabelle();
         tabelle.setHeaders(TITELZEILE);

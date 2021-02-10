@@ -20,12 +20,12 @@ Auswertungen/KursProMitarbeiter.java
  Auswertungen.KursProMitarbeiter
 Administratives/Kostenstelle.java
  Administratives.Kostenstelle
-Datenbank/AuswertungenDatenbank.java
- Datenbank.AuswertungenDatenbank
+Utilities/Tabelle.java
+ Utilities.Tabelle
 Auswertungen/MitarbeiterAuswertung.java
  Auswertungen.MitarbeiterAuswertung
-Auswertungen/Auswertungen.java
- Auswertungen.Auswertungen
+Administratives/Administratives.java
+ Administratives.Administratives
 Benutzerverwaltung/Benutzerverwaltung.java
  Benutzerverwaltung.Benutzerverwaltung
 Mitarbeiter/Mitarbeiter.java
@@ -45,8 +45,8 @@ Zertifikate/ZertifikateSuchen.java
  Zertifikate.ZertifikateSuchen
 Kurse/KursSuchen.java
  Kurse.KursSuchen
-Auswertungen/ZertifikateAlleMitarbeiterGueltigkeit.java
- Auswertungen.ZertifikateAlleMitarbeiterGueltigkeit
+Datenbank/STORE_PROCEDURE_KONTEXT.java
+ Datenbank.STORE_PROCEDURE_KONTEXT
 Auswertungen/KurseAlleMitarbeiter.java
  Auswertungen.KurseAlleMitarbeiter
 Datenbank/ZertifikatsDatenbank.java
@@ -59,9 +59,9 @@ Datenbank/BudgetDatenbank.java
  Datenbank.BudgetDatenbank
 Benutzerverwaltung/Benutzer.java
  Benutzerverwaltung.Benutzer
-Utilities/Tabelle.java
- Utilities.Tabelle
-Datenbank/STORE_PROCEDURE_KONTEXT.java
- Datenbank.STORE_PROCEDURE_KONTEXT
-Administratives/Administratives.java
- Administratives.Administratives
+Auswertungen/Auswertungen.java
+ Auswertungen.Auswertungen
+Auswertungen/ZertifikateAlleMitarbeiterGueltigkeit.java
+ Auswertungen.ZertifikateAlleMitarbeiterGueltigkeit
+Datenbank/AuswertungenDatenbank.java
+ Datenbank.AuswertungenDatenbank
