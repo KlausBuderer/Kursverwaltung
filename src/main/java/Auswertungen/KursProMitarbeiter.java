@@ -3,6 +3,7 @@ package Auswertungen;
 import Datenbank.AuswertungenDatenbank;
 import Mitarbeiter.Mitarbeiter;
 import Mitarbeiter.MitarbeiterSuche;
+import Utilities.BefehlsZeilenSchnittstelle;
 import Utilities.Tabelle;
 
 import java.util.HashMap;
@@ -66,6 +67,7 @@ public class KursProMitarbeiter {
             tabelle.zeileHinzufuegen(map.getKey().attributenArrayBefuellen());
         }
         tabelle.ausgabe();
+        BefehlsZeilenSchnittstelle.beliebigeTasteDrueckenAnzeigen();
     }
 
         private String[] attributenArrayBefuellen () {

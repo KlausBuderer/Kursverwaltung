@@ -53,6 +53,7 @@ public class ZertifikateAlleMitarbeiterGueltigkeit {
 
         }
         tabelle.ausgabe();
+        BefehlsZeilenSchnittstelle.beliebigeTasteDrueckenAnzeigen();
          }
     private String[] attributenArrayBefuellen() {
         String[] attributenArray = {nachname,vorname,zertifikatsablaufdatum,zertifikatstitel,zertifikatsbeschreibung};
