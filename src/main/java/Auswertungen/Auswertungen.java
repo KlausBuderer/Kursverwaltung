@@ -5,9 +5,9 @@ import Utilities.BefehlsZeilenSchnittstelle;
 public class Auswertungen {
 
     private String[] unterMenue = {"1.  Mitarbeiter", "2.  Weiterbildung", "3.  Budget / Ausgaben", "99. Hauptmenue"};
-    private String[] unterMenueMitarbeiter = {"1. Kursuebersicht fuer gewuenschten Mitarbeiter ", "2. Zertifikatsuebersicht fuer gewuenschten Mitarbeiter", "99. Zurueck"};
+    private String[] unterMenueMitarbeiter = {"1.  Kursuebersicht fuer gewuenschten Mitarbeiter ", "2.  Zertifikatsuebersicht fuer gewuenschten Mitarbeiter", "99. Zurueck"};
     private String[] unterMenueWeiterbildung = {"1.  Weiterbildung aller Mitarbeiter", "2.  Zertifikate aller Mitarbeiter", "3.  Kurse aller Mitarbeiter", "4.  Pruefung ablaufende Zertifikate", "99. Zurueck"};
-    private String[] unterMenueBudgetAusgaben = {"1. 99Budget pro Kostenstelle / Jahr", "2. Kurskosten fuer gewuenschte Kostenstelle mit Anbieter / Waehrung / Zeitraum ","3. Kurskosten alle Kostenstellen / Waehrung / Anbieter ", "99.  Zurueck"};
+    private String[] unterMenueBudgetAusgaben = {"1.  udget pro Kostenstelle / Jahr", "2.  Kurskosten fuer gewuenschte Kostenstelle mit Anbieter / Waehrung / Zeitraum ","3.  Kurskosten alle Kostenstellen / Waehrung / Anbieter ", "99. Zurueck"};
 
     public Auswertungen() {
         untermenuAnzeigen();
@@ -55,13 +55,13 @@ public class Auswertungen {
         do {
             switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenueMitarbeiter,"Auswertungen Mitarbeiter")) {
                 case 1:
-                    new WeiterbildungAlleMitarbeiterZeitraum().auswertungAusgeben();
+                    new KursProMitarbeiter().auswertungAusgeben();
                     break;
                 case 2:
-                    System.out.println(unterMenueMitarbeiter[1]);
+                    System.out.println(unterMenueMitarbeiter[0]);
                     break;
                 case 99:
-                    System.out.println(unterMenueMitarbeiter[3]);
+                    System.out.println(unterMenueMitarbeiter[1]);
                     gueltigeEingabe = true;
                     break;
                 default:

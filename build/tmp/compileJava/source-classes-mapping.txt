@@ -16,6 +16,8 @@ Auswertungen/WeiterbildungAlleMitarbeiterZeitraum.java
  Auswertungen.WeiterbildungAlleMitarbeiterZeitraum
 Auswertungen/ZertifikateAlleMitarbeiter.java
  Auswertungen.ZertifikateAlleMitarbeiter
+Auswertungen/KursProMitarbeiter.java
+ Auswertungen.KursProMitarbeiter
 Administratives/Kostenstelle.java
  Administratives.Kostenstelle
 Datenbank/AuswertungenDatenbank.java
