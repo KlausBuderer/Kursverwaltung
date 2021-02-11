@@ -40,7 +40,11 @@ public class AuswertungenDatenbank extends Datenbank {
     public HashMap<KursProMitarbeiter, Integer> storeproduceKursproMitarbeiter(int mitarbeiterID){
         return storeProcedureAufrufen("{call SP_ANZEIGEN_MA_KURSE(?)}",mitarbeiterID,STORE_PROCEDURE_KONTEXT.KURS_PRO_MITARBEITER);
     }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    public HashMap<ZertifikatProMitarbeiter, Integer> storeproduceZertifikatproMitarbeiter(int mitarbeiterID){
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_MA_ZERT(?)}",mitarbeiterID,STORE_PROCEDURE_KONTEXT.ZERTIFIKAT_PRO_MITARBEITER);
+    }
 
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -175,6 +179,35 @@ public class AuswertungenDatenbank extends Datenbank {
             KursProMitarbeiterHashMap.put(kursProMitarbeiter,mitarbeiterID);
         }
         return KursProMitarbeiterHashMap;
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
+    Parameter: Inhalt der Tabelle der Datenbank
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
+     */
+    public HashMap<ZertifikatProMitarbeiter,Integer> ausfuehrenZertifikatProMitarbeiter(ResultSet dbInhalt) throws SQLException {
+
+        HashMap<ZertifikatProMitarbeiter, Integer> ZertifikatProMitarbeiterHashMap = new HashMap<ZertifikatProMitarbeiter, Integer>();
+        ZertifikatProMitarbeiter zertifikatProMitarbeiter;
+
+        while (dbInhalt.next()) {
+
+            int mitarbeiterID = dbInhalt.getInt("mitarbeiterID");
+            String nachname = dbInhalt.getString("nachname");
+            String vorname = dbInhalt.getString("vorname");
+            String zertAblDatum = dbInhalt.getString("zertAblDatum");
+            String zertifikatstitel = dbInhalt.getString("zertifikatstitel");
+            String zertifikatsbeschreibung = dbInhalt.getString("zertifikatsbeschreibung");
+
+
+
+            zertifikatProMitarbeiter = new ZertifikatProMitarbeiter(mitarbeiterID,nachname,vorname,zertAblDatum,zertifikatstitel,zertifikatsbeschreibung);
+
+
+            ZertifikatProMitarbeiterHashMap.put(zertifikatProMitarbeiter,mitarbeiterID);
+        }
+        return ZertifikatProMitarbeiterHashMap;
     }
 
 

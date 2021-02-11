@@ -58,7 +58,7 @@ public class Auswertungen {
                     new KursProMitarbeiter().auswertungAusgeben();
                     break;
                 case 2:
-                    System.out.println(unterMenueMitarbeiter[0]);
+                    new ZertifikatProMitarbeiter().auswertungAusgeben();
                     break;
                 case 99:
                     System.out.println(unterMenueMitarbeiter[1]);
