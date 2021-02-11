@@ -56,7 +56,7 @@ public class StammdatenAlleMitarbeiter {
 
     private String[] attributenArrayBefuellen() {
 
-        String[] attributenArray = {String.valueOf(personalnummer),anrede ,nachname,vorname,jobtitel,geburtsdatum,statusmitarbeiter};
+        String[] attributenArray = {String.valueOf(personalnummer),anrede ,nachname, vorname, jobtitel, geburtsdatum, statusmitarbeiter};
 
         return attributenArray;
     }

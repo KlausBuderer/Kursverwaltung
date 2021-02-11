@@ -415,6 +415,12 @@ public class Datenbank {
                     rueckgabeList = new AuswertungenDatenbank().ausfuehrenStammdatenAlleMitarbeiter(dbInhalt);
                     break;
 
+                case AUSWERTUNG_STAMMDATEN_ALLE_MITARBEITER:
+
+                    dbInhalt = statement.executeQuery();
+                    rueckgabeList = new AuswertungenDatenbank().ausfuehrenStammdatenAlleMitarbeiter(dbInhalt);
+                    break;
+
                 case AUSWERTUNG_ALLE_KURSE:
 
                     dbInhalt = statement.executeQuery();
