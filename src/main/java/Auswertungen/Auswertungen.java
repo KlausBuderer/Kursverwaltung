@@ -4,10 +4,11 @@ import Utilities.BefehlsZeilenSchnittstelle;
 
 public class Auswertungen {
 
-    private String[] unterMenue = {"1.  Mitarbeiter", "2.  Weiterbildung", "3.  Budget / Ausgaben", "99. Hauptmenue"};
+    private String[] unterMenue = {"1.  Mitarbeiter", "2.  Weiterbildung", "3.  Budget / Ausgaben", "4.  Stammdaten", "99. Hauptmenue"};
     private String[] unterMenueMitarbeiter = {"1.  Kursuebersicht fuer gewuenschten Mitarbeiter ", "2.  Zertifikatsuebersicht fuer gewuenschten Mitarbeiter", "99. Zurueck"};
     private String[] unterMenueWeiterbildung = {"1.  Weiterbildung aller Mitarbeiter", "2.  Zertifikate aller Mitarbeiter", "3.  Kurse aller Mitarbeiter", "4.  Pruefung ablaufende Zertifikate", "99. Zurueck"};
-    private String[] unterMenueBudgetAusgaben = {"1.  udget pro Kostenstelle / Jahr", "2.  Kurskosten fuer gewuenschte Kostenstelle mit Anbieter / Waehrung / Zeitraum ","3.  Kurskosten alle Kostenstellen / Waehrung / Anbieter ", "99. Zurueck"};
+    private String[] unterMenueBudgetAusgaben = {"1.  Budget pro Kostenstelle / Jahr", "2.  Kurskosten fuer gewuenschte Kostenstelle mit Anbieter / Waehrung / Zeitraum ","3.  Kurskosten alle Kostenstellen / Waehrung / Anbieter ", "99. Zurueck"};
+    private String[] unterMenueStammdaten = {"1.  Anzeige alle Mitarbeiter", "2.  Anzeige alle Kostenstellen", "99. Zurueck"};
 
     public Auswertungen() {
         untermenuAnzeigen();
@@ -34,6 +35,9 @@ public class Auswertungen {
                 case 3:
                     unterMenueBudgetAusgabenAnzeigen();
                     break;
+                case 4:
+                    unterMenueStammdatenAnzeigen();
+                    break;
                 case 99:
                     System.out.println("Hauptmenue");
                     gueltigeEingabe = true;
@@ -58,7 +62,7 @@ public class Auswertungen {
                     new KursProMitarbeiter().auswertungAusgeben();
                     break;
                 case 2:
-                    System.out.println(unterMenueMitarbeiter[0]);
+                    new ZertifikatProMitarbeiter().auswertungAusgeben();
                     break;
                 case 99:
                     System.out.println(unterMenueMitarbeiter[1]);
@@ -120,6 +124,31 @@ public class Auswertungen {
                     break;
                 case 99:
                     System.out.println(unterMenueBudgetAusgaben[2]);
+                    gueltigeEingabe = true;
+                    break;
+                default:
+                    System.out.println("Falsche Eingabe");
+                    gueltigeEingabe = false;
+            }
+        } while (!gueltigeEingabe);
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  /*
+ Methode zum Anzeigen des Untermenues fuer die Auswertungen von Budget und Ausgaben
+  */
+    private void unterMenueStammdatenAnzeigen() {
+        boolean gueltigeEingabe = false;
+
+        do {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenueStammdaten,"Auswertungen Stammdaten")) {
+                case 1:
+                    new StammdatenAlleMitarbeiter().auswertungAusgeben();
+                    break;
+                case 2:
+                    System.out.println(unterMenueStammdaten[1]);
+                    break;
+                case 99:
+                    System.out.println(unterMenueStammdaten[2]);
                     gueltigeEingabe = true;
                     break;
                 default:
