@@ -421,7 +421,7 @@ public class Datenbank {
                     rueckgabeList = new AuswertungenDatenbank().ausfuehrenKurseAlleMitarbeiter(dbInhalt);
                     break;
 
-                case ZERTIFIKAT_ALLE_MITARBEITER_GUELTIGKEIT:
+                case AUSWERTUNG_ZERTIFIKATE_ALLE_MITARBEITER_GUELTIGKEIT:
                     System.out.println(parameter1);
                     statement.setString(1, parameter1);
 
