@@ -319,14 +319,14 @@ public class Datenbank {
             System.out.println("Store Procedure erfolgreich");
 
             switch (kontext){
-                case KURS_PRO_MITARBEITER:
+                case AUSWERTUNG_KURS_PRO_MITARBEITER:
                     statement.setInt(1,parameter);
 
                     dbInhalt = statement.executeQuery();
                     rueckgabeHash = new AuswertungenDatenbank().ausfuehrenZertifikatProMitarbeiter(dbInhalt);
                     break;
 
-                case ZERTIFIKAT_PRO_MITARBEITER:
+                case AUSWERTUNG_ZERTIFIKAT_PRO_MITARBEITER:
                     statement.setInt(1,parameter);
 
                     dbInhalt = statement.executeQuery();
@@ -408,6 +408,13 @@ public class Datenbank {
                     dbInhalt = statement.executeQuery();
                     rueckgabeList = new AuswertungenDatenbank().ausfuehrenZertifikateAlleMitarbeiter(dbInhalt);
                     break;
+
+                case AUSWERTUNG_ZERTIFIKAT_PRO_MITARBEITER:
+
+                    dbInhalt = statement.executeQuery();
+                    rueckgabeList = new AuswertungenDatenbank().ausfuehrenStammdatenAlleMitarbeiter(dbInhalt);
+                    break;
+
                 case AUSWERTUNG_ALLE_KURSE:
 
                     dbInhalt = statement.executeQuery();

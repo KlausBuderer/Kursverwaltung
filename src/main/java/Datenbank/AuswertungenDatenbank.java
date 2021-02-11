@@ -23,6 +23,14 @@ public class AuswertungenDatenbank extends Datenbank {
         return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_ZERTITIFKATE()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ZERTIFIKATE);
     }
 
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public List storeproduceStammdatenAlleMitarbeiter(){
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_ZERTITIFKATE()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ZERTIFIKATE);
+    }
+
+
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public List storeproduceKurseAlleMitarbeiter(){
@@ -38,12 +46,12 @@ public class AuswertungenDatenbank extends Datenbank {
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public HashMap<KursProMitarbeiter, Integer> storeproduceKursproMitarbeiter(int mitarbeiterID){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_MA_KURSE(?)}",mitarbeiterID,STORE_PROCEDURE_KONTEXT.KURS_PRO_MITARBEITER);
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_MA_KURSE(?)}",mitarbeiterID,STORE_PROCEDURE_KONTEXT.AUSWERTUNG_KURS_PRO_MITARBEITER);
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public HashMap<ZertifikatProMitarbeiter, Integer> storeproduceZertifikatproMitarbeiter(int mitarbeiterID){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_MA_ZERT(?)}",mitarbeiterID,STORE_PROCEDURE_KONTEXT.ZERTIFIKAT_PRO_MITARBEITER);
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_MA_ZERT(?)}",mitarbeiterID,STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ZERTIFIKAT_PRO_MITARBEITER);
     }
 
 
@@ -98,6 +106,32 @@ public class AuswertungenDatenbank extends Datenbank {
             zertifikateAlleMitarbeiterliste.add(zertifikateAlleMitarbeiter);
         }
         return zertifikateAlleMitarbeiterliste;
+    }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
+    Parameter: Inhalt der Tabelle der Datenbank
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
+     */
+    public List<StammdatenAlleMitarbeiter> ausfuehrenStammdatenAlleMitarbeiter(ResultSet dbInhalt) throws SQLException {
+
+        List<StammdatenAlleMitarbeiter> stammdatenAlleMitarbeiterliste = new ArrayList<>();
+        StammdatenAlleMitarbeiter stammdatenAlleMitarbeiter;
+
+        while (dbInhalt.next()) {
+
+            int personalnummer = dbInhalt.getInt("personalnummer");
+            String anrede = dbInhalt.getString("anrede");
+            String nachname = dbInhalt.getString("nachname");
+            String vorname = dbInhalt.getString("vorname");
+            String jobtitel = dbInhalt.getString("jobtitel");
+            String geburtsdatum = dbInhalt.getString("geburtsdatum");
+            String statusmitarbeiter = dbInhalt.getString("statusmitarbeiter");
+            stammdatenAlleMitarbeiter = new StammdatenAlleMitarbeiter(personalnummer,anrede, nachname,vorname,jobtitel,geburtsdatum,statusmitarbeiter);
+
+            stammdatenAlleMitarbeiterliste.add(stammdatenAlleMitarbeiter);
+        }
+        return stammdatenAlleMitarbeiterliste;
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
