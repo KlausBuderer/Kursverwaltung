@@ -23,13 +23,11 @@ public class AuswertungenDatenbank extends Datenbank {
         return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_ZERTITIFKATE()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ZERTIFIKATE);
     }
 
-
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public List storeproduceStammdatenAlleMitarbeiter(){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_ZERTITIFKATE()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ZERTIFIKATE);
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_STAMMDATEN()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_STAMMDATEN_ALLE_MITARBEITER);
     }
-
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -53,7 +51,6 @@ public class AuswertungenDatenbank extends Datenbank {
     public HashMap<ZertifikatProMitarbeiter, Integer> storeproduceZertifikatproMitarbeiter(int mitarbeiterID){
         return storeProcedureAufrufen("{call SP_ANZEIGEN_MA_ZERT(?)}",mitarbeiterID,STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ZERTIFIKAT_PRO_MITARBEITER);
     }
-
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*

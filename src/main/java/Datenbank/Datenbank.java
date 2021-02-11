@@ -323,7 +323,7 @@ public class Datenbank {
                     statement.setInt(1,parameter);
 
                     dbInhalt = statement.executeQuery();
-                    rueckgabeHash = new AuswertungenDatenbank().ausfuehrenZertifikatProMitarbeiter(dbInhalt);
+                    rueckgabeHash = new AuswertungenDatenbank().ausfuehrenKursProMitarbeiter(dbInhalt);
                     break;
 
                 case AUSWERTUNG_ZERTIFIKAT_PRO_MITARBEITER:
