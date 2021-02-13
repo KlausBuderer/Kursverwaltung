@@ -1,7 +1,7 @@
-import Benutzerverwaltung.Benutzer;
-import Datenbank.Datenbank;
-import Einstellungen.Einstellungen;
-import Utilities.BefehlsZeilenSchnittstelle;
+import Logik.Benutzerverwaltung.Benutzer;
+import DatenSchicht.Datenbank;
+import Logik.Einstellungen.Einstellungen;
+import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 
 public class KursverwaltungMain {
 
