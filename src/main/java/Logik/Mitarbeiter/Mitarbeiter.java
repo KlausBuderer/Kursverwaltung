@@ -1,16 +1,21 @@
-package Mitarbeiter;
+package Logik.Mitarbeiter;
 
-import Administratives.Kostenstelle;
-import Datenbank.MitarbeiterDatenbank;
-import Utilities.BefehlsZeilenSchnittstelle;
+import DatenSchicht.DatenLogikKostenstelle;
+import DatenSchicht.DatenLogikMitarbeiter;
+import DatenSchicht.KostenstelleDatenbank;
+import DatenSchicht.MitarbeiterDatenbank;
+import Logik.Administratives.Kostenstelle;
+import Logik.Services;
+import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 
-public class Mitarbeiter{
+public class Mitarbeiter extends Services {
 
 
     private String[] unterMenue = {"1.  Mitarbeiter Anlegen","2.  Mitarbeiter Kurszuordnung", "3.  Mitarbeiter Zertifikatszuordnung", "4.  Zertifikat Verlaengern",
             "5.  Mitarbeiter Mutation", "6.  Mitarbeiter loeschen", "99. Hauptmenue"};
     private String[] anredeArray = {"Frau", "Herr", "Neutral"};
     private String[] statusArray = {"angestellt", "ausgetreten"};
+    private String[] KOPFZEILE = {" ","Personal Nummer","Nachname","Vorname", "Geburtsdatum", "Kostenstelle", "Jobtitel", "Anstellungsstatus", "Anrede"};
 
     public int mitarbeiterId;
     public int personalNummer;
@@ -21,6 +26,7 @@ public class Mitarbeiter{
     public String jobTitel;
     public String geburtstag;
     public String mitarbeiterStatus;
+    private String kostenstellenBezeichnung;
 
     public Mitarbeiter() {
         untermenueAnzeigen();
@@ -36,16 +42,18 @@ public class Mitarbeiter{
         this.jobTitel = jobTitel;
         this.geburtstag = geburtstag;
         this.mitarbeiterStatus = mitarbeiterStatusString;
+        DatenLogikKostenstelle datenLogikKostenstelle =  new KostenstelleDatenbank();
+        this.kostenstellenBezeichnung = datenLogikKostenstelle.kostenstelleBezichnungAusgeben(kostenstelleId);
     }
 
-    private void untermenueAnzeigen() {
+    public void untermenueAnzeigen() {
 
         boolean gueltigeEingabe = false;
 
         do {
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue,"Mitarbeiter")) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue, "Logik/Mitarbeiter")) {
                 case 1:
-                    mitarbeiterAnlegen();
+                    datenAnlegen();
                     break;
                 case 2:
                     new MitarbeiterBescheinigung().kursZuweisen();
@@ -57,10 +65,10 @@ public class Mitarbeiter{
                     new MitarbeiterBescheinigung().zertifikatVerlaengern();
                     break;
                 case 5:
-                    mitarbeiterMutieren();
+                    datenMutieren();
                     break;
                 case 6:
-                    mitarbeiterLoeschen();
+                    datenLoeschen();
                     break;
                 case 99:
                     gueltigeEingabe = true;
@@ -75,7 +83,7 @@ public class Mitarbeiter{
     /*
     Methode zum Mitarbeiter.Mitarbeiter anlegen
      */
-    private void mitarbeiterAnlegen() {
+    protected void datenAnlegen() {
 
         boolean abschliessen = true;
         String titelName = "Mitarbeiter Anlegen";
@@ -117,16 +125,19 @@ public class Mitarbeiter{
             Kostenstelle kostenstelle = new Kostenstelle();
             kostenstelle.auswahlListeKostenstelleAusgeben();
             kostenstelleId = kostenstelle.kostenstelleId;
+            //kostenstellen Bezeichnung aus der Datenbank lesen
+            DatenLogikKostenstelle datenLogikKostenstelle = new KostenstelleDatenbank();
+            kostenstellenBezeichnung = datenLogikKostenstelle.kostenstelleBezichnungAusgeben(kostenstelleId);
+
 
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
+            objectInTabelleAusgeben(KOPFZEILE,attributenArrayFuerTabelle());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1:
-                    MitarbeiterDatenbank mitarbeiter = new MitarbeiterDatenbank();
+                    DatenLogikMitarbeiter mitarbeiter = new MitarbeiterDatenbank();
                     mitarbeiter.mitarbeiterAnlegen(this);
                     abschliessen = true;
                     break;
@@ -139,12 +150,11 @@ public class Mitarbeiter{
             }
         }while (!abschliessen) ;
     }
-
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode zur Bearbeitung eines Mitarbeiter
      */
-    private void mitarbeiterMutieren() {
+    protected void datenMutieren() {
 
         String[] spaltenArray = {"Personalnummer","Anrede","Nachname","Vorname","Geburtsdatum","Abteilung","Jobtitel","Status"};
         String titelName = "Mitarbeiter Mutieren";
@@ -161,7 +171,6 @@ public class Mitarbeiter{
             return;
         }
 
-        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(mitarbeiter.toString());
         do {
             BefehlsZeilenSchnittstelle.bildReinigen(titelName, 2);
             int i = 1;
@@ -183,7 +192,7 @@ public class Mitarbeiter{
                     personalNummer = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie die Personalnummer ein: ");
                     break;
                 case 2:
-                    Utilities.BefehlsZeilenSchnittstelle.bildReinigen(titelName, 2);
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName, 2);
                     //Anrede
                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + anrede);
                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede: ");
@@ -194,7 +203,7 @@ public class Mitarbeiter{
                         j++;
                     }
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede (1-3): ");
-                    anrede = anredeArray[Utilities.BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
+                    anrede = anredeArray[BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
                     break;
                 case 3:
                     BefehlsZeilenSchnittstelle.bildReinigen(titelName, 2);
@@ -202,17 +211,17 @@ public class Mitarbeiter{
                     nachname = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Nachnamen ein: ");
                     break;
                 case 4:
-                    Utilities.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + vorname);
-                    vorname = Utilities.BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Vornamen ein: ");
+                    vorname = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Vornamen ein: ");
                     break;
                 case 5:
-                    Utilities.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + geburtstag);
-                    geburtstag = Utilities.BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben sie das Geburtsdatum ein: ");
+                    geburtstag = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben sie das Geburtsdatum ein: ");
                     break;
                 case 6:
-                    Utilities.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
+                    BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + kostenstelleId);
                     Kostenstelle kostenstelle = new Kostenstelle();
                     kostenstelle.auswahlListeKostenstelleAusgeben();
@@ -233,21 +242,22 @@ public class Mitarbeiter{
                         p++;
                     }
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede (1-2): ");
-                    mitarbeiterStatus = statusArray[Utilities.BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1];
+                    mitarbeiterStatus = statusArray[BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1];
                 default:
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsche Eingabe!");
                     break;
             }
 
-            Utilities.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");;
+            //Eingaben ausgeben
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
+            objectInTabelleAusgeben(KOPFZEILE,attributenArrayFuerTabelle());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
-            switch (Utilities.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
                 case 1:
-                    new MitarbeiterDatenbank().datenMutation(this);
+                    DatenLogikMitarbeiter mitarbeiterMutieren = new MitarbeiterDatenbank();
+                    mitarbeiterMutieren.datenMutation(this);
                     abschliessen = true;
                     break;
                 case 2: abschliessen = false;
@@ -262,8 +272,7 @@ public class Mitarbeiter{
        /*
     Methode zur Bearbeitung eines Mitarbeiter
      */
-
-    private void mitarbeiterLoeschen(){
+    protected void datenLoeschen(){
         boolean abschliessen = false;
         String titelName = "Mitarbeiter Loeschen";
         Mitarbeiter mitarbeiter;
@@ -274,12 +283,13 @@ public class Mitarbeiter{
             mitarbeiter = new MitarbeiterSuche().mitarbeiterSuchen();
             //Ausgabe der Daten des ausgewaehlten Mitarbeiters
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(mitarbeiter.toString());
+            mitarbeiter.objectInTabelleAusgeben(KOPFZEILE,mitarbeiter.attributenArrayFuerTabelle());
             //Abfrage ob der Mitarbeiter wirklich geloescht werden soll
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
-                case 1: //1.Ja-> MitarbeiterLoeschenQuery aufrufen und Methode beenden
-                    new MitarbeiterDatenbank().mitarbeiterLoeschen(mitarbeiter.mitarbeiterId);
+                case 1: //1.Ja-> Mitarbeiter Loeschen Query aufrufen und Methode beenden
+                    DatenLogikMitarbeiter mitarbeiterLoeschen =  new MitarbeiterDatenbank();
+                    mitarbeiterLoeschen.mitarbeiterLoeschen(mitarbeiter.mitarbeiterId);
                     abschliessen = true;
                     break;
                 case 2: //2.Nein-> Springe zu Aufrufen MitarbeiterSuchen()
@@ -292,7 +302,6 @@ public class Mitarbeiter{
 
         }while(!abschliessen);
     }
-
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Die Methode uebergibt ein Objekt in das jetztige
@@ -324,13 +333,12 @@ public class Mitarbeiter{
                 "JobTitel " + BefehlsZeilenSchnittstelle.textFormatieren(jobTitel, 25);
 
     }
-
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Diese Methode packt die Membervariablen in ein Array fuer die Ausgabe in einer Tabelle
      */
-    String[] attributenArrayFuerTabelle(){
-        String[] attributenArray = {"",String.valueOf(personalNummer),nachname,vorname, geburtstag, String.valueOf(kostenstelleId), jobTitel, mitarbeiterStatus, anrede};
+    protected String[] attributenArrayFuerTabelle(){
+        String[] attributenArray = {" ",String.valueOf(personalNummer),nachname,vorname, geburtstag, kostenstellenBezeichnung, jobTitel, mitarbeiterStatus, anrede};
         return attributenArray;
     }
 }
