@@ -117,7 +117,7 @@ public class Auswertungen {
         do {
             switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenueBudgetAusgaben,"Auswertungen Budget & Ausgaben")) {
                 case 1:
-                    System.out.println(unterMenueBudgetAusgaben[0]);
+                    new BudgetAlleKostenstellen().auswertungAusgeben();
                     break;
                 case 2:
                     System.out.println(unterMenueBudgetAusgaben[1]);

@@ -37,6 +37,12 @@ public class AuswertungenDatenbank extends Datenbank {
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    public List storeproduceBudgetAlleKostenstellen(){
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_KOSTENSTELLE_BUDGET()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_BUDGET_ALLE_KOSTENSTELLE);
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     public List storeproduceZertifikateAlleMitarbeiterGueltigkeit(String datumBis){
         return storeProcedureAufrufen("{call SP_ANZEIGEN_NICHT_GUELTIG_ALLE_MA_ZERT(?)}","",datumBis,STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ZERTIFIKATE_ALLE_MITARBEITER_GUELTIGKEIT);
     }
@@ -154,6 +160,33 @@ public class AuswertungenDatenbank extends Datenbank {
             kurseAlleMitarbeiterliste.add(kurseAlleMitarbeiter);
         }
         return kurseAlleMitarbeiterliste;
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
+    Parameter: Inhalt der Tabelle der Datenbank
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
+     */
+    public List<BudgetAlleKostenstellen> ausfuehrenBudgetAlleKostenstellen(ResultSet dbInhalt) throws SQLException {
+
+        List<BudgetAlleKostenstellen> budgetAlleKostenstellenliste = new ArrayList<>();
+        BudgetAlleKostenstellen budgetAlleKostenstellen;
+
+        while (dbInhalt.next()) {
+
+            String budgetjahr = dbInhalt.getString("budgetjahr");
+            String budgetbetrag = dbInhalt.getString("budgetbetrag");
+            String waehrung = dbInhalt.getString("waehrung");
+            int kostenstellennummer = dbInhalt.getInt("kostenstellennummer");
+            String kostenstellenbezeichnung = dbInhalt.getString("kostenstellenbezeichnung");
+            String kostenstellenverantwortlichePerson = dbInhalt.getString("kostenstellenverantwortlichePerson");
+
+            budgetAlleKostenstellen = new BudgetAlleKostenstellen(budgetjahr,budgetbetrag,waehrung,kostenstellennummer,kostenstellenbezeichnung,kostenstellenverantwortlichePerson);
+
+            budgetAlleKostenstellenliste.add(budgetAlleKostenstellen);
+        }
+        return budgetAlleKostenstellenliste;
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
