@@ -1,10 +1,11 @@
 unnamed package
-Administratives
-Auswertungen
-Benutzerverwaltung
-Datenbank
-Einstellungen
-Kurse
-Mitarbeiter
-Utilities
-Zertifikate
+DatenSchicht
+Logik
+Logik.Administratives
+Logik.Auswertungen
+Logik.Benutzerverwaltung
+Logik.Einstellungen
+Logik.Kurse
+Logik.Mitarbeiter
+Logik.Zertifikate
+PraesentationSchicht
