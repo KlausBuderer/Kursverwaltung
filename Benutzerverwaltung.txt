@@ -4,3 +4,9 @@ Bruno,abcd,ADMINISTRATOR
 TestAdmin,123abc,ADMINISTRATOR
 TestUser,123abc,BENUTZER
 Ahmet,abcd,BENUTZER
+awassmeranw,ma2021,BENUTZER
+awassmeradm,ma2021,ADMINISTRATOR
+rhirschianw,ma2021,BENUTZER
+rhirschiadm,ma2021,ADMINISTRATOR
+mbontognalianw,ma2021,BENUTZER
+mbontognaliadm,ma2021,ADMINISTRATOR

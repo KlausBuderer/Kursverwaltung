@@ -1,6 +1,0 @@
-Benutzer;Passwort;Benutzergruppe
-Klaus,abcd,ADMINISTRATOR
-Bruno,abcd,ADMINISTRATOR
-TestAdmin,123abc,ADMINISTRATOR
-TestUser,123abc,BENUTZER
-Ahmet,abcd,BENUTZER
