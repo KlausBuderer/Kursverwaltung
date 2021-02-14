@@ -29,8 +29,8 @@ public class Datenbank {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
 
-            System.out.println("Verbindung zu Datenbank.Datenbank erfolgreich");
-            BefehlsZeilenSchnittstelle.verzoegerung(2000);
+            System.out.println("Verbindung zu Datenbank erfolgreich");
+            BefehlsZeilenSchnittstelle.bildReinigen("",3);
 
             verbindungErfolgreich = true;
 

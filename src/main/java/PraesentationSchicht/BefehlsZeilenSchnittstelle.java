@@ -55,15 +55,16 @@ public final class BefehlsZeilenSchnittstelle {
         boolean benutzerAngemeldet = false;
         String benutzerEingabe;
         String passwortEingabe;
+        farbschemaWaehlen(Farbschema.WEISS);
 
         do{
 
-            ausgabeMitAbsatz("Bitte melden sie sich an");
+            bildReinigen("Anmeldefenster",2);
                 System.out.println();
-                   benutzerEingabe = abfrageMitEingabeFrei45("Benutzername: ");
-                   passwortEingabe = abfrageMitEingabeFrei45("Passwort: " + ANSI_USICHTBARER_TEXT);
+                   benutzerEingabe = abfrageMitEingabeFrei45("                                                 Benutzername: ");
+                   passwortEingabe = abfrageMitEingabeFrei45("                                                 Passwort: ");
+
                      benutzerAngemeldet = new Benutzer().benutzerAnmelden(benutzerEingabe,passwortEingabe);
-            System.out.println(ANSI_RESET);
         }while (!benutzerAngemeldet);
 
 
@@ -238,8 +239,9 @@ public final class BefehlsZeilenSchnittstelle {
             }
         } catch (IOException | InterruptedException ex) {
         }
-
-        titelZeile(menue,kontext);
+        if (kontext < 3) {
+            titelZeile(menue, kontext);
+        }
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

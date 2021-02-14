@@ -59,8 +59,8 @@ Logik/Benutzerverwaltung/Benutzer.java
  Logik.Benutzerverwaltung.Benutzer
 Logik/Einstellungen/Einstellungen.java
  Logik.Einstellungen.Einstellungen
-KursverwaltungMain.java
- KursverwaltungMain
+Logik/Benutzerverwaltung/Benutzerverwaltung.java
+ Logik.Benutzerverwaltung.Benutzerverwaltung
 DatenSchicht/MitarbeiterDatenbank.java
  DatenSchicht.MitarbeiterDatenbank
 Logik/Services.java
@@ -83,5 +83,7 @@ DatenSchicht/ZertifikatsDatenbank.java
  DatenSchicht.ZertifikatsDatenbank
 DatenSchicht/DatenLogikZertifikat.java
  DatenSchicht.DatenLogikZertifikat
-Logik/Benutzerverwaltung/Benutzerverwaltung.java
- Logik.Benutzerverwaltung.Benutzerverwaltung
+PraesentationSchicht/Animation.java
+ PraesentationSchicht.Animation
+KursverwaltungMain.java
+ KursverwaltungMain
