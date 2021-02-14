@@ -745,15 +745,15 @@ public final class BefehlsZeilenSchnittstelle {
 
             if (kontext == 1) {
                 text.toString();
-                System.out.println(schriftfarbe +"\n" + "                                                                                Angemeldeter Benutzer: " + Benutzer.angemeldeterBenutzer +"\t" +dtf.format(LocalDateTime.now()) + ANSI_RESET);
+                System.out.println(schriftfarbe +"\n" + "                                                                           Angemeldeter Benutzer: " + Benutzer.angemeldeterBenutzer +"\t" +dtf.format(LocalDateTime.now()) + ANSI_RESET);
 
-                System.out.println(schriftfarbe + "╔==========================================================================================================================╗" + ANSI_RESET);
-                System.out.println(schriftfarbe + "║" + vor + text + nach + "  ║" + ANSI_RESET);
-                System.out.println(schriftfarbe + "╚==========================================================================================================================╝" + ANSI_RESET);
+                System.out.println(schriftfarbe + "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>" + ANSI_RESET);
+                System.out.println(schriftfarbe + "<  " + vor + text + nach + "  >" + ANSI_RESET);
+                System.out.println(schriftfarbe + "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>" + ANSI_RESET);
             }  else if(kontext == 2){
-                System.out.println(schriftfarbe + "┌--------------------------------------------------------------------------------------------------------------------------┐" + ANSI_RESET);
-                System.out.println(schriftfarbe + "|" + vor+ text + nach + "  |" + ANSI_RESET);
-                System.out.println(schriftfarbe + "└--------------------------------------------------------------------------------------------------------------------------┘" + ANSI_RESET);
+                System.out.println(schriftfarbe + "--------------------------------------------------------------------------------------------------------------------------" + ANSI_RESET);
+                System.out.println(schriftfarbe + "|" + vor+ text + nach + "|" + ANSI_RESET);
+                System.out.println(schriftfarbe + "--------------------------------------------------------------------------------------------------------------------------" + ANSI_RESET);
             }
 
         }
