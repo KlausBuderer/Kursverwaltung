@@ -241,20 +241,4 @@ public class AuswertungenDatenbank extends Datenbank {
         return ZertifikatProMitarbeiterHashMap;
     }
 
-
-    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    /*
-    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
-    Parameter: Inhalt der Tabelle der Datenbank
-    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
-     */
-    public List<?> auswertungAusDbLesen(String query){
-        return  auswertungAusgeben(query);
-    }
-
-
-    void auswertungErstellen(ResultSet dbInhalt) throws SQLException {
-        MitarbeiterAuswertung mitarbeiterAuswertung = new MitarbeiterAuswertung();
-        mitarbeiterAuswertung.ausgabeListe(mitarbeiterAuswertung.mitarbeiterAuswerten(dbInhalt));
-    }
-}
+   }

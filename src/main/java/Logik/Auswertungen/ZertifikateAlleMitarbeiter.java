@@ -11,7 +11,9 @@ import java.util.List;
 public class ZertifikateAlleMitarbeiter {
 
     private final String[] TITELZEILE = {"Personalnummer", "Nachname", "Vorname", "Zertifikatstitel", "Zertifikatsbeschreibung", "ZertAblDatum"};
+
     private int personalnummer;
+
     private String nachname;
     private String vorname;
     private String zertifikatstitel;

@@ -18,13 +18,18 @@ public class ZertifikatProMitarbeiter {
     // MitarbeiterID,Nachname,Vorname,ZertAblDatum,Zertifikatstitel,Zertifikatsbeschreibung
 
     private final String[] TITELZEILE = {"MitarbeiterID","Nachname","Vorname","ZertAblDatum","Zertifikatstitel","Zertifikatsbeschreibung"};
+
     private int mitarbeiterID;
+
     private String nachname;
     private String vorname;
     private String zertAblDatum;
     private String zertifikatstitel;
     private String zertifikatsbeschreibung;
 
+    public ZertifikatProMitarbeiter() {
+
+    }
 
     public ZertifikatProMitarbeiter(int mitarbeiterID, String nachname, String vorname, String zertAblDatum, String zertifikatstitel, String zertifikatsbeschreibung) {
         this.mitarbeiterID = mitarbeiterID;
@@ -33,10 +38,6 @@ public class ZertifikatProMitarbeiter {
         this.zertAblDatum = zertAblDatum;
         this.zertifikatstitel = zertifikatstitel;
         this.zertifikatsbeschreibung = zertifikatsbeschreibung;
-
-    }
-
-    public ZertifikatProMitarbeiter() {
 
     }
 
@@ -66,7 +67,7 @@ public class ZertifikatProMitarbeiter {
         BefehlsZeilenSchnittstelle.beliebigeTasteDrueckenAnzeigen();
     }
 
-        private String[] attributenArrayBefuellen () {
+    private String[] attributenArrayBefuellen () {
             String[] attributenArray = {String.valueOf(mitarbeiterID), nachname, vorname, zertAblDatum, zertifikatstitel, zertifikatsbeschreibung};
 
             return attributenArray;

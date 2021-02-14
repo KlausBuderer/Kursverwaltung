@@ -16,11 +16,12 @@ import java.util.stream.Stream;
 
 public class Benutzer {
 
+    private final List<Benutzer> ALLEBENUTZER = new ArrayList<>();
+    private final String[] BENUTZERGRUPPEN = {"ADMINISTRATOR", "BENUTZER"};
+
     private String benutzer;
     private String passwort;
     private String benutzergruppe;
-    private final List<Benutzer> ALLEBENUTZER = new ArrayList<>();
-    private final String[] BENUTZERGRUPPEN = {"ADMINISTRATOR", "BENUTZER"};
 
     public static String angemeldeterBenutzer = "";
     public static String angemeldeteGruppe;

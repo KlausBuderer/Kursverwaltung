@@ -18,15 +18,18 @@ public class KursProMitarbeiter {
 
 
     private final String[] TITELZEILE = {"MitarbeiterID", "Nachname", "Vorname", "Kurscode", "Kursbeschreibung", "Anbieter", "Kosten", "Waehrung"};
+
     private int mitarbeiterID;
+    private int kosten;
+
     private String nachname;
     private String vorname;
     private String kurscode;
     private String kursbeschreibung;
     private String anbieter;
-    private int kosten;
     private String waehrung;
 
+    public KursProMitarbeiter() {}
 
     public KursProMitarbeiter(int mitarbeiterID, String nachname, String vorname, String kurscode, String kursbeschreibung, String anbieter, int kosten, String waehrung) {
         this.mitarbeiterID = mitarbeiterID;
@@ -37,13 +40,7 @@ public class KursProMitarbeiter {
         this.anbieter = anbieter;
         this.kosten = kosten;
         this.waehrung = waehrung;
-
     }
-
-    public KursProMitarbeiter() {
-
-    }
-    // Abfrage Datum
 
     public void auswertungAusgeben() {
         Mitarbeiter mitarbeiterIdentification;
@@ -54,7 +51,6 @@ public class KursProMitarbeiter {
 
 
         //Aufruf Store Procedure SP_ANZEIGEN_MA_KURSE
-
         AusgabeKursProMitarbeiter = new AuswertungenDatenbank().storeproduceKursproMitarbeiter(mitarbeiterIdentification.mitarbeiterId);
 
 
@@ -70,7 +66,7 @@ public class KursProMitarbeiter {
         BefehlsZeilenSchnittstelle.beliebigeTasteDrueckenAnzeigen();
     }
 
-        private String[] attributenArrayBefuellen () {
+    private String[] attributenArrayBefuellen () {
             String[] attributenArray = {String.valueOf(mitarbeiterID), nachname, vorname, kurscode, kursbeschreibung, anbieter, String.valueOf(kosten), waehrung};
 
             return attributenArray;

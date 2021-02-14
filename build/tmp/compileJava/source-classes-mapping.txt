@@ -25,13 +25,13 @@ Logik/Administratives/Administratives.java
 PraesentationSchicht/BefehlsZeilenSchnittstelle.java
  PraesentationSchicht.BefehlsZeilenSchnittstelle
  PraesentationSchicht.BefehlsZeilenSchnittstelle$1
-PraesentationSchicht/Farbschema.java
- PraesentationSchicht.Farbschema
 Logik/Auswertungen/KursProMitarbeiter.java
  Logik.Auswertungen.KursProMitarbeiter
 Logik/Mitarbeiter/MitarbeiterBescheinigung.java
  Logik.Mitarbeiter.MitarbeiterBescheinigung
  Logik.Mitarbeiter.MitarbeiterBescheinigung$kontextAnlegen
+PraesentationSchicht/FARBSCHEMA.java
+ PraesentationSchicht.FARBSCHEMA
 DatenSchicht/Datenbank.java
  DatenSchicht.Datenbank
  DatenSchicht.Datenbank$1
@@ -59,8 +59,8 @@ Logik/Benutzerverwaltung/Benutzer.java
  Logik.Benutzerverwaltung.Benutzer
 Logik/Einstellungen/Einstellungen.java
  Logik.Einstellungen.Einstellungen
-Logik/Benutzerverwaltung/Benutzerverwaltung.java
- Logik.Benutzerverwaltung.Benutzerverwaltung
+KursverwaltungMain.java
+ KursverwaltungMain
 DatenSchicht/MitarbeiterDatenbank.java
  DatenSchicht.MitarbeiterDatenbank
 Logik/Services.java
@@ -75,15 +75,13 @@ Logik/Administratives/ServicesAdmin.java
  Logik.Administratives.ServicesAdmin
 Logik/Mitarbeiter/Mitarbeiter.java
  Logik.Mitarbeiter.Mitarbeiter
-Logik/Auswertungen/MitarbeiterAuswertung.java
- Logik.Auswertungen.MitarbeiterAuswertung
 DatenSchicht/DatenLogikKostenstelle.java
  DatenSchicht.DatenLogikKostenstelle
 DatenSchicht/ZertifikatsDatenbank.java
  DatenSchicht.ZertifikatsDatenbank
 DatenSchicht/DatenLogikZertifikat.java
  DatenSchicht.DatenLogikZertifikat
+Logik/Benutzerverwaltung/Benutzerverwaltung.java
+ Logik.Benutzerverwaltung.Benutzerverwaltung
 PraesentationSchicht/Animation.java
  PraesentationSchicht.Animation
-KursverwaltungMain.java
- KursverwaltungMain

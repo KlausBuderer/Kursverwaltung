@@ -11,14 +11,18 @@ import java.util.List;
 public class WeiterbildungAlleMitarbeiterZeitraum {
 
     private final String[] TITELZEILE = {"Anrede", "Nachname", "Vorname", "Kennung", "Kursbeschreibung", "KOSTEN", "Waehrung", "Zertifikatsablaufdatum"};
+
+    private int kosten;
+
     private String anrede;
     private String nachname;
     private String vorname;
     private String kennung;
     private String kursbeschreibung;
-    private int kosten;
     private String waehrung;
     private String zertifikatsablaufdatum;
+
+    public WeiterbildungAlleMitarbeiterZeitraum() {}
 
     public WeiterbildungAlleMitarbeiterZeitraum(String anrede, String nachname, String vorname, String kennung, String kursbeschreibung, int kosten, String waehrung, String zertifikatsablaufdatum) {
         this.anrede = anrede;
@@ -29,19 +33,13 @@ public class WeiterbildungAlleMitarbeiterZeitraum {
         this.kosten = kosten;
         this.waehrung = waehrung;
         this.zertifikatsablaufdatum = zertifikatsablaufdatum;
-
     }
-
-    public WeiterbildungAlleMitarbeiterZeitraum() {
-
-    }
-    // Abfrage Datum
 
     public void auswertungAusgeben() {
         String datumVon;
         String datumBis;
         List<WeiterbildungAlleMitarbeiterZeitraum> AusgabeWeiterbildungAlleMitarbeiterZeitraum;
-
+        // Abfrage Datum
         datumVon = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Startdatum des gewuenschten Auswertungszeitraum ein: ");
         datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Enddatum des gewuenschten Auswertungszeitraum ein: ");
 
@@ -60,6 +58,7 @@ public class WeiterbildungAlleMitarbeiterZeitraum {
         tabelle.ausgabe();
         BefehlsZeilenSchnittstelle.beliebigeTasteDrueckenAnzeigen();
          }
+
     private String[] attributenArrayBefuellen() {
         String[] attributenArray = {anrede,nachname,vorname,kennung,kursbeschreibung,String.valueOf(kosten),waehrung,zertifikatsablaufdatum};
 

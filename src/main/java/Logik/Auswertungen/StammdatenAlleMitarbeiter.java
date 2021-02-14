@@ -11,13 +11,17 @@ import java.util.List;
 public class StammdatenAlleMitarbeiter {
 
     private final String[] TITELZEILE = {"Personalnummer","Anrede","Nachname","Vorname","Jobtitel","Geburtsdatum","Statusmitarbeiter"};
+
     private int personalnummer;
+
     private String anrede;
     private String nachname;
     private String vorname;
     private String jobtitel;
     private String geburtsdatum;
     private String statusmitarbeiter;
+
+    public StammdatenAlleMitarbeiter() {}
 
     public StammdatenAlleMitarbeiter(int personalnummer, String anrede, String nachname, String vorname, String jobtitel, String geburtsdatum, String statusmitarbeiter) {
         this.personalnummer = personalnummer;
@@ -27,9 +31,6 @@ public class StammdatenAlleMitarbeiter {
         this.jobtitel = jobtitel;
         this.geburtsdatum = geburtsdatum;
         this.statusmitarbeiter = statusmitarbeiter;
-    }
-
-    public StammdatenAlleMitarbeiter() {
     }
 
     public void auswertungAusgeben() {

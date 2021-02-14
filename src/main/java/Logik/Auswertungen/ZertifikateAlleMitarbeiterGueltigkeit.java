@@ -7,15 +7,17 @@ import PraesentationSchicht.Tabelle;
 
 import java.util.List;
 
-
 public class ZertifikateAlleMitarbeiterGueltigkeit {
 
     private final String[] TITELZEILE = {"nachname","vorname","zertAblDatum","zertifikatstitel","zertifikatsbeschreibung"};
+
     private String nachname;
     private String vorname;
     private String zertifikatsablaufdatum;
     private String zertifikatstitel;
     private String zertifikatsbeschreibung;
+
+    public ZertifikateAlleMitarbeiterGueltigkeit() {}
 
     public ZertifikateAlleMitarbeiterGueltigkeit(String nachname, String vorname, String zertifikatsablaufdatum, String zertifikatstitel, String zertifikatsbeschreibung) {
         this.nachname = nachname;
@@ -23,20 +25,14 @@ public class ZertifikateAlleMitarbeiterGueltigkeit {
         this.zertifikatsablaufdatum = zertifikatsablaufdatum;
         this.zertifikatstitel = zertifikatstitel;
         this.zertifikatsbeschreibung = zertifikatsbeschreibung;
-
     }
-
-    public ZertifikateAlleMitarbeiterGueltigkeit() {
-
-    }
-    // Abfrage Datum
 
     public void auswertungAusgeben() {
 
         String datumBis;
 
         List<ZertifikateAlleMitarbeiterGueltigkeit> AusgabeZertifikateAlleMitarbeiterGueltigkeit;
-
+        // Abfrage Datum
         datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie ein Datum ein bis wann Sie die Gueltigkeit der Zertifikate in Zukunft pruefen wollen: ");
 
 
@@ -55,6 +51,7 @@ public class ZertifikateAlleMitarbeiterGueltigkeit {
         tabelle.ausgabe();
         BefehlsZeilenSchnittstelle.beliebigeTasteDrueckenAnzeigen();
          }
+
     private String[] attributenArrayBefuellen() {
         String[] attributenArray = {nachname,vorname,zertifikatsablaufdatum,zertifikatstitel,zertifikatsbeschreibung};
 

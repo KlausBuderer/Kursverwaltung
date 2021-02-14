@@ -11,12 +11,17 @@ import java.util.List;
 public class KurseAlleMitarbeiter {
 
     private final String[] TITELZEILE = {"MitarbeiterID","Nachname","Vorname","Kurscode","Kursbeschreibung","Anbieter"};
+
     private int personalnummer;
+
     private String nachname;
     private String vorname;
     private String kurscode;
     private String kursbeschreibung;
     private String anbieter;
+
+    public KurseAlleMitarbeiter() {
+    }
 
     public KurseAlleMitarbeiter(int personalnummer, String nachname, String vorname, String kurscode, String kursbeschreibung,String anbieter) {
         this.personalnummer = personalnummer;
@@ -27,14 +32,9 @@ public class KurseAlleMitarbeiter {
         this.anbieter = anbieter;
     }
 
-    public KurseAlleMitarbeiter() {
-    }
-
     public void auswertungAusgeben() {
 
-
         List<KurseAlleMitarbeiter> AusgabeKurseAlleMitarbeiter;
-
 
         //Aufruf Store Procedure SP_ANZEIGEN_ALLE_MA_ZERTITIFKATE
 

@@ -4,12 +4,10 @@ import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 
 public class Benutzerverwaltung {
 
-    String [] unterMenue = {"1.  Benutzer Anlegen", "2.  Benutzer Loeschen", "3.  Benutzer Passwort mutieren", "99. Hauptmenue"};
+    private String [] UNTERMENUE = {"1.  Benutzer Anlegen", "2.  Benutzer Loeschen", "3.  Benutzer Passwort mutieren", "99. Hauptmenue"};
 
     public Benutzerverwaltung(){
-
         untermenueAnzeigen();
-
     }
 
     public void untermenueAnzeigen(){
@@ -18,7 +16,7 @@ public class Benutzerverwaltung {
 
         do {
 
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue, "Logik/Benutzerverwaltung")) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(UNTERMENUE, "Logik/Benutzerverwaltung")) {
                 case 1:
                     new Benutzer().benutzerAnlegen();
                     break;

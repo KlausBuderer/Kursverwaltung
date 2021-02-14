@@ -55,7 +55,7 @@ public final class BefehlsZeilenSchnittstelle {
         boolean benutzerAngemeldet = false;
         String benutzerEingabe;
         String passwortEingabe;
-        farbschemaWaehlen(Farbschema.WEISS);
+        farbschemaWaehlen(FARBSCHEMA.WEISS);
 
         do{
 
@@ -101,7 +101,7 @@ public final class BefehlsZeilenSchnittstelle {
         Scanner scan = new Scanner(System.in);
 
         //Schriftfarbe bestimmen
-        farbschemaWaehlen(Farbschema.BLAU);
+        farbschemaWaehlen(FARBSCHEMA.BLAU);
 
         //Ausgabe des Hauptmenues und Einlesen der Auswahl
         bildReinigen("Hauptmenue", 1);
@@ -132,31 +132,31 @@ public final class BefehlsZeilenSchnittstelle {
 
         switch (auswahlInt) {
             case 1:
-                farbschemaWaehlen(Farbschema.ROT);
+                farbschemaWaehlen(FARBSCHEMA.ROT);
                 new Mitarbeiter();
                 break;
             case 2:
-                farbschemaWaehlen(Farbschema.GELB);
+                farbschemaWaehlen(FARBSCHEMA.GELB);
                 new Kurse();
                 break;
             case 3:
-                farbschemaWaehlen(Farbschema.VIOLETT);
+                farbschemaWaehlen(FARBSCHEMA.VIOLETT);
                 new Zertifikate();
                 break;
             case 4:
-                farbschemaWaehlen(Farbschema.GRUEN);
+                farbschemaWaehlen(FARBSCHEMA.GRUEN);
                 new Auswertungen();
                 break;
             case 5:
-                farbschemaWaehlen(Farbschema.TUERKIS);
+                farbschemaWaehlen(FARBSCHEMA.TUERKIS);
                 new Administratives();
                 break;
             case 6:
-                farbschemaWaehlen(Farbschema.VIOLETT);
+                farbschemaWaehlen(FARBSCHEMA.VIOLETT);
                 new Benutzerverwaltung();
                 break;
             case 7:
-                farbschemaWaehlen(Farbschema.WEISS);
+                farbschemaWaehlen(FARBSCHEMA.WEISS);
                 new Einstellungen();
                 break;
             case 90:
@@ -762,11 +762,11 @@ public final class BefehlsZeilenSchnittstelle {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
        In dieser Methode zur Wahl des Farbschemas
-       Parameter: Farbschema Wahl der Schriftfarbe
-       Rueckgabewert: Farbschema
+       Parameter: FARBSCHEMA Wahl der Schriftfarbe
+       Rueckgabewert: FARBSCHEMA
      */
 
-        public static void farbschemaWaehlen(Farbschema farbschema){
+        public static void farbschemaWaehlen(FARBSCHEMA farbschema){
 
         switch (farbschema){
             case ROT: schriftfarbe = ANSI_ROT; break;
