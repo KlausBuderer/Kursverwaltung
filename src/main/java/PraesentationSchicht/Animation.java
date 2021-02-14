@@ -14,7 +14,7 @@ public class Animation {
     }
 
     void kursverwaltungAnimation(){
-        int dauer = 800;
+        int dauer = 500;
 
         BefehlsZeilenSchnittstelle.bildReinigen("", 3);
 

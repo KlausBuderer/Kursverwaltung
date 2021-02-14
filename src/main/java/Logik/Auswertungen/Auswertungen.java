@@ -120,7 +120,7 @@ public class Auswertungen {
                     new BudgetAlleKostenstellen().auswertungAusgeben();
                     break;
                 case 2:
-                    System.out.println(unterMenueBudgetAusgaben[1]);
+                    new KurseProAnbieterKostenstellenZeitraum().auswertungAusgeben();
                     break;
                 case 99:
                     System.out.println(unterMenueBudgetAusgaben[2]);
