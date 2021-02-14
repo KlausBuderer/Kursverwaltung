@@ -433,6 +433,13 @@ public class Datenbank {
                     rueckgabeList = new AuswertungenDatenbank().ausfuehrenBudgetAlleKostenstellen(dbInhalt);
                     break;
 
+                case AUSWERTUNG_KOSTENSTELLEN_ALLE:
+
+                    dbInhalt = statement.executeQuery();
+                    rueckgabeList = new AuswertungenDatenbank().ausfuehrenKostenstellenAlle(dbInhalt);
+                    break;
+
+
                 case AUSWERTUNG_ZERTIFIKATE_ALLE_MITARBEITER_GUELTIGKEIT:
                     System.out.println(parameter1);
                     statement.setString(1, parameter1);

@@ -43,6 +43,12 @@ public class AuswertungenDatenbank extends Datenbank {
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    public List storeproduceKostenstellenAlle(){
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_KOSTENSTELLEN()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_KOSTENSTELLEN_ALLE);
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     public List storeproduceZertifikateAlleMitarbeiterGueltigkeit(String datumBis){
         return storeProcedureAufrufen("{call SP_ANZEIGEN_NICHT_GUELTIG_ALLE_MA_ZERT(?)}","",datumBis,STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ZERTIFIKATE_ALLE_MITARBEITER_GUELTIGKEIT);
     }
@@ -188,6 +194,30 @@ public class AuswertungenDatenbank extends Datenbank {
         }
         return budgetAlleKostenstellenliste;
     }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
+    Parameter: Inhalt der Tabelle der Datenbank
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
+     */
+    public List<KostenstellenAlle> ausfuehrenKostenstellenAlle(ResultSet dbInhalt) throws SQLException {
+
+        List<KostenstellenAlle> kostenstellenAlleliste = new ArrayList<>();
+        KostenstellenAlle kostenstellenAlle;
+
+        while (dbInhalt.next()) {
+
+            int kostenstellennummer = dbInhalt.getInt("kostenstellennummer");
+            String bezechnungkostenstelle = dbInhalt.getString("bezechnungkostenstelle");
+            String kostenstellenverantwortlichePerson = dbInhalt.getString("kostenstellenverantwortlichePerson");
+
+            kostenstellenAlle = new KostenstellenAlle(kostenstellennummer,bezechnungkostenstelle,kostenstellenverantwortlichePerson);
+
+            kostenstellenAlleliste.add(kostenstellenAlle);
+        }
+        return kostenstellenAlleliste;
+}
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*

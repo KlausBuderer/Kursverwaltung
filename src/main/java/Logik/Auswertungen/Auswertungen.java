@@ -145,7 +145,7 @@ public class Auswertungen {
                     new StammdatenAlleMitarbeiter().auswertungAusgeben();
                     break;
                 case 2:
-                    System.out.println(unterMenueStammdaten[1]);
+                    new KostenstellenAlle().auswertungAusgeben();
                     break;
                 case 99:
                     System.out.println(unterMenueStammdaten[2]);
