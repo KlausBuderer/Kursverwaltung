@@ -32,8 +32,9 @@ public class ZertifikateAlleMitarbeiterGueltigkeit {
         String datumBis;
 
         List<ZertifikateAlleMitarbeiterGueltigkeit> AusgabeZertifikateAlleMitarbeiterGueltigkeit;
+
         // Abfrage Datum
-        datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie ein Datum ein bis wann Sie die Gueltigkeit der Zertifikate in Zukunft pruefen wollen: ");
+        datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie ein Datum ein bis wann Sie die Gültigkeit der Zertifikate in Zukunft prüfen wollen: ");
 
 
         //Aufruf Store Procedure SP_ANZEIGEN_NICHT_GUELTIG_ALLE_MA_ZERT

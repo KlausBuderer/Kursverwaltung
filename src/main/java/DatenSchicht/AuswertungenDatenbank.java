@@ -14,49 +14,55 @@ public class AuswertungenDatenbank extends Datenbank {
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public List storeproduceKurseProAnbieterKostenstellenZeitraum(String datumVon, String datumBis){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_KURSE_PRO_ANBIETER_KOSTENSTELLE_JAHR(?,?)}",datumVon, datumBis,STORE_PROCEDURE_KONTEXT.AUSWERTUNG_KURSE_PRO_ANBIETER_KOSTENSTELLEN_ZEITRAUM);
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_KURSE_PRO_ANBIETER_KOSTENSTELLE_JAHR(?,?)}",datumVon, datumBis," ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_KURSE_PRO_ANBIETER_KOSTENSTELLEN_ZEITRAUM);
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public List storeproduceWeiterbildungAlleMitarbeiterZeitraum(String datumVon, String datumBis){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_WEITERBILDUNG_DATUM(?,?)}",datumVon, datumBis,STORE_PROCEDURE_KONTEXT.AUSWERTUNG_WEITERILDUNG_ALLE_MITARBEITER_ZEITRAUM);
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_WEITERBILDUNG_DATUM(?,?)}",datumVon, datumBis," ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_WEITERILDUNG_ALLE_MITARBEITER_ZEITRAUM);
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    public List storeproduceProAnbieterSelektivKostenstelleZeitraum(String datumVon, String datumBis, String kostenstelle){
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_WEITERBILDUNG_DATUM(?,?,?)}",datumVon, datumBis, kostenstelle, STORE_PROCEDURE_KONTEXT.AUSWERTUNG_KURSE_PRO_ANBIETER_SELEKTIV_KOSTENSTELLE_ZEITRAUM);
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public List storeproduceZertifikateAlleMitarbeiter(){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_ZERTITIFKATE()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ZERTIFIKATE);
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_ZERTITIFKATE()}"," "," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ZERTIFIKATE);
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public List storeproduceStammdatenAlleMitarbeiter(){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_STAMMDATEN()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_STAMMDATEN_ALLE_MITARBEITER);
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_STAMMDATEN()}"," "," ", "",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_STAMMDATEN_ALLE_MITARBEITER);
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public List storeproduceKurseAlleMitarbeiter(){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_KURSE()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ALLE_KURSE);
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_KURSE()}"," "," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ALLE_KURSE);
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public List storeproduceBudgetAlleKostenstellen(){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_KOSTENSTELLE_BUDGET()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_BUDGET_ALLE_KOSTENSTELLE);
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_KOSTENSTELLE_BUDGET()}"," "," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_BUDGET_ALLE_KOSTENSTELLE);
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public List storeproduceKostenstellenAlle(){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_KOSTENSTELLEN()}"," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_KOSTENSTELLEN_ALLE);
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_KOSTENSTELLEN()}"," "," ", " ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_KOSTENSTELLEN_ALLE);
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public List storeproduceZertifikateAlleMitarbeiterGueltigkeit(String datumBis){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_NICHT_GUELTIG_ALLE_MA_ZERT(?)}","",datumBis,STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ZERTIFIKATE_ALLE_MITARBEITER_GUELTIGKEIT);
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_NICHT_GUELTIG_ALLE_MA_ZERT(?)}",datumBis," "," ",STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ZERTIFIKATE_ALLE_MITARBEITER_GUELTIGKEIT);
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

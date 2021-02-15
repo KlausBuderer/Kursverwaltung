@@ -38,6 +38,8 @@ public class WeiterbildungAlleMitarbeiterZeitraum {
     public void auswertungAusgeben() {
         String datumVon;
         String datumBis;
+        String kostenstelle;
+
         List<WeiterbildungAlleMitarbeiterZeitraum> AusgabeWeiterbildungAlleMitarbeiterZeitraum;
         // Abfrage Datum
         datumVon = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Startdatum des gewuenschten Auswertungszeitraum ein: ");

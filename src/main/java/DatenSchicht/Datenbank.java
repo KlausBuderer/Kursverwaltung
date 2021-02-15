@@ -372,7 +372,7 @@ public class Datenbank {
     Die Methode untermenueAnzeige zeigt das Untermenue und fuehrt anhand der Eingabe des Benutzers eine Aktion aus
      */
 
-    public List storeProcedureAufrufen(String query, String parameter1,String parameter2, STORE_PROCEDURE_KONTEXT kontext) {
+    public List storeProcedureAufrufen(String query, String parameter1, String parameter2, String parameter3, STORE_PROCEDURE_KONTEXT kontext) {
 
         boolean anlegenErfolgreich;
 
@@ -401,6 +401,26 @@ public class Datenbank {
 
                     dbInhalt = statement.executeQuery();
                     rueckgabeList = new AuswertungenDatenbank().ausfuehrenWeiterbildungAlleMitarbeiterZeitraum(dbInhalt);
+                    break;
+
+                case AUSWERTUNG_KURSE_PRO_ANBIETER_SELEKTIV_KOSTENSTELLE_ZEITRAUM:
+                    System.out.println(parameter1 + parameter2 + parameter3);
+                    statement.setString(1, parameter1);
+                    statement.setString(2, parameter2);
+                    statement.setString(3, parameter3);
+
+                    dbInhalt = statement.executeQuery();
+                    rueckgabeList = new AuswertungenDatenbank().ausfuehrenWeiterbildungAlleMitarbeiterZeitraum(dbInhalt);
+                    break;
+
+
+                case AUSWERTUNG_KURSE_PRO_ANBIETER_KOSTENSTELLEN_ZEITRAUM:
+                    System.out.println(parameter1 + parameter2);
+                    statement.setString(1, parameter1);
+                    statement.setString(2, parameter2);
+
+                    dbInhalt = statement.executeQuery();
+                    rueckgabeList = new AuswertungenDatenbank().ausfuehrenKurseProAnbieterKostenstellenZeitraums(dbInhalt);
                     break;
 
                 case AUSWERTUNG_ZERTIFIKATE:

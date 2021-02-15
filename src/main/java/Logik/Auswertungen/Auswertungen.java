@@ -4,11 +4,11 @@ import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 
 public class Auswertungen {
 
-    private String[] unterMenue = {"1.  Mitarbeiter", "2.  Weiterbildung", "3.  Budget / Ausgaben", "4.  Stammdaten", "99. Hauptmenue"};
-    private String[] unterMenueMitarbeiter = {"1.  Kursuebersicht fuer gewuenschten Mitarbeiter ", "2.  Zertifikatsuebersicht fuer gewuenschten Mitarbeiter", "99. Zurueck"};
-    private String[] unterMenueWeiterbildung = {"1.  Weiterbildung aller Mitarbeiter", "2.  Zertifikate aller Mitarbeiter", "3.  Kurse aller Mitarbeiter", "4.  Pruefung ablaufende Zertifikate", "99. Zurueck"};
-    private String[] unterMenueBudgetAusgaben = {"1.  Budget pro Kostenstelle / Jahr", "2.  Kurskosten fuer gewuenschte Kostenstelle mit Anbieter / Waehrung / Zeitraum ","3.  Kurskosten alle Kostenstellen / Waehrung / Anbieter ", "99. Zurueck"};
-    private String[] unterMenueStammdaten = {"1.  Anzeige alle Mitarbeiter", "2.  Anzeige alle Kostenstellen", "99. Zurueck"};
+    private String[] unterMenue = {"1.  Mitarbeiter", "2.  Weiterbildung", "3.  Budget / Ausgaben", "4.  Stammdaten", "99. Hauptmenü"};
+    private String[] unterMenueMitarbeiter = {"1.  Kursübersicht fuer gewünschten Mitarbeiter ", "2.  Zertifikatsübersicht fuer gewünschten Mitarbeiter", "99. Zurück"};
+    private String[] unterMenueWeiterbildung = {"1.  Weiterbildung aller Mitarbeiter", "2.  Zertifikate aller Mitarbeiter", "3.  Kurse aller Mitarbeiter", "4.  Prüfung ablaufende Zertifikate", "99. Zurueck"};
+    private String[] unterMenueBudgetAusgaben = {"1.  Budget pro Kostenstelle / Jahr", "2.  Kurskosten alle Kostenstellen / Waehrung / Anbieter ","3.  Kurskosten fuer gewünschte Kostenstelle mit Anbieter / Währung / Zeitraum ", "99. Zurueck"};
+    private String[] unterMenueStammdaten = {"1.  Anzeige alle Mitarbeiter", "2.  Anzeige alle Kostenstellen", "99. Zurück"};
 
     public Auswertungen() {
         untermenuAnzeigen();
@@ -121,6 +121,9 @@ public class Auswertungen {
                     break;
                 case 2:
                     new KurseProAnbieterKostenstellenZeitraum().auswertungAusgeben();
+                    break;
+                case 3:
+                    new KurseProAnbieterSelektivKostenstelleZeitraum().auswertungAusgeben();
                     break;
                 case 99:
                     System.out.println(unterMenueBudgetAusgaben[2]);
