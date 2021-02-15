@@ -79,6 +79,8 @@ Logik/Mitarbeiter/Mitarbeiter.java
  Logik.Mitarbeiter.Mitarbeiter
 Logik/Auswertungen/BudgetAlleKostenstellen.java
  Logik.Auswertungen.BudgetAlleKostenstellen
+Logik/Auswertungen/KurseProAnbieterKostenstellenZeitraum.java
+ Logik.Auswertungen.KurseProAnbieterKostenstellenZeitraum
 DatenSchicht/DatenLogikKostenstelle.java
  DatenSchicht.DatenLogikKostenstelle
 DatenSchicht/ZertifikatsDatenbank.java

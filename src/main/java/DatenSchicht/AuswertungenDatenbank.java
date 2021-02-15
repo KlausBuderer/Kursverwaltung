@@ -13,8 +13,14 @@ public class AuswertungenDatenbank extends Datenbank {
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    public List storeproduceKurseProAnbieterKostenstellenZeitraum(String datumVon, String datumBis){
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_KURSE_PRO_ANBIETER_KOSTENSTELLE_JAHR(?,?)}",datumVon, datumBis,STORE_PROCEDURE_KONTEXT.AUSWERTUNG_KURSE_PRO_ANBIETER_KOSTENSTELLEN_ZEITRAUM);
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     public List storeproduceWeiterbildungAlleMitarbeiterZeitraum(String datumVon, String datumBis){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_WEITERBILDUNG_DATUM(?,?)}",datumVon, datumBis,STORE_PROCEDURE_KONTEXT.AUSWERTUNG_MITARBEITER);
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_WEITERBILDUNG_DATUM(?,?)}",datumVon, datumBis,STORE_PROCEDURE_KONTEXT.AUSWERTUNG_WEITERILDUNG_ALLE_MITARBEITER_ZEITRAUM);
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -91,6 +97,35 @@ public class AuswertungenDatenbank extends Datenbank {
         }
         return weiterbildungAlleMitarbeiterliste;
     }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
+    Parameter: Inhalt der Tabelle der Datenbank
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
+     */
+    public List<KurseProAnbieterKostenstellenZeitraum> ausfuehrenKurseProAnbieterKostenstellenZeitraums(ResultSet dbInhalt) throws SQLException {
+
+        List<KurseProAnbieterKostenstellenZeitraum> kurseProAnbieterKostenstellenZeitraumliste = new ArrayList<>();
+        KurseProAnbieterKostenstellenZeitraum kurseProAnbieterKostenstellenZeitraum;
+
+        while (dbInhalt.next()) {
+
+            int kostenstelleNr = dbInhalt.getInt("KostenstelleNr");
+            String kostenstellebezeichnung = dbInhalt.getString("Kostenstellebezeichnung");
+            int kosten = dbInhalt.getInt("KOSTEN");
+            String waehrung = dbInhalt.getString("Waehrung");
+            String anbieter = dbInhalt.getString("Anbieter");
+            String selektionszeitraumVon = dbInhalt.getString("SelektionszeitraumVon");
+            String selektionszeitraumBis = dbInhalt.getString("SelektionszeitraumBis");
+            kurseProAnbieterKostenstellenZeitraum = new KurseProAnbieterKostenstellenZeitraum(kostenstelleNr,kostenstellebezeichnung,kosten,waehrung,anbieter,selektionszeitraumVon,selektionszeitraumBis);
+
+            kurseProAnbieterKostenstellenZeitraumliste.add(kurseProAnbieterKostenstellenZeitraum);
+        }
+        return kurseProAnbieterKostenstellenZeitraumliste;
+    }
+
+
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank

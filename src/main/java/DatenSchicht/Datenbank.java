@@ -394,7 +394,7 @@ public class Datenbank {
 
 
             switch (kontext) {
-                case AUSWERTUNG_MITARBEITER:
+                case AUSWERTUNG_WEITERILDUNG_ALLE_MITARBEITER_ZEITRAUM:
                     System.out.println(parameter1 + parameter2);
                     statement.setString(1, parameter1);
                     statement.setString(2, parameter2);
