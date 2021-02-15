@@ -26,7 +26,7 @@ public class AuswertungenDatenbank extends Datenbank {
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     public List storeproduceProAnbieterSelektivKostenstelleZeitraum(String datumVon, String datumBis, String kostenstelle){
-        return storeProcedureAufrufen("{call SP_ANZEIGEN_ALLE_MA_WEITERBILDUNG_DATUM(?,?,?)}",datumVon, datumBis, kostenstelle, STORE_PROCEDURE_KONTEXT.AUSWERTUNG_KURSE_PRO_ANBIETER_SELEKTIV_KOSTENSTELLE_ZEITRAUM);
+        return storeProcedureAufrufen("{call SP_ANZEIGEN_KURSE_PRO_ANBIETER_SELEKTIV_KOSTENSTELLE_JAHR(?,?,?)}",datumVon, datumBis, kostenstelle, STORE_PROCEDURE_KONTEXT.AUSWERTUNG_KURSE_PRO_ANBIETER_SELEKTIV_KOSTENSTELLE_ZEITRAUM);
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -103,6 +103,34 @@ public class AuswertungenDatenbank extends Datenbank {
         }
         return weiterbildungAlleMitarbeiterliste;
     }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
+    Parameter: Inhalt der Tabelle der Datenbank
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
+     */
+    public List<KurseProAnbieterSelektivKostenstelleZeitraum> ausfuehrenProAnbieterSelektivKostenstelleZeitraum(ResultSet dbInhalt) throws SQLException {
+
+        List<KurseProAnbieterSelektivKostenstelleZeitraum> proAnbieterSelektivKostenstelleZeitraumliste = new ArrayList<>();
+        KurseProAnbieterSelektivKostenstelleZeitraum proAnbieterSelektivKostenstelleZeitraum;
+
+        while (dbInhalt.next()) {
+
+            int kostenstelleNr = dbInhalt.getInt("KostenstelleNr");
+            int kosten = dbInhalt.getInt("kosten");
+            String waehrung = dbInhalt.getString("waehrung");
+            String anbieter = dbInhalt.getString("anbieter");
+            String selektionszeitraumVon = dbInhalt.getString("selektionszeitraumVon");
+            String selektionszeitraumBis = dbInhalt.getString("selektionszeitraumBis");
+
+            proAnbieterSelektivKostenstelleZeitraum = new KurseProAnbieterSelektivKostenstelleZeitraum(kostenstelleNr,kosten,waehrung,anbieter,selektionszeitraumVon,selektionszeitraumBis);
+
+            proAnbieterSelektivKostenstelleZeitraumliste.add(proAnbieterSelektivKostenstelleZeitraum);
+        }
+        return proAnbieterSelektivKostenstelleZeitraumliste;
+    }
+
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*

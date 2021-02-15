@@ -410,7 +410,7 @@ public class Datenbank {
                     statement.setString(3, parameter3);
 
                     dbInhalt = statement.executeQuery();
-                    rueckgabeList = new AuswertungenDatenbank().ausfuehrenWeiterbildungAlleMitarbeiterZeitraum(dbInhalt);
+                    rueckgabeList = new AuswertungenDatenbank().ausfuehrenProAnbieterSelektivKostenstelleZeitraum(dbInhalt);
                     break;
 
 

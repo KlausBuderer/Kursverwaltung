@@ -41,7 +41,7 @@ public class KurseProAnbieterSelektivKostenstelleZeitraum {
         // Abfrage Datum
         datumVon = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Startdatum des gewuenschten Auswertungszeitraum ein: ");
         datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Enddatum des gewuenschten Auswertungszeitraum ein: ");
-        kostenstelle = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben Sie die gewünschte Kostenstelle ein: ");
+        kostenstelle = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben Sie die gewünschte Kostenstelle ein: ");
 
         //Aufruf Store Procedure SP_ANZEIGEN_KURSE_PRO_ANBIETER_SELEKTIV_KOSTENSTELLE_JAHR
 
