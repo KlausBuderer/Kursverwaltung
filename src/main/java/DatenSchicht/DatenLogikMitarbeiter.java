@@ -1,21 +1,20 @@
 package DatenSchicht;
 
-import Logik.Mitarbeiter.Mitarbeiter;
 import Logik.Mitarbeiter.MitarbeiterBescheinigung;
 
 import java.util.HashMap;
 
 public interface DatenLogikMitarbeiter extends DatenLogik {
 
-    void mitarbeiterAnlegen(Mitarbeiter mitarbeiter);
+    public void mitarbeiterBescheinigungAnlegen(MitarbeiterBescheinigung mitarbeiterBescheinigung, MitarbeiterBescheinigung.kontextAnlegen kontext);
 
-    void datenMutation(Mitarbeiter mitarbeiter);
+    public HashMap zertifikatVerlaengernListe(int mitarbeiterId);
 
-    void mitarbeiterLoeschen(int Id);
+    public String nummerAufExistenzPruefen(int mitarbeiterId);
 
-    void mitarbeiterBescheinigungAnlegen(MitarbeiterBescheinigung mitarbeiterBescheinigung, MitarbeiterBescheinigung.kontextAnlegen kontext);
+    public void zertifikatVerlaengernSpeichern(MitarbeiterBescheinigung mitarbeiterBescheinigung);
 
-    void zertifikatVerlaengernSpeichern(MitarbeiterBescheinigung mitarbeiterBescheinigung);
+    public String kursZuweisungQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung);
 
-    HashMap zertifikatVerlaengernListe(int id);
+    public String zertifikatZuweisungQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung);
 }

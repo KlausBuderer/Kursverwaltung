@@ -1,6 +1,7 @@
 package Logik.Auswertungen;
 
 import DatenSchicht.AuswertungenDatenbank;
+import DatenSchicht.DatenLogikAuswertungen;
 import Logik.Mitarbeiter.Mitarbeiter;
 import Logik.Mitarbeiter.MitarbeiterSuche;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
@@ -51,7 +52,8 @@ public class KursProMitarbeiter {
 
 
         //Aufruf Store Procedure SP_ANZEIGEN_MA_KURSE
-        AusgabeKursProMitarbeiter = new AuswertungenDatenbank().storeproduceKursproMitarbeiter(mitarbeiterIdentification.mitarbeiterId);
+        DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
+        AusgabeKursProMitarbeiter = auswertungen.storeproduceKursproMitarbeiter(mitarbeiterIdentification.mitarbeiterId);
 
 
         Tabelle tabelle = new Tabelle();

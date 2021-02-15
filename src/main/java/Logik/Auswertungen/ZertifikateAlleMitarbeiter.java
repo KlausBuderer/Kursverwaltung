@@ -2,6 +2,7 @@
 package Logik.Auswertungen;
 
 import DatenSchicht.AuswertungenDatenbank;
+import DatenSchicht.DatenLogikAuswertungen;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
@@ -39,8 +40,8 @@ public class ZertifikateAlleMitarbeiter {
 
 
         //Aufruf Store Procedure SP_ANZEIGEN_ALLE_MA_ZERTITIFKATE
-
-        AusgabeZertifikateAlleMitarbeiter = new AuswertungenDatenbank().storeproduceZertifikateAlleMitarbeiter();
+        DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
+        AusgabeZertifikateAlleMitarbeiter = auswertungen.storeproduceZertifikateAlleMitarbeiter();
 
         Tabelle tabelle = new Tabelle();
         tabelle.setHeaders(TITELZEILE);

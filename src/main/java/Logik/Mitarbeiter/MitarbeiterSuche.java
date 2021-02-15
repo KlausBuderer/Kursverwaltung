@@ -1,8 +1,8 @@
 package Logik.Mitarbeiter;
 
-import DatenSchicht.DatenLogikMitarbeiter;
+
 import Logik.Administratives.Kostenstelle;
-import DatenSchicht.MitarbeiterDatenbank;
+import DatenSchicht.*;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
@@ -40,7 +40,7 @@ public class MitarbeiterSuche{
             //Suchtext zum gewaehlten Kriterium Abfragen
             suchText = suchTextEinlesen(suchkriterium);
             //Tabelle aller passenden Mitarbeiter aus Datenbank anfordern
-            DatenLogikMitarbeiter mitarbeiterSuchen = new MitarbeiterDatenbank();
+            DatenLogik mitarbeiterSuchen = new MitarbeiterDatenbank();
             mitarbeiterHash = mitarbeiterSuchen.suchen(MYSQLSPALTENNAMEN[suchkriterium - 1], suchText);
 
 

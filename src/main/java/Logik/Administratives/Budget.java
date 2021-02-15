@@ -2,8 +2,7 @@ package Logik.Administratives;
 
 
 import DatenSchicht.BudgetDatenbank;
-import DatenSchicht.DatenLogikBudget;
-import DatenSchicht.DatenLogikKostenstelle;
+import DatenSchicht.DatenLogik;
 import DatenSchicht.KostenstelleDatenbank;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
@@ -32,8 +31,8 @@ public class Budget extends ServicesAdmin {
         this.budgetBetrag = budgetBetrag;
         this.budgetId = budgetID;
         this.waehrung = waehrung;
-        DatenLogikKostenstelle datenLogikKostenstelle =  new KostenstelleDatenbank();
-        this.kostenstellenBezeichnung = datenLogikKostenstelle.kostenstelleBezichnungAusgeben(kostenstelleId);
+        DatenLogik datenLogikKostenstelle =  new KostenstelleDatenbank();
+        this.kostenstellenBezeichnung = ((KostenstelleDatenbank) datenLogikKostenstelle).kostenstelleBezeichnungAusgeben(kostenstelleId);
     }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Konstruktor erstellen eines Objekts mit Angaben der Utilities.Tabelle BudgetPeriode
@@ -69,7 +68,7 @@ public class Budget extends ServicesAdmin {
             Kostenstelle kostenstelle = new Kostenstelle();
             kostenstelle.auswahlListeKostenstelleAusgeben();
             kostenstelleId = kostenstelle.kostenstelleId;
-            kostenstellenBezeichnung = new KostenstelleDatenbank().kostenstelleBezichnungAusgeben(kostenstelleId);
+            kostenstellenBezeichnung = new KostenstelleDatenbank().kostenstelleBezeichnungAusgeben(kostenstelleId);
 
             //Eingaben anzeigen
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
@@ -106,7 +105,7 @@ public class Budget extends ServicesAdmin {
         String titelName = "Budget Waehlen";
 
         // Datenbank nach Liste Fragen
-        DatenLogikBudget budgetDatenbank = new BudgetDatenbank();
+        DatenLogik budgetDatenbank = new BudgetDatenbank();
 
         // Abfrage Datenbank.Datenbank nach Kostenstellen
         HashMap<Budget, Integer> budgetMap = (HashMap<Budget, Integer>) budgetDatenbank.datenAuslesen("tblBudgetPeriode");

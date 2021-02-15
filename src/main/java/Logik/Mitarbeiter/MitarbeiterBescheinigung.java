@@ -1,7 +1,6 @@
 package Logik.Mitarbeiter;
 
-import DatenSchicht.DatenLogikMitarbeiter;
-import DatenSchicht.MitarbeiterDatenbank;
+import DatenSchicht.*;
 import Logik.Kurse.*;
 import PraesentationSchicht.*;
 import Logik.Zertifikate.*;
@@ -72,8 +71,8 @@ public class MitarbeiterBescheinigung {
             switch (PraesentationSchicht.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1:
-                    DatenLogikMitarbeiter mitarbeiterKursZuweisen = new MitarbeiterDatenbank();
-                    mitarbeiterKursZuweisen.mitarbeiterBescheinigungAnlegen(this, kontextAnlegen.KURS);
+                    DatenLogik mitarbeiterKursZuweisen = new MitarbeiterDatenbank();
+                    ((MitarbeiterDatenbank) mitarbeiterKursZuweisen).mitarbeiterBescheinigungAnlegen(this, kontextAnlegen.KURS);
                     abschliessen = true;
                     break;
                 case 2:
@@ -126,8 +125,8 @@ public class MitarbeiterBescheinigung {
             switch (PraesentationSchicht.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1:
-                    DatenLogikMitarbeiter mitarbeiterZertifikatZuweisen = new MitarbeiterDatenbank();
-                    mitarbeiterZertifikatZuweisen.mitarbeiterBescheinigungAnlegen(this, kontextAnlegen.ZERTIFIKAT);
+                    DatenLogik mitarbeiterZertifikatZuweisen = new MitarbeiterDatenbank();
+                    ((MitarbeiterDatenbank) mitarbeiterZertifikatZuweisen).mitarbeiterBescheinigungAnlegen(this, kontextAnlegen.ZERTIFIKAT);
                     abschliessen = true;
                     break;
                 case 2:
@@ -197,8 +196,8 @@ public class MitarbeiterBescheinigung {
             switch (PraesentationSchicht.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1:
-                    DatenLogikMitarbeiter zertifikatVerlaengern = new MitarbeiterDatenbank();
-                    zertifikatVerlaengern.zertifikatVerlaengernSpeichern(this);
+                    DatenLogik zertifikatVerlaengern = new MitarbeiterDatenbank();
+                    ((MitarbeiterDatenbank) zertifikatVerlaengern).zertifikatVerlaengernSpeichern(this);
                     abschliessen = true;
                     break;
                 case 2:
@@ -223,9 +222,9 @@ public class MitarbeiterBescheinigung {
         int arrayLaenge;
         int auswahl;
 
-        DatenLogikMitarbeiter mitarbeiterDatenbank = new MitarbeiterDatenbank();
+        DatenLogik mitarbeiterDatenbank = new MitarbeiterDatenbank();
         // Abfrage Datenbank.Datenbank nach Kostenstellen
-        HashMap<MitarbeiterBescheinigung, Integer> mitarbeiterBescheinigungsMap = (HashMap<MitarbeiterBescheinigung, Integer>) mitarbeiterDatenbank.zertifikatVerlaengernListe(mitarbeiterId);
+        HashMap<MitarbeiterBescheinigung, Integer> mitarbeiterBescheinigungsMap = (HashMap<MitarbeiterBescheinigung, Integer>) ((MitarbeiterDatenbank) mitarbeiterDatenbank).zertifikatVerlaengernListe(mitarbeiterId);
 
         // Schreiben der Kostenstellen in ein Array
         MitarbeiterBescheinigung[] mitarbeiterBescheinigungsArray = new MitarbeiterBescheinigung[mitarbeiterBescheinigungsMap.size() + 1];

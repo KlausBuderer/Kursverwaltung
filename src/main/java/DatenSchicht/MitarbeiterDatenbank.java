@@ -2,6 +2,7 @@ package DatenSchicht;
 
 import Logik.Mitarbeiter.Mitarbeiter;
 import Logik.Mitarbeiter.MitarbeiterBescheinigung;
+import Logik.Services;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,15 +14,14 @@ import static Logik.Mitarbeiter.MitarbeiterBescheinigung.kontextAnlegen.ZERTIFIK
 
 public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbeiter {
 
-    HashMap<Mitarbeiter,Integer> mitarbeiterHashMap = new HashMap<>();
     STORE_PROCEDURE_KONTEXT kontext;
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
     Parameter: Objekt des Aufrufers
      */
-    public void mitarbeiterAnlegen(Mitarbeiter mitarbeiter) {
-        datenInDbAnlegen(anlegenQuerry(mitarbeiter));
+    public void datenAnlegen(Services services) {
+        datenInDbAnlegen(anlegenQuerry((Mitarbeiter) services));
     }
 
         //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -60,7 +60,7 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
  Aufruf eines Store Procedure der Datenbank umd eine Liste von Zertifikaten die einem Mitarbeiter zugewiesen sind auszugeben
  Parameter: Id des Mitarbeiters
   */
-    public void mitarbeiterLoeschen(int mitarbeiterId){
+    public void datenLoeschen(int mitarbeiterId){
 
          storeProcedureAufrufen("{ call SP_AENDERN_MA_LOESCHEN(?,?) }",mitarbeiterId, kontext.MITARBEITER_LOESCHEN);
     }
@@ -76,30 +76,23 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
       return  storeProcedureAufrufen("{ call SP_PRUEFEN_MA_NR(?,?) }",mitarbeiterId);
     }
 
-    /*
- Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
- Parameter: Objekt des Aufrufers
-  */
-    public void zertifikatVerlaengernSpeichern(MitarbeiterBescheinigung mitarbeiterBescheinigung){
-
-        datenBearbeiten(updateQuerry(mitarbeiterBescheinigung));
-
-    }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+   //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
     Parameter: Objekt des Aufrufers
      */
-    public void datenMutation(Mitarbeiter mitarbeiter){
-        datenBearbeiten(updateQuerry(mitarbeiter));
+    public void datenMutation(Services services){
+        datenBearbeiten(updateQuerry((Mitarbeiter) services));
     }
+
+
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Methode zum Erstellen des Sql Querry
      */
 
-    String anlegenQuerry(Mitarbeiter mitarbeiter){
+    private String anlegenQuerry(Mitarbeiter mitarbeiter){
 
         return "INSERT INTO `itwisse_kursverwaltung`.`tblMitarbeiter`" +
                 " (`PersonalNr`, `Anrede`, `Vorname`, `Nachname`, `Jobtitel`, `Geburtsdatum`, `Statusmitarbeiter`, `KostenstelleID`)" +
@@ -120,7 +113,7 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
     Methode zum Erstellen eines Hashmap von Objekten der Klasse Auswertungen.MitarbeiterAuswertung
      */
 
-    public HashMap mitarbeiterListeErstellen(ResultSet dbInhalt) throws SQLException {
+    protected HashMap mitarbeiterListeErstellen(ResultSet dbInhalt) throws SQLException {
 
         HashMap<Mitarbeiter,Integer> mitarbeiterHash = new HashMap<>();
         Mitarbeiter mitarbeiter;
@@ -149,7 +142,7 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
       Methode die den query aus den Angaben des Bedieners zusammensetzt
      Rueckgabewert: query als String
        */
-    public String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
+    private String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
 
         String query = "`tblMitarbeiter` where `";
         String suche =  suchkriterium + "` Like \"" + suchText + "%\"";
@@ -163,7 +156,7 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
     Methode zum Erstellen eines Hashmap von Objekten der Klasse Auswertungen.MitarbeiterAuswertung
      */
 
-    public HashMap zertifikatVerlaengern(ResultSet dbInhalt) throws SQLException {
+    protected HashMap zertifikatVerlaengern(ResultSet dbInhalt) throws SQLException {
 
         HashMap<MitarbeiterBescheinigung,Integer> mitarbeiterBescheinigungHashMap = new HashMap<>();
         MitarbeiterBescheinigung mitarbeiterBescheinigung;
@@ -203,7 +196,7 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
                 "' WHERE `ID` = "              + mitarbeiter.mitarbeiterId +";";
     }
 
-    String kursZuweisungQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung){
+    public String kursZuweisungQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung){
 
         return "INSERT INTO `itwisse_kursverwaltung`.`tblMitarbeiterBescheinigung`" +
                 " (`ZertifikatAblaufDatum`, `MitarbeiterID`, `KurseID`)" +
@@ -214,7 +207,7 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
 
     }
 
-    String zertifikatZuweisungQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung){
+    public String zertifikatZuweisungQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung){
 
         return "INSERT INTO `itwisse_kursverwaltung`.`tblMitarbeiterBescheinigung`" +
                 " (`ZertifikatAblaufDatum`, `MitarbeiterID`, `ZertifikatID`)" +
@@ -225,6 +218,15 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
 
     }
 
+
+    /*
+   Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+   Parameter: Objekt des Aufrufers
+   */
+    public void zertifikatVerlaengernSpeichern(MitarbeiterBescheinigung mitarbeiterBescheinigung){
+
+        datenBearbeiten(updateQuerry(mitarbeiterBescheinigung));
+    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode zur Erstellung eines Querrys fuer einen Update
@@ -237,4 +239,8 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
     }
 
 
+    @Override
+    public HashMap<?, Integer> datenAuslesen(String tabelle) {
+        return null;
+    }
 }

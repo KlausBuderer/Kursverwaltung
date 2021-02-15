@@ -1,7 +1,6 @@
 package Logik.Kurse;
 
-import DatenSchicht.DatenLogikKurs;
-import DatenSchicht.KursDatenbank;
+import DatenSchicht.*;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
@@ -30,7 +29,7 @@ public class KursSuchen {
             //Suchtext zum gewaehlten Kriterium Abfragen
             suchText = suchTextEinlesen(suchkriterium);
             //Hashmap mit allen Treffern erstellen
-            DatenLogikKurs kursSuchen = new KursDatenbank();
+            DatenLogik kursSuchen = new KursDatenbank();
             kursHash = kursSuchen.suchen(SPALTENBEZEICHNUNG[suchkriterium - 1], suchText);
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
 
