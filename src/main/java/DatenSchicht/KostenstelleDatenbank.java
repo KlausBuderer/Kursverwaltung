@@ -1,13 +1,13 @@
 package DatenSchicht;
 
 import Logik.Administratives.Kostenstelle;
+import Logik.Services;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-public class KostenstelleDatenbank extends Datenbank implements DatenLogikKostenstelle{
-
+public class KostenstelleDatenbank extends Datenbank implements DatenLogik{
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
@@ -31,19 +31,20 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogikKosten
         }
         return kostenstelleHash;
     }
+
+
     /*
-    Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
-    Parameter: Objekt des Aufrufers
-    */
-    public boolean datenAnlegen(Kostenstelle kostenstelle){
-        datenInDbAnlegen(anlegenQuery(kostenstelle));
-        return false;
+        Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+        Parameter: Objekt des Aufrufers
+        */
+    public void datenAnlegen(Services services){
+        datenInDbAnlegen(anlegenQuery((Kostenstelle) services));
     }
     /*
    Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
    Parameter: Objekt des Aufrufers
    */
-    public String kostenstelleBezichnungAusgeben(int kostenstellenId){
+    public String kostenstelleBezeichnungAusgeben(int kostenstellenId){
         return  storeProcedureAufrufen("{ call SP_ANZEIGEN_KOSTENSTELLE_MIT_ID(?,?) }",
                 kostenstellenId);
     }
@@ -52,8 +53,8 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogikKosten
     Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
     Parameter: Objekt des Aufrufers
      */
-    public void datenMutation(Kostenstelle kostenstelle){
-        datenBearbeiten(updatequery(kostenstelle));
+    public void datenMutation(Services services){
+        datenBearbeiten(updatequery((Kostenstelle) services));
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
            /*
@@ -61,6 +62,12 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogikKosten
      */
     public HashMap<?,Integer> datenAuslesen(String tabelle){
       return datenAuslesenfuerAbfrage(tabelle);
+    }
+
+
+    // Wird beim Ausbau der Software implementiert
+    @Override
+    public void datenLoeschen(int ID) {
     }
 
     /*
@@ -92,5 +99,10 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogikKosten
 
     }
 
+
+    @Override
+    public HashMap<?, Integer> suchen(String suchkriterium, String suchText) {
+        return null;
+    }
 
 }

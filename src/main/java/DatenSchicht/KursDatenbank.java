@@ -1,12 +1,13 @@
 package DatenSchicht;
 
 import Logik.Kurse.*;
+import Logik.Services;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-public class KursDatenbank extends Datenbank implements DatenLogikKurs {
+public class KursDatenbank extends Datenbank implements DatenLogik {
 
     STORE_PROCEDURE_KONTEXT kontext;
 
@@ -17,10 +18,10 @@ public class KursDatenbank extends Datenbank implements DatenLogikKurs {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
-    Parameter: Inhalt der Utilities.Tabelle der Datenbank
+    Parameter: Inhalt der Tabelle der Datenbank
     Rueckgabewert: Hashmap mit Objekten fuer jeden Tuple
      */
-    public HashMap<Kurse, Integer> kursListeErstellen(ResultSet dbInhalt) throws SQLException {
+    protected HashMap<Kurse, Integer> kursListeErstellen(ResultSet dbInhalt) throws SQLException {
 
         HashMap<Kurse, Integer> kursHash = new HashMap<>();
         Kurse kurs;
@@ -47,17 +48,21 @@ public class KursDatenbank extends Datenbank implements DatenLogikKurs {
     Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
     Parameter: Objekt des Aufrufers
      */
-    public boolean datenAnlegen(Kurse kurs){
-        datenInDbAnlegen(anlegenQuerry(kurs));
-        return false;
+    public void datenAnlegen(Services services){
+        datenInDbAnlegen(anlegenQuerry((Kurse) services));
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
     Parameter: Objekt des Aufrufers
      */
-    public void datenMutation(Kurse kurs){
-        datenBearbeiten(updateQuerry(kurs));
+    public void datenMutation(Services services){
+        datenBearbeiten(updateQuerry((Kurse) services));
+    }
+
+    @Override
+    public HashMap<?, Integer> datenAuslesen(String tabelle) {
+        return null;
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -65,7 +70,7 @@ public class KursDatenbank extends Datenbank implements DatenLogikKurs {
  Aufruf eines Store Procedure um einen Kurs zu loeschen
  Parameter: Id des Kurses
   */
-    public void kursLoeschen(int kursId){
+    public void datenLoeschen(int kursId){
 
         storeProcedureAufrufen("{ call SP_AENDERN_KURS_LOESCHEN(?,?) }",kursId, kontext.KURS_LOESCHEN);
     }

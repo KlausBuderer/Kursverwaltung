@@ -1,7 +1,6 @@
 package Logik.Zertifikate;
 
-import DatenSchicht.DatenLogikZertifikat;
-import DatenSchicht.ZertifikatsDatenbank;
+import DatenSchicht.*;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
@@ -28,7 +27,7 @@ public class ZertifikateSuchen {
             //Suchtext zum gewaehlten Kriterium Abfragen
             suchText = suchTextEinlesen(suchkriterium);
             //Hashmap mit allen Treffern erstellen
-            DatenLogikZertifikat zertifikatSuchen = new ZertifikatsDatenbank();
+            DatenLogik zertifikatSuchen = new ZertifikatsDatenbank();
             zertifikatsHash = zertifikatSuchen.suchen(SUCHKRITERIEN[suchkriterium - 1], suchText);
 
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);

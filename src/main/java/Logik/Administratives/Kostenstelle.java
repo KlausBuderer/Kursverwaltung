@@ -1,7 +1,7 @@
 package Logik.Administratives;
 
-import DatenSchicht.DatenLogikKostenstelle;
-import DatenSchicht.KostenstelleDatenbank;
+import DatenSchicht.*;
+
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
@@ -56,8 +56,8 @@ public class Kostenstelle extends ServicesAdmin {
 
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
-                case 1: DatenLogikKostenstelle kostenstelleDatenbank = new KostenstelleDatenbank();
-                    kostenstelleDatenbank.datenAnlegen(this);
+                case 1: DatenLogik kostenstelleDatenbank = new KostenstelleDatenbank();
+                    ((KostenstelleDatenbank) kostenstelleDatenbank).datenAnlegen(this);
                     abschliessen = true;
                     break;
                 case 2: abschliessen = false;
@@ -78,7 +78,7 @@ public class Kostenstelle extends ServicesAdmin {
         int auswahl;
         String titelName = "Kostenstellenauswahlliste";
 
-       DatenLogikKostenstelle kostenstelleDatenbank = new KostenstelleDatenbank();
+       DatenLogik kostenstelleDatenbank = new KostenstelleDatenbank();
         // Abfrage Datenbank.Datenbank nach Kostenstellen
         HashMap<Kostenstelle, Integer> kostenstelleMap = (HashMap<Kostenstelle, Integer>) kostenstelleDatenbank.datenAuslesen("tblKostenstelle");
 
@@ -166,7 +166,7 @@ public class Kostenstelle extends ServicesAdmin {
             //Eingabe bestaetigen, neu beginnen oder abbrechen
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
                 case 1:
-                    DatenLogikKostenstelle kostenstelleDatenbank = new KostenstelleDatenbank();
+                    DatenLogik kostenstelleDatenbank = new KostenstelleDatenbank();
                     kostenstelleDatenbank.datenMutation(this);
                     abschliessen = true;
                     break;

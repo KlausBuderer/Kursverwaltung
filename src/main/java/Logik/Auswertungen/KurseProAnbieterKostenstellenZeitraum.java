@@ -2,6 +2,7 @@
 package Logik.Auswertungen;
 
 import DatenSchicht.AuswertungenDatenbank;
+import DatenSchicht.DatenLogikAuswertungen;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
@@ -44,8 +45,8 @@ public class KurseProAnbieterKostenstellenZeitraum {
         datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Enddatum des gewuenschten Auswertungszeitraum ein: ");
 
         //Aufruf Store Procedure SP_ANZEIGEN_KURSE_PRO_ANBIETER_KOSTENSTELLE_JAHR
-
-        ausgabeKurseProAnbieterKostenstellenZeitraum = new AuswertungenDatenbank().storeproduceKurseProAnbieterKostenstellenZeitraum(datumVon, datumBis);
+        DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
+        ausgabeKurseProAnbieterKostenstellenZeitraum = auswertungen.storeproduceKurseProAnbieterKostenstellenZeitraum(datumVon, datumBis);
 
         Tabelle tabelle = new Tabelle();
         tabelle.setHeaders(TITELZEILE);

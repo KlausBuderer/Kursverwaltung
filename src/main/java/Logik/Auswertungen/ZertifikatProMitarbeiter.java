@@ -1,6 +1,7 @@
 package Logik.Auswertungen;
 
 import DatenSchicht.AuswertungenDatenbank;
+import DatenSchicht.DatenLogikAuswertungen;
 import Logik.Mitarbeiter.Mitarbeiter;
 import Logik.Mitarbeiter.MitarbeiterSuche;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
@@ -51,8 +52,8 @@ public class ZertifikatProMitarbeiter {
 
 
         //Aufruf Store Procedure SP_ANZEIGEN_MA_ZERT
-
-        AusgabeZertifikatProMitarbeiter = new AuswertungenDatenbank().storeproduceZertifikatproMitarbeiter(mitarbeiterIdentification.mitarbeiterId);
+        DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
+        AusgabeZertifikatProMitarbeiter = auswertungen.storeproduceZertifikatproMitarbeiter(mitarbeiterIdentification.mitarbeiterId);
 
 
         Tabelle tabelle = new Tabelle();

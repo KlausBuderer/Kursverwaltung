@@ -2,6 +2,7 @@
 package Logik.Auswertungen;
 
 import DatenSchicht.AuswertungenDatenbank;
+import DatenSchicht.DatenLogikAuswertungen;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
@@ -40,8 +41,8 @@ public class StammdatenAlleMitarbeiter {
 
 
         //Aufruf Store Procedure SP_ANZEIGEN_ALLE_MA_STAMMDATEN
-
-        AusgabeStammdatenAlleMitarbeiter = new AuswertungenDatenbank().storeproduceStammdatenAlleMitarbeiter();
+        DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
+        AusgabeStammdatenAlleMitarbeiter = auswertungen.storeproduceStammdatenAlleMitarbeiter();
 
         Tabelle tabelle = new Tabelle();
         tabelle.setHeaders(TITELZEILE);

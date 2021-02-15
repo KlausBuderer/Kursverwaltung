@@ -2,6 +2,7 @@
 package Logik.Auswertungen;
 
 import DatenSchicht.AuswertungenDatenbank;
+import DatenSchicht.DatenLogikAuswertungen;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
@@ -39,7 +40,9 @@ public class BudgetAlleKostenstellen {
 
         //Aufruf Store Procedure SP_ANZEIGEN_ALLE_KOSTENSTELLE_BUDGET
 
-        AusgabeBudgetAlleKostenstellen = new AuswertungenDatenbank().storeproduceBudgetAlleKostenstellen();
+        DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
+
+        AusgabeBudgetAlleKostenstellen = auswertungen.storeproduceBudgetAlleKostenstellen();
 
         Tabelle tabelle = new Tabelle();
         tabelle.setHeaders(TITELZEILE);

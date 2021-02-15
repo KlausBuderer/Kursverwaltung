@@ -1,7 +1,6 @@
 package Logik.Zertifikate;
 
-import DatenSchicht.DatenLogikZertifikat;
-import DatenSchicht.ZertifikatsDatenbank;
+import DatenSchicht.*;
 import Logik.Services;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 
@@ -96,7 +95,7 @@ public class Zertifikate extends Services {
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1:
-                    DatenLogikZertifikat zertifikatsDatenbank = new ZertifikatsDatenbank();
+                    DatenLogik zertifikatsDatenbank = new ZertifikatsDatenbank();
                     zertifikatsDatenbank.datenAnlegen(this);
                     abschliessen = true;
                     break;
@@ -195,7 +194,7 @@ public class Zertifikate extends Services {
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
                 case 1:
-                    DatenLogikZertifikat zertifikatsDatenbank = new ZertifikatsDatenbank();
+                    DatenLogik zertifikatsDatenbank = new ZertifikatsDatenbank();
                     zertifikatsDatenbank.datenMutation(this);
                     abschliessen = true;
                     break;
@@ -229,8 +228,8 @@ public class Zertifikate extends Services {
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
                 case 1: //1.Ja-> MitarbeiterLoeschenQuery aufrufen und Methode beenden
-                    DatenLogikZertifikat zertifikatLoeschen = new ZertifikatsDatenbank();
-                    zertifikatLoeschen.zertifikatLoeschen(zertifikat.zertifikatsId);
+                    DatenLogik zertifikatLoeschen = new ZertifikatsDatenbank();
+                     zertifikatLoeschen.datenLoeschen(zertifikat.zertifikatsId);
                     abschliessen = true;
                     break;
                 case 2: //2.Nein-> Springe zu Aufrufen MitarbeiterSuchen()

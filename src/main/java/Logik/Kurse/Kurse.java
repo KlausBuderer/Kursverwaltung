@@ -1,7 +1,7 @@
 package Logik.Kurse;
 
-import DatenSchicht.DatenLogikKurs;
-import DatenSchicht.KursDatenbank;
+import DatenSchicht.*;
+
 import Logik.Services;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 
@@ -109,7 +109,7 @@ public class Kurse extends Services {
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1:
-                    DatenLogikKurs kursDatenbank = new KursDatenbank();
+                    DatenLogik kursDatenbank = new KursDatenbank();
                         kursDatenbank.datenAnlegen(this);
                     abschliessen = true;
                     break;
@@ -219,7 +219,7 @@ public class Kurse extends Services {
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
                 case 1:
-                    DatenLogikKurs kursDatenbank = new KursDatenbank();
+                    DatenLogik kursDatenbank = new KursDatenbank();
                     kursDatenbank.datenMutation(this);
                     abschliessen = true;
                     break;
@@ -255,8 +255,8 @@ public class Kurse extends Services {
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
                 case 1: //1.Ja-> KursLoeschen aufrufen und Methode beenden
-                    DatenLogikKurs kursLoeschen = new KursDatenbank();
-                    kursLoeschen.kursLoeschen(kurs.kurseId);
+                    DatenLogik kursLoeschen = new KursDatenbank();
+                    kursLoeschen.datenLoeschen(kurs.kurseId);
                     abschliessen = true;
                     break;
                 case 2: //2.Nein-> Springe zu Aufrufen MitarbeiterSuchen()

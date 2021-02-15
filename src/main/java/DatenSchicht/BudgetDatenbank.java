@@ -1,12 +1,13 @@
 package DatenSchicht;
 
 import Logik.Administratives.Budget;
+import Logik.Services;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-public class BudgetDatenbank extends Datenbank implements DatenLogikBudget{
+public class BudgetDatenbank extends Datenbank implements DatenLogik{
 
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -15,7 +16,7 @@ public class BudgetDatenbank extends Datenbank implements DatenLogikBudget{
     Parameter: Inhalt der Tabelle der Datenbank
     Rueckgabewert: Hashmap mit Objekten fuer jeden Tuple
      */
-    public HashMap<Budget, Integer> budgetAusgeben(ResultSet dbInhalt) throws SQLException {
+    protected HashMap<Budget, Integer> budgetAusgeben(ResultSet dbInhalt) throws SQLException {
 
         HashMap<Budget, Integer> budgetHash = new HashMap<>();
         Budget budget;
@@ -33,22 +34,28 @@ public class BudgetDatenbank extends Datenbank implements DatenLogikBudget{
         }
         return budgetHash;
     }
+
+
+    @Override
+    public HashMap<?, Integer> suchen(String suchkriterium, String suchText) {
+        return null;
+    }
+
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
     Parameter: Objekt des Aufrufers
      */
-    public boolean datenAnlegen(Budget budget){
-        datenInDbAnlegen(anlegenQuery(budget));
-        return false;
+    public void datenAnlegen(Services services){
+        datenInDbAnlegen(anlegenQuery((Budget) services));
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
     Parameter: Objekt des Aufrufers
      */
-    public void datenMutation(Budget budget) {
-        datenBearbeiten(updateQuery(budget));
+    public void datenMutation(Services services) {
+        datenBearbeiten(updateQuery((Budget) services));
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
            /*
@@ -57,13 +64,18 @@ public class BudgetDatenbank extends Datenbank implements DatenLogikBudget{
     public HashMap<?,Integer> datenAuslesen(String tabelle){
         return datenAuslesenfuerAbfrage(tabelle);
     }
+
+    //Wird beim Ausbau der Software implementiert
+    @Override
+    public void datenLoeschen(int ID) {}
+
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode zur Erstellung eines Querys fuer ein Update eines Budgets
     Parameter: Objekt des Aufrufers
     Rueckgabe: query als String
      */
-    String updateQuery(Budget budget) {
+    private String updateQuery(Budget budget) {
 
         return "UPDATE `itwisse_kursverwaltung`.`tblBudgetPeriode` SET " +
                 " `Jahr` = " + budget.budgetJahr +
@@ -76,7 +88,7 @@ public class BudgetDatenbank extends Datenbank implements DatenLogikBudget{
      Parameter: Objekt des Aufrufers
      Rueckgabe: query als String
      */
-    String anlegenQuery(Budget budget){
+    private String anlegenQuery(Budget budget){
 
         return "INSERT INTO `itwisse_kursverwaltung`.`tblBudgetPeriode` (`Jahr`, `Betrag`, `Waehrung`, `KostenstelleID`) VALUES" +
                 " ('"  + budget.budgetJahr +

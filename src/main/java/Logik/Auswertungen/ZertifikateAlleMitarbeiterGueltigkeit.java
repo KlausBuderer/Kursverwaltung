@@ -2,6 +2,7 @@
 package Logik.Auswertungen;
 
 import DatenSchicht.AuswertungenDatenbank;
+import DatenSchicht.DatenLogikAuswertungen;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
@@ -38,8 +39,8 @@ public class ZertifikateAlleMitarbeiterGueltigkeit {
 
 
         //Aufruf Store Procedure SP_ANZEIGEN_NICHT_GUELTIG_ALLE_MA_ZERT
-
-        AusgabeZertifikateAlleMitarbeiterGueltigkeit = new AuswertungenDatenbank().storeproduceZertifikateAlleMitarbeiterGueltigkeit(datumBis);
+        DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
+        AusgabeZertifikateAlleMitarbeiterGueltigkeit = auswertungen.storeproduceZertifikateAlleMitarbeiterGueltigkeit(datumBis);
 
         Tabelle tabelle = new Tabelle();
         tabelle.setHeaders(TITELZEILE);

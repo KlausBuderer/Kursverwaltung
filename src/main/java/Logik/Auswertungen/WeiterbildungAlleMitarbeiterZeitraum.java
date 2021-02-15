@@ -2,6 +2,7 @@
 package Logik.Auswertungen;
 
 import DatenSchicht.AuswertungenDatenbank;
+import DatenSchicht.DatenLogikAuswertungen;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
@@ -46,8 +47,8 @@ public class WeiterbildungAlleMitarbeiterZeitraum {
         datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Enddatum des gewuenschten Auswertungszeitraum ein: ");
 
         //Aufruf Store Procedure SP_ANZEIGEN_ALLE_MA_WEITERBILDUNG_DATUM
-
-        AusgabeWeiterbildungAlleMitarbeiterZeitraum = new AuswertungenDatenbank().storeproduceWeiterbildungAlleMitarbeiterZeitraum(datumVon, datumBis);
+        DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
+        AusgabeWeiterbildungAlleMitarbeiterZeitraum = auswertungen.storeproduceWeiterbildungAlleMitarbeiterZeitraum(datumVon, datumBis);
 
         Tabelle tabelle = new Tabelle();
         tabelle.setHeaders(TITELZEILE);

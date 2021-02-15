@@ -1,9 +1,6 @@
 package Logik.Mitarbeiter;
 
-import DatenSchicht.DatenLogikKostenstelle;
-import DatenSchicht.DatenLogikMitarbeiter;
-import DatenSchicht.KostenstelleDatenbank;
-import DatenSchicht.MitarbeiterDatenbank;
+import DatenSchicht.*;
 import Logik.Administratives.Kostenstelle;
 import Logik.Services;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
@@ -42,8 +39,8 @@ public class Mitarbeiter extends Services {
         this.jobTitel = jobTitel;
         this.geburtstag = geburtstag;
         this.mitarbeiterStatus = mitarbeiterStatusString;
-        DatenLogikKostenstelle datenLogikKostenstelle =  new KostenstelleDatenbank();
-        this.kostenstellenBezeichnung = datenLogikKostenstelle.kostenstelleBezichnungAusgeben(kostenstelleId);
+        DatenLogik datenLogikKostenstelle =  new KostenstelleDatenbank();
+        this.kostenstellenBezeichnung = ((KostenstelleDatenbank) datenLogikKostenstelle).kostenstelleBezeichnungAusgeben(kostenstelleId);
     }
 
     public void untermenueAnzeigen() {
@@ -126,8 +123,8 @@ public class Mitarbeiter extends Services {
             kostenstelle.auswahlListeKostenstelleAusgeben();
             kostenstelleId = kostenstelle.kostenstelleId;
             //kostenstellen Bezeichnung aus der Datenbank lesen
-            DatenLogikKostenstelle datenLogikKostenstelle = new KostenstelleDatenbank();
-            kostenstellenBezeichnung = datenLogikKostenstelle.kostenstelleBezichnungAusgeben(kostenstelleId);
+            DatenLogik datenLogikKostenstelle = new KostenstelleDatenbank();
+            kostenstellenBezeichnung = ((KostenstelleDatenbank) datenLogikKostenstelle).kostenstelleBezeichnungAusgeben(kostenstelleId);
 
 
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
@@ -137,8 +134,8 @@ public class Mitarbeiter extends Services {
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
                 case 1:
-                    DatenLogikMitarbeiter mitarbeiter = new MitarbeiterDatenbank();
-                    mitarbeiter.mitarbeiterAnlegen(this);
+                    DatenLogik mitarbeiter = new MitarbeiterDatenbank();
+                    mitarbeiter.datenAnlegen(this);
                     abschliessen = true;
                     break;
                 case 2:
@@ -256,7 +253,7 @@ public class Mitarbeiter extends Services {
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
                 case 1:
-                    DatenLogikMitarbeiter mitarbeiterMutieren = new MitarbeiterDatenbank();
+                    DatenLogik mitarbeiterMutieren = new MitarbeiterDatenbank();
                     mitarbeiterMutieren.datenMutation(this);
                     abschliessen = true;
                     break;
@@ -289,7 +286,7 @@ public class Mitarbeiter extends Services {
 
                 case 1: //1.Ja-> Mitarbeiter Loeschen Query aufrufen und Methode beenden
                     DatenLogikMitarbeiter mitarbeiterLoeschen =  new MitarbeiterDatenbank();
-                    mitarbeiterLoeschen.mitarbeiterLoeschen(mitarbeiter.mitarbeiterId);
+                    mitarbeiterLoeschen.datenLoeschen(mitarbeiter.mitarbeiterId);
                     abschliessen = true;
                     break;
                 case 2: //2.Nein-> Springe zu Aufrufen MitarbeiterSuchen()

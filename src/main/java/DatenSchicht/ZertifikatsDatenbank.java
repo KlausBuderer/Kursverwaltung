@@ -1,12 +1,13 @@
 package DatenSchicht;
 
+import Logik.Services;
 import Logik.Zertifikate.Zertifikate;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-public class ZertifikatsDatenbank extends Datenbank implements DatenLogikZertifikat{
+public class ZertifikatsDatenbank extends Datenbank implements DatenLogik {
 
     STORE_PROCEDURE_KONTEXT kontext;
 
@@ -19,7 +20,7 @@ public class ZertifikatsDatenbank extends Datenbank implements DatenLogikZertifi
  Aufruf eines Store Procedure um ein Zertifikat zu loeschen
  Parameter: Id des Zertifikats
   */
-    public void zertifikatLoeschen(int kursId){
+    public void datenLoeschen(int kursId){
 
         storeProcedureAufrufen("{ call SP_AENDERN_ZERT_LOESCHEN(?,?) }",kursId, kontext.ZERTIFIKAT_LOESCHEN);
     }
@@ -28,17 +29,16 @@ public class ZertifikatsDatenbank extends Datenbank implements DatenLogikZertifi
        Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
        Parameter: Objekt des Aufrufers
        */
-    public boolean datenAnlegen(Zertifikate zertifikat){
-         datenInDbAnlegen(anlegenQuerry(zertifikat));
-        return false;
+    public void datenAnlegen(Services services){
+         datenInDbAnlegen(anlegenQuerry((Zertifikate) services));
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
     Parameter: Objekt des Aufrufers
      */
-    public void datenMutation(Zertifikate zertifikat){
-        datenBearbeiten(updateQuerry(zertifikat));
+    public void datenMutation(Services services){
+        datenBearbeiten(updateQuerry((Zertifikate) services));
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -47,7 +47,7 @@ public class ZertifikatsDatenbank extends Datenbank implements DatenLogikZertifi
     Parameter: Inhalt der Utilities.Tabelle der Datenbank.Datenbank
     Rueckgabewert: Hashmap mit Objekten fuer jeden Tuple
      */
-    HashMap<Zertifikate, Integer> zertifikateListeErstellen(ResultSet dbInhalt) throws SQLException {
+    protected HashMap<Zertifikate, Integer> zertifikateListeErstellen(ResultSet dbInhalt) throws SQLException {
 
         HashMap<Zertifikate, Integer> zertifikateHash = new HashMap<>();
         Zertifikate zertifikate;
@@ -71,7 +71,7 @@ public class ZertifikatsDatenbank extends Datenbank implements DatenLogikZertifi
        /*
     Methode zur Erstellung eines Querrys fuer einen Update von Kostenstelle
      */
-    String updateQuerry(Zertifikate zertifikat){
+    private String updateQuerry(Zertifikate zertifikat){
 
         return  "UPDATE `itwisse_kursverwaltung`.`tblZertifikate` SET " +
                 " `Titel` = '"          + zertifikat.zertifikatsTitel +
@@ -86,7 +86,7 @@ public class ZertifikatsDatenbank extends Datenbank implements DatenLogikZertifi
        /*
     Methode zur Erstellung eines Querrys fuer ein Anlegen eines neuen Kurses
      */
-    String anlegenQuerry(Zertifikate zerttifikat){
+    private String anlegenQuerry(Zertifikate zerttifikat){
 
         return "INSERT INTO `itwisse_kursverwaltung`.`tblZertifikate`" +
                 " (`Titel`, `Beschreibung`, `Anbieter`, `Sprache`, `Kosten`, `Waehrung`)" +
@@ -102,10 +102,16 @@ public class ZertifikatsDatenbank extends Datenbank implements DatenLogikZertifi
      Methode die den query aus den Angaben des Bedieners zusammensetzt
     Rueckgabewert: query als String
       */
-    public String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
+    private String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
 
         String query = "`tblZertifikate` where `";
         String suche =  suchkriterium + "` Like \"%" + suchText + "%\"";
         return query + suche;
     }
+
+    @Override
+    public HashMap<?, Integer> datenAuslesen(String tabelle) {
+        return null;
+    }
+
 }
