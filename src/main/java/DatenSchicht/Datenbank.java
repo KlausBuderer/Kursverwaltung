@@ -403,6 +403,15 @@ public class Datenbank {
                     rueckgabeList = new AuswertungenDatenbank().ausfuehrenWeiterbildungAlleMitarbeiterZeitraum(dbInhalt);
                     break;
 
+                case AUSWERTUNG_KURSE_PRO_ANBIETER_KOSTENSTELLEN_ZEITRAUM:
+                    System.out.println(parameter1 + parameter2);
+                    statement.setString(1, parameter1);
+                    statement.setString(2, parameter2);
+
+                    dbInhalt = statement.executeQuery();
+                    rueckgabeList = new AuswertungenDatenbank().ausfuehrenKurseProAnbieterKostenstellenZeitraums(dbInhalt);
+                    break;
+
                 case AUSWERTUNG_ZERTIFIKATE:
 
                     dbInhalt = statement.executeQuery();

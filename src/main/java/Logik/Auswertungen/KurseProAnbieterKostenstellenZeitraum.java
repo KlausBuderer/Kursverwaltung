@@ -10,7 +10,7 @@ import java.util.List;
 
 public class KurseProAnbieterKostenstellenZeitraum {
 
-    private final String[] TITELZEILE = {"kostenstelleNr","kostenstellebezeichnung","kosten","waehrung","anbieter","selektionszeitraumVon","selektionszeitraumBis"};
+    private final String[] TITELZEILE = {"Kostenstellennummer","Kostenstellebezeichnung","Kurskosten","Währung","Anbieter","SelektionszeitraumVon","SelektionszeitraumBis"};
 
     private int kostenstelleNr;
     private String kostenstellebezeichnung;
