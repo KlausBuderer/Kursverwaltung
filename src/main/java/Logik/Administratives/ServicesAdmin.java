@@ -3,6 +3,7 @@ package Logik.Administratives;
 import Logik.Services;
 
 public abstract class ServicesAdmin extends Services {
+
     @Override
     protected abstract void datenAnlegen();
 

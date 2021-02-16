@@ -5,6 +5,7 @@ import PraesentationSchicht.Tabelle;
 
 public abstract class Services {
 
+    // Gibt ein Objekt als in einer Tabelle aus
     public void objectInTabelleAusgeben(String[] kopfzeile, String[] attributenArray) {
        try {
            Tabelle tabelle = new Tabelle();
@@ -25,5 +26,4 @@ public abstract class Services {
     protected abstract void datenLoeschen();
 
     protected abstract String[] attributenArrayFuerTabelle();
-
 }
