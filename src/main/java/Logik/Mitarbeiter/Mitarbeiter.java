@@ -39,8 +39,8 @@ public class Mitarbeiter extends Services {
         this.jobTitel = jobTitel;
         this.geburtstag = geburtstag;
         this.mitarbeiterStatus = mitarbeiterStatusString;
-        DatenLogik datenLogikKostenstelle =  new KostenstelleDatenbank();
-        this.kostenstellenBezeichnung = ((KostenstelleDatenbank) datenLogikKostenstelle).kostenstelleBezeichnungAusgeben(kostenstelleId);
+        DatenLogikKostenstelle datenLogikKostenstelle =  new KostenstelleDatenbank();
+        this.kostenstellenBezeichnung = datenLogikKostenstelle.kostenstellenBezeichnungAusgeben(kostenstelleId);
     }
 
     public void untermenueAnzeigen() {
@@ -123,8 +123,8 @@ public class Mitarbeiter extends Services {
             kostenstelle.auswahlListeKostenstelleAusgeben();
             kostenstelleId = kostenstelle.kostenstelleId;
             //kostenstellen Bezeichnung aus der Datenbank lesen
-            DatenLogik datenLogikKostenstelle = new KostenstelleDatenbank();
-            kostenstellenBezeichnung = ((KostenstelleDatenbank) datenLogikKostenstelle).kostenstelleBezeichnungAusgeben(kostenstelleId);
+            DatenLogikKostenstelle datenLogikKostenstelle = new KostenstelleDatenbank();
+            kostenstellenBezeichnung =  datenLogikKostenstelle.kostenstellenBezeichnungAusgeben(kostenstelleId);
 
 
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);

@@ -4,25 +4,22 @@ import Logik.Einstellungen.Einstellungen;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class Datenbank {
 
-
+    private Connection connection = null;
+    private Statement statement = null;
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Die Methode fuehrt einen Verbindungstest
-
+    Die Methode fuehrt einen Verbindungstest durch, die Methode wird einmalig beim Start der Software ausgeführt
     Rueckgabewert: Das Resultat des Verbindungstest als Boolean
      */
     public boolean verbindungTesten() {
 
         boolean verbindungErfolgreich;
-
-        Connection connection = null;
 
         try {
 
@@ -31,7 +28,6 @@ public class Datenbank {
 
             System.out.println("Verbindung zu Datenbank erfolgreich");
             BefehlsZeilenSchnittstelle.bildReinigen("",3);
-
             verbindungErfolgreich = true;
 
         } catch (SQLException | ClassNotFoundException sqlException) {
@@ -57,22 +53,15 @@ public class Datenbank {
      */
     public void datenInDbAnlegen(String query) {
 
-        Connection connection = null;
-        Statement statement = null;
-
         try {
-
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
             statement = connection.createStatement();
 
             statement.execute(query);
 
-
         } catch (SQLException | ClassNotFoundException sqlException) {
-
             sqlException.printStackTrace();
-
         }
 
             try {
@@ -85,9 +74,7 @@ public class Datenbank {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Abfrage aus Datenbank.Datenbank fuer Integer Werte -> Gibt einen HashMap zurueck Key = ID, Value = Inhalt
-
-    Parameter: Tabellennamen der Datenbank.Datenbank als String
+    Abfrage aus Datenbank fuer Integer Werte -> Gibt einen HashMap von Objekten zurueck
 
     Rueckgabewert: HashMap mit Objekt als Key und ID als Value
      */
@@ -103,8 +90,10 @@ public class Datenbank {
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
             statement = connection.createStatement();
 
+            //Schreibt den Inhalt der Tabelle in die Variable dbInhalt
             ResultSet dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`.`" + tabelle + "`");
 
+            // Befüllt einen Hashmap mit dem Inhalt der Datenbank und übergibt sie der Variable datenAuflistung
             switch (tabelle) {
                 case "tblKostenstelle":
                     datenAuflistung = new KostenstelleDatenbank().kostenstelleAusgeben(dbInhalt);
@@ -118,49 +107,37 @@ public class Datenbank {
                 case "tblZertifikate":
                     datenAuflistung = new ZertifikatsDatenbank().zertifikateListeErstellen(dbInhalt);
                     break;
-                case "tblAuswertung":
-                    break;
                 default:
                     break;
-
-
             }
         } catch (SQLException | ClassNotFoundException sqlException) {
-
             sqlException.printStackTrace();
-
         }
+
         try {
             connection.close();
             statement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return datenAuflistung;
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
     /*
-    Methode zur Bearbeitung einer Utilities.Tabelle von der Datenbank.Datenbank
-
-    Parameter: Der Update Querry der in der aufrufenden Klasse generiert wird
-
+    Methode zur Bearbeitung einer Tabelle von der Datenbank
      */
 
     public boolean datenBearbeiten(String query) {
 
         boolean bearbeitungErfolgreich;
 
-        Connection connection = null;
-
         try {
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
             PreparedStatement ps = connection.prepareStatement(query);
-
+            // Ausführen des Querys
             ps.executeUpdate();
 
             bearbeitungErfolgreich = true;
@@ -175,77 +152,18 @@ public class Datenbank {
             try {
                 connection.close();
             } catch (SQLException throwables) {
-
                 throwables.printStackTrace();
-
             }
         }
-
         return bearbeitungErfolgreich;
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Abfrage aus Datenbank.Datenbank fuer Integer Werte -> Gibt einen HashMap zurueck Key = ID, Value = Inhalt
-
-    Parameter: Tabellennamen der Datenbank.Datenbank als String
-
-    Rueckgabewert: HashMap mit Objekt als Key und ID als Value
+    Methode für die Suche von einem spezifischen Objekts in der Datenbank
+    Rueckgabewert: HashMap mit Objekten
      */
-    public List<?> auswertungAusgeben(String view) {
-
-        Connection connection = null;
-        Statement statement = null;
-
-        List<?> auswertungsListe = new ArrayList<>();
-        ResultSet dbInhalt = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
-            statement = connection.createStatement();
-
-            dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`.`" + view + "`");
-
-            switch (view) {
-                case "view_Bruno_TEST":
-                   // auswertungsListe = new AuswertungenDatenbank().(dbInhalt);
-                    break;
-                case "view_kurse_auswertung":
-                    System.out.println("Kursauswertung");
-                    break;
-                default:
-                    System.out.println("Utilities.Tabelle unbekannt");
-            }
-
-
-        } catch (SQLException | ClassNotFoundException sqlException) {
-
-            sqlException.printStackTrace();
-        }
-
-            try {
-                statement.close();
-                connection.close();
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-
-        return auswertungsListe;
-    }
-
-    //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    /*
-    Abfrage aus Datenbank.Datenbank fuer Integer Werte -> Gibt einen HashMap zurueck Key = ID, Value = Inhalt
-
-    Parameter: Tabellennamen der Datenbank.Datenbank als String
-
-    Rueckgabewert: HashMap mit Objekt als Key und ID als Value
-     */
-    public HashMap<?, Integer> datenListeAusgeben(String query) {
-
-        Connection connection = null;
-        Statement statement = null;
+    public HashMap<?, Integer> datenInDbSuchen(String query) {
 
         HashMap<?,Integer> rueckgabeHashMap = null;
 
@@ -255,19 +173,18 @@ public class Datenbank {
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
             statement = connection.createStatement();
 
+
             dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`." + query);
 
             if(query.contains("tblMitarbeiter")){
             rueckgabeHashMap = new MitarbeiterDatenbank().mitarbeiterListeErstellen(dbInhalt);
-
-            }else if(query.contains("tblKurse")){
-                rueckgabeHashMap = new KursDatenbank().kursListeErstellen(dbInhalt);
-            }else if (query.contains("tblZertifikate")){
-                rueckgabeHashMap = new ZertifikatsDatenbank().zertifikateListeErstellen(dbInhalt);
-            }
+                }else if(query.contains("tblKurse")){
+                    rueckgabeHashMap = new KursDatenbank().kursListeErstellen(dbInhalt);
+                        }else if (query.contains("tblZertifikate")){
+                            rueckgabeHashMap = new ZertifikatsDatenbank().zertifikateListeErstellen(dbInhalt);
+                         }
 
         } catch (SQLException | ClassNotFoundException sqlException) {
-
             sqlException.printStackTrace();
         }
 
@@ -280,29 +197,13 @@ public class Datenbank {
 
         return rueckgabeHashMap;
     }
+
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
     /*
-     Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank.Datenbank
-    Parameter: Inhalt der Utilities.Tabelle der Datenbank.Datenbank
-    Rueckgabewert: Hashmap mit Objekten fuer jeden Tuple
-
-     */
-
-    public HashMap<?,Integer> dbHashMap(String tabelle){
-        return datenAuslesenfuerAbfrage(tabelle);
-    }
-
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    /*
-    Die Methode untermenueAnzeige zeigt das Untermenue und fuehrt anhand der Eingabe des Benutzers eine Aktion aus
+    Methode zum Aufrufen von StoreProcedures
      */
     public HashMap storeProcedureAufrufen(String query, int parameter, STORE_PROCEDURE_KONTEXT kontext) {
 
-        boolean anlegenErfolgreich;
-
-        Connection connection = null;
         CallableStatement statement = null;
         ResultSet dbInhalt = null;
         HashMap rueckgabeHash = null;
@@ -314,10 +215,7 @@ public class Datenbank {
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
             statement = connection.prepareCall(query);
 
-
-
-            System.out.println("Store Procedure erfolgreich");
-
+            //Store Proceddures aufrufen
             switch (kontext){
                 case AUSWERTUNG_KURS_PRO_MITARBEITER:
                     statement.setInt(1,parameter);
@@ -343,17 +241,13 @@ public class Datenbank {
                 case MITARBEITER_LOESCHEN: case KURS_LOESCHEN: case ZERTIFIKAT_LOESCHEN:
                     statement.setInt(1,parameter);
                     statement.executeQuery();
-                    statusSP = statement.getString(2);
-                    System.out.println(statusSP);
+                    statement.getString(2);
                     BefehlsZeilenSchnittstelle.verzoegerung(3000);
                     break;
             }
 
         } catch (SQLException | ClassNotFoundException sqlException) {
-
-            System.out.println("Hat geklappt");
-
-            sqlException.printStackTrace();
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Fehler beim Ausführen aufgetreten!");
         }
 
             try {
@@ -369,9 +263,8 @@ public class Datenbank {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Die Methode untermenueAnzeige zeigt das Untermenue und fuehrt anhand der Eingabe des Benutzers eine Aktion aus
+   Methode zum Aufrufen von StoreProcedures
      */
-
     public List storeProcedureAufrufen(String query, String parameter1, String parameter2, String parameter3, STORE_PROCEDURE_KONTEXT kontext) {
 
         boolean anlegenErfolgreich;
@@ -383,16 +276,11 @@ public class Datenbank {
         String statusSP;
 
         try {
-
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
             statement = connection.prepareCall(query);
 
-
-
-            System.out.println("Store Procedure erfolgreich");
-
-
+            //Store Proceddures aufrufen
             switch (kontext) {
                 case AUSWERTUNG_WEITERILDUNG_ALLE_MITARBEITER_ZEITRAUM:
                     System.out.println(parameter1 + parameter2);
@@ -412,7 +300,6 @@ public class Datenbank {
                     dbInhalt = statement.executeQuery();
                     rueckgabeList = new AuswertungenDatenbank().ausfuehrenProAnbieterSelektivKostenstelleZeitraum(dbInhalt);
                     break;
-
 
                 case AUSWERTUNG_KURSE_PRO_ANBIETER_KOSTENSTELLEN_ZEITRAUM:
                     System.out.println(parameter1 + parameter2);
@@ -459,7 +346,6 @@ public class Datenbank {
                     rueckgabeList = new AuswertungenDatenbank().ausfuehrenKostenstellenAlle(dbInhalt);
                     break;
 
-
                 case AUSWERTUNG_ZERTIFIKATE_ALLE_MITARBEITER_GUELTIGKEIT:
                     System.out.println(parameter1);
                     statement.setString(1, parameter1);
@@ -467,14 +353,10 @@ public class Datenbank {
                     dbInhalt = statement.executeQuery();
                     rueckgabeList = new AuswertungenDatenbank().ausfuehrenZertifikateAlleMitarbeiterGueltigkeit(dbInhalt);
                     break;
-
-               }
+            }
 
         } catch (SQLException | ClassNotFoundException sqlException) {
-
-            System.out.println("Hat geklappt");
-
-            sqlException.printStackTrace();
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Fehler beim Ausführen aufgetreten!");
         }
 
         try {
@@ -483,17 +365,15 @@ public class Datenbank {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return rueckgabeList;
-
     }
+
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Die Methode ruft ein Store Procedure um die Existenz einer Mitarbeiternummer zu pruefen
      */
     public String storeProcedureAufrufen(String query, int parameter) {
 
-        boolean anlegenErfolgreich;
 
         Connection connection = null;
         CallableStatement statement = null;

@@ -7,7 +7,41 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-public class KostenstelleDatenbank extends Datenbank implements DatenLogik{
+public class KostenstelleDatenbank extends Datenbank implements DatenLogik, DatenLogikKostenstelle{
+
+
+    /*
+      Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+      Parameter: Objekt des Aufrufers
+    */
+    public void datenAnlegen(Services services){
+        datenInDbAnlegen(anlegenQuery((Kostenstelle) services));
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+    Parameter: Objekt des Aufrufers
+     */
+    public void datenMutation(Services services){
+        datenBearbeiten(updatequery((Kostenstelle) services));
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+           /*
+    Gibt eine Auswahlliste zurueck (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+     */
+    public HashMap<?,Integer> datenAuslesen(String tabelle){
+      return datenAuslesenfuerAbfrage(tabelle);
+    }
+
+    /*
+    Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+    Parameter: Objekt des Aufrufers
+    */
+    public String kostenstellenBezeichnungAusgeben(int kostenstellenId){
+        return  storeProcedureAufrufen("{ call SP_ANZEIGEN_KOSTENSTELLE_MIT_ID(?,?) }",
+                kostenstellenId);
+    }
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
@@ -32,43 +66,6 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik{
         return kostenstelleHash;
     }
 
-
-    /*
-        Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
-        Parameter: Objekt des Aufrufers
-        */
-    public void datenAnlegen(Services services){
-        datenInDbAnlegen(anlegenQuery((Kostenstelle) services));
-    }
-    /*
-   Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
-   Parameter: Objekt des Aufrufers
-   */
-    public String kostenstelleBezeichnungAusgeben(int kostenstellenId){
-        return  storeProcedureAufrufen("{ call SP_ANZEIGEN_KOSTENSTELLE_MIT_ID(?,?) }",
-                kostenstellenId);
-    }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
-    Parameter: Objekt des Aufrufers
-     */
-    public void datenMutation(Services services){
-        datenBearbeiten(updatequery((Kostenstelle) services));
-    }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-           /*
-    Gibt eine Auswahlliste zurueck
-     */
-    public HashMap<?,Integer> datenAuslesen(String tabelle){
-      return datenAuslesenfuerAbfrage(tabelle);
-    }
-
-
-    // Wird beim Ausbau der Software implementiert
-    @Override
-    public void datenLoeschen(int ID) {
-    }
 
     /*
     Methode zur Erstellung eines Querys fuer ein Update einer Kostenstelle
@@ -100,9 +97,15 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik{
     }
 
 
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Wird beim Ausbau der Software implementiert
     @Override
     public HashMap<?, Integer> suchen(String suchkriterium, String suchText) {
         return null;
     }
 
+    // Wird beim Ausbau der Software implementiert
+    @Override
+    public void datenLoeschen(int ID) {
+    }
 }

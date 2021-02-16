@@ -45,6 +45,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\main\java\DatenSchicht\Datenbank.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\main\java\DatenSchicht\KostenstelleDatenbank.java">
           <value>
             <Attribute>

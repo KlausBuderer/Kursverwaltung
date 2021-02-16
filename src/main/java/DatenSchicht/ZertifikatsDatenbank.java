@@ -13,7 +13,7 @@ public class ZertifikatsDatenbank extends Datenbank implements DatenLogik {
 
     public HashMap<?,Integer> suchen(String suchkriterium, String suchText){
 
-        return datenListeAusgeben(queryFuerAnzahlAbfrage(suchkriterium,suchText));
+        return datenInDbSuchen(queryFuerAnzahlAbfrage(suchkriterium,suchText));
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*

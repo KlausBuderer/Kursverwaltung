@@ -30,7 +30,7 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
    Parameter: MySql Query
      */
     public HashMap<?, Integer> suchen(String suchkriterium, String suchText){
-    return datenListeAusgeben(queryFuerAnzahlAbfrage(suchkriterium,suchText));
+    return datenInDbSuchen(queryFuerAnzahlAbfrage(suchkriterium,suchText));
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*

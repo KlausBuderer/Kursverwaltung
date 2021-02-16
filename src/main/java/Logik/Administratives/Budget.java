@@ -3,6 +3,7 @@ package Logik.Administratives;
 
 import DatenSchicht.BudgetDatenbank;
 import DatenSchicht.DatenLogik;
+import DatenSchicht.DatenLogikKostenstelle;
 import DatenSchicht.KostenstelleDatenbank;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
@@ -31,8 +32,8 @@ public class Budget extends ServicesAdmin {
         this.budgetBetrag = budgetBetrag;
         this.budgetId = budgetID;
         this.waehrung = waehrung;
-        DatenLogik datenLogikKostenstelle =  new KostenstelleDatenbank();
-        this.kostenstellenBezeichnung = ((KostenstelleDatenbank) datenLogikKostenstelle).kostenstelleBezeichnungAusgeben(kostenstelleId);
+        DatenLogikKostenstelle datenLogikKostenstelle =  new KostenstelleDatenbank();
+        this.kostenstellenBezeichnung = datenLogikKostenstelle.kostenstellenBezeichnungAusgeben(kostenstelleId);
     }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Konstruktor erstellen eines Objekts mit Angaben der Utilities.Tabelle BudgetPeriode
@@ -68,7 +69,8 @@ public class Budget extends ServicesAdmin {
             Kostenstelle kostenstelle = new Kostenstelle();
             kostenstelle.auswahlListeKostenstelleAusgeben();
             kostenstelleId = kostenstelle.kostenstelleId;
-            kostenstellenBezeichnung = new KostenstelleDatenbank().kostenstelleBezeichnungAusgeben(kostenstelleId);
+            DatenLogikKostenstelle kostenstellenBez = new KostenstelleDatenbank();
+            kostenstellenBezeichnung = kostenstellenBez.kostenstellenBezeichnungAusgeben(kostenstelleId);
 
             //Eingaben anzeigen
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
