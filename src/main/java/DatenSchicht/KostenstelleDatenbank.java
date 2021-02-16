@@ -11,7 +11,7 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik, Date
 
 
     /*
-      Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+      Aufruf Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
       Parameter: Objekt des Aufrufers
     */
     public void datenAnlegen(Services services){
@@ -20,7 +20,7 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik, Date
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+    Aufruf Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
     Parameter: Objekt des Aufrufers
      */
     public void datenMutation(Services services){
@@ -35,7 +35,7 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik, Date
     }
 
     /*
-    Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+    Gibt die Bezeichnung der Kostenstelle zurück (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
     Parameter: Objekt des Aufrufers
     */
     public String kostenstellenBezeichnungAusgeben(int kostenstellenId){
@@ -45,8 +45,8 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik, Date
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank.Datenbank
-    Parameter: Inhalt der Utilities.Tabelle der Datenbank.Datenbank
+    Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
+    Parameter: Inhalt der Tabelle der Datenbank
     Rueckgabewert: Hashmap mit Objekten fuer jeden Tuple
      */
     HashMap<Kostenstelle, Integer> kostenstelleAusgeben(ResultSet dbInhalt) throws SQLException {
@@ -66,13 +66,12 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik, Date
         return kostenstelleHash;
     }
 
-
     /*
     Methode zur Erstellung eines Querys fuer ein Update einer Kostenstelle
     Parameter: Objekt des Aufrufers
     Rueckgabe: query als String
      */
-    String updatequery(Kostenstelle kostenstelle){
+    private String updatequery(Kostenstelle kostenstelle){
 
         return "UPDATE `itwisse_kursverwaltung`.`tblKostenstelle` SET " +
                 " `KostenstelleNr` = "                     + kostenstelle.kostenstelleNr +
@@ -87,7 +86,7 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik, Date
      Parameter: Objekt des Aufrufers
      Rueckgabe: query als String
      */
-    String anlegenQuery(Kostenstelle kostenstelle){
+    private String anlegenQuery(Kostenstelle kostenstelle){
 
         return "INSERT INTO `itwisse_kursverwaltung`.`tblKostenstelle` (`KostenstelleNr`, `BezeichnungKST`, `KostenstelleVerantPerson`) VALUES " +
                 "('"    + kostenstelle.kostenstelleNr +
@@ -95,7 +94,6 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik, Date
                 "', '"  + kostenstelle.kostenstelleVerantPerson + "')";
 
     }
-
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Wird beim Ausbau der Software implementiert
