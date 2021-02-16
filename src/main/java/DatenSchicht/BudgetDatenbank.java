@@ -11,12 +11,37 @@ public class BudgetDatenbank extends Datenbank implements DatenLogik{
 
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Aufruf Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+    Parameter: Objekt des Aufrufers
+     */
+    public void datenAnlegen(Services services){
+        datenInDbAnlegen(anlegenQuery((Budget) services));
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Aufruf Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+    Parameter: Objekt des Aufrufers
+     */
+    public void datenMutation(Services services) {
+        datenBearbeiten(updateQuery((Budget) services));
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+           /*
+    Gibt eine Auswahlliste zurueck
+     */
+    public HashMap<?,Integer> datenAuslesen(String tabelle){
+        return datenAuslesenfuerAbfrage(tabelle);
+    }
+
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
     Parameter: Inhalt der Tabelle der Datenbank
     Rueckgabewert: Hashmap mit Objekten fuer jeden Tuple
      */
-    protected HashMap<Budget, Integer> budgetAusgeben(ResultSet dbInhalt) throws SQLException {
+    HashMap<Budget, Integer> budgetAusgeben(ResultSet dbInhalt) throws SQLException {
 
         HashMap<Budget, Integer> budgetHash = new HashMap<>();
         Budget budget;
@@ -34,40 +59,6 @@ public class BudgetDatenbank extends Datenbank implements DatenLogik{
         }
         return budgetHash;
     }
-
-
-    @Override
-    public HashMap<?, Integer> suchen(String suchkriterium, String suchText) {
-        return null;
-    }
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
-    Parameter: Objekt des Aufrufers
-     */
-    public void datenAnlegen(Services services){
-        datenInDbAnlegen(anlegenQuery((Budget) services));
-    }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
-    Parameter: Objekt des Aufrufers
-     */
-    public void datenMutation(Services services) {
-        datenBearbeiten(updateQuery((Budget) services));
-    }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-           /*
-    Gibt eine Auswahlliste zurueck
-     */
-    public HashMap<?,Integer> datenAuslesen(String tabelle){
-        return datenAuslesenfuerAbfrage(tabelle);
-    }
-
-    //Wird beim Ausbau der Software implementiert
-    @Override
-    public void datenLoeschen(int ID) {}
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
@@ -97,4 +88,15 @@ public class BudgetDatenbank extends Datenbank implements DatenLogik{
                 "', '" + budget.kostenstelleId + "')";
     }
 
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Wird beim Ausbau der Software implementiert
+    @Override
+    public HashMap<?, Integer> suchen(String suchkriterium, String suchText) {
+        return null;
+    }
+
+    //Wird beim Ausbau der Software implementiert
+    @Override
+    public void datenLoeschen(int ID) {}
 }

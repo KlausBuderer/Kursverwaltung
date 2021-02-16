@@ -6,15 +6,15 @@ import java.util.HashMap;
 
 public interface DatenLogikMitarbeiter extends DatenLogik {
 
-    public void mitarbeiterBescheinigungAnlegen(MitarbeiterBescheinigung mitarbeiterBescheinigung, MitarbeiterBescheinigung.kontextAnlegen kontext);
+   void mitarbeiterBescheinigungAnlegen(MitarbeiterBescheinigung mitarbeiterBescheinigung, MitarbeiterBescheinigung.kontextAnlegen kontext);
 
-    public HashMap zertifikatVerlaengernListe(int mitarbeiterId);
+   HashMap zertifikatVerlaengernListe(int mitarbeiterId);
 
-    public String nummerAufExistenzPruefen(int mitarbeiterId);
+   String nummerAufExistenzPruefen(int mitarbeiterId);
 
-    public void zertifikatVerlaengernSpeichern(MitarbeiterBescheinigung mitarbeiterBescheinigung);
+   void zertifikatVerlaengernSpeichern(MitarbeiterBescheinigung mitarbeiterBescheinigung);
 
-    public String kursZuweisungQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung);
+   String kursZuweisungQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung);
 
-    public String zertifikatZuweisungQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung);
+   String zertifikatZuweisungQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung);
 }

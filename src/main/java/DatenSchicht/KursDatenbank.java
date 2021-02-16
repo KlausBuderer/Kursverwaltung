@@ -10,11 +10,40 @@ import java.util.HashMap;
 public class KursDatenbank extends Datenbank implements DatenLogik {
 
     STORE_PROCEDURE_KONTEXT kontext;
+    
 
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+    Parameter: Objekt des Aufrufers
+     */
+    public void datenAnlegen(Services services){
+        datenInDbAnlegen(anlegenQuerry((Kurse) services));
+    }
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
+    Parameter: Objekt des Aufrufers
+     */
+    public void datenMutation(Services services){
+        datenBearbeiten(updateQuerry((Kurse) services));
+    }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Spezfischen Kurs in der Datenbank suchen
     public HashMap<?,Integer> suchen(String suchkriterium, String suchText){
         return datenInDbSuchen(queryFuerAnzahlAbfrage(suchkriterium,suchText));
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Aufruf eines Store Procedure um einen Kurs zu loeschen
+    Parameter: Id des Kurses
+    */
+    public void datenLoeschen(int kursId){
+        storeProcedureAufrufen("{ call SP_AENDERN_KURS_LOESCHEN(?,?) }",kursId, kontext.KURS_LOESCHEN);
+    }
+
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
@@ -43,37 +72,7 @@ public class KursDatenbank extends Datenbank implements DatenLogik {
         }
         return kursHash;
     }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
-    Parameter: Objekt des Aufrufers
-     */
-    public void datenAnlegen(Services services){
-        datenInDbAnlegen(anlegenQuerry((Kurse) services));
-    }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Aufruf zum Daten Updaten (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
-    Parameter: Objekt des Aufrufers
-     */
-    public void datenMutation(Services services){
-        datenBearbeiten(updateQuerry((Kurse) services));
-    }
 
-    @Override
-    public HashMap<?, Integer> datenAuslesen(String tabelle) {
-        return null;
-    }
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    /*
- Aufruf eines Store Procedure um einen Kurs zu loeschen
- Parameter: Id des Kurses
-  */
-    public void datenLoeschen(int kursId){
-
-        storeProcedureAufrufen("{ call SP_AENDERN_KURS_LOESCHEN(?,?) }",kursId, kontext.KURS_LOESCHEN);
-    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode zur Erstellung eines Querys fuer ein Anlegen eines neuen Datensatzes in der Datenbank
@@ -119,4 +118,12 @@ public class KursDatenbank extends Datenbank implements DatenLogik {
         String suche =  suchkriterium + "` Like \"%" + suchText + "%\"";
         return query + suche;
     }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Wird beim Ausbau der Software implementiert
+    @Override
+    public HashMap<?, Integer> datenAuslesen(String tabelle) {
+        return null;
+    }
+
 }

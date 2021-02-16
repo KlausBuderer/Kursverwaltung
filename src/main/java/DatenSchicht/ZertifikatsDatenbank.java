@@ -9,21 +9,8 @@ import java.util.HashMap;
 
 public class ZertifikatsDatenbank extends Datenbank implements DatenLogik {
 
-    STORE_PROCEDURE_KONTEXT kontext;
+    private STORE_PROCEDURE_KONTEXT kontext;
 
-    public HashMap<?,Integer> suchen(String suchkriterium, String suchText){
-
-        return datenInDbSuchen(queryFuerAnzahlAbfrage(suchkriterium,suchText));
-    }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    /*
- Aufruf eines Store Procedure um ein Zertifikat zu loeschen
- Parameter: Id des Zertifikats
-  */
-    public void datenLoeschen(int kursId){
-
-        storeProcedureAufrufen("{ call SP_AENDERN_ZERT_LOESCHEN(?,?) }",kursId, kontext.ZERTIFIKAT_LOESCHEN);
-    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
        Aufruf zum Daten Anlegen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
@@ -39,6 +26,23 @@ public class ZertifikatsDatenbank extends Datenbank implements DatenLogik {
      */
     public void datenMutation(Services services){
         datenBearbeiten(updateQuerry((Zertifikate) services));
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+    //Spezfisches Zertifikat in der Datenbank suchen
+    public HashMap<?,Integer> suchen(String suchkriterium, String suchText){
+        return datenInDbSuchen(queryFuerAnzahlAbfrage(suchkriterium,suchText));
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Aufruf eines Store Procedure um ein Zertifikat zu loeschen
+    Parameter: Id des Zertifikats
+    */
+    public void datenLoeschen(int kursId){
+
+        storeProcedureAufrufen("{ call SP_AENDERN_ZERT_LOESCHEN(?,?) }",kursId, kontext.ZERTIFIKAT_LOESCHEN);
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -109,6 +113,8 @@ public class ZertifikatsDatenbank extends Datenbank implements DatenLogik {
         return query + suche;
     }
 
+    //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Wird beim Ausbau der Software implementiert
     @Override
     public HashMap<?, Integer> datenAuslesen(String tabelle) {
         return null;
