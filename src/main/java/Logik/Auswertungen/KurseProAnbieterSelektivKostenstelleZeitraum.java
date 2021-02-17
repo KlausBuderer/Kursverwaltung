@@ -2,6 +2,7 @@
 package Logik.Auswertungen;
 
 import DatenSchicht.AuswertungenDatenbank;
+import Logik.Administratives.Kostenstelle;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
@@ -35,17 +36,19 @@ public class KurseProAnbieterSelektivKostenstelleZeitraum {
     public void auswertungAusgeben() {
         String datumVon;
         String datumBis;
-        String kostenstelle;
+        String eingabeKostenstelle;
 
         List<KurseProAnbieterSelektivKostenstelleZeitraum> AusgabeKurseProAnbieterSelektivKostenstelleZeitraum;
         // Abfrage Datum
         datumVon = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Startdatum des gewuenschten Auswertungszeitraum ein: ");
         datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Enddatum des gewuenschten Auswertungszeitraum ein: ");
-        kostenstelle = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben Sie die gewünschte Kostenstelle ein: ");
+        Kostenstelle kostenstelle = new Kostenstelle();
+        kostenstelle.auswahlListeKostenstelleAusgeben();
+        eingabeKostenstelle = String.valueOf(kostenstelle.kostenstelleNr);
 
         //Aufruf Store Procedure SP_ANZEIGEN_KURSE_PRO_ANBIETER_SELEKTIV_KOSTENSTELLE_JAHR
 
-        AusgabeKurseProAnbieterSelektivKostenstelleZeitraum = new AuswertungenDatenbank().storeproduceProAnbieterSelektivKostenstelleZeitraum(datumVon, datumBis, kostenstelle);
+        AusgabeKurseProAnbieterSelektivKostenstelleZeitraum = new AuswertungenDatenbank().storeproduceProAnbieterSelektivKostenstelleZeitraum(datumVon, datumBis, eingabeKostenstelle);
 
         Tabelle tabelle = new Tabelle();
         tabelle.setHeaders(TITELZEILE);
