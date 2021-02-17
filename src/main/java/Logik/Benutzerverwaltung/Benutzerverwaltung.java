@@ -221,7 +221,6 @@ public class Benutzerverwaltung {
             //Schliesst das Dokument
             bufferedWriter.close();
 
-
         } catch (IOException e) {
             e.printStackTrace();
         }
