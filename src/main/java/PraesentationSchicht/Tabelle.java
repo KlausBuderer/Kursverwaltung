@@ -81,6 +81,9 @@ public class Tabelle {
             for (int i = 0; i < zellen.length; i++) {
                 String s = zellen[i];
                 String verStrTemp = i == zellen.length - 1 ? vertikaleLinie : "";
+
+                //Bei leerer Liste augeben
+
                 if (rechtsBuendig) {
                     System.out.printf(BefehlsZeilenSchnittstelle.schriftfarbe +"%s %" + maximaleBreite[i] + "s %s", vertikaleLinie, s, verStrTemp + BefehlsZeilenSchnittstelle.ANSI_RESET);
                 } else {

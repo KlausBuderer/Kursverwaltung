@@ -247,7 +247,7 @@ public class Datenbank {
             }
 
         } catch (SQLException | ClassNotFoundException sqlException) {
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Fehler beim Ausführen aufgetreten!");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Fehler beim Ausführen des Store Procedure aufgetreten!");
         }
 
             try {

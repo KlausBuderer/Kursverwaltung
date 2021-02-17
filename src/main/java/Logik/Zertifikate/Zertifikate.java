@@ -221,6 +221,7 @@ public class Zertifikate extends Services {
             //Abfrage welchen Kurs geloescht werden soll
             //Aufrufen von MitarbeiterSuchen()
             zertifikat = new ZertifikateSuchen().zertifikatSuchen();
+            objektUebergabe(zertifikat);
             //Ausgabe der Daten des ausgewaehlten Kurses
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             objectInTabelleAusgeben(KOPFZEILE,attributenArrayFuerTabelle());

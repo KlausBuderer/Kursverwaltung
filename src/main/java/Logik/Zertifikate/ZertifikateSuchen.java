@@ -54,7 +54,7 @@ public class ZertifikateSuchen {
 
         String[] HEADER = {"Nr.","Suchkriterium"};
 
-        BefehlsZeilenSchnittstelle.bildReinigen("Suchkriterien fuer die Mitarbeitersuche",2);
+        BefehlsZeilenSchnittstelle.bildReinigen("Suchkriterien fuer die Zertifikatssuche",2);
         BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte waehlen sie ein Suchkriterium: ");
 
         int auswahlNummer = 1;

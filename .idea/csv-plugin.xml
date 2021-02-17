@@ -157,6 +157,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\main\java\PraesentationSchicht\Tabelle.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

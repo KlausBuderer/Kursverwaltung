@@ -170,8 +170,8 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
         while (dbInhalt.next()) {
 
             int mitarbeiterID = dbInhalt.getInt("MitarbeiterID");
-            String vorname = dbInhalt.getString("Vorname");
             String nachname = dbInhalt.getString("Nachname");
+            String vorname = dbInhalt.getString("Vorname");
             int maBescheinigungId = dbInhalt.getInt("MABescheinigungID");
             String zertAblDatum = dbInhalt.getString("ZertAblDatum");
             String zertifikatsTitel = dbInhalt.getString("Zertifikatstitel");
