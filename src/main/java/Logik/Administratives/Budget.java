@@ -176,7 +176,7 @@ public class Budget extends ServicesAdmin {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzer
+    Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzerverwaltung
      */
     public void auswahlListeBudgetAusgeben() {
 

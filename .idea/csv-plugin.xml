@@ -108,6 +108,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\main\java\Logik\Benutzerverwaltung\Benutzerverwaltung.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\main\java\Logik\Kurse\KursSuchen.java">
           <value>
             <Attribute>

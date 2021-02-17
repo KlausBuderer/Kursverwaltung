@@ -1,5 +1,5 @@
 import DatenSchicht.Datenbank;
-import Logik.Benutzerverwaltung.Benutzer;
+import Logik.Benutzerverwaltung.Benutzerverwaltung;
 import Logik.Einstellungen.Einstellungen;
 import PraesentationSchicht.Animation;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
@@ -25,15 +25,15 @@ public class KursverwaltungMain {
                 einstellungen.nachVerbindungFragen();
             }
 
-            new Benutzer().benutzerAusDateiLesen();
+            new Benutzerverwaltung().benutzerAusDateiLesen();
 
         }while(!verbindungAufgebaut);
 
         while(true) {
-            if(Benutzer.angemeldeterBenutzer.equals("")) {
+            if(Benutzerverwaltung.angemeldeterBenutzer.equals("")) {
                 BefehlsZeilenSchnittstelle.anmeldeFensterAusgeben();
             }
-            new Benutzer();
+            new Benutzerverwaltung();
             BefehlsZeilenSchnittstelle.hauptmenuAufruf();
 
         }

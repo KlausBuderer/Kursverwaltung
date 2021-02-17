@@ -13,7 +13,6 @@ public class MitarbeiterSuche{
 
 
     private String suchText;
-    private String query;
     private final String[] TABELLENHEADER = {"Nr.","Personalnummer","Nachname","Vorname","Geburtsdatum","Abteilung","Jobtitel","Status", "Anrede"};
     private final String[] SUCHKRITERIEN = {"Personalnummer","Nachname","Vorname","Geburtsdatum","Abteilung","Jobtitel","Status", "Anrede"};
     private final String[] MYSQLSPALTENNAMEN = {"PersonalNr","Nachname","Vorname","Geburtsdatum","KostenstelleID","Jobtitel","Statusmitarbeiter","Anrede"};
@@ -25,12 +24,11 @@ public class MitarbeiterSuche{
     }
 
     /*--------------------------------------------------------------------------------------------------------------------------------------
-        Methode die eine Auswahl an Suchkriterien Ausgibt und eine Auswahl vom Bediener liest
+        Methode um die Suche eines Mitarbeiter zu verwalten
         Rueckgabewert: Objekt von Mitarbeiter oder null
          */
     public Mitarbeiter mitarbeiterSuchen(){
-        int arrayLaenge;
-        int auswahl;
+
         boolean abbruchBedingung = false;
         HashMap<?, Integer> mitarbeiterHash;
 
@@ -46,6 +44,7 @@ public class MitarbeiterSuche{
 
             BefehlsZeilenSchnittstelle.bildReinigen("Mitarbeitersuche",2);
 
+            //Auf Anzahl Treffer begrenzen
             if (mitarbeiterHash.size() > 20) {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zuviele Treffer!");
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie genauere Angaben an");
@@ -77,18 +76,17 @@ public class MitarbeiterSuche{
             auswahlNummer++;
         }
 
-
         return BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(SUCHKRITERIEN.length);
     }
 
     /*--------------------------------------------------------------------------------------------------------------------------------------
     Methode die die Eingabe des Suchtextes einliest
-   Rueckgabewert: Suchtext als String
+    Rueckgabewert: Suchtext als String
      */
     private String suchTextEinlesen(int auswahl){
 
         int suchZahl = 0;
-BefehlsZeilenSchnittstelle.bildReinigen("Mitarbeitersuche",2);
+        BefehlsZeilenSchnittstelle.bildReinigen("Mitarbeitersuche",2);
 
         switch (auswahl){
             case 1: suchZahl = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie die Personalnummer ein nach der sie suchen moechten: ");
@@ -138,9 +136,9 @@ BefehlsZeilenSchnittstelle.bildReinigen("Mitarbeitersuche",2);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zum Erstellen einer Liste von Objekten der Klasse Mitarbeiter.Mitarbeiter zur Auswahl fuer den Bediener
-    Parameter: Hashmap mit den Mitarbeiter.Mitarbeiter
-    Rueckgabewert: objekt des Typ Mitarbeiter.Mitarbeiter
+    Methode zum Erstellen einer Liste von Objekten der Klasse Mitarbeiter zur Auswahl fuer den Bediener
+    Parameter: Hashmap mit den Mitarbeiter
+    Rueckgabewert: objekt des Typ Mitarbeiter
      */
     private Mitarbeiter mitarbeiterListeAusgeben(HashMap mitarbeiterHash) {
 

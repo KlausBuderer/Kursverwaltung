@@ -25,9 +25,11 @@ public class MitarbeiterBescheinigung {
     public enum kontextAnlegen  {KURS,ZERTIFIKAT};
     String[] TABELLENHEADER = {"Nr.","Vorname","Nachname","Zertifikat","Ablaufdatum","Zertifikatsbeschreibung"};
 
+    //----------------------------------------------------------------------------------------------------------------------------------------------
+    //Konstruktor
     public MitarbeiterBescheinigung() {
     }
-
+    //Konstruktor um eine neue MitarbeiterBescheinigung zu erstellen
     public MitarbeiterBescheinigung(int id, String zertifikatsAblaufDatum, int mitarbeiterId,String vorname, String nachname, String zertifikatsTitel, String zertifikatsBeschreibung) {
         this.id = id;
         this.zertifikatsAblaufDatum = zertifikatsAblaufDatum;
@@ -61,31 +63,29 @@ public class MitarbeiterBescheinigung {
             kurs = new KursSuchen().kursSuchen();
             this.kurseId = kurs.kurseId;
 
-
+            // Ausgabe der neuen MitarbeiterBescheinigung
             PraesentationSchicht.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte bestaetigen sie die richtige Eingabe");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiter: " + mitarbeiter.vorname + " " + mitarbeiter.nachname);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Kurs: " + kurs.anbieter + " " + kurs.kursBeschreibung + " " + kurs.datumVon);
 
+            //Bestätigung der MitarbeiterBescheinigung
             switch (PraesentationSchicht.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
-
-                case 1:
+                case 1://Speichern
                     DatenLogik mitarbeiterKursZuweisen = new MitarbeiterDatenbank();
                     ((MitarbeiterDatenbank) mitarbeiterKursZuweisen).mitarbeiterBescheinigungAnlegen(this, kontextAnlegen.KURS);
                     abschliessen = true;
                     break;
-                case 2:
+                case 2://Neu beginnen
                     abschliessen = false;
                     break;
-                case 3:
+                case 3://Abbrechen
                     abschliessen = true;
                     break;
             }
-
         } while (!abschliessen) ;
     }
-
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
@@ -110,11 +110,11 @@ public class MitarbeiterBescheinigung {
             zertifikat = new ZertifikateSuchen().zertifikatSuchen();
             this.zertifikatId = zertifikat.zertifikatsId;
 
-            //
+            //Ablaufdatum angeben
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Geben sie das Ablaufdatum des Zertifikats ein (TT.MM.JJJJ): ");
             this.zertifikatsAblaufDatum = BefehlsZeilenSchnittstelle.pruefeDatum();
 
-
+            // Ausgabe der neuen MitarbeiterBescheinigung
             PraesentationSchicht.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte bestaetigen sie die richtige Eingabe");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
@@ -122,17 +122,18 @@ public class MitarbeiterBescheinigung {
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zertifikat: " + zertifikat.anbieter + "\nZertifikatsbeschreibung: " + zertifikat.zertifikatsBeschreibung + "\nAblaufdatum: " + zertifikatsAblaufDatum + "\n");
 
+
             switch (PraesentationSchicht.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
-                case 1:
+                case 1://Speichern
                     DatenLogik mitarbeiterZertifikatZuweisen = new MitarbeiterDatenbank();
                     ((MitarbeiterDatenbank) mitarbeiterZertifikatZuweisen).mitarbeiterBescheinigungAnlegen(this, kontextAnlegen.ZERTIFIKAT);
                     abschliessen = true;
                     break;
-                case 2:
+                case 2://Neu beginnen
                     abschliessen = false;
                     break;
-                case 3:
+                case 3://Abbrechen
                     abschliessen = true;
                     break;
             }
@@ -213,7 +214,7 @@ public class MitarbeiterBescheinigung {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Ausgabe einer Auswahlliste Mitarbeiterbescheinigung fuer den Benutzer
+    Methode zur Ausgabe einer Auswahlliste Mitarbeiterbescheinigung fuer den Benutzerverwaltung
      */
 
     public MitarbeiterBescheinigung auswahlListeZertifikateAusgeben(int mitarbeiterId) {

@@ -2,7 +2,6 @@ package PraesentationSchicht;
 
 import Logik.Administratives.Administratives;
 import Logik.Auswertungen.Auswertungen;
-import Logik.Benutzerverwaltung.Benutzer;
 import Logik.Benutzerverwaltung.Benutzerverwaltung;
 import Logik.Einstellungen.Einstellungen;
 import Logik.Kurse.*;
@@ -20,10 +19,10 @@ import java.util.Scanner;
 // Utility Klasse fuer Ausgaben und Eingaben in der Konsole
 public final class BefehlsZeilenSchnittstelle {
 
-   private static final String[] HAUPTMENU_ADMIN =  {"1. Mitarbeiter", "2. Kurse", "3. Zertifikate","4. Auswertungen", "5. Administratives",
-            "6. Benutzerverwaltung", "7. Einstellungen","90. Abmelden","99. Programm Beenden"};
+   private static final String[] HAUPTMENU_ADMIN =  {"1.  Mitarbeiter", "2.  Kurse", "3.  Zertifikate","4.  Auswertungen", "5.  Administratives",
+            "6.  Benutzerverwaltung", "7.  Einstellungen","90. Abmelden","99. Programm Beenden"};
 
-    private static final String[] HAUPTMENU_BENUTZER =  {"1. Mitarbeiter", "2. Kurse", "3. Zertifikate","4. Auswertungen", "5. Administratives", "90. Abmelden",
+    private static final String[] HAUPTMENU_BENUTZER =  {"1.  Mitarbeiter", "2.  Kurse", "3.  Zertifikate","4.  Auswertungen", "5.  Administratives", "90. Abmelden",
             "99. Programm Beenden"};
 
     // Konsolenfarben
@@ -64,7 +63,7 @@ public final class BefehlsZeilenSchnittstelle {
                    benutzerEingabe = abfrageMitEingabeFrei45("                                                 Benutzername: ");
                    passwortEingabe = abfrageMitEingabeFrei45("                                                 Passwort: ");
 
-                     benutzerAngemeldet = new Benutzer().benutzerAnmelden(benutzerEingabe,passwortEingabe);
+                     benutzerAngemeldet = new Benutzerverwaltung().benutzerAnmelden(benutzerEingabe,passwortEingabe);
         }while (!benutzerAngemeldet);
 
 
@@ -77,7 +76,7 @@ public final class BefehlsZeilenSchnittstelle {
 
     public static void hauptmenuAufruf(){
 
-        if(Benutzer.angemeldeteGruppe.equals("ADMINISTRATOR")){
+        if(Benutzerverwaltung.angemeldeteGruppe.equals("ADMINISTRATOR")){
             hauptmenueAusgeben(HAUPTMENU_ADMIN);
         }else{
          hauptmenueAusgeben(HAUPTMENU_BENUTZER);
@@ -89,7 +88,7 @@ public final class BefehlsZeilenSchnittstelle {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-     Anzeige des Hauptmenues fuer Benutzer mit Adminrecht
+     Anzeige des Hauptmenues fuer Benutzerverwaltung mit Adminrecht
      */
     public static void hauptmenueAusgeben(String[] menu) {
 
@@ -153,15 +152,15 @@ public final class BefehlsZeilenSchnittstelle {
                 break;
             case 6:
                 farbschemaWaehlen(FARBSCHEMA.VIOLETT);
-                new Benutzerverwaltung();
+                new Benutzerverwaltung().untermenueAnzeigen();
                 break;
             case 7:
                 farbschemaWaehlen(FARBSCHEMA.WEISS);
                 new Einstellungen();
                 break;
             case 90:
-                Benutzer.angemeldeterBenutzer = "";
-                Benutzer.angemeldeteGruppe = null;
+                Benutzerverwaltung.angemeldeterBenutzer = "";
+                Benutzerverwaltung.angemeldeteGruppe = null;
                 anmeldeFensterAusgeben();
                 break;
             case 99:
@@ -261,7 +260,7 @@ public final class BefehlsZeilenSchnittstelle {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Die Methode korrekteEingabeBestaetigen fragt den Benutzer ab ob die soeben Eingegebene Eingabe korrekt ist. Der Benutzer
+    Die Methode korrekteEingabeBestaetigen fragt den Benutzerverwaltung ab ob die soeben Eingegebene Eingabe korrekt ist. Der Benutzerverwaltung
     hat die Moeglichkeit die Eingabe nochmals zu wiederholen oder die Eingabe abzubrechen, falls die Eingabe korrekt ist,
     kann die Eingabe gespeichert werden.
      */
@@ -747,7 +746,7 @@ public final class BefehlsZeilenSchnittstelle {
 
             if (kontext == 1) {
                 text.toString();
-                System.out.println(schriftfarbe +"\n" + "                                                                           Angemeldeter Benutzer: " + Benutzer.angemeldeterBenutzer +"\t" +dtf.format(LocalDateTime.now()) + ANSI_RESET);
+                System.out.println(schriftfarbe +"\n" + "                                                                           Angemeldeter Benutzer: " + Benutzerverwaltung.angemeldeterBenutzer +"\t" +dtf.format(LocalDateTime.now()) + ANSI_RESET);
 
                 System.out.println(schriftfarbe + "<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>" + ANSI_RESET);
                 System.out.println(schriftfarbe + "<  " + vor + text + nach + "  >" + ANSI_RESET);

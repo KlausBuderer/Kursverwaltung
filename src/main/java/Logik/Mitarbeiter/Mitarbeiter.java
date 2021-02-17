@@ -43,6 +43,8 @@ public class Mitarbeiter extends Services {
         this.kostenstellenBezeichnung = datenLogikKostenstelle.kostenstellenBezeichnungAusgeben(kostenstelleId);
     }
 
+
+
     public void untermenueAnzeigen() {
 
         boolean gueltigeEingabe = false;
@@ -78,7 +80,7 @@ public class Mitarbeiter extends Services {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum Mitarbeiter.Mitarbeiter anlegen
+    Methode zum Mitarbeiter anlegen
      */
     protected void datenAnlegen() {
 
@@ -117,22 +119,23 @@ public class Mitarbeiter extends Services {
             jobTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei255("Jobtitel: ");
             //Status beim Anlegen automatisch true
             mitarbeiterStatus = statusArray[0];
-            //kostenstelle (organisation)
 
+            //kostenstelle (organisation)
             Kostenstelle kostenstelle = new Kostenstelle();
             kostenstelle.auswahlListeKostenstelleAusgeben();
             kostenstelleId = kostenstelle.kostenstelleId;
+
             //kostenstellen Bezeichnung aus der Datenbank lesen
             DatenLogikKostenstelle datenLogikKostenstelle = new KostenstelleDatenbank();
             kostenstellenBezeichnung =  datenLogikKostenstelle.kostenstellenBezeichnungAusgeben(kostenstelleId);
 
-
+            //Ausgeben der Eingegebenen Angaben
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             objectInTabelleAusgeben(KOPFZEILE,attributenArrayFuerTabelle());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
+            //Bestätigen, neu Beginnen oder abbrechen des Anlegen
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
-
                 case 1:
                     DatenLogik mitarbeiter = new MitarbeiterDatenbank();
                     mitarbeiter.datenAnlegen(this);
@@ -160,7 +163,9 @@ public class Mitarbeiter extends Services {
         boolean abschliessen = true;
         Mitarbeiter mitarbeiter;
 
+        //Mitarbeitersuchen der geändert werden soll
         MitarbeiterSuche mitarbeiterSuche = new MitarbeiterSuche();
+        //Falls kein Mitarbeiter zurückgegeben wird wird abgebrochen ist wird abgebrochen
         try {
             mitarbeiter = mitarbeiterSuche.mitarbeiterSuchen();
             objektUebergeben(mitarbeiter);
@@ -168,6 +173,7 @@ public class Mitarbeiter extends Services {
             return;
         }
 
+        //Abfrage was geändert werden soll
         do {
             BefehlsZeilenSchnittstelle.bildReinigen(titelName, 2);
             int i = 1;
@@ -181,8 +187,8 @@ public class Mitarbeiter extends Services {
             BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Welchen Spalte moechten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
             auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
+            //Aenderung einleiten
             switch (auswahl) {
-
                 case 1:
                     //Personalnummer
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + personalNummer);
@@ -203,21 +209,25 @@ public class Mitarbeiter extends Services {
                     anrede = anredeArray[BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
                     break;
                 case 3:
+                    //Nachname
                     BefehlsZeilenSchnittstelle.bildReinigen(titelName, 2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + nachname);
                     nachname = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Nachnamen ein: ");
                     break;
                 case 4:
+                    //Vorname
                     BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + vorname);
                     vorname = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Vornamen ein: ");
                     break;
                 case 5:
+                    //Geburtstag
                     BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + geburtstag);
                     geburtstag = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben sie das Geburtsdatum ein: ");
                     break;
                 case 6:
+                    //Kostenstelle
                     BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + kostenstelleId);
                     Kostenstelle kostenstelle = new Kostenstelle();
@@ -225,10 +235,12 @@ public class Mitarbeiter extends Services {
                     kostenstelleId = kostenstelle.kostenstelleId;
                     break;
                 case 7:
+                    //Job Titel
                     BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + jobTitel);
                     jobTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei255("Geben sie den Jobtitel ein: ");
                 case 8:
+                    //Status der Anstellung des Mitarbeiters
                     BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + mitarbeiterStatus);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiterstatus: ");
@@ -250,8 +262,8 @@ public class Mitarbeiter extends Services {
             objectInTabelleAusgeben(KOPFZEILE,attributenArrayFuerTabelle());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
-            switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
                 case 1:
                     DatenLogik mitarbeiterMutieren = new MitarbeiterDatenbank();
                     mitarbeiterMutieren.datenMutation(this);
@@ -299,12 +311,22 @@ public class Mitarbeiter extends Services {
 
         }while(!abschliessen);
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Diese Methode packt die Membervariablen in ein Array fuer die Ausgabe in einer Tabelle
+     */
+    protected String[] attributenArrayFuerTabelle(){
+        String[] attributenArray = {" ",String.valueOf(personalNummer),nachname,vorname, geburtstag, kostenstellenBezeichnung, jobTitel, mitarbeiterStatus, anrede};
+        return attributenArray;
+    }
+
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Die Methode uebergibt ein Objekt in das jetztige
     Parameter: Objekt welches uebergeben werden soll
      */
-    void objektUebergeben(Mitarbeiter mitarbeiter){
+    private void objektUebergeben(Mitarbeiter mitarbeiter){
 
         this.anrede = mitarbeiter.anrede;
         this.jobTitel = mitarbeiter.jobTitel;
@@ -316,6 +338,7 @@ public class Mitarbeiter extends Services {
         this.mitarbeiterId = mitarbeiter.mitarbeiterId;
         this.kostenstelleId = mitarbeiter.kostenstelleId;
     }
+
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     To String Methode
@@ -330,12 +353,5 @@ public class Mitarbeiter extends Services {
                 "JobTitel " + BefehlsZeilenSchnittstelle.textFormatieren(jobTitel, 25);
 
     }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Diese Methode packt die Membervariablen in ein Array fuer die Ausgabe in einer Tabelle
-     */
-    protected String[] attributenArrayFuerTabelle(){
-        String[] attributenArray = {" ",String.valueOf(personalNummer),nachname,vorname, geburtstag, kostenstellenBezeichnung, jobTitel, mitarbeiterStatus, anrede};
-        return attributenArray;
-    }
+
 }

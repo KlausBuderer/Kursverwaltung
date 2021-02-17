@@ -111,7 +111,7 @@ public class KursSuchen {
     }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzer
+    Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzerverwaltung
      */
 
     public Kurse auswahlListeKurseAusgeben(HashMap kursHash) {

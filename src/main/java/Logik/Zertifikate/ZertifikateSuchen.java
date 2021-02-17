@@ -114,7 +114,7 @@ public class ZertifikateSuchen {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzer
+    Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzerverwaltung
      */
     public Zertifikate auswahlListeZertifikateAusgeben(HashMap zertifikateHash) {
 

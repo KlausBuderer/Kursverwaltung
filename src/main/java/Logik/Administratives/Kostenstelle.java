@@ -32,7 +32,7 @@ public class Kostenstelle extends ServicesAdmin {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Die Methode kostenstelleAnlegen laesst den Benutzer eine neue Kostenstelle anlegen
+    Die Methode kostenstelleAnlegen laesst den Benutzerverwaltung eine neue Kostenstelle anlegen
      */
     protected void datenAnlegen(){
 
@@ -69,7 +69,7 @@ public class Kostenstelle extends ServicesAdmin {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzer
+    Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzerverwaltung
      */
     public void auswahlListeKostenstelleAusgeben() {
 
