@@ -6,13 +6,6 @@ public class Animation {
         kursverwaltungAnimation();
     }
 
-    void startProzedere(){
-
-
-
-
-    }
-
     void kursverwaltungAnimation(){
         int dauer = 500;
 

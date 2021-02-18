@@ -9,8 +9,8 @@ public abstract class Services {
     public void objectInTabelleAusgeben(String[] kopfzeile, String[] attributenArray) {
        try {
            Tabelle tabelle = new Tabelle();
-           tabelle.setHeaders(kopfzeile);
-           tabelle.setVertikaleLinie(true);
+           tabelle.kopfzeileSetzen(kopfzeile);
+           tabelle.vertikaleLinieSetzen(true);
            tabelle.zeileHinzufuegen(attributenArray);
            tabelle.ausgabe();
        }catch (Exception exception){

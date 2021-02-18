@@ -14,10 +14,14 @@ public class KursverwaltungMain {
         // Verbindungsdaten setzen
         Einstellungen einstellungen = new Einstellungen("Start");
 
-        boolean verbindungAufgebaut;
-        Datenbank datenbank = new Datenbank();
+        //Anmeldefenster Einblenden
+        BefehlsZeilenSchnittstelle.anmeldeFensterAusgeben();
+
 
         // Verbindung zur Datenbank testen
+        Datenbank datenbank = new Datenbank();
+        boolean verbindungAufgebaut;
+
         do {
             verbindungAufgebaut = datenbank.verbindungTesten();
 
@@ -25,17 +29,13 @@ public class KursverwaltungMain {
                 einstellungen.nachVerbindungFragen();
             }
 
-            new Benutzerverwaltung().benutzerAusDateiLesen();
-
         }while(!verbindungAufgebaut);
 
         while(true) {
             if(Benutzerverwaltung.angemeldeterBenutzer.equals("")) {
                 BefehlsZeilenSchnittstelle.anmeldeFensterAusgeben();
             }
-            new Benutzerverwaltung();
             BefehlsZeilenSchnittstelle.hauptmenuAufruf();
-
         }
 
 

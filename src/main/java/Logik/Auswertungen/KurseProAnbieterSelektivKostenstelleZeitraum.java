@@ -11,16 +11,15 @@ import java.util.List;
 
 public class KurseProAnbieterSelektivKostenstelleZeitraum {
 
-
-
-    private final String[] TITELZEILE = {"Kostenstellennummer","Kosten","Währung","Anbieter","SelektionszeitraumVon","SelektionszeitraumBis"};
-
     private int kostenstelleNr;
     private int kosten;
+
     private String waehrung;
     private String anbieter;
     private String selektionszeitraumVon;
     private String selektionszeitraumBis;
+
+    private final String[] TITELZEILE = {"Kostenstellennummer","Kosten","Währung","Anbieter","SelektionszeitraumVon","SelektionszeitraumBis"};
 
     public KurseProAnbieterSelektivKostenstelleZeitraum() {}
 
@@ -44,15 +43,15 @@ public class KurseProAnbieterSelektivKostenstelleZeitraum {
         datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Enddatum des gewuenschten Auswertungszeitraum ein: ");
         Kostenstelle kostenstelle = new Kostenstelle();
         kostenstelle.auswahlListeKostenstelleAusgeben();
-        eingabeKostenstelle = String.valueOf(kostenstelle.kostenstelleNr);
+        eingabeKostenstelle = String.valueOf(kostenstelle.getKostenstelleNr());
 
         //Aufruf Store Procedure SP_ANZEIGEN_KURSE_PRO_ANBIETER_SELEKTIV_KOSTENSTELLE_JAHR
 
         AusgabeKurseProAnbieterSelektivKostenstelleZeitraum = new AuswertungenDatenbank().storeproduceProAnbieterSelektivKostenstelleZeitraum(datumVon, datumBis, eingabeKostenstelle);
 
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(TITELZEILE);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(TITELZEILE);
+        tabelle.vertikaleLinieSetzen(true);
         for (KurseProAnbieterSelektivKostenstelleZeitraum kpaskz : AusgabeKurseProAnbieterSelektivKostenstelleZeitraum) {
 
             tabelle.zeileHinzufuegen(kpaskz.attributenArrayBefuellen());

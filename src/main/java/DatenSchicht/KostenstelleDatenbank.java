@@ -74,10 +74,10 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik, Date
     private String updatequery(Kostenstelle kostenstelle){
 
         return "UPDATE `itwisse_kursverwaltung`.`tblKostenstelle` SET " +
-                " `KostenstelleNr` = "                     + kostenstelle.kostenstelleNr +
-                ", `BezeichnungKST` = \""                + kostenstelle.bezeichnungKst +
-                "\", `KostenstelleVerantPerson` = \""    + kostenstelle.kostenstelleVerantPerson +
-                "\" WHERE `ID` = "                       + kostenstelle.kostenstelleId + ";";
+                " `KostenstelleNr` = "                     + kostenstelle.getKostenstelleNr() +
+                ", `BezeichnungKST` = \""                + kostenstelle.getKostenstelleId() +
+                "\", `KostenstelleVerantPerson` = \""    + kostenstelle.getKostenstelleVerantPerson() +
+                "\" WHERE `ID` = "                       + kostenstelle.getKostenstelleId() + ";";
 
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -89,9 +89,9 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik, Date
     private String anlegenQuery(Kostenstelle kostenstelle){
 
         return "INSERT INTO `itwisse_kursverwaltung`.`tblKostenstelle` (`KostenstelleNr`, `BezeichnungKST`, `KostenstelleVerantPerson`) VALUES " +
-                "('"    + kostenstelle.kostenstelleNr +
-                "', '"  + kostenstelle.bezeichnungKst +
-                "', '"  + kostenstelle.kostenstelleVerantPerson + "')";
+                "('"    + kostenstelle.getKostenstelleNr() +
+                "', '"  + kostenstelle.getBezeichnungKst() +
+                "', '"  + kostenstelle.getKostenstelleVerantPerson() + "')";
 
     }
 

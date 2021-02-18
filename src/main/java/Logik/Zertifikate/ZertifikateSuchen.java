@@ -10,10 +10,10 @@ import java.util.Map;
 public class ZertifikateSuchen {
 
     private String suchText;
-    private String query;
     private String[] SUCHKRITERIEN = {"Titel", "Beschreibung","Anbieter","Sprache","Kosten","Waehrung"};
     private String[] TABELLENHEADER = {"Nr.", "Titel", "Beschreibung","Anbieter","Sprache","Kosten","Waehrung"};
 
+//-----------------------------------------------------------------------------------------------------------------------------------------
 
     public Zertifikate zertifikatSuchen(){
 
@@ -60,17 +60,19 @@ public class ZertifikateSuchen {
         int auswahlNummer = 1;
 
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(HEADER);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(HEADER);
+        tabelle.vertikaleLinieSetzen(true);
 
+        //Packen der Suchkriterien in eine Tabelle
         for (String suchkriterium : SUCHKRITERIEN) {
             String[] tempArray = {"",""};
             tempArray[0] = auswahlNummer + ".";
             tempArray[1] = suchkriterium;
             tabelle.zeileHinzufuegen(tempArray);
-            // BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(auswahlNummer + ". " + suchkriterium);
+
             auswahlNummer++;
         }
+        //Abfrage welche Tabelle geändert werden soll
         tabelle.ausgabe();
         BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Nach welchem Kriterium moechten sie suchen: ");
         return BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(SUCHKRITERIEN.length);
@@ -84,7 +86,7 @@ public class ZertifikateSuchen {
 
         int suchZahl = 0;
 
-
+        //Eingabe des Suchtextes
         switch (auswahl) {
             case 1:
                 suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie den Titel des Zertifikats ein nach dem sie suchen: ");
@@ -116,7 +118,7 @@ public class ZertifikateSuchen {
        /*
     Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzerverwaltung
      */
-    public Zertifikate auswahlListeZertifikateAusgeben(HashMap zertifikateHash) {
+    private Zertifikate auswahlListeZertifikateAusgeben(HashMap zertifikateHash) {
 
         int i = 1;
         int arrayLaenge;
@@ -129,8 +131,8 @@ public class ZertifikateSuchen {
 
         //Erstellt eine Tabelle
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(TABELLENHEADER);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(TABELLENHEADER);
+        tabelle.vertikaleLinieSetzen(true);
 
         // Schreiben der Kostenstellen in ein Array
         Zertifikate[] zertifikatArray = new Zertifikate[zertifikatMap.size() + 1];

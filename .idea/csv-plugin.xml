@@ -94,6 +94,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\main\java\Logik\Auswertungen\Auswertungen.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\main\java\Logik\Auswertungen\BudgetAlleKostenstellen.java">
           <value>
             <Attribute>
@@ -109,6 +116,13 @@
           </value>
         </entry>
         <entry key="\src\main\java\Logik\Benutzerverwaltung\Benutzerverwaltung.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\main\java\Logik\Einstellungen\Einstellungen.java">
           <value>
             <Attribute>
               <option name="separator" value=";" />
@@ -151,6 +165,13 @@
           </value>
         </entry>
         <entry key="\src\main\java\Logik\Zertifikate\Zertifikate.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\main\java\PraesentationSchicht\BefehlsZeilenSchnittstelle.java">
           <value>
             <Attribute>
               <option name="separator" value=";" />

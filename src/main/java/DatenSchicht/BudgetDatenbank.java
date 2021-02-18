@@ -69,9 +69,9 @@ public class BudgetDatenbank extends Datenbank implements DatenLogik{
     private String updateQuery(Budget budget) {
 
         return "UPDATE `itwisse_kursverwaltung`.`tblBudgetPeriode` SET " +
-                " `Jahr` = " + budget.budgetJahr +
-                ", `Betrag` = " + budget.budgetBetrag +
-                " WHERE `ID` = " + budget.budgetId + ";";
+                " `Jahr` = " + budget.getBudgetJahr() +
+                ", `Betrag` = " + budget.getBudgetBetrag() +
+                " WHERE `ID` = " + budget.getBudgetId() + ";";
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
@@ -82,10 +82,10 @@ public class BudgetDatenbank extends Datenbank implements DatenLogik{
     private String anlegenQuery(Budget budget){
 
         return "INSERT INTO `itwisse_kursverwaltung`.`tblBudgetPeriode` (`Jahr`, `Betrag`, `Waehrung`, `KostenstelleID`) VALUES" +
-                " ('"  + budget.budgetJahr +
-                "', '" + budget.budgetBetrag +
-                "', '" + budget.waehrung +
-                "', '" + budget.kostenstelleId + "')";
+                " ('"  + budget.getBudgetJahr() +
+                "', '" + budget.getBudgetBetrag() +
+                "', '" + budget.getWaehrung() +
+                "', '" + budget.getKostenstelleId() + "')";
     }
 
 

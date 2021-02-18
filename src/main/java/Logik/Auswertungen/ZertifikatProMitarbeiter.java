@@ -13,13 +13,6 @@ import java.util.Map;
 
 public class ZertifikatProMitarbeiter {
 
-
-    // Feldliste in Datenbank
-
-    // MitarbeiterID,Nachname,Vorname,ZertAblDatum,Zertifikatstitel,Zertifikatsbeschreibung
-
-    private final String[] TITELZEILE = {"MitarbeiterID","Nachname","Vorname","ZertAblDatum","Zertifikatstitel","Zertifikatsbeschreibung"};
-
     private int mitarbeiterID;
 
     private String nachname;
@@ -27,6 +20,9 @@ public class ZertifikatProMitarbeiter {
     private String zertAblDatum;
     private String zertifikatstitel;
     private String zertifikatsbeschreibung;
+    // Feldliste in Datenbank
+    // MitarbeiterID,Nachname,Vorname,ZertAblDatum,Zertifikatstitel,Zertifikatsbeschreibung
+    private final String[] TITELZEILE = {"MitarbeiterID","Nachname","Vorname","ZertAblDatum","Zertifikatstitel","Zertifikatsbeschreibung"};
 
     public ZertifikatProMitarbeiter() {
 
@@ -53,12 +49,12 @@ public class ZertifikatProMitarbeiter {
 
         //Aufruf Store Procedure SP_ANZEIGEN_MA_ZERT
         DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
-        AusgabeZertifikatProMitarbeiter = auswertungen.storeproduceZertifikatproMitarbeiter(mitarbeiterIdentification.mitarbeiterId);
+        AusgabeZertifikatProMitarbeiter = auswertungen.storeproduceZertifikatproMitarbeiter(mitarbeiterIdentification.getMitarbeiterId());
 
 
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(TITELZEILE);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(TITELZEILE);
+        tabelle.vertikaleLinieSetzen(true);
 
         for (Map.Entry<ZertifikatProMitarbeiter, Integer> map : AusgabeZertifikatProMitarbeiter.entrySet()) {
 

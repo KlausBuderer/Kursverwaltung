@@ -11,8 +11,6 @@ import java.util.List;
 
 public class StammdatenAlleMitarbeiter {
 
-    private final String[] TITELZEILE = {"Personalnummer","Anrede","Nachname","Vorname","Jobtitel","Geburtsdatum","Statusmitarbeiter"};
-
     private int personalnummer;
 
     private String anrede;
@@ -21,6 +19,8 @@ public class StammdatenAlleMitarbeiter {
     private String jobtitel;
     private String geburtsdatum;
     private String statusmitarbeiter;
+
+    private final String[] TITELZEILE = {"Personalnummer","Anrede","Nachname","Vorname","Jobtitel","Geburtsdatum","Statusmitarbeiter"};
 
     public StammdatenAlleMitarbeiter() {}
 
@@ -45,8 +45,8 @@ public class StammdatenAlleMitarbeiter {
         AusgabeStammdatenAlleMitarbeiter = auswertungen.storeproduceStammdatenAlleMitarbeiter();
 
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(TITELZEILE);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(TITELZEILE);
+        tabelle.vertikaleLinieSetzen(true);
         for (StammdatenAlleMitarbeiter sam  : AusgabeStammdatenAlleMitarbeiter) {
 
             tabelle.zeileHinzufuegen(sam.attributenArrayBefuellen());

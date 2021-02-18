@@ -95,9 +95,9 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
 
         return "INSERT INTO `itwisse_kursverwaltung`.`tblMitarbeiterBescheinigung`" +
                 " (`ZertifikatAblaufDatum`, `MitarbeiterID`, `KurseID`)" +
-                " VALUES ('" + mitarbeiterBescheinigung.zertifikatsAblaufDatum +
-                "', '" + mitarbeiterBescheinigung.mitarbeiterId +
-                "', '" + mitarbeiterBescheinigung.kurseId +
+                " VALUES ('" + mitarbeiterBescheinigung.getZertifikatsAblaufDatum() +
+                "', '" + mitarbeiterBescheinigung.getMitarbeiterId() +
+                "', '" + mitarbeiterBescheinigung.getKurseId() +
                 "')";
 
     }
@@ -111,9 +111,9 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
 
         return "INSERT INTO `itwisse_kursverwaltung`.`tblMitarbeiterBescheinigung`" +
                 " (`ZertifikatAblaufDatum`, `MitarbeiterID`, `ZertifikatID`)" +
-                " VALUES ('" + mitarbeiterBescheinigung.zertifikatsAblaufDatum +
-                "', '" + mitarbeiterBescheinigung.mitarbeiterId +
-                "', '" + mitarbeiterBescheinigung.zertifikatId +
+                " VALUES ('" + mitarbeiterBescheinigung.getZertifikatsAblaufDatum() +
+                "', '" + mitarbeiterBescheinigung.getMitarbeiterId() +
+                "', '" + mitarbeiterBescheinigung.getZertifikatId() +
                 "')";
 
     }
@@ -192,14 +192,14 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
 
         return "INSERT INTO `itwisse_kursverwaltung`.`tblMitarbeiter`" +
                 " (`PersonalNr`, `Anrede`, `Vorname`, `Nachname`, `Jobtitel`, `Geburtsdatum`, `Statusmitarbeiter`, `KostenstelleID`)" +
-                " VALUES ('" + mitarbeiter.personalNummer +
-                "', '" + mitarbeiter.anrede +
-                "', '" + mitarbeiter.vorname +
-                "', '" + mitarbeiter.nachname +
-                "', '" + mitarbeiter.jobTitel +
-                "', '" + mitarbeiter.geburtstag +
-                "', '" + mitarbeiter.mitarbeiterStatus +
-                "', '" + mitarbeiter.kostenstelleId +"')";
+                " VALUES ('" + mitarbeiter.getPersonalNummer() +
+                "', '" + mitarbeiter.getAnrede() +
+                "', '" + mitarbeiter.getVorname() +
+                "', '" + mitarbeiter.getNachname() +
+                "', '" + mitarbeiter.getJobTitel() +
+                "', '" + mitarbeiter.getGeburtstag() +
+                "', '" + mitarbeiter.getMitarbeiterStatus() +
+                "', '" + mitarbeiter.getKostenstelleId() +"')";
 
     }
 
@@ -223,15 +223,15 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
     private String updateQuerry(Mitarbeiter mitarbeiter){
 
         return "Update `itwisse_kursverwaltung`.`tblMitarbeiter` SET" +
-                "`PersonalNr` = '"            + mitarbeiter.personalNummer +
-                "', `Anrede` = '"           + mitarbeiter.anrede +
-                "', `Vorname` = '"           + mitarbeiter.vorname +
-                "', `Nachname` = '"          + mitarbeiter.nachname +
-                "', `Jobtitel` = '"          + mitarbeiter.jobTitel +
-                "', `Geburtsdatum` = '"      + mitarbeiter.geburtstag +
-                "', `Statusmitarbeiter` = '" + mitarbeiter.mitarbeiterStatus +
-                "', `KostenstelleID` = '"    + mitarbeiter.kostenstelleId +
-                "' WHERE `ID` = "              + mitarbeiter.mitarbeiterId +";";
+                "`PersonalNr` = '"            + mitarbeiter.getPersonalNummer() +
+                "', `Anrede` = '"           + mitarbeiter.getAnrede() +
+                "', `Vorname` = '"           + mitarbeiter.getVorname() +
+                "', `Nachname` = '"          + mitarbeiter.getNachname() +
+                "', `Jobtitel` = '"          + mitarbeiter.getJobTitel() +
+                "', `Geburtsdatum` = '"      + mitarbeiter.getGeburtstag() +
+                "', `Statusmitarbeiter` = '" + mitarbeiter.getMitarbeiterStatus() +
+                "', `KostenstelleID` = '"    + mitarbeiter.getKostenstelleId() +
+                "' WHERE `ID` = "              + mitarbeiter.getMitarbeiterId() +";";
     }
 
   /*
@@ -240,8 +240,8 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
     private String updateQuerry(MitarbeiterBescheinigung mitarbeiterBescheinigung){
 
         return "Update `itwisse_kursverwaltung`.`tblMitarbeiterBescheinigung` SET" +
-                " `ZertifikatAblaufDatum` = '"           + mitarbeiterBescheinigung.zertifikatsAblaufDatum +
-                "' Where `ID` = " + mitarbeiterBescheinigung.id + ";";
+                " `ZertifikatAblaufDatum` = '"           + mitarbeiterBescheinigung.getZertifikatsAblaufDatum() +
+                "' Where `ID` = " + mitarbeiterBescheinigung.getId() + ";";
     }
 
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -11,12 +11,12 @@ import java.util.List;
 
 public class KostenstellenAlle {
 
-
-    private final String[] TITELZEILE = {"Kostenstellennummer","Bezechnungkostenstelle","KostenstellenverantwortlichePerson"};
-
     private int kostenstellennummer;
+
     private String bezechnungkostenstelle;
     private String kostenstellenverantwortlichePerson;
+
+    private final String[] TITELZEILE = {"Kostenstellennummer","Bezechnungkostenstelle","KostenstellenverantwortlichePerson"};
 
     public KostenstellenAlle(int kostenstellennummer, String bezechnungkostenstelle, String kostenstellenverantwortlichePerson) {
         this.kostenstellennummer = kostenstellennummer;
@@ -39,8 +39,8 @@ public class KostenstellenAlle {
         AusgabeKostenstellenAlle = auswertungen.storeproduceKostenstellenAlle();
 
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(TITELZEILE);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(TITELZEILE);
+        tabelle.vertikaleLinieSetzen(true);
         for (KostenstellenAlle ksa  : AusgabeKostenstellenAlle) {
 
             tabelle.zeileHinzufuegen(ksa.attributenArrayBefuellen());

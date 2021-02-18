@@ -12,13 +12,13 @@ import java.util.Map;
 
 public class Budget extends ServicesAdmin {
 
-    public int budgetId;
-    public int budgetJahr;
-    public int budgetBetrag;
-    public int kostenstelleId;
+    private int budgetId;
+    private int budgetJahr;
+    private int budgetBetrag;
+    private int kostenstelleId;
 
-    public String waehrung;
-    public String kostenstellenBezeichnung;
+    private String waehrung;
+    private String kostenstellenBezeichnung;
 
     private String[] KOPFZEILE = {" ","Kostenstelle", "Jahr", "Betrag", "Waehrung"};
 
@@ -40,7 +40,62 @@ public class Budget extends ServicesAdmin {
     //Konstruktor erstellen eines Objekts mit Angaben der Utilities.Tabelle BudgetPeriode
     public Budget() {
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+ Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzerverwaltung
+  */
+    public void auswahlListeBudgetAusgeben() {
+
+        int i = 1;
+        int arrayLaenge;
+        int auswahl;
+        String titelName = "Budget Waehlen";
+
+        // Datenbank nach Liste Fragen
+        DatenLogik budgetDatenbank = new BudgetDatenbank();
+
+        // Abfrage Datenbank.Datenbank nach Kostenstellen
+        HashMap<Budget, Integer> budgetMap = (HashMap<Budget, Integer>) budgetDatenbank.datenAuslesen("tblBudgetPeriode");
+
+
+        // Schreiben der Kostenstellen in ein budgetArray
+        Budget[] budgetArray = new Budget[budgetMap.size() + 1];
+
+        // Erstellt eine Tabelle für die Ausgabe
+        Tabelle tabelle = new Tabelle();
+        tabelle.kopfzeileSetzen(KOPFZEILE);
+        tabelle.vertikaleLinieSetzen(true);
+
+        BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
+
+        for (Map.Entry<Budget, Integer> map : budgetMap.entrySet()) {
+            budgetArray[i] = map.getKey();
+            String[] tempArray = map.getKey().attributenArrayFuerTabelle();
+            tempArray[0] = i + ". ";
+
+            tabelle.zeileHinzufuegen(tempArray);
+
+            i++;
+        }
+//TODO Lehre Tabelle durch Text ersetzen und Methode abbrechen
+        tabelle.ausgabe();
+
+        arrayLaenge = budgetArray.length;
+
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte waehlen sie ein Budget aus der Liste (1-" + (arrayLaenge - 1) + ")");
+        auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
+
+        //Schreiben der Attributen der ausgewaehlten Daten in die Membervariablen
+        budgetId = budgetArray[auswahl].budgetId;
+        budgetBetrag = budgetArray[auswahl].budgetBetrag;
+        budgetJahr = budgetArray[auswahl].budgetJahr;
+        waehrung = budgetArray[auswahl].waehrung;
+        kostenstellenBezeichnung = budgetArray[auswahl].kostenstellenBezeichnung;
+
+    }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
     //Methode zum ein neues Budget anzulegen
     protected void datenAnlegen(){
 
@@ -72,7 +127,7 @@ public class Budget extends ServicesAdmin {
             //Gibt Kostenstellen zur Auswahl aus
             Kostenstelle kostenstelle = new Kostenstelle();
             kostenstelle.auswahlListeKostenstelleAusgeben();
-            kostenstelleId = kostenstelle.kostenstelleId;
+            kostenstelleId = kostenstelle.getKostenstelleId();
             DatenLogikKostenstelle kostenstellenBez = new KostenstelleDatenbank();
             kostenstellenBezeichnung = kostenstellenBez.kostenstellenBezeichnungAusgeben(kostenstelleId);
 
@@ -174,62 +229,7 @@ public class Budget extends ServicesAdmin {
         }while(!abschliessen);
     }
 
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzerverwaltung
-     */
-    public void auswahlListeBudgetAusgeben() {
-
-        int i = 1;
-        int arrayLaenge;
-        int auswahl;
-        String titelName = "Budget Waehlen";
-
-        // Datenbank nach Liste Fragen
-        DatenLogik budgetDatenbank = new BudgetDatenbank();
-
-        // Abfrage Datenbank.Datenbank nach Kostenstellen
-        HashMap<Budget, Integer> budgetMap = (HashMap<Budget, Integer>) budgetDatenbank.datenAuslesen("tblBudgetPeriode");
-
-
-        // Schreiben der Kostenstellen in ein budgetArray
-        Budget[] budgetArray = new Budget[budgetMap.size() + 1];
-
-        // Erstellt eine Tabelle für die Ausgabe
-        Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(KOPFZEILE);
-        tabelle.setVertikaleLinie(true);
-
-        BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
-
-        for (Map.Entry<Budget, Integer> map : budgetMap.entrySet()) {
-            budgetArray[i] = map.getKey();
-            String[] tempArray = map.getKey().attributenArrayFuerTabelle();
-            tempArray[0] = i + ". ";
-
-            tabelle.zeileHinzufuegen(tempArray);
-
-            i++;
-        }
-//TODO Lehre Tabelle durch Text ersetzen und Methode abbrechen
-        tabelle.ausgabe();
-
-        arrayLaenge = budgetArray.length;
-
-        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte waehlen sie ein Budget aus der Liste (1-" + (arrayLaenge - 1) + ")");
-        auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
-
-        //Schreiben der Attributen der ausgewaehlten Daten in die Membervariablen
-        budgetId = budgetArray[auswahl].budgetId;
-        budgetBetrag = budgetArray[auswahl].budgetBetrag;
-        budgetJahr = budgetArray[auswahl].budgetJahr;
-        waehrung = budgetArray[auswahl].waehrung;
-        kostenstellenBezeichnung = budgetArray[auswahl].kostenstellenBezeichnung;
-
-    }
-
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+        //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Diese Methode packt die Membervariablen in ein Array fuer die Ausgabe in einer Tabelle
      */
@@ -238,7 +238,7 @@ public class Budget extends ServicesAdmin {
         return attributenArray;
     }
 
-
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     @Override
     public String toString() {
         return  "Kostenstelle: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(this.kostenstellenBezeichnung), 10) +
@@ -246,4 +246,25 @@ public class Budget extends ServicesAdmin {
                 "Budget Betrag: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(budgetBetrag), 25) +
                 "Waehrung: " + waehrung;
     }
+
+    public int getBudgetJahr() {
+        return budgetJahr;
+    }
+
+    public int getBudgetBetrag() {
+        return budgetBetrag;
+    }
+
+    public int getKostenstelleId() {
+        return kostenstelleId;
+    }
+
+    public int getBudgetId() {
+        return budgetId;
+    }
+
+    public String getWaehrung() {
+        return waehrung;
+    }
+
 }

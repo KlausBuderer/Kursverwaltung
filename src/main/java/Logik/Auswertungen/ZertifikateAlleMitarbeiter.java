@@ -11,8 +11,6 @@ import java.util.List;
 
 public class ZertifikateAlleMitarbeiter {
 
-    private final String[] TITELZEILE = {"Personalnummer", "Nachname", "Vorname", "Zertifikatstitel", "Zertifikatsbeschreibung", "ZertAblDatum"};
-
     private int personalnummer;
 
     private String nachname;
@@ -20,6 +18,8 @@ public class ZertifikateAlleMitarbeiter {
     private String zertifikatstitel;
     private String zertifikatsbeschreibung;
     private String zertifikatsablaufdatum;
+
+    private final String[] TITELZEILE = {"Personalnummer", "Nachname", "Vorname", "Zertifikatstitel", "Zertifikatsbeschreibung", "ZertAblDatum"};
 
     public ZertifikateAlleMitarbeiter(int personalnummer, String nachname, String vorname, String zertifikatstitel, String zertifikatsbeschreibung, String zertifikatsablaufdatum) {
         this.personalnummer = personalnummer;
@@ -44,8 +44,8 @@ public class ZertifikateAlleMitarbeiter {
         AusgabeZertifikateAlleMitarbeiter = auswertungen.storeproduceZertifikateAlleMitarbeiter();
 
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(TITELZEILE);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(TITELZEILE);
+        tabelle.vertikaleLinieSetzen(true);
         for (ZertifikateAlleMitarbeiter zama  : AusgabeZertifikateAlleMitarbeiter) {
 
             tabelle.zeileHinzufuegen(zama.attributenArrayBefuellen());

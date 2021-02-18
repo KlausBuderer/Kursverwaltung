@@ -78,13 +78,13 @@ public class ZertifikatsDatenbank extends Datenbank implements DatenLogik {
     private String updateQuerry(Zertifikate zertifikat){
 
         return  "UPDATE `itwisse_kursverwaltung`.`tblZertifikate` SET " +
-                " `Titel` = '"          + zertifikat.zertifikatsTitel +
-                "', `Beschreibung` = '" + zertifikat.zertifikatsBeschreibung +
-                "', `Anbieter` = '"     + zertifikat.anbieter +
-                "', `Sprache` = '"      + zertifikat.sprache +
-                "', `Kosten` = "        + zertifikat.kosten +
-                ", `Waehrung` = '"      + zertifikat.waehrung +
-                "' WHERE `ID` = "       + zertifikat.zertifikatsId + ";";
+                " `Titel` = '"          + zertifikat.getZertifikatsTitel() +
+                "', `Beschreibung` = '" + zertifikat.getZertifikatsBeschreibung() +
+                "', `Anbieter` = '"     + zertifikat.getAnbieter() +
+                "', `Sprache` = '"      + zertifikat.getSprache() +
+                "', `Kosten` = "        + zertifikat.getKosten() +
+                ", `Waehrung` = '"      + zertifikat.getWaehrung() +
+                "' WHERE `ID` = "       + zertifikat.getZertifikatsId() + ";";
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
@@ -94,12 +94,12 @@ public class ZertifikatsDatenbank extends Datenbank implements DatenLogik {
 
         return "INSERT INTO `itwisse_kursverwaltung`.`tblZertifikate`" +
                 " (`Titel`, `Beschreibung`, `Anbieter`, `Sprache`, `Kosten`, `Waehrung`)" +
-                " VALUES ('"    + zerttifikat.zertifikatsTitel +
-                "', '"          + zerttifikat.zertifikatsBeschreibung +
-                "', '"          + zerttifikat.anbieter +
-                "', '"          + zerttifikat.sprache +
-                "', '"          + zerttifikat.kosten +
-                "', '"          + zerttifikat.waehrung + "')";
+                " VALUES ('"    + zerttifikat.getZertifikatsTitel() +
+                "', '"          + zerttifikat.getZertifikatsBeschreibung() +
+                "', '"          + zerttifikat.getAnbieter() +
+                "', '"          + zerttifikat.getSprache() +
+                "', '"          + zerttifikat.getKosten() +
+                "', '"          + zerttifikat.getWaehrung() + "')";
     }
 
     /*--------------------------------------------------------------------------------------------------------------------------------------

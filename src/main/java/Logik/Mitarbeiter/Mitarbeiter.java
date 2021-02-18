@@ -14,15 +14,15 @@ public class Mitarbeiter extends Services {
     private String[] statusArray = {"angestellt", "ausgetreten"};
     private String[] KOPFZEILE = {" ","Personal Nummer","Nachname","Vorname", "Geburtsdatum", "Kostenstelle", "Jobtitel", "Anstellungsstatus", "Anrede"};
 
-    public int mitarbeiterId;
-    public int personalNummer;
-    public int kostenstelleId;
-    public String anrede;
-    public String vorname;
-    public String nachname;
-    public String jobTitel;
-    public String geburtstag;
-    public String mitarbeiterStatus;
+    private int mitarbeiterId;
+    private int personalNummer;
+    private int kostenstelleId;
+    private String anrede;
+    private String vorname;
+    private String nachname;
+    private String jobTitel;
+    private String geburtstag;
+    private String mitarbeiterStatus;
     private String kostenstellenBezeichnung;
 
     public Mitarbeiter() {
@@ -42,7 +42,6 @@ public class Mitarbeiter extends Services {
         DatenLogikKostenstelle datenLogikKostenstelle =  new KostenstelleDatenbank();
         this.kostenstellenBezeichnung = datenLogikKostenstelle.kostenstellenBezeichnungAusgeben(kostenstelleId);
     }
-
 
 
     public void untermenueAnzeigen() {
@@ -87,9 +86,10 @@ public class Mitarbeiter extends Services {
         boolean abschliessen = true;
         String titelName = "Mitarbeiter Anlegen";
 
-        do {
+        do {//Eingabe der Daten
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie folgende Daten ein");
+
             //Anrede
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede: ");
             int i = 1;
@@ -100,12 +100,16 @@ public class Mitarbeiter extends Services {
             }
             BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Anrede (1-3): ");
             anrede = anredeArray[BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
+
             //Vorname
             vorname = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Vorname: ");
+
             //Nachname
             nachname = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Nachname: ");
+
             //Geburtsdatum
             geburtstag = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geburtsdatum (dd.MM.yyyy): ");
+
             //Personal Nummer
             int zaehler = 0;
             do {
@@ -123,7 +127,7 @@ public class Mitarbeiter extends Services {
             //kostenstelle (organisation)
             Kostenstelle kostenstelle = new Kostenstelle();
             kostenstelle.auswahlListeKostenstelleAusgeben();
-            kostenstelleId = kostenstelle.kostenstelleId;
+            kostenstelleId = kostenstelle.getKostenstelleId();
 
             //kostenstellen Bezeichnung aus der Datenbank lesen
             DatenLogikKostenstelle datenLogikKostenstelle = new KostenstelleDatenbank();
@@ -232,7 +236,7 @@ public class Mitarbeiter extends Services {
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + kostenstelleId);
                     Kostenstelle kostenstelle = new Kostenstelle();
                     kostenstelle.auswahlListeKostenstelleAusgeben();
-                    kostenstelleId = kostenstelle.kostenstelleId;
+                    kostenstelleId = kostenstelle.getKostenstelleId();
                     break;
                 case 7:
                     //Job Titel
@@ -262,19 +266,19 @@ public class Mitarbeiter extends Services {
             objectInTabelleAusgeben(KOPFZEILE,attributenArrayFuerTabelle());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
-
+            //Abfrage ob die Eingaben gespeichert werden sollen
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
-                case 1:
+                case 1://Speichern
                     DatenLogik mitarbeiterMutieren = new MitarbeiterDatenbank();
                     mitarbeiterMutieren.datenMutation(this);
                     abschliessen = true;
                     break;
-                case 2: abschliessen = false;
-                    break;
+                case 2: //Neu beginnen
+                    abschliessen = false;
+                    break;//Abbrechen
                 case 3: abschliessen = true;
                     break;
             }
-
         }while(!abschliessen);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -354,4 +358,39 @@ public class Mitarbeiter extends Services {
 
     }
 
+    public int getMitarbeiterId() {
+        return mitarbeiterId;
+    }
+
+    public int getPersonalNummer() {
+        return personalNummer;
+    }
+
+    public int getKostenstelleId() {
+        return kostenstelleId;
+    }
+
+    public String getAnrede() {
+        return anrede;
+    }
+
+    public String getVorname() {
+        return vorname;
+    }
+
+    public String getNachname() {
+        return nachname;
+    }
+
+    public String getJobTitel() {
+        return jobTitel;
+    }
+
+    public String getGeburtstag() {
+        return geburtstag;
+    }
+
+    public String getMitarbeiterStatus() {
+        return mitarbeiterStatus;
+    }
 }

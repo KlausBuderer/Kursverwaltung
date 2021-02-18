@@ -11,16 +11,16 @@ import java.util.List;
 
 public class KurseProAnbieterKostenstellenZeitraum {
 
-    private final String[] TITELZEILE = {"Kostenstellennummer","Kostenstellebezeichnung","Kurskosten","Währung","Anbieter","SelektionszeitraumVon","SelektionszeitraumBis"};
-
     private int kostenstelleNr;
-    private String kostenstellebezeichnung;
     private int kosten;
+
+    private String kostenstellebezeichnung;
     private String waehrung;
     private String anbieter;
     private String selektionszeitraumVon;
     private String selektionszeitraumBis;
 
+    private final String[] TITELZEILE = {"Kostenstellennummer","Kostenstellebezeichnung","Kurskosten","Währung","Anbieter","SelektionszeitraumVon","SelektionszeitraumBis"};
 
     public KurseProAnbieterKostenstellenZeitraum() {}
 
@@ -49,8 +49,8 @@ public class KurseProAnbieterKostenstellenZeitraum {
         ausgabeKurseProAnbieterKostenstellenZeitraum = auswertungen.storeproduceKurseProAnbieterKostenstellenZeitraum(datumVon, datumBis);
 
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(TITELZEILE);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(TITELZEILE);
+        tabelle.vertikaleLinieSetzen(true);
         for (KurseProAnbieterKostenstellenZeitraum kpakz : ausgabeKurseProAnbieterKostenstellenZeitraum) {
 
             tabelle.zeileHinzufuegen(kpakz.attributenArrayBefuellen());

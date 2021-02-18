@@ -1,35 +1,34 @@
 package Logik.Kurse;
 
-import DatenSchicht.*;
-
+import DatenSchicht.DatenLogik;
+import DatenSchicht.KursDatenbank;
 import Logik.Services;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 
-import java.util.Scanner;
-
 public class Kurse extends Services {
+
+    private int kurseId;
+    private int kosten = 1;
+
+    private String waehrung;
+    private String kursCode;
+    private String anbieter;
+    private String kursBeschreibung;
+    private String datumVon;
+    private String datumBis;
+    private String durchfuehrungsOrt;
 
     private final String [] UNTERMENUE = {"1.  Kurse Anlegen", "2.  Kurse Mutation","3.  Kurs loeschen", "99. Hauptmenue"};
     private final String[] KOPFZEILE = {" ","Kurs Code","Anbieter", "Kurs Beschreibung","Kosten", "Waerung", "Datum Von","Datum Bis","Durchfuehrungsort"};
-    public int kurseId;
-    public int kosten = 1;
-    public String waehrung;
-    public String kursCode;
-    public String anbieter;
-    public String kursBeschreibung;
-    public String datumVon;
-    public String datumBis;
-    public String durchfuehrungsOrt;
 
+   //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    Scanner scan = new Scanner(System.in);
-
+   //Konstrukor Aufruf des Untermenüs
     public Kurse(){
     untermenueAnzeigen();
-
     }
 
-
+    //Konstruktor um ein neues Objekt zu erstellen
     public Kurse(int kurseId, int kosten, String waehrung, String kursCode, String anbieter, String kursBeschreibung, String datumVon, String datumBis, String durchfuerungsOrt) {
         this.kurseId = kurseId;
         this.kosten = kosten;
@@ -80,7 +79,7 @@ public class Kurse extends Services {
         boolean abschliessen = true;
         String titelName = "Kurse Anlegen";
 
-        do {
+        do {//Eingabe der Daten
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie folgende Daten ein");
             //Kurs Code
@@ -100,23 +99,22 @@ public class Kurse extends Services {
             //Durchfuehrungsort
             durchfuehrungsOrt = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Durchfuehrungsort: ");
 
+            // Ausgabe der eingegebenen Daten
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
-           /* BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");*/
             objectInTabelleAusgeben(KOPFZEILE, attributenArrayFuerTabelle());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
+            //Bestätigung der Eingaben
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
-
-                case 1:
+                case 1://Speichern
                     DatenLogik kursDatenbank = new KursDatenbank();
                         kursDatenbank.datenAnlegen(this);
                     abschliessen = true;
                     break;
-                case 2:
+                case 2://Neu beginnen
                     abschliessen = false;
                     break;
-                case 3:
+                case 3://Abbrechen
                     abschliessen = true;
                     break;
             }
@@ -130,22 +128,22 @@ public class Kurse extends Services {
      */
     protected void datenMutieren() {
 
-        String[] spaltenArray = {"Kurs Code","Anbieter","Kursbeschreibung", "Kosten", "Waehrung", "Start Datum", "End Datum", "Durchfuehrungs Ort"};
         int arrayLaenge;
         int auswahl;
         boolean abschliessen = true;
         String titelName = "Kurse Mutieren";
+        String[] spaltenArray = {"Kurs Code","Anbieter","Kursbeschreibung", "Kosten", "Waehrung", "Start Datum", "End Datum", "Durchfuehrungs Ort"};
         Kurse kurs;
 
         KursSuchen kursSuchen = new KursSuchen();
 
-        try {
+        try {// Suchen des Kurses der geändert werden soll
             kurs = kursSuchen.kursSuchen();
             objektUebergeben(kurs);
         }catch (NullPointerException exception0){
             return;
         }
-        do {
+        do {//Auswahl welches Attribut geändert werden soll
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             int i = 1;
             for (String spalte : spaltenArray) {
@@ -158,8 +156,8 @@ public class Kurse extends Services {
             BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Welchen Spalte moechten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
             auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
+            //Eingabe der Änderung
             switch (auswahl) {
-
                 case 1:
                     BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + kursCode);
@@ -208,24 +206,23 @@ public class Kurse extends Services {
                     break;
             }
 
+            //Ausgabe der eingegebenen Daten
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
-            /*BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");*/
-
-
             objectInTabelleAusgeben(KOPFZEILE, attributenArrayFuerTabelle());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
+            //Bestätigung der Eingaben
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
-
-                case 1:
+                case 1://Speichern
                     DatenLogik kursDatenbank = new KursDatenbank();
                     kursDatenbank.datenMutation(this);
                     abschliessen = true;
                     break;
-                case 2: abschliessen = false;
+                case 2: //Neu beginnen
+                    abschliessen = false;
                     break;
-                case 3: abschliessen = true;
+                case 3: //Abbrechen
+                    abschliessen = true;
                     break;
             }
 
@@ -236,7 +233,6 @@ public class Kurse extends Services {
        /*
     Methode zum Loeschen eines Kurses
      */
-
     protected void datenLoeschen(){
         boolean abschliessen = false;
         String titelName = "Kurse loeschen";
@@ -269,12 +265,19 @@ public class Kurse extends Services {
 
         }while(!abschliessen);
     }
+    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Diese Methode packt die Membervariablen in ein Array fuer die Ausgabe in einer Tabelle
+    */
+    protected String[] attributenArrayFuerTabelle() {
+        String[] attributenString = {" ",kursCode,anbieter, kursBeschreibung,String.valueOf(kosten), waehrung, datumVon,datumBis,durchfuehrungsOrt};
+        return attributenString;
+    }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode zum uebergeben eines Objekt in dieses Objekt
-
      */
-    public void objektUebergeben(Kurse kurs){
+    private void objektUebergeben(Kurse kurs){
 
         this.kurseId =            kurs.kurseId;
         this.kosten =             kurs.kosten;
@@ -306,12 +309,41 @@ public class Kurse extends Services {
                 " Waehrung: " + waehrung;
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Diese Methode packt die Membervariablen in ein Array fuer die Ausgabe in einer Tabelle
-     */
-    protected String[] attributenArrayFuerTabelle() {
-        String[] attributenString = {" ",kursCode,anbieter, kursBeschreibung,String.valueOf(kosten), waehrung, datumVon,datumBis,durchfuehrungsOrt};
-        return attributenString;
+
+
+    public int getKurseId() {
+        return kurseId;
     }
 
+    public int getKosten() {
+        return kosten;
+    }
+
+    public String getWaehrung() {
+        return waehrung;
+    }
+
+    public String getKursCode() {
+        return kursCode;
+    }
+
+    public String getAnbieter() {
+        return anbieter;
+    }
+
+    public String getKursBeschreibung() {
+        return kursBeschreibung;
+    }
+
+    public String getDatumVon() {
+        return datumVon;
+    }
+
+    public String getDatumBis() {
+        return datumBis;
+    }
+
+    public String getDurchfuehrungsOrt() {
+        return durchfuehrungsOrt;
+    }
 }

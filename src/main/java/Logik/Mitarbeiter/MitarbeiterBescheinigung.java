@@ -11,19 +11,19 @@ import java.util.Map;
 
 public class MitarbeiterBescheinigung {
 
-    public int id;
-    public String zertifikatsAblaufDatum = "0000-00-00";
-    public int mitarbeiterId;
-    public int zertifikatId;
-    public int kurseId;
+   private int id;
+   private int mitarbeiterId;
+   private int zertifikatId;
+   private int kurseId;
 
-    public String vorname;
-    public String nachname;
-    public String zertifikatsTitel;
-    public String zertifikatsBeschreibung;
+   private String zertifikatsAblaufDatum = "0000-00-00";
+   private String vorname;
+   private String nachname;
+   private String zertifikatsTitel;
+   private String zertifikatsBeschreibung;
 
     public enum kontextAnlegen  {KURS,ZERTIFIKAT};
-    String[] TABELLENHEADER = {"Nr.","Vorname","Nachname","Zertifikat","Ablaufdatum","Zertifikatsbeschreibung"};
+    private String[] TABELLENHEADER = {"Nr.","Vorname","Nachname","Zertifikat","Ablaufdatum","Zertifikatsbeschreibung"};
 
     //----------------------------------------------------------------------------------------------------------------------------------------------
     //Konstruktor
@@ -56,19 +56,19 @@ public class MitarbeiterBescheinigung {
             //Mitarbeiter auswaehlen
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welchem Mitarbeiter moechten sie einen Kurs zuweisen?");
             mitarbeiter = new MitarbeiterSuche().mitarbeiterSuchen();
-            this.mitarbeiterId = mitarbeiter.mitarbeiterId;
+            this.mitarbeiterId = mitarbeiter.getMitarbeiterId();
 
             //Kurs auswaehlen
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welchen Kurs moechten sie dem Mitarbeiter zuweisen?");
             kurs = new KursSuchen().kursSuchen();
-            this.kurseId = kurs.kurseId;
+            this.kurseId = kurs.getKurseId();
 
             // Ausgabe der neuen MitarbeiterBescheinigung
             PraesentationSchicht.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte bestaetigen sie die richtige Eingabe");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiter: " + mitarbeiter.vorname + " " + mitarbeiter.nachname);
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Kurs: " + kurs.anbieter + " " + kurs.kursBeschreibung + " " + kurs.datumVon);
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiter: " + mitarbeiter.getVorname() + " " + mitarbeiter.getNachname());
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Kurs: " + kurs.getAnbieter() + " " + kurs.getKursBeschreibung() + " " + kurs.getDatumVon());
 
             //Bestätigung der MitarbeiterBescheinigung
             switch (PraesentationSchicht.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
@@ -103,12 +103,12 @@ public class MitarbeiterBescheinigung {
             //Mitarbeiter auswaehlen
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welchem Mitarbeiter moechten sie ein Zertifikat zuweisen?");
             mitarbeiter = new MitarbeiterSuche().mitarbeiterSuchen();
-            this.mitarbeiterId = mitarbeiter.mitarbeiterId;
+            this.mitarbeiterId = mitarbeiter.getMitarbeiterId();
 
             //Zertifikat auswaehlen
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welches Zertifikat moechten sie dem Mitarbeiter zuweisen?");
             zertifikat = new ZertifikateSuchen().zertifikatSuchen();
-            this.zertifikatId = zertifikat.zertifikatsId;
+            this.zertifikatId = zertifikat.getZertifikatsId();
 
             //Ablaufdatum angeben
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Geben sie das Ablaufdatum des Zertifikats ein (TT.MM.JJJJ): ");
@@ -118,13 +118,13 @@ public class MitarbeiterBescheinigung {
             PraesentationSchicht.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte bestaetigen sie die richtige Eingabe");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiter: " + mitarbeiter.vorname + " " + mitarbeiter.nachname);
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiter: " + mitarbeiter.getVorname() + " " + mitarbeiter.getNachname());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zertifikat: " + zertifikat.anbieter + "\nZertifikatsbeschreibung: " + zertifikat.zertifikatsBeschreibung + "\nAblaufdatum: " + zertifikatsAblaufDatum + "\n");
-
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zertifikat: " + zertifikat.getAnbieter());
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zertifikatsbeschreibung: " + zertifikat.getZertifikatsBeschreibung());
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Ablaufdatum: " + zertifikatsAblaufDatum);
 
             switch (PraesentationSchicht.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
-
                 case 1://Speichern
                     DatenLogik mitarbeiterZertifikatZuweisen = new MitarbeiterDatenbank();
                     ((MitarbeiterDatenbank) mitarbeiterZertifikatZuweisen).mitarbeiterBescheinigungAnlegen(this, kontextAnlegen.ZERTIFIKAT);
@@ -155,7 +155,7 @@ public class MitarbeiterBescheinigung {
             //Abfrage von welchem Mitarbeiter das Zertifikat verlaengert werden soll
             MitarbeiterSuche mitarbeiterSuche = new MitarbeiterSuche();
                 mitarbeiter = mitarbeiterSuche.mitarbeiterSuchen();
-                    mitarbeiterId = mitarbeiter.mitarbeiterId;
+                    mitarbeiterId = mitarbeiter.getMitarbeiterId();
 
                     //Store Procedure aufrufen und Zertifikate als Liste ausgeben
             MitarbeiterBescheinigung mitarbeiterBescheinigung;
@@ -174,7 +174,7 @@ public class MitarbeiterBescheinigung {
             //Das aktuelle Datum zeigen
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             Tabelle tabelleAlt = new Tabelle();
-            tabelleAlt.setHeaders(TABELLENHEADER);
+            tabelleAlt.kopfzeileSetzen(TABELLENHEADER);
             tabelleAlt.zeileHinzufuegen(this.attributenArrayErstellen());
             tabelleAlt.ausgabe();
 
@@ -185,7 +185,7 @@ public class MitarbeiterBescheinigung {
             //Eingabe zeigen und bestaetigung verlangen
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             Tabelle tabelleNeu = new Tabelle();
-            tabelleNeu.setHeaders(TABELLENHEADER);
+            tabelleNeu.kopfzeileSetzen(TABELLENHEADER);
             tabelleNeu.zeileHinzufuegen(this.attributenArrayErstellen());
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             tabelleNeu.ausgabe();
@@ -196,20 +196,19 @@ public class MitarbeiterBescheinigung {
 
             switch (PraesentationSchicht.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
-                case 1:
+                case 1://Speichern
                     DatenLogik zertifikatVerlaengern = new MitarbeiterDatenbank();
                     ((MitarbeiterDatenbank) zertifikatVerlaengern).zertifikatVerlaengernSpeichern(this);
                     abschliessen = true;
                     break;
-                case 2:
+                case 2://Neu beginnen
                     abschliessen = false;
                     break;
-                case 3:
+                case 3://Abbrechen
                     abschliessen = true;
                     break;
             }
         }while(!abschliessen);
-
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -217,14 +216,14 @@ public class MitarbeiterBescheinigung {
     Methode zur Ausgabe einer Auswahlliste Mitarbeiterbescheinigung fuer den Benutzerverwaltung
      */
 
-    public MitarbeiterBescheinigung auswahlListeZertifikateAusgeben(int mitarbeiterId) {
+    private MitarbeiterBescheinigung auswahlListeZertifikateAusgeben(int mitarbeiterId) {
 
         int i = 1;
         int arrayLaenge;
         int auswahl;
 
         DatenLogik mitarbeiterDatenbank = new MitarbeiterDatenbank();
-        // Abfrage Datenbank.Datenbank nach Kostenstellen
+        // Abfrage Datenbank nach Kostenstellen
         HashMap<MitarbeiterBescheinigung, Integer> mitarbeiterBescheinigungsMap = (HashMap<MitarbeiterBescheinigung, Integer>) ((MitarbeiterDatenbank) mitarbeiterDatenbank).zertifikatVerlaengernListe(mitarbeiterId);
 
         // Schreiben der Kostenstellen in ein Array
@@ -235,8 +234,8 @@ public class MitarbeiterBescheinigung {
         if(arrayLaenge != 1) {
             //Tabelle fuer die Ausgaben erstellen
             Tabelle tabelle = new Tabelle();
-            tabelle.setHeaders(TABELLENHEADER);
-            tabelle.setVertikaleLinie(true);
+            tabelle.kopfzeileSetzen(TABELLENHEADER);
+            tabelle.vertikaleLinieSetzen(true);
 
 
             for (Map.Entry<MitarbeiterBescheinigung, Integer> map : mitarbeiterBescheinigungsMap.entrySet()) {
@@ -268,7 +267,7 @@ public class MitarbeiterBescheinigung {
     Die Methode uebergibt ein Objekt in das jetztige
     Parameter: Objekt welches uebergeben werden soll
      */
-    void objektUebergeben(MitarbeiterBescheinigung mitarbeiterBescheinigung){
+    private void objektUebergeben(MitarbeiterBescheinigung mitarbeiterBescheinigung){
 
         this.id =                       mitarbeiterBescheinigung.id;
         this.vorname =                  mitarbeiterBescheinigung.vorname;
@@ -283,8 +282,37 @@ public class MitarbeiterBescheinigung {
     }
 
     // Erstellen eines Arrays fuer die Ausgabe in einer Tabelle
-    String[] attributenArrayErstellen(){
+    private String[] attributenArrayErstellen(){
         String[] attributenArray = {"",vorname, nachname, zertifikatsTitel, zertifikatsAblaufDatum, zertifikatsBeschreibung};
         return attributenArray;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getZertifikatsAblaufDatum() {
+        return zertifikatsAblaufDatum;
+    }
+
+    public int getMitarbeiterId() {
+        return mitarbeiterId;
+    }
+
+    public int getZertifikatId() {
+        return zertifikatId;
+    }
+
+    public int getKurseId() {
+        return kurseId;
+    }
+
+    public String getVorname() {
+        return vorname;
+    }
+
+    public String getNachname() {
+        return nachname;
+    }
+
 }

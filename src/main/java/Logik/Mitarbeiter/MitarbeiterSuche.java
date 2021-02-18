@@ -15,8 +15,8 @@ public class MitarbeiterSuche{
     private String suchText;
     private final String[] TABELLENHEADER = {"Nr.","Personalnummer","Nachname","Vorname","Geburtsdatum","Abteilung","Jobtitel","Status", "Anrede"};
     private final String[] SUCHKRITERIEN = {"Personalnummer","Nachname","Vorname","Geburtsdatum","Abteilung","Jobtitel","Status", "Anrede"};
-    private final String[] MYSQLSPALTENNAMEN = {"PersonalNr","Nachname","Vorname","Geburtsdatum","KostenstelleID","Jobtitel","Statusmitarbeiter","Anrede"};
-    private String[] statusArray = {"angestellt", "ausgetreten"};
+    private final String[] MYSQL_SPALTEN_NAMEN = {"PersonalNr","Nachname","Vorname","Geburtsdatum","KostenstelleID","Jobtitel","Statusmitarbeiter","Anrede"};
+    private String[] STATUS_ARRAY = {"angestellt", "ausgetreten"};
     private String[] anredeArray = {"Frau", "Herr", "Andere"};
 
 
@@ -39,7 +39,7 @@ public class MitarbeiterSuche{
             suchText = suchTextEinlesen(suchkriterium);
             //Tabelle aller passenden Mitarbeiter aus Datenbank anfordern
             DatenLogik mitarbeiterSuchen = new MitarbeiterDatenbank();
-            mitarbeiterHash = mitarbeiterSuchen.suchen(MYSQLSPALTENNAMEN[suchkriterium - 1], suchText);
+            mitarbeiterHash = mitarbeiterSuchen.suchen(MYSQL_SPALTEN_NAMEN[suchkriterium - 1], suchText);
 
 
             BefehlsZeilenSchnittstelle.bildReinigen("Mitarbeitersuche",2);
@@ -101,7 +101,7 @@ public class MitarbeiterSuche{
             case 5:
                 Kostenstelle kostenstelle = new Kostenstelle();
                 kostenstelle.auswahlListeKostenstelleAusgeben();
-                suchZahl = kostenstelle.kostenstelleId;
+                suchZahl = kostenstelle.getKostenstelleId();
                 suchText = String.valueOf(suchZahl);
                 break;
             case 6: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Jobtitel an nach dem sie suchen moechten: ");
@@ -110,12 +110,12 @@ public class MitarbeiterSuche{
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiterstatus: ");
                 int p = 1;
 
-                for (String status : statusArray) {
+                for (String status : STATUS_ARRAY) {
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(p + ". " + status);
                     p++;
                 }
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Status (1-2): ");
-                suchText = statusArray[PraesentationSchicht.BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1];
+                suchText = STATUS_ARRAY[PraesentationSchicht.BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1];
                 break;
             case 8:
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede: ");
@@ -149,8 +149,8 @@ public class MitarbeiterSuche{
         Mitarbeiter[] mitarbeiterArray = new Mitarbeiter[mitarbeiterHash.size() + 1];
        // Erstellen der Tabelle
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(TABELLENHEADER);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(TABELLENHEADER);
+        tabelle.vertikaleLinieSetzen(true);
 
         int i = 1;
         for (Map.Entry<Mitarbeiter, Integer> map : mitarbeiterHashmap.entrySet()) {

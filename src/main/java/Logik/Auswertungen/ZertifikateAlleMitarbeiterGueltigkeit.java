@@ -10,13 +10,13 @@ import java.util.List;
 
 public class ZertifikateAlleMitarbeiterGueltigkeit {
 
-    private final String[] TITELZEILE = {"nachname","vorname","zertAblDatum","zertifikatstitel","zertifikatsbeschreibung"};
-
     private String nachname;
     private String vorname;
     private String zertifikatsablaufdatum;
     private String zertifikatstitel;
     private String zertifikatsbeschreibung;
+
+    private final String[] TITELZEILE = {"nachname","vorname","zertAblDatum","zertifikatstitel","zertifikatsbeschreibung"};
 
     public ZertifikateAlleMitarbeiterGueltigkeit() {}
 
@@ -43,8 +43,8 @@ public class ZertifikateAlleMitarbeiterGueltigkeit {
         AusgabeZertifikateAlleMitarbeiterGueltigkeit = auswertungen.storeproduceZertifikateAlleMitarbeiterGueltigkeit(datumBis);
 
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(TITELZEILE);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(TITELZEILE);
+        tabelle.vertikaleLinieSetzen(true);
         for (ZertifikateAlleMitarbeiterGueltigkeit zamg : AusgabeZertifikateAlleMitarbeiterGueltigkeit) {
 
             tabelle.zeileHinzufuegen(zamg.attributenArrayBefuellen());

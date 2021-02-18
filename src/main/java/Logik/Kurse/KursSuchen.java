@@ -15,8 +15,6 @@ public class KursSuchen {
     private final String[] SUCHKRITERIEN = {"Kurs Code", "Anbieter", "Kursbeschreibung", "Durchfuehrungsort"};
     private final String[] SPALTENBEZEICHNUNG = {"KursCode", "Anbieter", "Kursbeschreibung", "Durchfuehrungsort"};
 
-
-
     public Kurse kursSuchen(){
 
         boolean abbruchBedingung = false;
@@ -33,6 +31,7 @@ public class KursSuchen {
             kursHash = kursSuchen.suchen(SPALTENBEZEICHNUNG[suchkriterium - 1], suchText);
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
 
+            //Begrenzen der Anzahl der Ausgabe
             if (kursHash.size() > 30) {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zuviele Treffer!");
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie genauere Angaben an");
@@ -48,8 +47,6 @@ public class KursSuchen {
         return null;
     }
 
-
-
     /*--------------------------------------------------------------------------------------------------------------------------------------
        Methode die eine Auswahl an Suchkriterien Ausgibt und eine Auswahl vom Bediener liest
       +Rueckgabewert: Auswahl als Integer
@@ -63,9 +60,10 @@ public class KursSuchen {
 
         int auswahlNummer = 1;
 
+        //Ausgabe der Suchkriterien
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(HEADER);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(HEADER);
+        tabelle.vertikaleLinieSetzen(true);
 
         for (String suchkriterium : SUCHKRITERIEN) {
             String[] tempArray = {"",""};
@@ -88,7 +86,7 @@ public class KursSuchen {
 
         int suchZahl = 0;
 
-
+            //Eingabe der Änderung die vorgenommen werden soll
         switch (auswahl) {
             case 1:
                 suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie den Kurs Code ein nach dem sie suchen: ");
@@ -105,31 +103,28 @@ public class KursSuchen {
             default:
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsche Eingabe!");
         }
-
         return suchText;
-
     }
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzerverwaltung
      */
-
-    public Kurse auswahlListeKurseAusgeben(HashMap kursHash) {
+    private Kurse auswahlListeKurseAusgeben(HashMap kursHash) {
 
         int i = 1;
         int arrayLaenge;
         int auswahl;
 
-        // Abfrage Datenbank.Datenbank nach Kursen
+        // Abfrage Datenbank nach Kursen
         HashMap<Kurse, Integer> kursMap = kursHash;
 
-        // Schreiben der Kostenstellen in ein Array
+        // Schreiben des Kurses in ein Array
         Kurse[] kursArray = new Kurse[kursMap.size() + 1];
         //Tabelle erstellen
 
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(TABELLENHEADER);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(TABELLENHEADER);
+        tabelle.vertikaleLinieSetzen(true);
 
         for (Map.Entry<Kurse, Integer> map : kursMap.entrySet()) {
             kursArray[i] = map.getKey();

@@ -1,29 +1,29 @@
 package Logik.Zertifikate;
 
-import DatenSchicht.*;
+import DatenSchicht.DatenLogik;
+import DatenSchicht.ZertifikatsDatenbank;
 import Logik.Services;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 
-import java.util.Scanner;
-
 public class Zertifikate extends Services {
+
+    private int zertifikatsId;
+    private int kosten;
+
+    private String waehrung;
+    private String zertifikatsTitel;
+    private String zertifikatsBeschreibung;
+    private String anbieter;
+    private String sprache;
 
     private final String [] UNTERMENUE = {"1.  Zertifikate Anlegen", "2.  Zertifikate Mutation","3.  Zertifikat Loeschen", "99. Hauptmenue"};
     private final String[] KOPFZEILE = {" " ,"Titel","Beschreibung","Anbieter","Sprache", "Kosten","Waehrung"};
-    public int zertifikatsId;
-    public int kosten;
-    public String waehrung;
-    public String zertifikatsTitel;
-    public String zertifikatsBeschreibung;
-    public String anbieter;
-    public String sprache;
 
-    Scanner scan = new Scanner(System.in);
-
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Konstruktoren
     public Zertifikate(){
         untermenueAnzeigen();
     }
-
     public Zertifikate(int zertifikatsId, int kosten, String zertifikatsTitel, String zertifikatsBeschreibung, String anbieter, String sprache, String waehrung) {
         this.zertifikatsId = zertifikatsId;
         this.kosten = kosten;
@@ -72,7 +72,7 @@ public class Zertifikate extends Services {
         boolean abschliessen = true;
         String titelName = "Zertifikat Anlegen";
 
-        do {
+        do {//Eingabe der Daten
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie folgende Daten ein");
             //Zertifikats Titel
@@ -88,24 +88,24 @@ public class Zertifikate extends Services {
             //Sprache
             sprache = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Sprache: ");
 
+            //Ausgeben der eingegebenen Daten
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             objectInTabelleAusgeben(KOPFZEILE,attributenArrayFuerTabelle());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
+            //Bestätigen der Eingabe
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
-
-                case 1:
+                case 1://Speichern
                     DatenLogik zertifikatsDatenbank = new ZertifikatsDatenbank();
                     zertifikatsDatenbank.datenAnlegen(this);
                     abschliessen = true;
                     break;
-                case 2:
+                case 2://Neu beginnen
                     abschliessen = false;
                     break;
-                case 3:
+                case 3://Abbrechen
                     abschliessen = true;
                     break;
-
             }
         }while (!abschliessen) ;
     }
@@ -116,7 +116,7 @@ public class Zertifikate extends Services {
      */
     protected void datenMutieren() {
 
-        String[] spaltenArray = {"Zertifikatstitel","Anbieter","Zertifikatsbeschreibung", "Kosten", "Waehrung", "Sprache"};
+        String[]  SPALTEN_ARRAY = {"Zertifikatstitel","Anbieter","Zertifikatsbeschreibung", "Kosten", "Waehrung", "Sprache"};
         int arrayLaenge;
         int auswahl;
         boolean abschliessen = true;
@@ -125,7 +125,7 @@ public class Zertifikate extends Services {
         ZertifikateSuchen zertifikateSuchen = new ZertifikateSuchen();
         Zertifikate zertifikat;
 
-        try {
+        try {// Zertifikat suchen welches geändert werden soll
             zertifikat = zertifikateSuchen.zertifikatSuchen();
             objektUebergabe(zertifikat);
         }catch (NullPointerException exception){
@@ -133,38 +133,34 @@ public class Zertifikate extends Services {
             return;
         }
 
-        do {
+        do {//Ausgabe der Attributen die geändert werden können
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             int i = 1;
-            for (String spalte : spaltenArray) {
-
+            for (String spalte : SPALTEN_ARRAY) {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(i + ": " + spalte);
                 i++;
             }
-            arrayLaenge = spaltenArray.length;
-
+            arrayLaenge = SPALTEN_ARRAY.length;
+            //Abfrage welches Attribut geändert werden soll
             BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Welchen Spalte moechten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
             auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
+            // Eingabe der Änderung die vorgenommen werden soll
             switch (auswahl) {
-
                 case 1:
                     BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + zertifikatsTitel);
-                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Geben sie einen neuen Titel ein: ");
-                    zertifikatsTitel = scan.next();
+                    zertifikatsTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie einen neuen Titel ein: ");
                     break;
                 case 2:
                     BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + anbieter);
-                    BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Geben sie einen neuen Anbieter an: ");
-                    anbieter = scan.next();
+                    anbieter = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie einen neuen Anbieter an: ");
                     break;
                 case 3:
                     BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + zertifikatsBeschreibung);
-                    BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Geben sie eine neue Kursbeschreibung ein: ");
-                    zertifikatsBeschreibung = scan.next();
+                    zertifikatsBeschreibung = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei255("Geben sie eine neue Kursbeschreibung ein: ");
                     break;
                 case 4:
                     BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
@@ -187,23 +183,25 @@ public class Zertifikate extends Services {
                     break;
             }
 
+            // Ausgabe der geänderten Daten
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
            objectInTabelleAusgeben(KOPFZEILE,attributenArrayFuerTabelle());
            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
 
+           //Bestätigung der Eingaben
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
-
-                case 1:
+                case 1://Speichern
                     DatenLogik zertifikatsDatenbank = new ZertifikatsDatenbank();
                     zertifikatsDatenbank.datenMutation(this);
                     abschliessen = true;
                     break;
-                case 2: abschliessen = false;
+                case 2://Neu beginnen
+                    abschliessen = false;
                     break;
-                case 3: abschliessen = true;
+                case 3://Abbrechen
+                    abschliessen = true;
                     break;
             }
-
         }while(!abschliessen);
     }
 
@@ -218,22 +216,21 @@ public class Zertifikate extends Services {
         String titelName = "Zertifikat loeschen";
 
         do {
-            //Abfrage welchen Kurs geloescht werden soll
-            //Aufrufen von MitarbeiterSuchen()
+            //Abfrage welches Zertifikat geloescht werden soll
             zertifikat = new ZertifikateSuchen().zertifikatSuchen();
             objektUebergabe(zertifikat);
-            //Ausgabe der Daten des ausgewaehlten Kurses
+            //Ausgabe der Daten des ausgewaehlten Zertifikats
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             objectInTabelleAusgeben(KOPFZEILE,attributenArrayFuerTabelle());
             //Abfrage ob der Kurs wirklich geloescht werden soll
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
 
-                case 1: //1.Ja-> MitarbeiterLoeschenQuery aufrufen und Methode beenden
+                case 1: //1.Ja-> Loeschen
                     DatenLogik zertifikatLoeschen = new ZertifikatsDatenbank();
                      zertifikatLoeschen.datenLoeschen(zertifikat.zertifikatsId);
                     abschliessen = true;
                     break;
-                case 2: //2.Nein-> Springe zu Aufrufen MitarbeiterSuchen()
+                case 2: //2.Nein-> Neu Beginnen
                     abschliessen = false;
                     break;
                 case 3: //3.Abbrechen-> Methode Beenden
@@ -243,6 +240,16 @@ public class Zertifikate extends Services {
 
         }while(!abschliessen);
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       /*
+    Zusammensetzen eines Arrays für die Ausgabe in einer Tabelle
+     */
+    protected String[] attributenArrayFuerTabelle(){
+        String[] attributenArray = {" " ,zertifikatsTitel,zertifikatsBeschreibung,anbieter,sprache, String.valueOf(kosten),waehrung};
+     return attributenArray;
+    }
+
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode fuer die uebergabe von den Attributen eines Objekts
@@ -271,12 +278,33 @@ public class Zertifikate extends Services {
                 "Kosten: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(kosten), 10 ) +
                 "Waehrung: " + BefehlsZeilenSchnittstelle.textFormatieren(waehrung, 30 ) ;
     }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-       /*
-    Zusammensetzen eines Arrays für die Ausgabe in einer Tabelle
-     */
-    protected String[] attributenArrayFuerTabelle(){
-        String[] attributenArray = {" " ,zertifikatsTitel,zertifikatsBeschreibung,anbieter,sprache, String.valueOf(kosten),waehrung};
-     return attributenArray;
+
+
+    public int getZertifikatsId() {
+        return zertifikatsId;
+    }
+
+    public int getKosten() {
+        return kosten;
+    }
+
+    public String getWaehrung() {
+        return waehrung;
+    }
+
+    public String getZertifikatsTitel() {
+        return zertifikatsTitel;
+    }
+
+    public String getZertifikatsBeschreibung() {
+        return zertifikatsBeschreibung;
+    }
+
+    public String getAnbieter() {
+        return anbieter;
+    }
+
+    public String getSprache() {
+        return sprache;
     }
 }

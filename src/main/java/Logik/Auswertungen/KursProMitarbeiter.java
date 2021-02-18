@@ -13,13 +13,6 @@ import java.util.Map;
 
 public class KursProMitarbeiter {
 
-
-    // Feldliste in Datenbank
-    // MitarbeiterID, Nachname, Vorname, Kurscode, Kursbeschreibung, Anbieter, Kosten, Waehrung
-
-
-    private final String[] TITELZEILE = {"MitarbeiterID", "Nachname", "Vorname", "Kurscode", "Kursbeschreibung", "Anbieter", "Kosten", "Waehrung"};
-
     private int mitarbeiterID;
     private int kosten;
 
@@ -29,6 +22,8 @@ public class KursProMitarbeiter {
     private String kursbeschreibung;
     private String anbieter;
     private String waehrung;
+
+    private final String[] TITELZEILE = {"MitarbeiterID", "Nachname", "Vorname", "Kurscode", "Kursbeschreibung", "Anbieter", "Kosten", "Waehrung"};
 
     public KursProMitarbeiter() {}
 
@@ -53,12 +48,12 @@ public class KursProMitarbeiter {
 
         //Aufruf Store Procedure SP_ANZEIGEN_MA_KURSE
         DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
-        AusgabeKursProMitarbeiter = auswertungen.storeproduceKursproMitarbeiter(mitarbeiterIdentification.mitarbeiterId);
+        AusgabeKursProMitarbeiter = auswertungen.storeproduceKursproMitarbeiter(mitarbeiterIdentification.getMitarbeiterId());
 
 
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(TITELZEILE);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(TITELZEILE);
+        tabelle.vertikaleLinieSetzen(true);
 
         for (Map.Entry<KursProMitarbeiter, Integer> map : AusgabeKursProMitarbeiter.entrySet()) {
 

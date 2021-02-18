@@ -4,11 +4,11 @@ import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 
 public class Auswertungen {
 
-    private String[] unterMenue = {"1.  Mitarbeiter", "2.  Weiterbildung", "3.  Budget / Ausgaben", "4.  Stammdaten", "99. Hauptmenü"};
-    private String[] unterMenueMitarbeiter = {"1.  Kursübersicht fuer gewünschten Mitarbeiter ", "2.  Zertifikatsübersicht fuer gewünschten Mitarbeiter", "99. Zurück"};
-    private String[] unterMenueWeiterbildung = {"1.  Weiterbildung aller Mitarbeiter", "2.  Zertifikate aller Mitarbeiter", "3.  Kurse aller Mitarbeiter", "4.  Prüfung ablaufende Zertifikate", "99. Zurueck"};
-    private String[] unterMenueBudgetAusgaben = {"1.  Budget pro Kostenstelle / Jahr", "2.  Kurskosten alle Kostenstellen / Waehrung / Anbieter ","3.  Kurskosten fuer gewünschte Kostenstelle mit Anbieter / Währung / Zeitraum ", "99. Zurueck"};
-    private String[] unterMenueStammdaten = {"1.  Anzeige alle Mitarbeiter", "2.  Anzeige alle Kostenstellen", "99. Zurück"};
+    private final String[] UNTERMENUE = {"1.  Mitarbeiter", "2.  Weiterbildung", "3.  Budget / Ausgaben", "4.  Stammdaten", "99. Hauptmenü"};
+    private final String[] UNTERMENUE_MITARBEITER = {"1.  Kursübersicht fuer gewünschten Mitarbeiter ", "2.  Zertifikatsübersicht fuer gewünschten Mitarbeiter", "99. Zurück"};
+    private final String[] UNTERMENUE_WEITERBILDUNG = {"1.  Weiterbildung aller Mitarbeiter", "2.  Zertifikate aller Mitarbeiter", "3.  Kurse aller Mitarbeiter", "4.  Prüfung ablaufende Zertifikate", "99. Zurueck"};
+    private final String[] UNTERMENUE_BUDGET_AUSGABEN = {"1.  Budget pro Kostenstelle / Jahr", "2.  Kurskosten alle Kostenstellen / Waehrung / Anbieter ","3.  Kurskosten fuer gewünschte Kostenstelle mit Anbieter / Währung / Zeitraum ", "99. Zurueck"};
+    private final String[] UNTERMENUE_STAMMDATEN = {"1.  Anzeige alle Mitarbeiter", "2.  Anzeige alle Kostenstellen", "99. Zurück"};
 
     public Auswertungen() {
         untermenuAnzeigen();
@@ -25,7 +25,7 @@ public class Auswertungen {
         boolean gueltigeEingabe = false;
 
         do {
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue, "Logik/Auswertungen")) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(UNTERMENUE, "Logik/Auswertungen")) {
                 case 1:
                     unterMenuMitarbeiterAnzeigen();
                     break;
@@ -39,7 +39,6 @@ public class Auswertungen {
                     unterMenueStammdatenAnzeigen();
                     break;
                 case 99:
-                    System.out.println("Hauptmenue");
                     gueltigeEingabe = true;
                     break;
                 default:
@@ -57,7 +56,7 @@ public class Auswertungen {
         boolean gueltigeEingabe = false;
 
         do {
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenueMitarbeiter,"Auswertungen Mitarbeiter")) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(UNTERMENUE_MITARBEITER,"Auswertungen Mitarbeiter")) {
                 case 1:
                     new KursProMitarbeiter().auswertungAusgeben();
                     break;
@@ -65,7 +64,6 @@ public class Auswertungen {
                     new ZertifikatProMitarbeiter().auswertungAusgeben();
                     break;
                 case 99:
-                    System.out.println(unterMenueMitarbeiter[1]);
                     gueltigeEingabe = true;
                     break;
                 default:
@@ -83,7 +81,7 @@ public class Auswertungen {
         boolean gueltigeEingabe = false;
 
         do {
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenueWeiterbildung,"Auswertungen Weiterbildungen")) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(UNTERMENUE_WEITERBILDUNG,"Auswertungen Weiterbildungen")) {
                 case 1:
                     new WeiterbildungAlleMitarbeiterZeitraum().auswertungAusgeben();
                     break;
@@ -97,7 +95,6 @@ public class Auswertungen {
                     new ZertifikateAlleMitarbeiterGueltigkeit().auswertungAusgeben();
                     break;
                 case 99:
-                    System.out.println(unterMenueWeiterbildung[2]);
                     gueltigeEingabe = true;
                     break;
                 default:
@@ -115,7 +112,7 @@ public class Auswertungen {
         boolean gueltigeEingabe = false;
 
         do {
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenueBudgetAusgaben,"Auswertungen Budget & Ausgaben")) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(UNTERMENUE_BUDGET_AUSGABEN,"Auswertungen Budget & Ausgaben")) {
                 case 1:
                     new BudgetAlleKostenstellen().auswertungAusgeben();
                     break;
@@ -126,7 +123,6 @@ public class Auswertungen {
                     new KurseProAnbieterSelektivKostenstelleZeitraum().auswertungAusgeben();
                     break;
                 case 99:
-                    System.out.println(unterMenueBudgetAusgaben[2]);
                     gueltigeEingabe = true;
                     break;
                 default:
@@ -137,13 +133,13 @@ public class Auswertungen {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   /*
- Methode zum Anzeigen des Untermenues fuer die Auswertungen von Budget und Ausgaben
+ Methode zum Anzeigen des Untermenues fuer die Auswertungen der Stammdaten und Ausgaben
   */
     private void unterMenueStammdatenAnzeigen() {
         boolean gueltigeEingabe = false;
 
         do {
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenueStammdaten,"Auswertungen Stammdaten")) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(UNTERMENUE_STAMMDATEN,"Auswertungen Stammdaten")) {
                 case 1:
                     new StammdatenAlleMitarbeiter().auswertungAusgeben();
                     break;
@@ -151,7 +147,6 @@ public class Auswertungen {
                     new KostenstellenAlle().auswertungAusgeben();
                     break;
                 case 99:
-                    System.out.println(unterMenueStammdaten[2]);
                     gueltigeEingabe = true;
                     break;
                 default:

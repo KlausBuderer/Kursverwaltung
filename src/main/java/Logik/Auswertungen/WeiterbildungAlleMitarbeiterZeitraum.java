@@ -11,8 +11,6 @@ import java.util.List;
 
 public class WeiterbildungAlleMitarbeiterZeitraum {
 
-    private final String[] TITELZEILE = {"Anrede", "Nachname", "Vorname", "Kennung", "Kursbeschreibung", "KOSTEN", "Waehrung", "Zertifikatsablaufdatum"};
-
     private int kosten;
 
     private String anrede;
@@ -22,6 +20,8 @@ public class WeiterbildungAlleMitarbeiterZeitraum {
     private String kursbeschreibung;
     private String waehrung;
     private String zertifikatsablaufdatum;
+
+    private final String[] TITELZEILE = {"Anrede", "Nachname", "Vorname", "Kennung", "Kursbeschreibung", "KOSTEN", "Waehrung", "Zertifikatsablaufdatum"};
 
     public WeiterbildungAlleMitarbeiterZeitraum() {}
 
@@ -51,8 +51,8 @@ public class WeiterbildungAlleMitarbeiterZeitraum {
         AusgabeWeiterbildungAlleMitarbeiterZeitraum = auswertungen.storeproduceWeiterbildungAlleMitarbeiterZeitraum(datumVon, datumBis);
 
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(TITELZEILE);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(TITELZEILE);
+        tabelle.vertikaleLinieSetzen(true);
         for (WeiterbildungAlleMitarbeiterZeitraum wbamz : AusgabeWeiterbildungAlleMitarbeiterZeitraum) {
 
             tabelle.zeileHinzufuegen(wbamz.attributenArrayBefuellen());

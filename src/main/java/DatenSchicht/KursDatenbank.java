@@ -81,14 +81,14 @@ public class KursDatenbank extends Datenbank implements DatenLogik {
 
         return "INSERT INTO `itwisse_kursverwaltung`.`tblKurse`" +
                 " (`KursCode`, `Anbieter`, `Kursbeschreibung`, `Kosten`, `Waehrung`, `DatumVon`, `DatumBis`, `Durchfuehrungsort`)" +
-                " VALUES ('"    + kurs.kursCode +
-                "', '"          + kurs.anbieter +
-                "', '"          + kurs.kursBeschreibung +
-                "', '"          + kurs.kosten +
-                "', '"          + kurs.waehrung +
-                "', '"          + kurs.datumVon +
-                "', '"          + kurs.datumBis +
-                "', '"          + kurs.durchfuehrungsOrt +"')";
+                " VALUES ('"    + kurs.getKursCode() +
+                "', '"          + kurs.getAnbieter() +
+                "', '"          + kurs.getKursBeschreibung() +
+                "', '"          + kurs.getKosten() +
+                "', '"          + kurs.getWaehrung() +
+                "', '"          + kurs.getDatumVon() +
+                "', '"          + kurs.getDatumBis() +
+                "', '"          + kurs.getDurchfuehrungsOrt() +"')";
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
@@ -97,15 +97,15 @@ public class KursDatenbank extends Datenbank implements DatenLogik {
     private String updateQuerry(Kurse kurs){
 
         return  "UPDATE `itwisse_kursverwaltung`.`tblKurse` SET " +
-                " `KursCode` = '"            + kurs.kursCode +
-                "', `Anbieter` = '"          + kurs.anbieter +
-                "', `Kursbeschreibung` = '" + kurs.kursBeschreibung +
-                "', `Kosten` = "            + kurs.kosten +
-                ", `Waehrung` = '"          + kurs.waehrung +
-                "', `DatumVon` = '"          + kurs.datumVon +
-                "', `DatumBis` = '"           + kurs.datumBis +
-                "', `Durchfuehrungsort` = '" + kurs.durchfuehrungsOrt +
-                "' WHERE `ID` = "           + kurs.kurseId + ";";
+                " `KursCode` = '"            + kurs.getKursCode() +
+                "', `Anbieter` = '"          + kurs.getAnbieter() +
+                "', `Kursbeschreibung` = '" + kurs.getKursBeschreibung() +
+                "', `Kosten` = "            + kurs.getKosten() +
+                ", `Waehrung` = '"          + kurs.getWaehrung() +
+                "', `DatumVon` = '"          + kurs.getDatumVon() +
+                "', `DatumBis` = '"           + kurs.getDatumBis() +
+                "', `Durchfuehrungsort` = '" + kurs.getDurchfuehrungsOrt() +
+                "' WHERE `ID` = "           + kurs.getKurseId() + ";";
     }
 
     /*--------------------------------------------------------------------------------------------------------------------------------------

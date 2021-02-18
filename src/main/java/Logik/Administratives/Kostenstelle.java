@@ -10,10 +10,10 @@ import java.util.Map;
 
 public class Kostenstelle extends ServicesAdmin {
 
-    public int kostenstelleId;
-    public int kostenstelleNr;
-    public String bezeichnungKst = " ";
-    public String kostenstelleVerantPerson;
+    private int kostenstelleId;
+    private int kostenstelleNr;
+    private String bezeichnungKst = " ";
+    private String kostenstelleVerantPerson;
 
     private String[] KOPFZEILE = {"Nr.","Kostenstellen Nr.", "Verant. Person", "Bezeichnung"};
     private String[] KOPFZEILE_ANZEIGE_EINGABE = {"Nr.","Kostenstellen Nr.", "Verant. Person", "Bezeichnung"};
@@ -32,43 +32,6 @@ public class Kostenstelle extends ServicesAdmin {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Die Methode kostenstelleAnlegen laesst den Benutzerverwaltung eine neue Kostenstelle anlegen
-     */
-    protected void datenAnlegen(){
-
-        boolean abschliessen = true;
-        String titelName = "Kostenstelle Anlegen";
-
-        do {
-
-            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie folgende Daten ein");
-            //Kostenstellennummer
-            kostenstelleNr = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Kostenstelle Nummer: ");
-            //Bezeichnung Kostenstelle
-            bezeichnungKst = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Bezeichnung der Kostenstelle: ");
-            //Verantwortliche Person
-            kostenstelleVerantPerson = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Verantwortliche Person der Kostenstelle: ");
-
-            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
-            objectInTabelleAusgeben(KOPFZEILE_ANZEIGE_EINGABE,attributenArrayFuerTabelle());
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
-
-            switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
-
-                case 1: DatenLogik kostenstelleDatenbank = new KostenstelleDatenbank();
-                    ((KostenstelleDatenbank) kostenstelleDatenbank).datenAnlegen(this);
-                    abschliessen = true;
-                    break;
-                case 2: abschliessen = false;
-                    break;
-                case 3: abschliessen = true;
-                    break;
-            }
-        }while(!abschliessen);
-    }
-    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    /*
     Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzerverwaltung
      */
     public void auswahlListeKostenstelleAusgeben() {
@@ -78,18 +41,17 @@ public class Kostenstelle extends ServicesAdmin {
         int auswahl;
         String titelName = "Kostenstellenauswahlliste";
 
-       DatenLogik kostenstelleDatenbank = new KostenstelleDatenbank();
-        // Abfrage Datenbank.Datenbank nach Kostenstellen
+        DatenLogik kostenstelleDatenbank = new KostenstelleDatenbank();
+        //  Datenbanka nach Kostenstellen
         HashMap<Kostenstelle, Integer> kostenstelleMap = (HashMap<Kostenstelle, Integer>) kostenstelleDatenbank.datenAuslesen("tblKostenstelle");
-
 
         // Schreiben der Kostenstellen in ein Array
         Kostenstelle[] kostenstelleArray = new Kostenstelle[kostenstelleMap.size() + 1];
 
         BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
         Tabelle tabelle = new Tabelle();
-        tabelle.setVertikaleLinie(true);
-        tabelle.setHeaders(KOPFZEILE);
+        tabelle.vertikaleLinieSetzen(true);
+        tabelle.kopfzeileSetzen(KOPFZEILE);
 
         //Schleife durch ganze Hashmap fuer die Ausgabe in einer Tabelle
         for (Map.Entry<Kostenstelle, Integer> map : kostenstelleMap.entrySet()) {
@@ -112,6 +74,47 @@ public class Kostenstelle extends ServicesAdmin {
         kostenstelleNr = kostenstelleArray[auswahl].kostenstelleNr;
         bezeichnungKst = kostenstelleArray[auswahl].bezeichnungKst;
         kostenstelleVerantPerson = kostenstelleArray[auswahl].kostenstelleVerantPerson;
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    /*
+    Diese Methode laesst den Benutzer eine neue Kostenstelle anlegen
+     */
+    protected void datenAnlegen(){
+
+        boolean abschliessen = true;
+        String titelName = "Kostenstelle Anlegen";
+
+        do {//Eingabe der Daten
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie folgende Daten ein");
+            //Kostenstellennummer
+            kostenstelleNr = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Kostenstelle Nummer: ");
+            //Bezeichnung Kostenstelle
+            bezeichnungKst = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Bezeichnung der Kostenstelle: ");
+            //Verantwortliche Person
+            kostenstelleVerantPerson = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Verantwortliche Person der Kostenstelle: ");
+
+            // Ausgabe der eingegebenen Daten
+            BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
+            objectInTabelleAusgeben(KOPFZEILE_ANZEIGE_EINGABE,attributenArrayFuerTabelle());
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
+
+            // Abfrage ob Eingaben korrekt sind
+            switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
+                case 1: //Speichern
+                    DatenLogik kostenstelleDatenbank = new KostenstelleDatenbank();
+                    ((KostenstelleDatenbank) kostenstelleDatenbank).datenAnlegen(this);
+                    abschliessen = true;
+                    break;
+                case 2: //Neu beginnen
+                    abschliessen = false;
+                    break;
+                case 3://Abbrechen
+                    abschliessen = true;
+                    break;
+            }
+        }while(!abschliessen);
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -180,12 +183,7 @@ public class Kostenstelle extends ServicesAdmin {
         }while(!abschliessen);
     }
 
-    @Override
-    public String toString() {
-        return "Kostenstelle: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(this.kostenstelleNr), 10) +
-                "Verantwortliche Person: " + BefehlsZeilenSchnittstelle.textFormatieren(kostenstelleVerantPerson, 20) +
-                "Bezeichnung: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(bezeichnungKst), 25);
-    }
+
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Diese Methode packt die Membervariablen in ein Array fuer die Ausgabe in einer Tabelle
@@ -193,5 +191,28 @@ public class Kostenstelle extends ServicesAdmin {
     protected String[] attributenArrayFuerTabelle(){
         String[] attributenArray = {" ",String.valueOf(kostenstelleNr),kostenstelleVerantPerson,bezeichnungKst};
         return attributenArray;
+    }
+
+    @Override
+    public String toString() {
+        return "Kostenstelle: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(this.kostenstelleNr), 10) +
+                "Verantwortliche Person: " + BefehlsZeilenSchnittstelle.textFormatieren(kostenstelleVerantPerson, 20) +
+                "Bezeichnung: " + BefehlsZeilenSchnittstelle.textFormatieren(String.valueOf(bezeichnungKst), 25);
+    }
+
+    public int getKostenstelleId() {
+        return kostenstelleId;
+    }
+
+    public int getKostenstelleNr() {
+        return kostenstelleNr;
+    }
+
+    public String getBezeichnungKst() {
+        return bezeichnungKst;
+    }
+
+    public String getKostenstelleVerantPerson() {
+        return kostenstelleVerantPerson;
     }
 }

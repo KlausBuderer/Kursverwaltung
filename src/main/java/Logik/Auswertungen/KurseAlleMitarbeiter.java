@@ -43,8 +43,8 @@ public class KurseAlleMitarbeiter {
         AusgabeKurseAlleMitarbeiter = auswertungen.storeproduceKurseAlleMitarbeiter();
 
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(TITELZEILE);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(TITELZEILE);
+        tabelle.vertikaleLinieSetzen(true);
         for (KurseAlleMitarbeiter kama  : AusgabeKurseAlleMitarbeiter) {
 
             tabelle.zeileHinzufuegen(kama.attributenArrayBefuellen());

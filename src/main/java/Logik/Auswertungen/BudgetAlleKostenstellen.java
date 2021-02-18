@@ -12,15 +12,15 @@ import java.util.List;
 
 public class BudgetAlleKostenstellen {
 
-    private final String[] TITELZEILE = {"Budgetjahr","Budgetbetrag","Waehrung","Kostenstellennummer","Kostenstellenbezeichnung","KostenstellenverantwortlichePerson"};
+    private int kostenstellennummer;
 
     private String budgetjahr;
     private String budgetbetrag;
     private String waehrung;
-    private int kostenstellennummer;
     private String kostenstellenbezeichnung;
     private String kostenstellenverantwortlichePerson;
 
+    private final String[] TITELZEILE = {"Budgetjahr","Budgetbetrag","Waehrung","Kostenstellennummer","Kostenstellenbezeichnung","KostenstellenverantwortlichePerson"};
 
     public BudgetAlleKostenstellen() {
     }
@@ -45,8 +45,8 @@ public class BudgetAlleKostenstellen {
         AusgabeBudgetAlleKostenstellen = auswertungen.storeproduceBudgetAlleKostenstellen();
 
         Tabelle tabelle = new Tabelle();
-        tabelle.setHeaders(TITELZEILE);
-        tabelle.setVertikaleLinie(true);
+        tabelle.kopfzeileSetzen(TITELZEILE);
+        tabelle.vertikaleLinieSetzen(true);
         for (BudgetAlleKostenstellen bak  : AusgabeBudgetAlleKostenstellen) {
 
             tabelle.zeileHinzufuegen(bak.attributenArrayBefuellen());

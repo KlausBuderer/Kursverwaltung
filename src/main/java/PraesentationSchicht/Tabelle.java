@@ -5,39 +5,50 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-// Formatieren einer Utilities.Tabelle und einordnen der auszugebenden Daten
+// Formatieren einer Tabelle und einordnen der auszugebenden Daten
 public class Tabelle {
 
-        private static final String HORIZONTALE_LINIE = "-";
+        private final String HORIZONTALE_LINIE = "-";
+
         private String vertikaleLinie;
         private String kreuzungLinie;
         private String[] kopfzeile;
-        private List<String[]> zeile = new ArrayList<>();
+
         private boolean rechtsBuendig;
 
+        private List<String[]> zeile = new ArrayList<>();
+
         public Tabelle() {
-            setVertikaleLinie(false);
+            vertikaleLinieSetzen(false);
         }
 
-        public void setRightAlign(boolean rightAlign) {
-            this.rechtsBuendig = rightAlign;
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------------
+        // Zeilen rechtsbuendig ausgeben falls parameter True ist
+        public void rechtsBuendigSetzen(boolean rechtsBuendig) {
+            this.rechtsBuendig = rechtsBuendig;
         }
-
-        public void setVertikaleLinie(boolean zeigeVertikaleLinie) {
+         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
+         // Vertikale Linie ausgeben falls parameter True ist
+        public void vertikaleLinieSetzen(boolean zeigeVertikaleLinie) {
             vertikaleLinie = zeigeVertikaleLinie ? "|" : "";
             kreuzungLinie = zeigeVertikaleLinie ? "+" : " ";
         }
-
-        public void setHeaders(String... headers) {
-            this.kopfzeile = headers;
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Zeilen rechtsbuendig ausgeben falls parameter True ist
+        public void kopfzeileSetzen(String... kopfzeile) {
+            this.kopfzeile = kopfzeile;
         }
-        // Neuer String in Arraylist uebergeben
+        //-----------------------------------------------------------------------------------------------------------------------------------------------------------
+        // Neuer StringArray in Arraylist uebergeben
         public void zeileHinzufuegen(String... zellen) {
             zeile.add(zellen);
         }
-        //
+
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Ausgabe der Tabelle
         public void ausgabe() {
 
+            // Eruiert die Anzahl der Zellen falls eine Kopfzeile vorhanden ist
             int[] maximaleBreite = kopfzeile != null ?
                     Arrays.stream(kopfzeile).mapToInt(String::length).toArray() : null;
 
@@ -45,9 +56,11 @@ public class Tabelle {
                 if (maximaleBreite == null) {
                     maximaleBreite = new int[zellen.length];
                 }
+                //Vergleich ob die Zellenlänge identisch ist, sonst wird eine Exception geworfen
                 if (zellen.length != maximaleBreite.length) {
-                    throw new IllegalArgumentException("Die Anazahl Zelle der Zeilen und des Headers muessen gleich sein");
+                    throw new IllegalArgumentException("Die Anzahl Zelle der Zeilen und des Headers muessen gleich sein");
                 }
+
                 for (int i = 0; i < zellen.length; i++) {
                     maximaleBreite[i] = Math.max(maximaleBreite[i], zellen[i].length());
                 }
@@ -65,19 +78,25 @@ public class Tabelle {
                 schreibeLinie(maximaleBreite);
             }
         }
-
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Zusammensetzen und Ausgabe der Horizontalen Linie
         private void schreibeLinie(int[] spaltenBreite) {
             BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("");
+            //Setzt die Horizontale Linie für jede Zelle zusammen
             for (int i = 0; i < spaltenBreite.length; i++) {
                 String linie = String.join("", Collections.nCopies(spaltenBreite[i] +
                         vertikaleLinie.length() + 1, HORIZONTALE_LINIE));
-                System.out.print(BefehlsZeilenSchnittstelle.schriftfarbe + kreuzungLinie + linie + (i == spaltenBreite.length - 1 ? kreuzungLinie : "") + BefehlsZeilenSchnittstelle.ANSI_RESET);
+                //Gibt die Linie mit dem Kreuz aus
+                System.out.print(BefehlsZeilenSchnittstelle.schriftfarbe + kreuzungLinie + linie +
+                        (i == spaltenBreite.length - 1 ? kreuzungLinie : "") + BefehlsZeilenSchnittstelle.ANSI_RESET);
             }
             System.out.println();
         }
-
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------------
+    //Schreibt die Werte in die Zellen und setzt jeweils eine vertikale Linie dazwischen
         private void schreibeZeile(String[] zellen, int[] maximaleBreite) {
             BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("");
+            // Schreibt jede Zelle
             for (int i = 0; i < zellen.length; i++) {
                 String s = zellen[i];
                 String verStrTemp = i == zellen.length - 1 ? vertikaleLinie : "";
