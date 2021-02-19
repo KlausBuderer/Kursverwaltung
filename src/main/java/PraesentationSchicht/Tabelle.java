@@ -35,12 +35,12 @@ public class Tabelle {
         }
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------
     // Zeilen rechtsbuendig ausgeben falls parameter True ist
-        public void kopfzeileSetzen(String... kopfzeile) {
+        public void kopfzeileSetzen(String[] kopfzeile) {
             this.kopfzeile = kopfzeile;
         }
         //-----------------------------------------------------------------------------------------------------------------------------------------------------------
         // Neuer StringArray in Arraylist uebergeben
-        public void zeileHinzufuegen(String... zellen) {
+        public void zeileHinzufuegen(String[] zellen) {
             zeile.add(zellen);
         }
 
@@ -58,7 +58,8 @@ public class Tabelle {
                 }
                 //Vergleich ob die Zellenlänge identisch ist, sonst wird eine Exception geworfen
                 if (zellen.length != maximaleBreite.length) {
-                    throw new IllegalArgumentException("Die Anzahl Zelle der Zeilen und des Headers muessen gleich sein");
+                    throw new IllegalArgumentException
+                            ("Die Anzahl Zelle der Zeilen und des Headers muessen gleich sein");
                 }
 
                 for (int i = 0; i < zellen.length; i++) {
@@ -66,16 +67,27 @@ public class Tabelle {
                 }
             }
 
-            if (kopfzeile != null) {
-                schreibeLinie(maximaleBreite);
-                schreibeZeile(kopfzeile, maximaleBreite);
-                schreibeLinie(maximaleBreite);
-            }
-            for (String[] zeile : zeile) {
-                schreibeZeile(zeile, maximaleBreite);
-            }
-            if (kopfzeile != null) {
-                schreibeLinie(maximaleBreite);
+
+            if(zeile.isEmpty()){
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Keine Treffer!");
+            }else {
+
+                //Kopfzeile schreiben
+                if (kopfzeile != null) {
+                    schreibeLinie(maximaleBreite);
+                    schreibeZeile(kopfzeile, maximaleBreite);
+                    schreibeLinie(maximaleBreite);
+                }
+                //Ausgabe falls keine Treffer
+
+                //Tabelleninhalt schreiben
+                for (String[] zeile : zeile) {
+                    schreibeZeile(zeile, maximaleBreite);
+                }
+
+                if (kopfzeile != null) {
+                    schreibeLinie(maximaleBreite);
+                }
             }
         }
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -87,8 +99,10 @@ public class Tabelle {
                 String linie = String.join("", Collections.nCopies(spaltenBreite[i] +
                         vertikaleLinie.length() + 1, HORIZONTALE_LINIE));
                 //Gibt die Linie mit dem Kreuz aus
-                System.out.print(BefehlsZeilenSchnittstelle.schriftfarbe + kreuzungLinie + linie +
-                        (i == spaltenBreite.length - 1 ? kreuzungLinie : "") + BefehlsZeilenSchnittstelle.ANSI_RESET);
+                System.out.print(BefehlsZeilenSchnittstelle.schriftfarbe
+                        + kreuzungLinie + linie +
+                        (i == spaltenBreite.length - 1 ? kreuzungLinie : "") +
+                        BefehlsZeilenSchnittstelle.ANSI_RESET);
             }
             System.out.println();
         }
@@ -104,9 +118,11 @@ public class Tabelle {
                 //Bei leerer Liste augeben
 
                 if (rechtsBuendig) {
-                    System.out.printf(BefehlsZeilenSchnittstelle.schriftfarbe +"%s %" + maximaleBreite[i] + "s %s", vertikaleLinie, s, verStrTemp + BefehlsZeilenSchnittstelle.ANSI_RESET);
+                    System.out.printf(BefehlsZeilenSchnittstelle.schriftfarbe +"%s %" + maximaleBreite[i] +
+                            "s %s", vertikaleLinie, s, verStrTemp + BefehlsZeilenSchnittstelle.ANSI_RESET);
                 } else {
-                    System.out.printf(BefehlsZeilenSchnittstelle.schriftfarbe + "%s %-" + maximaleBreite[i] + "s %s", vertikaleLinie, s, verStrTemp + BefehlsZeilenSchnittstelle.ANSI_RESET);
+                    System.out.printf(BefehlsZeilenSchnittstelle.schriftfarbe + "%s %-" + maximaleBreite[i]
+                            + "s %s", vertikaleLinie, s, verStrTemp + BefehlsZeilenSchnittstelle.ANSI_RESET);
                 }
             }
             System.out.println();

@@ -210,8 +210,13 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
     private String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
 
         String query = "`tblMitarbeiter` where `";
-        String suche =  suchkriterium + "` Like \"" + suchText + "%\"";
-        System.out.println(query + suche);
+        String suche ="";
+
+        if(suchkriterium.equals("Nachname")|| suchkriterium.equals("Vorname")) {
+            suche = suchkriterium + "` Like \"" + suchText + "%\"";
+        }else{
+            suche = suchkriterium + "` Like \"" + suchText + "\"";
+        }
         return query + suche;
     }
 

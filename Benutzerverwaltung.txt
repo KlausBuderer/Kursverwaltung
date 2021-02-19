@@ -10,6 +10,10 @@ rhirschianw,ma2021,BENUTZER
 rhirschiadm,ma2021,ADMINISTRATOR
 mbontognalianw,ma2021,BENUTZER
 mbontognaliadm,ma2021,ADMINISTRATOR
-Test,test,ADMINISTRATOR
-Alfred,abcd,ADMINISTRATOR
-Ueli,abcd,ADMINISTRATORzurur,wert,ADMINISTRATORZur,zru,ADMINISTRATOR
+
+
+
+
+
+
+

@@ -42,6 +42,7 @@ public class ZertifikateSuchen {
                 return auswahlListeZertifikateAusgeben(zertifikatsHash);
             } else {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Keine Treffer");
+                BefehlsZeilenSchnittstelle.verzoegerung(2000);
             }
         }while(!abbruchBedingung);
         return null;

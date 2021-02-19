@@ -26,13 +26,13 @@ public class Datenbank {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
 
-            System.out.println("Verbindung zu Datenbank erfolgreich");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Verbindung zur Datenbank erfolgreich");
             BefehlsZeilenSchnittstelle.bildReinigen("",3);
             verbindungErfolgreich = true;
 
         } catch (SQLException | ClassNotFoundException sqlException) {
 
-            System.out.println("Verbindung zur Datenbank nicht erfolgreich!");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Verbindung zur Datenbank nicht erfolgreich");
             verbindungErfolgreich = false;
         }
 
@@ -143,7 +143,7 @@ public class Datenbank {
             bearbeitungErfolgreich = true;
 
         } catch (SQLException | ClassNotFoundException sqlException) {
-            System.out.println(sqlException.getLocalizedMessage());
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Probleme mit der Bearbeitung der Datenbank aufgetreten");
             bearbeitungErfolgreich = false;
         }
 
@@ -283,7 +283,7 @@ public class Datenbank {
             //Store Proceddures aufrufen
             switch (kontext) {
                 case AUSWERTUNG_WEITERILDUNG_ALLE_MITARBEITER_ZEITRAUM:
-                    System.out.println(parameter1 + parameter2);
+
                     statement.setString(1, parameter1);
                     statement.setString(2, parameter2);
 
@@ -292,7 +292,7 @@ public class Datenbank {
                     break;
 
                 case AUSWERTUNG_KURSE_PRO_ANBIETER_SELEKTIV_KOSTENSTELLE_ZEITRAUM:
-                    System.out.println(parameter1 + parameter2 + parameter3);
+
                     statement.setString(1, parameter1);
                     statement.setString(2, parameter2);
                     statement.setString(3, parameter3);
@@ -302,7 +302,7 @@ public class Datenbank {
                     break;
 
                 case AUSWERTUNG_KURSE_PRO_ANBIETER_KOSTENSTELLEN_ZEITRAUM:
-                    System.out.println(parameter1 + parameter2);
+
                     statement.setString(1, parameter1);
                     statement.setString(2, parameter2);
 
@@ -347,7 +347,7 @@ public class Datenbank {
                     break;
 
                 case AUSWERTUNG_ZERTIFIKATE_ALLE_MITARBEITER_GUELTIGKEIT:
-                    System.out.println(parameter1);
+
                     statement.setString(1, parameter1);
 
                     dbInhalt = statement.executeQuery();
@@ -393,10 +393,7 @@ public class Datenbank {
 
 
         } catch (SQLException | ClassNotFoundException sqlException) {
-
-            System.out.println("Hat nicht geklappt");
-
-            sqlException.printStackTrace();
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Probleme mit der Datenbank aufgetreten");
         }
 
         try {

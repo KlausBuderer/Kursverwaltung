@@ -42,7 +42,6 @@ public class Auswertungen {
                     gueltigeEingabe = true;
                     break;
                 default:
-                    System.out.println("Falsche Eingabe");
                     gueltigeEingabe = false;
             }
         } while (!gueltigeEingabe);
@@ -67,7 +66,6 @@ public class Auswertungen {
                     gueltigeEingabe = true;
                     break;
                 default:
-                    System.out.println("Falsche Eingabe");
                     gueltigeEingabe = false;
             }
         } while (!gueltigeEingabe);
@@ -98,7 +96,6 @@ public class Auswertungen {
                     gueltigeEingabe = true;
                     break;
                 default:
-                    System.out.println("Falsche Eingabe");
                     gueltigeEingabe = false;
             }
         } while (!gueltigeEingabe);
@@ -126,7 +123,6 @@ public class Auswertungen {
                     gueltigeEingabe = true;
                     break;
                 default:
-                    System.out.println("Falsche Eingabe");
                     gueltigeEingabe = false;
             }
         } while (!gueltigeEingabe);
@@ -150,7 +146,6 @@ public class Auswertungen {
                     gueltigeEingabe = true;
                     break;
                 default:
-                    System.out.println("Falsche Eingabe");
                     gueltigeEingabe = false;
             }
         } while (!gueltigeEingabe);

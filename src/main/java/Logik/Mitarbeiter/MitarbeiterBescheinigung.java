@@ -231,7 +231,7 @@ public class MitarbeiterBescheinigung {
         arrayLaenge = mitarbeiterBescheinigungsArray.length;
 
         BefehlsZeilenSchnittstelle.bildReinigen("Zertifikatsauswahlsliste", 2);
-        if(arrayLaenge != 1) {
+        if(arrayLaenge <= 1) {
             //Tabelle fuer die Ausgaben erstellen
             Tabelle tabelle = new Tabelle();
             tabelle.kopfzeileSetzen(TABELLENHEADER);

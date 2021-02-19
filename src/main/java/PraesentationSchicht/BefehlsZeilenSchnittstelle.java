@@ -465,7 +465,7 @@ public final class BefehlsZeilenSchnittstelle {
                 if(!(eingabe.length() > 45 || eingabe.isEmpty())) {
                     // Pruefen ob nur Buchstaben eingegeben wurden
                     for (Character zeichen : eingabe.toCharArray()) {
-                        if (Character.isAlphabetic(zeichen) || Character.isSpaceChar(zeichen)) {
+                        if (Character.isAlphabetic(zeichen) || Character.isSpaceChar(zeichen)){
 
                         } else {
                             korrekteEingabe = false;

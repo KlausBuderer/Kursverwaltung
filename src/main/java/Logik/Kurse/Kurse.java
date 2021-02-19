@@ -21,6 +21,7 @@ public class Kurse extends Services {
     private final String [] UNTERMENUE = {"1.  Kurse Anlegen", "2.  Kurse Mutation","3.  Kurs loeschen", "99. Hauptmenue"};
     private final String[] KOPFZEILE = {" ","Kurs Code","Anbieter", "Kurs Beschreibung","Kosten", "Waerung", "Datum Von","Datum Bis","Durchfuehrungsort"};
 
+
    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
    //Konstrukor Aufruf des Untermenüs

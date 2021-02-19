@@ -28,7 +28,7 @@ public class Benutzerverwaltung {
 
 
     private final String[] BENUTZERGRUPPEN = {"ADMINISTRATOR", "BENUTZER"};
-    private final String [] UNTERMENUE = {"1.  Benutzerverwaltung Anlegen", "2.  Benutzerverwaltung Loeschen", "3.  Benutzerverwaltung Passwort mutieren", "99. Hauptmenue"};
+    private final String [] UNTERMENUE = {"1.  Benutzer Anlegen", "2.  Benutzer Loeschen", "3.  Benutzer Passwort mutieren", "99. Hauptmenue"};
 
 
 
@@ -75,7 +75,7 @@ public class Benutzerverwaltung {
 
     //-----------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode um Benutzerverwaltung Anmelden
+    Methode um Benutzer Anmelden
      */
     public boolean benutzerAnmelden(String benutzerEingabe, String passwortEingabe){
         String benutzername = benutzerEingabe;
@@ -84,21 +84,21 @@ public class Benutzerverwaltung {
 
         // Ausgabe, Bitte melden sie sich an
         if (benutzerListe.isEmpty()){
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Es sind keine Benutzerverwaltung auffindbar");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Es sind keine Benutzer auffindbar");
             return false;
         }
-        // Pruefen ob der Benutzerverwaltung existiert
+        // Pruefen ob der Benutzerg existiert
         Benutzerverwaltung b;
 
             b = benutzerSuchen(benutzerListe,benutzername);
 
         if(b.benutzer == null){
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Dieser Benutzerverwaltung ist nicht vorhanden");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Dieser Benutzer ist nicht vorhanden");
             return false;
         }
         // Pruefen ob das Passwort korrekt ist
         if (b.passwort.equals(passwort)){
-            // Bei korrekter Eingabe Benutzerverwaltung anmelden
+            // Bei korrekter Eingabe Benutzer anmelden
 
             angemeldeterBenutzer = b.benutzer;
             angemeldeteGruppe = b.benutzergruppe;
@@ -137,7 +137,7 @@ public class Benutzerverwaltung {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Keine Benutzerdaten vorhanden");
         }
         return alleBenutzer;
     }
@@ -150,18 +150,18 @@ public class Benutzerverwaltung {
     private void benutzerAnlegen(){
         boolean bereitsVorhanden = true;
         boolean abschliessen = false;
-        String titelName = "Benutzerverwaltung Anlegen";
+        String titelName = "Benutzer Anlegen";
 
         do {
             do {
-                //Ausgabe Benutzerverwaltung Anlegen
+                //Ausgabe Benutzer Anlegen
                 BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
-                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Benutzerverwaltung Anlegen");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Benutzer Anlegen");
 
                 //Ausgabe Benutzername und einlesen der Eingabe
                 benutzer = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Benutzername: ");
 
-                //Pruefen ob Benutzerverwaltung bereits vorhanden
+                //Pruefen ob Benutzer bereits vorhanden
                 bereitsVorhanden = benutzerBereitsVorhandenPruefen(benutzerAusDateiLesen(), benutzer);
                 if(bereitsVorhanden){
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Benutzername bereits vergeben!");
@@ -175,7 +175,7 @@ public class Benutzerverwaltung {
             //Ausgabe der Auswahl an Benutzergruppen
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Benutzergruppen:");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("1. Administrator");
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("2. Benutzerverwaltung");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("2. Benutzer");
 
 
             int auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1;
@@ -190,7 +190,7 @@ public class Benutzerverwaltung {
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
-                case 1: //1.Ja -> Benutzerverwaltung speichern
+                case 1: //1.Ja -> Benutzer speichern
                     //Schreiben der Daten in die Datei
                     neuenBenutzerSchreiben(zusammengesetzt);
                     abschliessen = true;
@@ -222,7 +222,7 @@ public class Benutzerverwaltung {
             bufferedWriter.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Keine Benutzerdaten vorhanden");
         }
 
 
@@ -230,7 +230,7 @@ public class Benutzerverwaltung {
 
     //-----------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode um Benutzerverwaltung aus der Datei zu loeschen
+    Methode um Benutzer aus der Datei zu loeschen
      */
     private void benutzerLoeschen() {
 
@@ -258,6 +258,7 @@ public class Benutzerverwaltung {
         this.passwort = benutzerListe.get(auswahl).passwort;
         this.benutzergruppe = benutzerListe.get(auswahl).benutzergruppe;
 
+
         //Ausgabe sind sie sicher das sie den Benutzer loeschen moechten
         BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(toString());
         BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Sind sie sicher?");
@@ -266,10 +267,19 @@ public class Benutzerverwaltung {
 
         //Eingabe einlesen
         if(BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) == 1) {
+
             String aktuelleAngaben = benutzerAngabenZusammensetzen();
             String angabenLoeschen = "";
+
         //Datei ueberschreiben
         textInDateiUeberschreiben(angabenLoeschen,aktuelleAngaben);
+        }
+
+        //Abmelden falls eigener Account gelöscht wurde
+        if(benutzer.equals(angemeldeterBenutzer)){
+            angemeldeterBenutzer = "";
+            angemeldeteGruppe = null;
+            BefehlsZeilenSchnittstelle.anmeldeFensterAusgeben();
         }
     }
 
@@ -405,7 +415,7 @@ public class Benutzerverwaltung {
 
 
         } catch (IOException e) {
-            e.printStackTrace();
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Keine Benutzerdaten vorhanden");
         }
     }
 

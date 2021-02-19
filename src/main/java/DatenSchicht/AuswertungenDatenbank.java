@@ -205,7 +205,8 @@ public class AuswertungenDatenbank extends Datenbank implements DatenLogikAuswer
             String jobtitel = dbInhalt.getString("jobtitel");
             String geburtsdatum = dbInhalt.getString("geburtsdatum");
             String statusmitarbeiter = dbInhalt.getString("statusmitarbeiter");
-            stammdatenAlleMitarbeiter = new StammdatenAlleMitarbeiter(personalnummer,anrede, nachname,vorname,jobtitel,geburtsdatum,statusmitarbeiter);
+            stammdatenAlleMitarbeiter = new StammdatenAlleMitarbeiter
+                    (personalnummer,anrede, nachname,vorname,jobtitel,geburtsdatum,statusmitarbeiter);
 
             stammdatenAlleMitarbeiterliste.add(stammdatenAlleMitarbeiter);
         }

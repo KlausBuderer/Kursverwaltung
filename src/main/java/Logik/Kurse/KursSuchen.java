@@ -42,6 +42,7 @@ public class KursSuchen {
                 return auswahlListeKurseAusgeben(kursHash);
             } else {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Keine Treffer");
+                BefehlsZeilenSchnittstelle.verzoegerung(2000);
             }
         }while(!abbruchBedingung);
         return null;
@@ -133,8 +134,8 @@ public class KursSuchen {
             tempArray[0] = i + ".";
             tabelle.zeileHinzufuegen(tempArray);
             i++;
-
         }
+
         tabelle.ausgabe();
         arrayLaenge = kursArray.length;
 

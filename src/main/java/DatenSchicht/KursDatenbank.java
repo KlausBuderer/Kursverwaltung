@@ -109,13 +109,19 @@ public class KursDatenbank extends Datenbank implements DatenLogik {
     }
 
     /*--------------------------------------------------------------------------------------------------------------------------------------
-      Methode die den query aus den Angaben des Bedieners zusammensetzt
+      Methode die den query aus für die Suche nach Kursen
      Rueckgabewert: query als String
        */
     private String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
 
         String query = "`tblKurse` where `";
-        String suche =  suchkriterium + "` Like \"%" + suchText + "%\"";
+        String suche;
+
+        if(suchkriterium.equals("KursCode")){
+            suche = suchkriterium + "` Like \"" + suchText + "\"";
+        }else {
+            suche = suchkriterium + "` Like \"%" + suchText + "%\"";
+        }
         return query + suche;
     }
 

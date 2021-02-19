@@ -12,7 +12,7 @@ public class Mitarbeiter extends Services {
             "5.  Mitarbeiter Mutation", "6.  Mitarbeiter loeschen", "99. Hauptmenue"};
     private String[] anredeArray = {"Frau", "Herr", "Neutral"};
     private String[] statusArray = {"angestellt", "ausgetreten"};
-    private String[] KOPFZEILE = {" ","Personal Nummer","Nachname","Vorname", "Geburtsdatum", "Kostenstelle", "Jobtitel", "Anstellungsstatus", "Anrede"};
+    private String[] KOPFZEILE = {" ","Personal Nummer", "Anrede", "Nachname","Vorname", "Geburtsdatum", "Kostenstelle", "Jobtitel", "Anstellungsstatus"};
 
     private int mitarbeiterId;
     private int personalNummer;
@@ -321,7 +321,7 @@ public class Mitarbeiter extends Services {
     Diese Methode packt die Membervariablen in ein Array fuer die Ausgabe in einer Tabelle
      */
     protected String[] attributenArrayFuerTabelle(){
-        String[] attributenArray = {" ",String.valueOf(personalNummer),nachname,vorname, geburtstag, kostenstellenBezeichnung, jobTitel, mitarbeiterStatus, anrede};
+        String[] attributenArray = {" ",String.valueOf(personalNummer), anrede,nachname,vorname, geburtstag, kostenstellenBezeichnung, jobTitel, mitarbeiterStatus};
         return attributenArray;
     }
 

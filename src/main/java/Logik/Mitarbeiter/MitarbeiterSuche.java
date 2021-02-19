@@ -45,7 +45,7 @@ public class MitarbeiterSuche{
             BefehlsZeilenSchnittstelle.bildReinigen("Mitarbeitersuche",2);
 
             //Auf Anzahl Treffer begrenzen
-            if (mitarbeiterHash.size() > 20) {
+            if (mitarbeiterHash.size() > 50) {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zuviele Treffer!");
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie genauere Angaben an");
                 BefehlsZeilenSchnittstelle.verzoegerung(2000);
@@ -55,6 +55,7 @@ public class MitarbeiterSuche{
                 return mitarbeiterListeAusgeben(mitarbeiterHash);
             } else {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Keine Treffer");
+                BefehlsZeilenSchnittstelle.verzoegerung(2000);
             }
         }while(!abbruchBedingung);
         return null;

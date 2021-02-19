@@ -36,9 +36,7 @@ public class StammdatenAlleMitarbeiter {
 
     public void auswertungAusgeben() {
 
-
         List<StammdatenAlleMitarbeiter> AusgabeStammdatenAlleMitarbeiter;
-
 
         //Aufruf Store Procedure SP_ANZEIGEN_ALLE_MA_STAMMDATEN
         DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
