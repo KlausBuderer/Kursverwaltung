@@ -94,7 +94,7 @@ public final class BefehlsZeilenSchnittstelle {
         Scanner scan = new Scanner(System.in);
 
         //Schriftfarbe bestimmen
-        farbschemaWaehlen(FARBSCHEMA.BLAU);
+        farbschemaWaehlen(FARBSCHEMA.WEISS);
 
         //Ausgabe des Hauptmenues und Einlesen der Auswahl
         bildReinigen("Hauptmenue", 1);
