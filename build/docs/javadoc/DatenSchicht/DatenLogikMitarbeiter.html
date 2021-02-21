@@ -13,7 +13,7 @@
 <!--[if IE]>
 <script type="text/javascript" src="../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../jquery/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../jquery/jquery-ui.js"></script>
 </head>
 <body>
@@ -153,34 +153,34 @@ extends <a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenMutation(Logik.Mitarbeiter.Mitarbeiter)">datenMutation</a></span>&#8203;(<a href="../Logik/Mitarbeiter/Mitarbeiter.html" title="class in Logik.Mitarbeiter">Mitarbeiter</a>&nbsp;mitarbeiter)</code></th>
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#kursZuweisungQuerry(Logik.Mitarbeiter.MitarbeiterBescheinigung)">kursZuweisungQuerry</a></span>&#8203;(<a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.html" title="class in Logik.Mitarbeiter">MitarbeiterBescheinigung</a>&nbsp;mitarbeiterBescheinigung)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mitarbeiterAnlegen(Logik.Mitarbeiter.Mitarbeiter)">mitarbeiterAnlegen</a></span>&#8203;(<a href="../Logik/Mitarbeiter/Mitarbeiter.html" title="class in Logik.Mitarbeiter">Mitarbeiter</a>&nbsp;mitarbeiter)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mitarbeiterBescheinigungAnlegen(Logik.Mitarbeiter.MitarbeiterBescheinigung,Logik.Mitarbeiter.MitarbeiterBescheinigung.kontextAnlegen)">mitarbeiterBescheinigungAnlegen</a></span>&#8203;(<a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.html" title="class in Logik.Mitarbeiter">MitarbeiterBescheinigung</a>&nbsp;mitarbeiterBescheinigung,
                                <a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.kontextAnlegen.html" title="enum in Logik.Mitarbeiter">MitarbeiterBescheinigung.kontextAnlegen</a>&nbsp;kontext)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nummerAufExistenzPruefen(int)">nummerAufExistenzPruefen</a></span>&#8203;(int&nbsp;mitarbeiterId)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
 <tr id="i3" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mitarbeiterLoeschen(int)">mitarbeiterLoeschen</a></span>&#8203;(int&nbsp;Id)</code></th>
+<td class="colFirst"><code>java.util.HashMap</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#zertifikatVerlaengernListe(int)">zertifikatVerlaengernListe</a></span>&#8203;(int&nbsp;mitarbeiterId)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>java.util.HashMap</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#zertifikatVerlaengernListe(int)">zertifikatVerlaengernListe</a></span>&#8203;(int&nbsp;id)</code></th>
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#zertifikatVerlaengernSpeichern(Logik.Mitarbeiter.MitarbeiterBescheinigung)">zertifikatVerlaengernSpeichern</a></span>&#8203;(<a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.html" title="class in Logik.Mitarbeiter">MitarbeiterBescheinigung</a>&nbsp;mitarbeiterBescheinigung)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#zertifikatVerlaengernSpeichern(Logik.Mitarbeiter.MitarbeiterBescheinigung)">zertifikatVerlaengernSpeichern</a></span>&#8203;(<a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.html" title="class in Logik.Mitarbeiter">MitarbeiterBescheinigung</a>&nbsp;mitarbeiterBescheinigung)</code></th>
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#zertifikatZuweisungQuerry(Logik.Mitarbeiter.MitarbeiterBescheinigung)">zertifikatZuweisungQuerry</a></span>&#8203;(<a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.html" title="class in Logik.Mitarbeiter">MitarbeiterBescheinigung</a>&nbsp;mitarbeiterBescheinigung)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -189,7 +189,7 @@ extends <a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</
 <!--   -->
 </a>
 <h3>Methods inherited from interface&nbsp;DatenSchicht.<a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</a></h3>
-<code><a href="DatenLogik.html#suchen(java.lang.String,java.lang.String)">suchen</a></code></li>
+<code><a href="DatenLogik.html#datenAnlegen(Logik.Services)">datenAnlegen</a>, <a href="DatenLogik.html#datenAuslesen(java.lang.String)">datenAuslesen</a>, <a href="DatenLogik.html#datenLoeschen(int)">datenLoeschen</a>, <a href="DatenLogik.html#datenMutation(Logik.Services)">datenMutation</a>, <a href="DatenLogik.html#suchen(java.lang.String,java.lang.String)">suchen</a></code></li>
 </ul>
 </li>
 </ul>
@@ -207,33 +207,6 @@ extends <a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="mitarbeiterAnlegen(Logik.Mitarbeiter.Mitarbeiter)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>mitarbeiterAnlegen</h4>
-<pre class="methodSignature">void&nbsp;mitarbeiterAnlegen&#8203;(<a href="../Logik/Mitarbeiter/Mitarbeiter.html" title="class in Logik.Mitarbeiter">Mitarbeiter</a>&nbsp;mitarbeiter)</pre>
-</li>
-</ul>
-<a id="datenMutation(Logik.Mitarbeiter.Mitarbeiter)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>datenMutation</h4>
-<pre class="methodSignature">void&nbsp;datenMutation&#8203;(<a href="../Logik/Mitarbeiter/Mitarbeiter.html" title="class in Logik.Mitarbeiter">Mitarbeiter</a>&nbsp;mitarbeiter)</pre>
-</li>
-</ul>
-<a id="mitarbeiterLoeschen(int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>mitarbeiterLoeschen</h4>
-<pre class="methodSignature">void&nbsp;mitarbeiterLoeschen&#8203;(int&nbsp;Id)</pre>
-</li>
-</ul>
 <a id="mitarbeiterBescheinigungAnlegen(Logik.Mitarbeiter.MitarbeiterBescheinigung,Logik.Mitarbeiter.MitarbeiterBescheinigung.kontextAnlegen)">
 <!--   -->
 </a>
@@ -242,6 +215,24 @@ extends <a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</
 <h4>mitarbeiterBescheinigungAnlegen</h4>
 <pre class="methodSignature">void&nbsp;mitarbeiterBescheinigungAnlegen&#8203;(<a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.html" title="class in Logik.Mitarbeiter">MitarbeiterBescheinigung</a>&nbsp;mitarbeiterBescheinigung,
                                      <a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.kontextAnlegen.html" title="enum in Logik.Mitarbeiter">MitarbeiterBescheinigung.kontextAnlegen</a>&nbsp;kontext)</pre>
+</li>
+</ul>
+<a id="zertifikatVerlaengernListe(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>zertifikatVerlaengernListe</h4>
+<pre class="methodSignature">java.util.HashMap&nbsp;zertifikatVerlaengernListe&#8203;(int&nbsp;mitarbeiterId)</pre>
+</li>
+</ul>
+<a id="nummerAufExistenzPruefen(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>nummerAufExistenzPruefen</h4>
+<pre class="methodSignature">java.lang.String&nbsp;nummerAufExistenzPruefen&#8203;(int&nbsp;mitarbeiterId)</pre>
 </li>
 </ul>
 <a id="zertifikatVerlaengernSpeichern(Logik.Mitarbeiter.MitarbeiterBescheinigung)">
@@ -253,13 +244,22 @@ extends <a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</
 <pre class="methodSignature">void&nbsp;zertifikatVerlaengernSpeichern&#8203;(<a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.html" title="class in Logik.Mitarbeiter">MitarbeiterBescheinigung</a>&nbsp;mitarbeiterBescheinigung)</pre>
 </li>
 </ul>
-<a id="zertifikatVerlaengernListe(int)">
+<a id="kursZuweisungQuerry(Logik.Mitarbeiter.MitarbeiterBescheinigung)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>kursZuweisungQuerry</h4>
+<pre class="methodSignature">java.lang.String&nbsp;kursZuweisungQuerry&#8203;(<a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.html" title="class in Logik.Mitarbeiter">MitarbeiterBescheinigung</a>&nbsp;mitarbeiterBescheinigung)</pre>
+</li>
+</ul>
+<a id="zertifikatZuweisungQuerry(Logik.Mitarbeiter.MitarbeiterBescheinigung)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>zertifikatVerlaengernListe</h4>
-<pre class="methodSignature">java.util.HashMap&nbsp;zertifikatVerlaengernListe&#8203;(int&nbsp;id)</pre>
+<h4>zertifikatZuweisungQuerry</h4>
+<pre class="methodSignature">java.lang.String&nbsp;zertifikatZuweisungQuerry&#8203;(<a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.html" title="class in Logik.Mitarbeiter">MitarbeiterBescheinigung</a>&nbsp;mitarbeiterBescheinigung)</pre>
 </li>
 </ul>
 </li>

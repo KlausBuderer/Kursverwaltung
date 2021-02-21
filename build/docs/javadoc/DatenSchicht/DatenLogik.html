@@ -13,7 +13,7 @@
 <!--[if IE]>
 <script type="text/javascript" src="../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../jquery/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../jquery/jquery-ui.js"></script>
 </head>
 <body>
@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":6};
+var data = {"i0":6,"i1":6,"i2":6,"i3":6,"i4":6};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],4:["t3","Abstract Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -123,11 +123,11 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt>All Known Subinterfaces:</dt>
-<dd><code><a href="DatenLogikKurs.html" title="interface in DatenSchicht">DatenLogikKurs</a></code>, <code><a href="DatenLogikMitarbeiter.html" title="interface in DatenSchicht">DatenLogikMitarbeiter</a></code>, <code><a href="DatenLogikZertifikat.html" title="interface in DatenSchicht">DatenLogikZertifikat</a></code></dd>
+<dd><code><a href="DatenLogikMitarbeiter.html" title="interface in DatenSchicht">DatenLogikMitarbeiter</a></code></dd>
 </dl>
 <dl>
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="KursDatenbank.html" title="class in DatenSchicht">KursDatenbank</a></code>, <code><a href="MitarbeiterDatenbank.html" title="class in DatenSchicht">MitarbeiterDatenbank</a></code>, <code><a href="ZertifikatsDatenbank.html" title="class in DatenSchicht">ZertifikatsDatenbank</a></code></dd>
+<dd><code><a href="BudgetDatenbank.html" title="class in DatenSchicht">BudgetDatenbank</a></code>, <code><a href="KostenstelleDatenbank.html" title="class in DatenSchicht">KostenstelleDatenbank</a></code>, <code><a href="KursDatenbank.html" title="class in DatenSchicht">KursDatenbank</a></code>, <code><a href="MitarbeiterDatenbank.html" title="class in DatenSchicht">MitarbeiterDatenbank</a></code>, <code><a href="ZertifikatsDatenbank.html" title="class in DatenSchicht">ZertifikatsDatenbank</a></code></dd>
 </dl>
 <hr>
 <pre>public interface <span class="typeNameLabel">DatenLogik</span></pre>
@@ -152,6 +152,26 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenAnlegen(Logik.Services)">datenAnlegen</a></span>&#8203;(<a href="../Logik/Services.html" title="class in Logik">Services</a>&nbsp;services)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i1" class="rowColor">
+<td class="colFirst"><code>java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenAuslesen(java.lang.String)">datenAuslesen</a></span>&#8203;(java.lang.String&nbsp;tabelle)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenLoeschen(int)">datenLoeschen</a></span>&#8203;(int&nbsp;ID)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenMutation(Logik.Services)">datenMutation</a></span>&#8203;(<a href="../Logik/Services.html" title="class in Logik">Services</a>&nbsp;services)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#suchen(java.lang.String,java.lang.String)">suchen</a></span>&#8203;(java.lang.String&nbsp;suchkriterium,
       java.lang.String&nbsp;suchText)</code></th>
@@ -177,11 +197,47 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <a id="suchen(java.lang.String,java.lang.String)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>suchen</h4>
 <pre class="methodSignature">java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;&nbsp;suchen&#8203;(java.lang.String&nbsp;suchkriterium,
                                                     java.lang.String&nbsp;suchText)</pre>
+</li>
+</ul>
+<a id="datenAnlegen(Logik.Services)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>datenAnlegen</h4>
+<pre class="methodSignature">void&nbsp;datenAnlegen&#8203;(<a href="../Logik/Services.html" title="class in Logik">Services</a>&nbsp;services)</pre>
+</li>
+</ul>
+<a id="datenMutation(Logik.Services)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>datenMutation</h4>
+<pre class="methodSignature">void&nbsp;datenMutation&#8203;(<a href="../Logik/Services.html" title="class in Logik">Services</a>&nbsp;services)</pre>
+</li>
+</ul>
+<a id="datenAuslesen(java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>datenAuslesen</h4>
+<pre class="methodSignature">java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;&nbsp;datenAuslesen&#8203;(java.lang.String&nbsp;tabelle)</pre>
+</li>
+</ul>
+<a id="datenLoeschen(int)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>datenLoeschen</h4>
+<pre class="methodSignature">void&nbsp;datenLoeschen&#8203;(int&nbsp;ID)</pre>
 </li>
 </ul>
 </li>

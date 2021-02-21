@@ -13,7 +13,7 @@
 <!--[if IE]>
 <script type="text/javascript" src="../../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../../jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../../jquery/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../../jquery/jquery-ui.js"></script>
 </head>
 <body>
@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -88,13 +88,13 @@ loadScripts(document, 'script');</script>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -148,54 +148,6 @@ extends <a href="ServicesAdmin.html" title="class in Logik.Administratives">Serv
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
-<!-- =========== FIELD SUMMARY =========== -->
-<section role="region">
-<ul class="blockList">
-<li class="blockList"><a id="field.summary">
-<!--   -->
-</a>
-<h3>Field Summary</h3>
-<table class="memberSummary">
-<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colSecond" scope="col">Field</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#budgetBetrag">budgetBetrag</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#budgetId">budgetId</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#budgetJahr">budgetJahr</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#kostenstelleId">kostenstelleId</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#kostenstellenBezeichnung">kostenstellenBezeichnung</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#waehrung">waehrung</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-</table>
-</li>
-</ul>
-</section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <section role="region">
 <ul class="blockList">
@@ -260,6 +212,31 @@ extends <a href="ServicesAdmin.html" title="class in Logik.Administratives">Serv
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBudgetBetrag()">getBudgetBetrag</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBudgetId()">getBudgetId</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getBudgetJahr()">getBudgetJahr</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getKostenstelleId()">getKostenstelleId</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getWaehrung()">getWaehrung</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -295,70 +272,6 @@ extends <a href="ServicesAdmin.html" title="class in Logik.Administratives">Serv
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
-<!-- ============ FIELD DETAIL =========== -->
-<section role="region">
-<ul class="blockList">
-<li class="blockList"><a id="field.detail">
-<!--   -->
-</a>
-<h3>Field Detail</h3>
-<a id="kostenstelleId">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>kostenstelleId</h4>
-<pre>public&nbsp;int kostenstelleId</pre>
-</li>
-</ul>
-<a id="budgetId">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>budgetId</h4>
-<pre>public&nbsp;int budgetId</pre>
-</li>
-</ul>
-<a id="budgetJahr">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>budgetJahr</h4>
-<pre>public&nbsp;int budgetJahr</pre>
-</li>
-</ul>
-<a id="budgetBetrag">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>budgetBetrag</h4>
-<pre>public&nbsp;int budgetBetrag</pre>
-</li>
-</ul>
-<a id="waehrung">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>waehrung</h4>
-<pre>public&nbsp;java.lang.String waehrung</pre>
-</li>
-</ul>
-<a id="kostenstellenBezeichnung">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>kostenstellenBezeichnung</h4>
-<pre>public&nbsp;java.lang.String kostenstellenBezeichnung</pre>
-</li>
-</ul>
-</li>
-</ul>
-</section>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <section role="region">
 <ul class="blockList">
@@ -398,6 +311,15 @@ extends <a href="ServicesAdmin.html" title="class in Logik.Administratives">Serv
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="auswahlListeBudgetAusgeben()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>auswahlListeBudgetAusgeben</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;auswahlListeBudgetAusgeben()</pre>
+</li>
+</ul>
 <a id="datenAnlegen()">
 <!--   -->
 </a>
@@ -411,15 +333,6 @@ extends <a href="ServicesAdmin.html" title="class in Logik.Administratives">Serv
 </dl>
 </li>
 </ul>
-<a id="auswahlListeBudgetAusgeben()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>auswahlListeBudgetAusgeben</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;auswahlListeBudgetAusgeben()</pre>
-</li>
-</ul>
 <a id="datenMutieren()">
 <!--   -->
 </a>
@@ -430,6 +343,19 @@ extends <a href="ServicesAdmin.html" title="class in Logik.Administratives">Serv
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="ServicesAdmin.html#datenMutieren()">datenMutieren</a></code>&nbsp;in class&nbsp;<code><a href="ServicesAdmin.html" title="class in Logik.Administratives">ServicesAdmin</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="attributenArrayFuerTabelle()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>attributenArrayFuerTabelle</h4>
+<pre class="methodSignature">protected&nbsp;java.lang.String[]&nbsp;attributenArrayFuerTabelle()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="ServicesAdmin.html#attributenArrayFuerTabelle()">attributenArrayFuerTabelle</a></code>&nbsp;in class&nbsp;<code><a href="ServicesAdmin.html" title="class in Logik.Administratives">ServicesAdmin</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -446,17 +372,49 @@ extends <a href="ServicesAdmin.html" title="class in Logik.Administratives">Serv
 </dl>
 </li>
 </ul>
-<a id="attributenArrayFuerTabelle()">
+<a id="getBudgetJahr()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getBudgetJahr</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getBudgetJahr()</pre>
+</li>
+</ul>
+<a id="getBudgetBetrag()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getBudgetBetrag</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getBudgetBetrag()</pre>
+</li>
+</ul>
+<a id="getKostenstelleId()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getKostenstelleId</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getKostenstelleId()</pre>
+</li>
+</ul>
+<a id="getBudgetId()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getBudgetId</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getBudgetId()</pre>
+</li>
+</ul>
+<a id="getWaehrung()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>attributenArrayFuerTabelle</h4>
-<pre class="methodSignature">protected&nbsp;java.lang.String[]&nbsp;attributenArrayFuerTabelle()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="ServicesAdmin.html#attributenArrayFuerTabelle()">attributenArrayFuerTabelle</a></code>&nbsp;in class&nbsp;<code><a href="ServicesAdmin.html" title="class in Logik.Administratives">ServicesAdmin</a></code></dd>
-</dl>
+<h4>getWaehrung</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getWaehrung()</pre>
 </li>
 </ul>
 </li>
@@ -511,13 +469,13 @@ extends <a href="ServicesAdmin.html" title="class in Logik.Administratives">Serv
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>

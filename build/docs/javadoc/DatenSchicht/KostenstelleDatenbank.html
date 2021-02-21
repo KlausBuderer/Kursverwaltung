@@ -13,7 +13,7 @@
 <!--[if IE]>
 <script type="text/javascript" src="../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../jquery/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../jquery/jquery-ui.js"></script>
 </head>
 <body>
@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -136,12 +136,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <li class="blockList">
 <dl>
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="DatenLogikKostenstelle.html" title="interface in DatenSchicht">DatenLogikKostenstelle</a></code></dd>
+<dd><code><a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</a></code>, <code><a href="DatenLogikKostenstelle.html" title="interface in DatenSchicht">DatenLogikKostenstelle</a></code></dd>
 </dl>
 <hr>
 <pre>public class <span class="typeNameLabel">KostenstelleDatenbank</span>
 extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a>
-implements <a href="DatenLogikKostenstelle.html" title="interface in DatenSchicht">DatenLogikKostenstelle</a></pre>
+implements <a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</a>, <a href="DatenLogikKostenstelle.html" title="interface in DatenSchicht">DatenLogikKostenstelle</a></pre>
 </li>
 </ul>
 </div>
@@ -184,8 +184,8 @@ implements <a href="DatenLogikKostenstelle.html" title="interface in DatenSchich
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenAnlegen(Logik.Administratives.Kostenstelle)">datenAnlegen</a></span>&#8203;(<a href="../Logik/Administratives/Kostenstelle.html" title="class in Logik.Administratives">Kostenstelle</a>&nbsp;kostenstelle)</code></th>
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenAnlegen(Logik.Services)">datenAnlegen</a></span>&#8203;(<a href="../Logik/Services.html" title="class in Logik">Services</a>&nbsp;services)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -195,12 +195,23 @@ implements <a href="DatenLogikKostenstelle.html" title="interface in DatenSchich
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenMutation(Logik.Administratives.Kostenstelle)">datenMutation</a></span>&#8203;(<a href="../Logik/Administratives/Kostenstelle.html" title="class in Logik.Administratives">Kostenstelle</a>&nbsp;kostenstelle)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenLoeschen(int)">datenLoeschen</a></span>&#8203;(int&nbsp;ID)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenMutation(Logik.Services)">datenMutation</a></span>&#8203;(<a href="../Logik/Services.html" title="class in Logik">Services</a>&nbsp;services)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#kostenstelleBezichnungAusgeben(int)">kostenstelleBezichnungAusgeben</a></span>&#8203;(int&nbsp;kostenstellenId)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#kostenstellenBezeichnungAusgeben(int)">kostenstellenBezeichnungAusgeben</a></span>&#8203;(int&nbsp;kostenstellenId)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#suchen(java.lang.String,java.lang.String)">suchen</a></span>&#8203;(java.lang.String&nbsp;suchkriterium,
+      java.lang.String&nbsp;suchText)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -209,7 +220,7 @@ implements <a href="DatenLogikKostenstelle.html" title="interface in DatenSchich
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;DatenSchicht.<a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></h3>
-<code><a href="Datenbank.html#auswertungAusgeben(java.lang.String)">auswertungAusgeben</a>, <a href="Datenbank.html#datenAuslesenfuerAbfrage(java.lang.String)">datenAuslesenfuerAbfrage</a>, <a href="Datenbank.html#datenBearbeiten(java.lang.String)">datenBearbeiten</a>, <a href="Datenbank.html#datenInDbAnlegen(java.lang.String)">datenInDbAnlegen</a>, <a href="Datenbank.html#datenListeAusgeben(java.lang.String)">datenListeAusgeben</a>, <a href="Datenbank.html#dbHashMap(java.lang.String)">dbHashMap</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,int)">storeProcedureAufrufen</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,int,DatenSchicht.STORE_PROCEDURE_KONTEXT)">storeProcedureAufrufen</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,java.lang.String,java.lang.String,DatenSchicht.STORE_PROCEDURE_KONTEXT)">storeProcedureAufrufen</a>, <a href="Datenbank.html#verbindungTesten()">verbindungTesten</a></code></li>
+<code><a href="Datenbank.html#datenAuslesenfuerAbfrage(java.lang.String)">datenAuslesenfuerAbfrage</a>, <a href="Datenbank.html#datenBearbeiten(java.lang.String)">datenBearbeiten</a>, <a href="Datenbank.html#datenInDbAnlegen(java.lang.String)">datenInDbAnlegen</a>, <a href="Datenbank.html#datenInDbSuchen(java.lang.String)">datenInDbSuchen</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,int)">storeProcedureAufrufen</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,int,DatenSchicht.STORE_PROCEDURE_KONTEXT)">storeProcedureAufrufen</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,java.lang.String,java.lang.String,java.lang.String,DatenSchicht.STORE_PROCEDURE_KONTEXT)">storeProcedureAufrufen</a>, <a href="Datenbank.html#verbindungTesten()">verbindungTesten</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -253,55 +264,82 @@ implements <a href="DatenLogikKostenstelle.html" title="interface in DatenSchich
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="datenAnlegen(Logik.Administratives.Kostenstelle)">
+<a id="datenAnlegen(Logik.Services)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>datenAnlegen</h4>
-<pre class="methodSignature">public&nbsp;boolean&nbsp;datenAnlegen&#8203;(<a href="../Logik/Administratives/Kostenstelle.html" title="class in Logik.Administratives">Kostenstelle</a>&nbsp;kostenstelle)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;datenAnlegen&#8203;(<a href="../Logik/Services.html" title="class in Logik">Services</a>&nbsp;services)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="DatenLogikKostenstelle.html#datenAnlegen(Logik.Administratives.Kostenstelle)">datenAnlegen</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikKostenstelle.html" title="interface in DatenSchicht">DatenLogikKostenstelle</a></code></dd>
+<dd><code><a href="DatenLogik.html#datenAnlegen(Logik.Services)">datenAnlegen</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</a></code></dd>
 </dl>
 </li>
 </ul>
-<a id="kostenstelleBezichnungAusgeben(int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>kostenstelleBezichnungAusgeben</h4>
-<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;kostenstelleBezichnungAusgeben&#8203;(int&nbsp;kostenstellenId)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="DatenLogikKostenstelle.html#kostenstelleBezichnungAusgeben(int)">kostenstelleBezichnungAusgeben</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikKostenstelle.html" title="interface in DatenSchicht">DatenLogikKostenstelle</a></code></dd>
-</dl>
-</li>
-</ul>
-<a id="datenMutation(Logik.Administratives.Kostenstelle)">
+<a id="datenMutation(Logik.Services)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>datenMutation</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;datenMutation&#8203;(<a href="../Logik/Administratives/Kostenstelle.html" title="class in Logik.Administratives">Kostenstelle</a>&nbsp;kostenstelle)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;datenMutation&#8203;(<a href="../Logik/Services.html" title="class in Logik">Services</a>&nbsp;services)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="DatenLogikKostenstelle.html#datenMutation(Logik.Administratives.Kostenstelle)">datenMutation</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikKostenstelle.html" title="interface in DatenSchicht">DatenLogikKostenstelle</a></code></dd>
+<dd><code><a href="DatenLogik.html#datenMutation(Logik.Services)">datenMutation</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</a></code></dd>
 </dl>
 </li>
 </ul>
 <a id="datenAuslesen(java.lang.String)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>datenAuslesen</h4>
 <pre class="methodSignature">public&nbsp;java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;&nbsp;datenAuslesen&#8203;(java.lang.String&nbsp;tabelle)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="DatenLogikKostenstelle.html#datenAuslesen(java.lang.String)">datenAuslesen</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikKostenstelle.html" title="interface in DatenSchicht">DatenLogikKostenstelle</a></code></dd>
+<dd><code><a href="DatenLogik.html#datenAuslesen(java.lang.String)">datenAuslesen</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="kostenstellenBezeichnungAusgeben(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>kostenstellenBezeichnungAusgeben</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;kostenstellenBezeichnungAusgeben&#8203;(int&nbsp;kostenstellenId)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikKostenstelle.html#kostenstellenBezeichnungAusgeben(int)">kostenstellenBezeichnungAusgeben</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikKostenstelle.html" title="interface in DatenSchicht">DatenLogikKostenstelle</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="suchen(java.lang.String,java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>suchen</h4>
+<pre class="methodSignature">public&nbsp;java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;&nbsp;suchen&#8203;(java.lang.String&nbsp;suchkriterium,
+                                                           java.lang.String&nbsp;suchText)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogik.html#suchen(java.lang.String,java.lang.String)">suchen</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="datenLoeschen(int)">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>datenLoeschen</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;datenLoeschen&#8203;(int&nbsp;ID)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogik.html#datenLoeschen(int)">datenLoeschen</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</a></code></dd>
 </dl>
 </li>
 </ul>

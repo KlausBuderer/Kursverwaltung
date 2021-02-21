@@ -13,7 +13,7 @@
 <!--[if IE]>
 <script type="text/javascript" src="../../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../../jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../../jquery/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../../jquery/jquery-ui.js"></script>
 </head>
 <body>
@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -88,13 +88,13 @@ loadScripts(document, 'script');</script>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -143,59 +143,6 @@ extends <a href="../Services.html" title="class in Logik">Services</a></pre>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
-<!-- =========== FIELD SUMMARY =========== -->
-<section role="region">
-<ul class="blockList">
-<li class="blockList"><a id="field.summary">
-<!--   -->
-</a>
-<h3>Field Summary</h3>
-<table class="memberSummary">
-<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colSecond" scope="col">Field</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#anbieter">anbieter</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#kosten">kosten</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#sprache">sprache</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#waehrung">waehrung</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#zertifikatsBeschreibung">zertifikatsBeschreibung</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#zertifikatsId">zertifikatsId</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#zertifikatsTitel">zertifikatsTitel</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-</table>
-</li>
-</ul>
-</section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <section role="region">
 <ul class="blockList">
@@ -262,16 +209,51 @@ extends <a href="../Services.html" title="class in Logik">Services</a></pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i4" class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAnbieter()">getAnbieter</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getKosten()">getKosten</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSprache()">getSprache</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getWaehrung()">getWaehrung</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getZertifikatsBeschreibung()">getZertifikatsBeschreibung</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getZertifikatsId()">getZertifikatsId</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getZertifikatsTitel()">getZertifikatsTitel</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>protected void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#objektUebergabe(Logik.Zertifikate.Zertifikate)">objektUebergabe</a></span>&#8203;(<a href="Zertifikate.html" title="class in Logik.Zertifikate">Zertifikate</a>&nbsp;zertifikat)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#untermenueAnzeigen()">untermenueAnzeigen</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -300,79 +282,6 @@ extends <a href="../Services.html" title="class in Logik">Services</a></pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
-<!-- ============ FIELD DETAIL =========== -->
-<section role="region">
-<ul class="blockList">
-<li class="blockList"><a id="field.detail">
-<!--   -->
-</a>
-<h3>Field Detail</h3>
-<a id="zertifikatsId">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>zertifikatsId</h4>
-<pre>public&nbsp;int zertifikatsId</pre>
-</li>
-</ul>
-<a id="kosten">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>kosten</h4>
-<pre>public&nbsp;int kosten</pre>
-</li>
-</ul>
-<a id="waehrung">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>waehrung</h4>
-<pre>public&nbsp;java.lang.String waehrung</pre>
-</li>
-</ul>
-<a id="zertifikatsTitel">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>zertifikatsTitel</h4>
-<pre>public&nbsp;java.lang.String zertifikatsTitel</pre>
-</li>
-</ul>
-<a id="zertifikatsBeschreibung">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>zertifikatsBeschreibung</h4>
-<pre>public&nbsp;java.lang.String zertifikatsBeschreibung</pre>
-</li>
-</ul>
-<a id="anbieter">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>anbieter</h4>
-<pre>public&nbsp;java.lang.String anbieter</pre>
-</li>
-</ul>
-<a id="sprache">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>sprache</h4>
-<pre>public&nbsp;java.lang.String sprache</pre>
-</li>
-</ul>
-</li>
-</ul>
-</section>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <section role="region">
 <ul class="blockList">
@@ -462,6 +371,19 @@ extends <a href="../Services.html" title="class in Logik">Services</a></pre>
 </dl>
 </li>
 </ul>
+<a id="attributenArrayFuerTabelle()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>attributenArrayFuerTabelle</h4>
+<pre class="methodSignature">protected&nbsp;java.lang.String[]&nbsp;attributenArrayFuerTabelle()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../Services.html#attributenArrayFuerTabelle()">attributenArrayFuerTabelle</a></code>&nbsp;in class&nbsp;<code><a href="../Services.html" title="class in Logik">Services</a></code></dd>
+</dl>
+</li>
+</ul>
 <a id="objektUebergabe(Logik.Zertifikate.Zertifikate)">
 <!--   -->
 </a>
@@ -484,17 +406,67 @@ extends <a href="../Services.html" title="class in Logik">Services</a></pre>
 </dl>
 </li>
 </ul>
-<a id="attributenArrayFuerTabelle()">
+<a id="getZertifikatsId()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getZertifikatsId</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getZertifikatsId()</pre>
+</li>
+</ul>
+<a id="getKosten()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getKosten</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getKosten()</pre>
+</li>
+</ul>
+<a id="getWaehrung()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getWaehrung</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getWaehrung()</pre>
+</li>
+</ul>
+<a id="getZertifikatsTitel()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getZertifikatsTitel</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getZertifikatsTitel()</pre>
+</li>
+</ul>
+<a id="getZertifikatsBeschreibung()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getZertifikatsBeschreibung</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getZertifikatsBeschreibung()</pre>
+</li>
+</ul>
+<a id="getAnbieter()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getAnbieter</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getAnbieter()</pre>
+</li>
+</ul>
+<a id="getSprache()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>attributenArrayFuerTabelle</h4>
-<pre class="methodSignature">protected&nbsp;java.lang.String[]&nbsp;attributenArrayFuerTabelle()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../Services.html#attributenArrayFuerTabelle()">attributenArrayFuerTabelle</a></code>&nbsp;in class&nbsp;<code><a href="../Services.html" title="class in Logik">Services</a></code></dd>
-</dl>
+<h4>getSprache</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getSprache()</pre>
 </li>
 </ul>
 </li>
@@ -549,13 +521,13 @@ extends <a href="../Services.html" title="class in Logik">Services</a></pre>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>

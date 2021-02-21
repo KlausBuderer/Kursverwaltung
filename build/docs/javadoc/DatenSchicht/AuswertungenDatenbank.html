@@ -13,7 +13,7 @@
 <!--[if IE]>
 <script type="text/javascript" src="../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../jquery/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../jquery/jquery-ui.js"></script>
 </head>
 <body>
@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -134,9 +134,14 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <div class="description">
 <ul class="blockList">
 <li class="blockList">
+<dl>
+<dt>All Implemented Interfaces:</dt>
+<dd><code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
+</dl>
 <hr>
 <pre>public class <span class="typeNameLabel">AuswertungenDatenbank</span>
-extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pre>
+extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a>
+implements <a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></pre>
 </li>
 </ul>
 </div>
@@ -184,77 +189,110 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><code>java.util.List&lt;<a href="../Logik/Auswertungen/KostenstellenAlle.html" title="class in Logik.Auswertungen">KostenstellenAlle</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ausfuehrenKostenstellenAlle(java.sql.ResultSet)">ausfuehrenKostenstellenAlle</a></span>&#8203;(java.sql.ResultSet&nbsp;dbInhalt)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="../Logik/Auswertungen/KurseAlleMitarbeiter.html" title="class in Logik.Auswertungen">KurseAlleMitarbeiter</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ausfuehrenKurseAlleMitarbeiter(java.sql.ResultSet)">ausfuehrenKurseAlleMitarbeiter</a></span>&#8203;(java.sql.ResultSet&nbsp;dbInhalt)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>java.util.List&lt;<a href="../Logik/Auswertungen/KurseProAnbieterKostenstellenZeitraum.html" title="class in Logik.Auswertungen">KurseProAnbieterKostenstellenZeitraum</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ausfuehrenKurseProAnbieterKostenstellenZeitraums(java.sql.ResultSet)">ausfuehrenKurseProAnbieterKostenstellenZeitraums</a></span>&#8203;(java.sql.ResultSet&nbsp;dbInhalt)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>java.util.HashMap&lt;<a href="../Logik/Auswertungen/KursProMitarbeiter.html" title="class in Logik.Auswertungen">KursProMitarbeiter</a>,&#8203;java.lang.Integer&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ausfuehrenKursProMitarbeiter(java.sql.ResultSet)">ausfuehrenKursProMitarbeiter</a></span>&#8203;(java.sql.ResultSet&nbsp;dbInhalt)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>java.util.List&lt;<a href="../Logik/Auswertungen/KurseProAnbieterSelektivKostenstelleZeitraum.html" title="class in Logik.Auswertungen">KurseProAnbieterSelektivKostenstelleZeitraum</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ausfuehrenProAnbieterSelektivKostenstelleZeitraum(java.sql.ResultSet)">ausfuehrenProAnbieterSelektivKostenstelleZeitraum</a></span>&#8203;(java.sql.ResultSet&nbsp;dbInhalt)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="../Logik/Auswertungen/StammdatenAlleMitarbeiter.html" title="class in Logik.Auswertungen">StammdatenAlleMitarbeiter</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ausfuehrenStammdatenAlleMitarbeiter(java.sql.ResultSet)">ausfuehrenStammdatenAlleMitarbeiter</a></span>&#8203;(java.sql.ResultSet&nbsp;dbInhalt)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="../Logik/Auswertungen/WeiterbildungAlleMitarbeiterZeitraum.html" title="class in Logik.Auswertungen">WeiterbildungAlleMitarbeiterZeitraum</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ausfuehrenWeiterbildungAlleMitarbeiterZeitraum(java.sql.ResultSet)">ausfuehrenWeiterbildungAlleMitarbeiterZeitraum</a></span>&#8203;(java.sql.ResultSet&nbsp;dbInhalt)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="../Logik/Auswertungen/ZertifikateAlleMitarbeiter.html" title="class in Logik.Auswertungen">ZertifikateAlleMitarbeiter</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ausfuehrenZertifikateAlleMitarbeiter(java.sql.ResultSet)">ausfuehrenZertifikateAlleMitarbeiter</a></span>&#8203;(java.sql.ResultSet&nbsp;dbInhalt)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="../Logik/Auswertungen/ZertifikateAlleMitarbeiterGueltigkeit.html" title="class in Logik.Auswertungen">ZertifikateAlleMitarbeiterGueltigkeit</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ausfuehrenZertifikateAlleMitarbeiterGueltigkeit(java.sql.ResultSet)">ausfuehrenZertifikateAlleMitarbeiterGueltigkeit</a></span>&#8203;(java.sql.ResultSet&nbsp;dbInhalt)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>java.util.HashMap&lt;<a href="../Logik/Auswertungen/ZertifikatProMitarbeiter.html" title="class in Logik.Auswertungen">ZertifikatProMitarbeiter</a>,&#8203;java.lang.Integer&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#ausfuehrenZertifikatProMitarbeiter(java.sql.ResultSet)">ausfuehrenZertifikatProMitarbeiter</a></span>&#8203;(java.sql.ResultSet&nbsp;dbInhalt)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>java.util.List</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#storeproduceBudgetAlleKostenstellen()">storeproduceBudgetAlleKostenstellen</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i12" class="altColor">
+<td class="colFirst"><code>java.util.List</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#storeproduceKostenstellenAlle()">storeproduceKostenstellenAlle</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>java.util.List</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#storeproduceKurseAlleMitarbeiter()">storeproduceKurseAlleMitarbeiter</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i14" class="altColor">
+<td class="colFirst"><code>java.util.List</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#storeproduceKurseProAnbieterKostenstellenZeitraum(java.lang.String,java.lang.String)">storeproduceKurseProAnbieterKostenstellenZeitraum</a></span>&#8203;(java.lang.String&nbsp;datumVon,
+                                                 java.lang.String&nbsp;datumBis)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>java.util.HashMap&lt;<a href="../Logik/Auswertungen/KursProMitarbeiter.html" title="class in Logik.Auswertungen">KursProMitarbeiter</a>,&#8203;java.lang.Integer&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#storeproduceKursproMitarbeiter(int)">storeproduceKursproMitarbeiter</a></span>&#8203;(int&nbsp;mitarbeiterID)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i16" class="altColor">
+<td class="colFirst"><code>java.util.List</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#storeproduceProAnbieterSelektivKostenstelleZeitraum(java.lang.String,java.lang.String,java.lang.String)">storeproduceProAnbieterSelektivKostenstelleZeitraum</a></span>&#8203;(java.lang.String&nbsp;datumVon,
+                                                   java.lang.String&nbsp;datumBis,
+                                                   java.lang.String&nbsp;kostenstelle)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>java.util.List</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#storeproduceStammdatenAlleMitarbeiter()">storeproduceStammdatenAlleMitarbeiter</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>java.util.List</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#storeproduceWeiterbildungAlleMitarbeiterZeitraum(java.lang.String,java.lang.String)">storeproduceWeiterbildungAlleMitarbeiterZeitraum</a></span>&#8203;(java.lang.String&nbsp;datumVon,
                                                 java.lang.String&nbsp;datumBis)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>java.util.List</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#storeproduceZertifikateAlleMitarbeiter()">storeproduceZertifikateAlleMitarbeiter</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>java.util.List</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#storeproduceZertifikateAlleMitarbeiterGueltigkeit(java.lang.String)">storeproduceZertifikateAlleMitarbeiterGueltigkeit</a></span>&#8203;(java.lang.String&nbsp;datumBis)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code>java.util.HashMap&lt;<a href="../Logik/Auswertungen/ZertifikatProMitarbeiter.html" title="class in Logik.Auswertungen">ZertifikatProMitarbeiter</a>,&#8203;java.lang.Integer&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#storeproduceZertifikatproMitarbeiter(int)">storeproduceZertifikatproMitarbeiter</a></span>&#8203;(int&nbsp;mitarbeiterID)</code></th>
 <td class="colLast">&nbsp;</td>
@@ -265,7 +303,7 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;DatenSchicht.<a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></h3>
-<code><a href="Datenbank.html#auswertungAusgeben(java.lang.String)">auswertungAusgeben</a>, <a href="Datenbank.html#datenAuslesenfuerAbfrage(java.lang.String)">datenAuslesenfuerAbfrage</a>, <a href="Datenbank.html#datenBearbeiten(java.lang.String)">datenBearbeiten</a>, <a href="Datenbank.html#datenInDbAnlegen(java.lang.String)">datenInDbAnlegen</a>, <a href="Datenbank.html#datenListeAusgeben(java.lang.String)">datenListeAusgeben</a>, <a href="Datenbank.html#dbHashMap(java.lang.String)">dbHashMap</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,int)">storeProcedureAufrufen</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,int,DatenSchicht.STORE_PROCEDURE_KONTEXT)">storeProcedureAufrufen</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,java.lang.String,java.lang.String,DatenSchicht.STORE_PROCEDURE_KONTEXT)">storeProcedureAufrufen</a>, <a href="Datenbank.html#verbindungTesten()">verbindungTesten</a></code></li>
+<code><a href="Datenbank.html#datenAuslesenfuerAbfrage(java.lang.String)">datenAuslesenfuerAbfrage</a>, <a href="Datenbank.html#datenBearbeiten(java.lang.String)">datenBearbeiten</a>, <a href="Datenbank.html#datenInDbAnlegen(java.lang.String)">datenInDbAnlegen</a>, <a href="Datenbank.html#datenInDbSuchen(java.lang.String)">datenInDbSuchen</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,int)">storeProcedureAufrufen</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,int,DatenSchicht.STORE_PROCEDURE_KONTEXT)">storeProcedureAufrufen</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,java.lang.String,java.lang.String,java.lang.String,DatenSchicht.STORE_PROCEDURE_KONTEXT)">storeProcedureAufrufen</a>, <a href="Datenbank.html#verbindungTesten()">verbindungTesten</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -309,6 +347,20 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="storeproduceKurseProAnbieterKostenstellenZeitraum(java.lang.String,java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>storeproduceKurseProAnbieterKostenstellenZeitraum</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&nbsp;storeproduceKurseProAnbieterKostenstellenZeitraum&#8203;(java.lang.String&nbsp;datumVon,
+                                                                        java.lang.String&nbsp;datumBis)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#storeproduceKurseProAnbieterKostenstellenZeitraum(java.lang.String,java.lang.String)">storeproduceKurseProAnbieterKostenstellenZeitraum</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
+</dl>
+</li>
+</ul>
 <a id="storeproduceWeiterbildungAlleMitarbeiterZeitraum(java.lang.String,java.lang.String)">
 <!--   -->
 </a>
@@ -317,6 +369,21 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <h4>storeproduceWeiterbildungAlleMitarbeiterZeitraum</h4>
 <pre class="methodSignature">public&nbsp;java.util.List&nbsp;storeproduceWeiterbildungAlleMitarbeiterZeitraum&#8203;(java.lang.String&nbsp;datumVon,
                                                                        java.lang.String&nbsp;datumBis)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#storeproduceWeiterbildungAlleMitarbeiterZeitraum(java.lang.String,java.lang.String)">storeproduceWeiterbildungAlleMitarbeiterZeitraum</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="storeproduceProAnbieterSelektivKostenstelleZeitraum(java.lang.String,java.lang.String,java.lang.String)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>storeproduceProAnbieterSelektivKostenstelleZeitraum</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&nbsp;storeproduceProAnbieterSelektivKostenstelleZeitraum&#8203;(java.lang.String&nbsp;datumVon,
+                                                                          java.lang.String&nbsp;datumBis,
+                                                                          java.lang.String&nbsp;kostenstelle)</pre>
 </li>
 </ul>
 <a id="storeproduceZertifikateAlleMitarbeiter()">
@@ -326,6 +393,10 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <li class="blockList">
 <h4>storeproduceZertifikateAlleMitarbeiter</h4>
 <pre class="methodSignature">public&nbsp;java.util.List&nbsp;storeproduceZertifikateAlleMitarbeiter()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#storeproduceZertifikateAlleMitarbeiter()">storeproduceZertifikateAlleMitarbeiter</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
+</dl>
 </li>
 </ul>
 <a id="storeproduceStammdatenAlleMitarbeiter()">
@@ -335,6 +406,10 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <li class="blockList">
 <h4>storeproduceStammdatenAlleMitarbeiter</h4>
 <pre class="methodSignature">public&nbsp;java.util.List&nbsp;storeproduceStammdatenAlleMitarbeiter()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#storeproduceStammdatenAlleMitarbeiter()">storeproduceStammdatenAlleMitarbeiter</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
+</dl>
 </li>
 </ul>
 <a id="storeproduceKurseAlleMitarbeiter()">
@@ -344,6 +419,10 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <li class="blockList">
 <h4>storeproduceKurseAlleMitarbeiter</h4>
 <pre class="methodSignature">public&nbsp;java.util.List&nbsp;storeproduceKurseAlleMitarbeiter()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#storeproduceKurseAlleMitarbeiter()">storeproduceKurseAlleMitarbeiter</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
+</dl>
 </li>
 </ul>
 <a id="storeproduceBudgetAlleKostenstellen()">
@@ -353,6 +432,23 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <li class="blockList">
 <h4>storeproduceBudgetAlleKostenstellen</h4>
 <pre class="methodSignature">public&nbsp;java.util.List&nbsp;storeproduceBudgetAlleKostenstellen()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#storeproduceBudgetAlleKostenstellen()">storeproduceBudgetAlleKostenstellen</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="storeproduceKostenstellenAlle()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>storeproduceKostenstellenAlle</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&nbsp;storeproduceKostenstellenAlle()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#storeproduceKostenstellenAlle()">storeproduceKostenstellenAlle</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
+</dl>
 </li>
 </ul>
 <a id="storeproduceZertifikateAlleMitarbeiterGueltigkeit(java.lang.String)">
@@ -362,6 +458,10 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <li class="blockList">
 <h4>storeproduceZertifikateAlleMitarbeiterGueltigkeit</h4>
 <pre class="methodSignature">public&nbsp;java.util.List&nbsp;storeproduceZertifikateAlleMitarbeiterGueltigkeit&#8203;(java.lang.String&nbsp;datumBis)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#storeproduceZertifikateAlleMitarbeiterGueltigkeit(java.lang.String)">storeproduceZertifikateAlleMitarbeiterGueltigkeit</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
+</dl>
 </li>
 </ul>
 <a id="storeproduceKursproMitarbeiter(int)">
@@ -371,6 +471,10 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <li class="blockList">
 <h4>storeproduceKursproMitarbeiter</h4>
 <pre class="methodSignature">public&nbsp;java.util.HashMap&lt;<a href="../Logik/Auswertungen/KursProMitarbeiter.html" title="class in Logik.Auswertungen">KursProMitarbeiter</a>,&#8203;java.lang.Integer&gt;&nbsp;storeproduceKursproMitarbeiter&#8203;(int&nbsp;mitarbeiterID)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#storeproduceKursproMitarbeiter(int)">storeproduceKursproMitarbeiter</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
+</dl>
 </li>
 </ul>
 <a id="storeproduceZertifikatproMitarbeiter(int)">
@@ -380,6 +484,10 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <li class="blockList">
 <h4>storeproduceZertifikatproMitarbeiter</h4>
 <pre class="methodSignature">public&nbsp;java.util.HashMap&lt;<a href="../Logik/Auswertungen/ZertifikatProMitarbeiter.html" title="class in Logik.Auswertungen">ZertifikatProMitarbeiter</a>,&#8203;java.lang.Integer&gt;&nbsp;storeproduceZertifikatproMitarbeiter&#8203;(int&nbsp;mitarbeiterID)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#storeproduceZertifikatproMitarbeiter(int)">storeproduceZertifikatproMitarbeiter</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
+</dl>
 </li>
 </ul>
 <a id="ausfuehrenWeiterbildungAlleMitarbeiterZeitraum(java.sql.ResultSet)">
@@ -391,6 +499,38 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="../Logik/Auswertungen/WeiterbildungAlleMitarbeiterZeitraum.html" title="class in Logik.Auswertungen">WeiterbildungAlleMitarbeiterZeitraum</a>&gt;&nbsp;ausfuehrenWeiterbildungAlleMitarbeiterZeitraum&#8203;(java.sql.ResultSet&nbsp;dbInhalt)
                                                                                                     throws java.sql.SQLException</pre>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#ausfuehrenWeiterbildungAlleMitarbeiterZeitraum(java.sql.ResultSet)">ausfuehrenWeiterbildungAlleMitarbeiterZeitraum</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.sql.SQLException</code></dd>
+</dl>
+</li>
+</ul>
+<a id="ausfuehrenProAnbieterSelektivKostenstelleZeitraum(java.sql.ResultSet)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ausfuehrenProAnbieterSelektivKostenstelleZeitraum</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="../Logik/Auswertungen/KurseProAnbieterSelektivKostenstelleZeitraum.html" title="class in Logik.Auswertungen">KurseProAnbieterSelektivKostenstelleZeitraum</a>&gt;&nbsp;ausfuehrenProAnbieterSelektivKostenstelleZeitraum&#8203;(java.sql.ResultSet&nbsp;dbInhalt)
+                                                                                                               throws java.sql.SQLException</pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.sql.SQLException</code></dd>
+</dl>
+</li>
+</ul>
+<a id="ausfuehrenKurseProAnbieterKostenstellenZeitraums(java.sql.ResultSet)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ausfuehrenKurseProAnbieterKostenstellenZeitraums</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="../Logik/Auswertungen/KurseProAnbieterKostenstellenZeitraum.html" title="class in Logik.Auswertungen">KurseProAnbieterKostenstellenZeitraum</a>&gt;&nbsp;ausfuehrenKurseProAnbieterKostenstellenZeitraums&#8203;(java.sql.ResultSet&nbsp;dbInhalt)
+                                                                                                       throws java.sql.SQLException</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#ausfuehrenKurseProAnbieterKostenstellenZeitraums(java.sql.ResultSet)">ausfuehrenKurseProAnbieterKostenstellenZeitraums</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.sql.SQLException</code></dd>
 </dl>
@@ -405,6 +545,8 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="../Logik/Auswertungen/ZertifikateAlleMitarbeiter.html" title="class in Logik.Auswertungen">ZertifikateAlleMitarbeiter</a>&gt;&nbsp;ausfuehrenZertifikateAlleMitarbeiter&#8203;(java.sql.ResultSet&nbsp;dbInhalt)
                                                                                 throws java.sql.SQLException</pre>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#ausfuehrenZertifikateAlleMitarbeiter(java.sql.ResultSet)">ausfuehrenZertifikateAlleMitarbeiter</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.sql.SQLException</code></dd>
 </dl>
@@ -419,6 +561,8 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="../Logik/Auswertungen/StammdatenAlleMitarbeiter.html" title="class in Logik.Auswertungen">StammdatenAlleMitarbeiter</a>&gt;&nbsp;ausfuehrenStammdatenAlleMitarbeiter&#8203;(java.sql.ResultSet&nbsp;dbInhalt)
                                                                               throws java.sql.SQLException</pre>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#ausfuehrenStammdatenAlleMitarbeiter(java.sql.ResultSet)">ausfuehrenStammdatenAlleMitarbeiter</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.sql.SQLException</code></dd>
 </dl>
@@ -433,6 +577,8 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="../Logik/Auswertungen/KurseAlleMitarbeiter.html" title="class in Logik.Auswertungen">KurseAlleMitarbeiter</a>&gt;&nbsp;ausfuehrenKurseAlleMitarbeiter&#8203;(java.sql.ResultSet&nbsp;dbInhalt)
                                                                     throws java.sql.SQLException</pre>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#ausfuehrenKurseAlleMitarbeiter(java.sql.ResultSet)">ausfuehrenKurseAlleMitarbeiter</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.sql.SQLException</code></dd>
 </dl>
@@ -447,6 +593,24 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="../Logik/Auswertungen/BudgetAlleKostenstellen.html" title="class in Logik.Auswertungen">BudgetAlleKostenstellen</a>&gt;&nbsp;ausfuehrenBudgetAlleKostenstellen&#8203;(java.sql.ResultSet&nbsp;dbInhalt)
                                                                           throws java.sql.SQLException</pre>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#ausfuehrenBudgetAlleKostenstellen(java.sql.ResultSet)">ausfuehrenBudgetAlleKostenstellen</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.sql.SQLException</code></dd>
+</dl>
+</li>
+</ul>
+<a id="ausfuehrenKostenstellenAlle(java.sql.ResultSet)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>ausfuehrenKostenstellenAlle</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="../Logik/Auswertungen/KostenstellenAlle.html" title="class in Logik.Auswertungen">KostenstellenAlle</a>&gt;&nbsp;ausfuehrenKostenstellenAlle&#8203;(java.sql.ResultSet&nbsp;dbInhalt)
+                                                              throws java.sql.SQLException</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#ausfuehrenKostenstellenAlle(java.sql.ResultSet)">ausfuehrenKostenstellenAlle</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.sql.SQLException</code></dd>
 </dl>
@@ -461,6 +625,8 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <pre class="methodSignature">public&nbsp;java.util.List&lt;<a href="../Logik/Auswertungen/ZertifikateAlleMitarbeiterGueltigkeit.html" title="class in Logik.Auswertungen">ZertifikateAlleMitarbeiterGueltigkeit</a>&gt;&nbsp;ausfuehrenZertifikateAlleMitarbeiterGueltigkeit&#8203;(java.sql.ResultSet&nbsp;dbInhalt)
                                                                                                       throws java.sql.SQLException</pre>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#ausfuehrenZertifikateAlleMitarbeiterGueltigkeit(java.sql.ResultSet)">ausfuehrenZertifikateAlleMitarbeiterGueltigkeit</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.sql.SQLException</code></dd>
 </dl>
@@ -475,6 +641,8 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <pre class="methodSignature">public&nbsp;java.util.HashMap&lt;<a href="../Logik/Auswertungen/KursProMitarbeiter.html" title="class in Logik.Auswertungen">KursProMitarbeiter</a>,&#8203;java.lang.Integer&gt;&nbsp;ausfuehrenKursProMitarbeiter&#8203;(java.sql.ResultSet&nbsp;dbInhalt)
                                                                                            throws java.sql.SQLException</pre>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#ausfuehrenKursProMitarbeiter(java.sql.ResultSet)">ausfuehrenKursProMitarbeiter</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.sql.SQLException</code></dd>
 </dl>
@@ -489,6 +657,8 @@ extends <a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></pr
 <pre class="methodSignature">public&nbsp;java.util.HashMap&lt;<a href="../Logik/Auswertungen/ZertifikatProMitarbeiter.html" title="class in Logik.Auswertungen">ZertifikatProMitarbeiter</a>,&#8203;java.lang.Integer&gt;&nbsp;ausfuehrenZertifikatProMitarbeiter&#8203;(java.sql.ResultSet&nbsp;dbInhalt)
                                                                                                        throws java.sql.SQLException</pre>
 <dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikAuswertungen.html#ausfuehrenZertifikatProMitarbeiter(java.sql.ResultSet)">ausfuehrenZertifikatProMitarbeiter</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikAuswertungen.html" title="interface in DatenSchicht">DatenLogikAuswertungen</a></code></dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.sql.SQLException</code></dd>
 </dl>

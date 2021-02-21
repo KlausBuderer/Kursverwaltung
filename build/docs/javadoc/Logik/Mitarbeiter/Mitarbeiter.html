@@ -13,7 +13,7 @@
 <!--[if IE]>
 <script type="text/javascript" src="../../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../../jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../../jquery/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../../jquery/jquery-ui.js"></script>
 </head>
 <body>
@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -88,13 +88,13 @@ loadScripts(document, 'script');</script>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>
@@ -143,69 +143,6 @@ extends <a href="../Services.html" title="class in Logik">Services</a></pre>
 <div class="summary">
 <ul class="blockList">
 <li class="blockList">
-<!-- =========== FIELD SUMMARY =========== -->
-<section role="region">
-<ul class="blockList">
-<li class="blockList"><a id="field.summary">
-<!--   -->
-</a>
-<h3>Field Summary</h3>
-<table class="memberSummary">
-<caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
-<tr>
-<th class="colFirst" scope="col">Modifier and Type</th>
-<th class="colSecond" scope="col">Field</th>
-<th class="colLast" scope="col">Description</th>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#anrede">anrede</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#geburtstag">geburtstag</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#jobTitel">jobTitel</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#kostenstelleId">kostenstelleId</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mitarbeiterId">mitarbeiterId</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mitarbeiterStatus">mitarbeiterStatus</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nachname">nachname</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#personalNummer">personalNummer</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#vorname">vorname</a></span></code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-</table>
-</li>
-</ul>
-</section>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <section role="region">
 <ul class="blockList">
@@ -275,10 +212,55 @@ extends <a href="../Services.html" title="class in Logik">Services</a></pre>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAnrede()">getAnrede</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i5" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGeburtstag()">getGeburtstag</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getJobTitel()">getJobTitel</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getKostenstelleId()">getKostenstelleId</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMitarbeiterId()">getMitarbeiterId</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMitarbeiterStatus()">getMitarbeiterStatus</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i10" class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNachname()">getNachname</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPersonalNummer()">getPersonalNummer</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i12" class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVorname()">getVorname</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i13" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#untermenueAnzeigen()">untermenueAnzeigen</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -307,97 +289,6 @@ extends <a href="../Services.html" title="class in Logik">Services</a></pre>
 <div class="details">
 <ul class="blockList">
 <li class="blockList">
-<!-- ============ FIELD DETAIL =========== -->
-<section role="region">
-<ul class="blockList">
-<li class="blockList"><a id="field.detail">
-<!--   -->
-</a>
-<h3>Field Detail</h3>
-<a id="mitarbeiterId">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>mitarbeiterId</h4>
-<pre>public&nbsp;int mitarbeiterId</pre>
-</li>
-</ul>
-<a id="personalNummer">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>personalNummer</h4>
-<pre>public&nbsp;int personalNummer</pre>
-</li>
-</ul>
-<a id="kostenstelleId">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>kostenstelleId</h4>
-<pre>public&nbsp;int kostenstelleId</pre>
-</li>
-</ul>
-<a id="anrede">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>anrede</h4>
-<pre>public&nbsp;java.lang.String anrede</pre>
-</li>
-</ul>
-<a id="vorname">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>vorname</h4>
-<pre>public&nbsp;java.lang.String vorname</pre>
-</li>
-</ul>
-<a id="nachname">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>nachname</h4>
-<pre>public&nbsp;java.lang.String nachname</pre>
-</li>
-</ul>
-<a id="jobTitel">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>jobTitel</h4>
-<pre>public&nbsp;java.lang.String jobTitel</pre>
-</li>
-</ul>
-<a id="geburtstag">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>geburtstag</h4>
-<pre>public&nbsp;java.lang.String geburtstag</pre>
-</li>
-</ul>
-<a id="mitarbeiterStatus">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>mitarbeiterStatus</h4>
-<pre>public&nbsp;java.lang.String mitarbeiterStatus</pre>
-</li>
-</ul>
-</li>
-</ul>
-</section>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <section role="region">
 <ul class="blockList">
@@ -489,6 +380,19 @@ extends <a href="../Services.html" title="class in Logik">Services</a></pre>
 </dl>
 </li>
 </ul>
+<a id="attributenArrayFuerTabelle()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>attributenArrayFuerTabelle</h4>
+<pre class="methodSignature">protected&nbsp;java.lang.String[]&nbsp;attributenArrayFuerTabelle()</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="../Services.html#attributenArrayFuerTabelle()">attributenArrayFuerTabelle</a></code>&nbsp;in class&nbsp;<code><a href="../Services.html" title="class in Logik">Services</a></code></dd>
+</dl>
+</li>
+</ul>
 <a id="toString()">
 <!--   -->
 </a>
@@ -502,17 +406,85 @@ extends <a href="../Services.html" title="class in Logik">Services</a></pre>
 </dl>
 </li>
 </ul>
-<a id="attributenArrayFuerTabelle()">
+<a id="getMitarbeiterId()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getMitarbeiterId</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getMitarbeiterId()</pre>
+</li>
+</ul>
+<a id="getPersonalNummer()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getPersonalNummer</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getPersonalNummer()</pre>
+</li>
+</ul>
+<a id="getKostenstelleId()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getKostenstelleId</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getKostenstelleId()</pre>
+</li>
+</ul>
+<a id="getAnrede()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getAnrede</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getAnrede()</pre>
+</li>
+</ul>
+<a id="getVorname()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getVorname</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getVorname()</pre>
+</li>
+</ul>
+<a id="getNachname()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getNachname</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getNachname()</pre>
+</li>
+</ul>
+<a id="getJobTitel()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getJobTitel</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getJobTitel()</pre>
+</li>
+</ul>
+<a id="getGeburtstag()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getGeburtstag</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getGeburtstag()</pre>
+</li>
+</ul>
+<a id="getMitarbeiterStatus()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>attributenArrayFuerTabelle</h4>
-<pre class="methodSignature">protected&nbsp;java.lang.String[]&nbsp;attributenArrayFuerTabelle()</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="../Services.html#attributenArrayFuerTabelle()">attributenArrayFuerTabelle</a></code>&nbsp;in class&nbsp;<code><a href="../Services.html" title="class in Logik">Services</a></code></dd>
-</dl>
+<h4>getMitarbeiterStatus</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;getMitarbeiterStatus()</pre>
 </li>
 </ul>
 </li>
@@ -567,13 +539,13 @@ extends <a href="../Services.html" title="class in Logik">Services</a></pre>
 <ul class="subNavList">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li><a href="#field.summary">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.summary">Method</a></li>
 </ul>
 <ul class="subNavList">
 <li>Detail:&nbsp;</li>
-<li><a href="#field.detail">Field</a>&nbsp;|&nbsp;</li>
+<li>Field&nbsp;|&nbsp;</li>
 <li><a href="#constructor.detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method.detail">Method</a></li>
 </ul>

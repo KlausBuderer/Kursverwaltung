@@ -13,7 +13,7 @@
 <!--[if IE]>
 <script type="text/javascript" src="../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../jquery/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../jquery/jquery-ui.js"></script>
 </head>
 <body>
@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -185,60 +185,69 @@ implements <a href="DatenLogikMitarbeiter.html" title="interface in DatenSchicht
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenMutation(Logik.Mitarbeiter.Mitarbeiter)">datenMutation</a></span>&#8203;(<a href="../Logik/Mitarbeiter/Mitarbeiter.html" title="class in Logik.Mitarbeiter">Mitarbeiter</a>&nbsp;mitarbeiter)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenAnlegen(Logik.Services)">datenAnlegen</a></span>&#8203;(<a href="../Logik/Services.html" title="class in Logik">Services</a>&nbsp;services)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mitarbeiterAnlegen(Logik.Mitarbeiter.Mitarbeiter)">mitarbeiterAnlegen</a></span>&#8203;(<a href="../Logik/Mitarbeiter/Mitarbeiter.html" title="class in Logik.Mitarbeiter">Mitarbeiter</a>&nbsp;mitarbeiter)</code></th>
+<td class="colFirst"><code>java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenAuslesen(java.lang.String)">datenAuslesen</a></span>&#8203;(java.lang.String&nbsp;tabelle)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenLoeschen(int)">datenLoeschen</a></span>&#8203;(int&nbsp;mitarbeiterId)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenMutation(Logik.Services)">datenMutation</a></span>&#8203;(<a href="../Logik/Services.html" title="class in Logik">Services</a>&nbsp;services)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#kursZuweisungQuerry(Logik.Mitarbeiter.MitarbeiterBescheinigung)">kursZuweisungQuerry</a></span>&#8203;(<a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.html" title="class in Logik.Mitarbeiter">MitarbeiterBescheinigung</a>&nbsp;mitarbeiterBescheinigung)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mitarbeiterBescheinigungAnlegen(Logik.Mitarbeiter.MitarbeiterBescheinigung,Logik.Mitarbeiter.MitarbeiterBescheinigung.kontextAnlegen)">mitarbeiterBescheinigungAnlegen</a></span>&#8203;(<a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.html" title="class in Logik.Mitarbeiter">MitarbeiterBescheinigung</a>&nbsp;mitarbeiterBescheinigung,
                                <a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.kontextAnlegen.html" title="enum in Logik.Mitarbeiter">MitarbeiterBescheinigung.kontextAnlegen</a>&nbsp;kontext)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
-<td class="colFirst"><code>java.util.HashMap</code></td>
+<tr id="i6" class="altColor">
+<td class="colFirst"><code>protected java.util.HashMap</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mitarbeiterListeErstellen(java.sql.ResultSet)">mitarbeiterListeErstellen</a></span>&#8203;(java.sql.ResultSet&nbsp;dbInhalt)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#mitarbeiterLoeschen(int)">mitarbeiterLoeschen</a></span>&#8203;(int&nbsp;mitarbeiterId)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#nummerAufExistenzPruefen(int)">nummerAufExistenzPruefen</a></span>&#8203;(int&nbsp;mitarbeiterId)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#queryFuerAnzahlAbfrage(java.lang.String,java.lang.String)">queryFuerAnzahlAbfrage</a></span>&#8203;(java.lang.String&nbsp;suchkriterium,
-                      java.lang.String&nbsp;suchText)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#suchen(java.lang.String,java.lang.String)">suchen</a></span>&#8203;(java.lang.String&nbsp;suchkriterium,
       java.lang.String&nbsp;suchText)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
-<td class="colFirst"><code>java.util.HashMap</code></td>
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>protected java.util.HashMap</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#zertifikatVerlaengern(java.sql.ResultSet)">zertifikatVerlaengern</a></span>&#8203;(java.sql.ResultSet&nbsp;dbInhalt)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>java.util.HashMap</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#zertifikatVerlaengernListe(int)">zertifikatVerlaengernListe</a></span>&#8203;(int&nbsp;mitarbeiterId)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#zertifikatVerlaengernSpeichern(Logik.Mitarbeiter.MitarbeiterBescheinigung)">zertifikatVerlaengernSpeichern</a></span>&#8203;(<a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.html" title="class in Logik.Mitarbeiter">MitarbeiterBescheinigung</a>&nbsp;mitarbeiterBescheinigung)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i12" class="altColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#zertifikatZuweisungQuerry(Logik.Mitarbeiter.MitarbeiterBescheinigung)">zertifikatZuweisungQuerry</a></span>&#8203;(<a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.html" title="class in Logik.Mitarbeiter">MitarbeiterBescheinigung</a>&nbsp;mitarbeiterBescheinigung)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 </table>
@@ -247,7 +256,7 @@ implements <a href="DatenLogikMitarbeiter.html" title="interface in DatenSchicht
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;DatenSchicht.<a href="Datenbank.html" title="class in DatenSchicht">Datenbank</a></h3>
-<code><a href="Datenbank.html#auswertungAusgeben(java.lang.String)">auswertungAusgeben</a>, <a href="Datenbank.html#datenAuslesenfuerAbfrage(java.lang.String)">datenAuslesenfuerAbfrage</a>, <a href="Datenbank.html#datenBearbeiten(java.lang.String)">datenBearbeiten</a>, <a href="Datenbank.html#datenInDbAnlegen(java.lang.String)">datenInDbAnlegen</a>, <a href="Datenbank.html#datenListeAusgeben(java.lang.String)">datenListeAusgeben</a>, <a href="Datenbank.html#dbHashMap(java.lang.String)">dbHashMap</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,int)">storeProcedureAufrufen</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,int,DatenSchicht.STORE_PROCEDURE_KONTEXT)">storeProcedureAufrufen</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,java.lang.String,java.lang.String,DatenSchicht.STORE_PROCEDURE_KONTEXT)">storeProcedureAufrufen</a>, <a href="Datenbank.html#verbindungTesten()">verbindungTesten</a></code></li>
+<code><a href="Datenbank.html#datenAuslesenfuerAbfrage(java.lang.String)">datenAuslesenfuerAbfrage</a>, <a href="Datenbank.html#datenBearbeiten(java.lang.String)">datenBearbeiten</a>, <a href="Datenbank.html#datenInDbAnlegen(java.lang.String)">datenInDbAnlegen</a>, <a href="Datenbank.html#datenInDbSuchen(java.lang.String)">datenInDbSuchen</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,int)">storeProcedureAufrufen</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,int,DatenSchicht.STORE_PROCEDURE_KONTEXT)">storeProcedureAufrufen</a>, <a href="Datenbank.html#storeProcedureAufrufen(java.lang.String,java.lang.String,java.lang.String,java.lang.String,DatenSchicht.STORE_PROCEDURE_KONTEXT)">storeProcedureAufrufen</a>, <a href="Datenbank.html#verbindungTesten()">verbindungTesten</a></code></li>
 </ul>
 <ul class="blockList">
 <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
@@ -291,16 +300,29 @@ implements <a href="DatenLogikMitarbeiter.html" title="interface in DatenSchicht
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="mitarbeiterAnlegen(Logik.Mitarbeiter.Mitarbeiter)">
+<a id="datenAnlegen(Logik.Services)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>mitarbeiterAnlegen</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;mitarbeiterAnlegen&#8203;(<a href="../Logik/Mitarbeiter/Mitarbeiter.html" title="class in Logik.Mitarbeiter">Mitarbeiter</a>&nbsp;mitarbeiter)</pre>
+<h4>datenAnlegen</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;datenAnlegen&#8203;(<a href="../Logik/Services.html" title="class in Logik">Services</a>&nbsp;services)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="DatenLogikMitarbeiter.html#mitarbeiterAnlegen(Logik.Mitarbeiter.Mitarbeiter)">mitarbeiterAnlegen</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikMitarbeiter.html" title="interface in DatenSchicht">DatenLogikMitarbeiter</a></code></dd>
+<dd><code><a href="DatenLogik.html#datenAnlegen(Logik.Services)">datenAnlegen</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="datenMutation(Logik.Services)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>datenMutation</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;datenMutation&#8203;(<a href="../Logik/Services.html" title="class in Logik">Services</a>&nbsp;services)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogik.html#datenMutation(Logik.Services)">datenMutation</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -315,6 +337,19 @@ implements <a href="DatenLogikMitarbeiter.html" title="interface in DatenSchicht
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="DatenLogik.html#suchen(java.lang.String,java.lang.String)">suchen</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="datenLoeschen(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>datenLoeschen</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;datenLoeschen&#8203;(int&nbsp;mitarbeiterId)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogik.html#datenLoeschen(int)">datenLoeschen</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</a></code></dd>
 </dl>
 </li>
 </ul>
@@ -345,19 +380,6 @@ implements <a href="DatenLogikMitarbeiter.html" title="interface in DatenSchicht
 </dl>
 </li>
 </ul>
-<a id="mitarbeiterLoeschen(int)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>mitarbeiterLoeschen</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;mitarbeiterLoeschen&#8203;(int&nbsp;mitarbeiterId)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="DatenLogikMitarbeiter.html#mitarbeiterLoeschen(int)">mitarbeiterLoeschen</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikMitarbeiter.html" title="interface in DatenSchicht">DatenLogikMitarbeiter</a></code></dd>
-</dl>
-</li>
-</ul>
 <a id="nummerAufExistenzPruefen(int)">
 <!--   -->
 </a>
@@ -365,6 +387,36 @@ implements <a href="DatenLogikMitarbeiter.html" title="interface in DatenSchicht
 <li class="blockList">
 <h4>nummerAufExistenzPruefen</h4>
 <pre class="methodSignature">public&nbsp;java.lang.String&nbsp;nummerAufExistenzPruefen&#8203;(int&nbsp;mitarbeiterId)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikMitarbeiter.html#nummerAufExistenzPruefen(int)">nummerAufExistenzPruefen</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikMitarbeiter.html" title="interface in DatenSchicht">DatenLogikMitarbeiter</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="kursZuweisungQuerry(Logik.Mitarbeiter.MitarbeiterBescheinigung)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>kursZuweisungQuerry</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;kursZuweisungQuerry&#8203;(<a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.html" title="class in Logik.Mitarbeiter">MitarbeiterBescheinigung</a>&nbsp;mitarbeiterBescheinigung)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikMitarbeiter.html#kursZuweisungQuerry(Logik.Mitarbeiter.MitarbeiterBescheinigung)">kursZuweisungQuerry</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikMitarbeiter.html" title="interface in DatenSchicht">DatenLogikMitarbeiter</a></code></dd>
+</dl>
+</li>
+</ul>
+<a id="zertifikatZuweisungQuerry(Logik.Mitarbeiter.MitarbeiterBescheinigung)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>zertifikatZuweisungQuerry</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;zertifikatZuweisungQuerry&#8203;(<a href="../Logik/Mitarbeiter/MitarbeiterBescheinigung.html" title="class in Logik.Mitarbeiter">MitarbeiterBescheinigung</a>&nbsp;mitarbeiterBescheinigung)</pre>
+<dl>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogikMitarbeiter.html#zertifikatZuweisungQuerry(Logik.Mitarbeiter.MitarbeiterBescheinigung)">zertifikatZuweisungQuerry</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikMitarbeiter.html" title="interface in DatenSchicht">DatenLogikMitarbeiter</a></code></dd>
+</dl>
 </li>
 </ul>
 <a id="zertifikatVerlaengernSpeichern(Logik.Mitarbeiter.MitarbeiterBescheinigung)">
@@ -380,54 +432,44 @@ implements <a href="DatenLogikMitarbeiter.html" title="interface in DatenSchicht
 </dl>
 </li>
 </ul>
-<a id="datenMutation(Logik.Mitarbeiter.Mitarbeiter)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>datenMutation</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;datenMutation&#8203;(<a href="../Logik/Mitarbeiter/Mitarbeiter.html" title="class in Logik.Mitarbeiter">Mitarbeiter</a>&nbsp;mitarbeiter)</pre>
-<dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="DatenLogikMitarbeiter.html#datenMutation(Logik.Mitarbeiter.Mitarbeiter)">datenMutation</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogikMitarbeiter.html" title="interface in DatenSchicht">DatenLogikMitarbeiter</a></code></dd>
-</dl>
-</li>
-</ul>
 <a id="mitarbeiterListeErstellen(java.sql.ResultSet)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>mitarbeiterListeErstellen</h4>
-<pre class="methodSignature">public&nbsp;java.util.HashMap&nbsp;mitarbeiterListeErstellen&#8203;(java.sql.ResultSet&nbsp;dbInhalt)
-                                            throws java.sql.SQLException</pre>
+<pre class="methodSignature">protected&nbsp;java.util.HashMap&nbsp;mitarbeiterListeErstellen&#8203;(java.sql.ResultSet&nbsp;dbInhalt)
+                                               throws java.sql.SQLException</pre>
 <dl>
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code>java.sql.SQLException</code></dd>
 </dl>
 </li>
 </ul>
-<a id="queryFuerAnzahlAbfrage(java.lang.String,java.lang.String)">
+<a id="zertifikatVerlaengern(java.sql.ResultSet)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>queryFuerAnzahlAbfrage</h4>
-<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;queryFuerAnzahlAbfrage&#8203;(java.lang.String&nbsp;suchkriterium,
-                                               java.lang.String&nbsp;suchText)</pre>
+<h4>zertifikatVerlaengern</h4>
+<pre class="methodSignature">protected&nbsp;java.util.HashMap&nbsp;zertifikatVerlaengern&#8203;(java.sql.ResultSet&nbsp;dbInhalt)
+                                           throws java.sql.SQLException</pre>
+<dl>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.sql.SQLException</code></dd>
+</dl>
 </li>
 </ul>
-<a id="zertifikatVerlaengern(java.sql.ResultSet)">
+<a id="datenAuslesen(java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>zertifikatVerlaengern</h4>
-<pre class="methodSignature">public&nbsp;java.util.HashMap&nbsp;zertifikatVerlaengern&#8203;(java.sql.ResultSet&nbsp;dbInhalt)
-                                        throws java.sql.SQLException</pre>
+<h4>datenAuslesen</h4>
+<pre class="methodSignature">public&nbsp;java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;&nbsp;datenAuslesen&#8203;(java.lang.String&nbsp;tabelle)</pre>
 <dl>
-<dt><span class="throwsLabel">Throws:</span></dt>
-<dd><code>java.sql.SQLException</code></dd>
+<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
+<dd><code><a href="DatenLogik.html#datenAuslesen(java.lang.String)">datenAuslesen</a></code>&nbsp;in interface&nbsp;<code><a href="DatenLogik.html" title="interface in DatenSchicht">DatenLogik</a></code></dd>
 </dl>
 </li>
 </ul>

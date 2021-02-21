@@ -13,7 +13,7 @@
 <!--[if IE]>
 <script type="text/javascript" src="../jquery/jszip-utils/dist/jszip-utils-ie.min.js"></script>
 <![endif]-->
-<script type="text/javascript" src="../jquery/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="../jquery/jquery-3.5.1.js"></script>
 <script type="text/javascript" src="../jquery/jquery-ui.js"></script>
 </head>
 <body>
@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -178,57 +178,48 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>java.util.List&lt;?&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#auswertungAusgeben(java.lang.String)">auswertungAusgeben</a></span>&#8203;(java.lang.String&nbsp;view)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i1" class="rowColor">
 <td class="colFirst"><code>java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenAuslesenfuerAbfrage(java.lang.String)">datenAuslesenfuerAbfrage</a></span>&#8203;(java.lang.String&nbsp;tabelle)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenBearbeiten(java.lang.String)">datenBearbeiten</a></span>&#8203;(java.lang.String&nbsp;query)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenInDbAnlegen(java.lang.String)">datenInDbAnlegen</a></span>&#8203;(java.lang.String&nbsp;query)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenInDbSuchen(java.lang.String)">datenInDbSuchen</a></span>&#8203;(java.lang.String&nbsp;query)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
 <tr id="i4" class="altColor">
-<td class="colFirst"><code>java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#datenListeAusgeben(java.lang.String)">datenListeAusgeben</a></span>&#8203;(java.lang.String&nbsp;query)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i5" class="rowColor">
-<td class="colFirst"><code>java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#dbHashMap(java.lang.String)">dbHashMap</a></span>&#8203;(java.lang.String&nbsp;tabelle)</code></th>
-<td class="colLast">&nbsp;</td>
-</tr>
-<tr id="i6" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#storeProcedureAufrufen(java.lang.String,int)">storeProcedureAufrufen</a></span>&#8203;(java.lang.String&nbsp;query,
                       int&nbsp;parameter)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.util.HashMap</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#storeProcedureAufrufen(java.lang.String,int,DatenSchicht.STORE_PROCEDURE_KONTEXT)">storeProcedureAufrufen</a></span>&#8203;(java.lang.String&nbsp;query,
                       int&nbsp;parameter,
                       <a href="STORE_PROCEDURE_KONTEXT.html" title="enum in DatenSchicht">STORE_PROCEDURE_KONTEXT</a>&nbsp;kontext)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>java.util.List</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#storeProcedureAufrufen(java.lang.String,java.lang.String,java.lang.String,DatenSchicht.STORE_PROCEDURE_KONTEXT)">storeProcedureAufrufen</a></span>&#8203;(java.lang.String&nbsp;query,
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#storeProcedureAufrufen(java.lang.String,java.lang.String,java.lang.String,java.lang.String,DatenSchicht.STORE_PROCEDURE_KONTEXT)">storeProcedureAufrufen</a></span>&#8203;(java.lang.String&nbsp;query,
                       java.lang.String&nbsp;parameter1,
                       java.lang.String&nbsp;parameter2,
+                      java.lang.String&nbsp;parameter3,
                       <a href="STORE_PROCEDURE_KONTEXT.html" title="enum in DatenSchicht">STORE_PROCEDURE_KONTEXT</a>&nbsp;kontext)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#verbindungTesten()">verbindungTesten</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
@@ -312,31 +303,13 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;datenBearbeiten&#8203;(java.lang.String&nbsp;query)</pre>
 </li>
 </ul>
-<a id="auswertungAusgeben(java.lang.String)">
+<a id="datenInDbSuchen(java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>auswertungAusgeben</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;?&gt;&nbsp;auswertungAusgeben&#8203;(java.lang.String&nbsp;view)</pre>
-</li>
-</ul>
-<a id="datenListeAusgeben(java.lang.String)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>datenListeAusgeben</h4>
-<pre class="methodSignature">public&nbsp;java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;&nbsp;datenListeAusgeben&#8203;(java.lang.String&nbsp;query)</pre>
-</li>
-</ul>
-<a id="dbHashMap(java.lang.String)">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>dbHashMap</h4>
-<pre class="methodSignature">public&nbsp;java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;&nbsp;dbHashMap&#8203;(java.lang.String&nbsp;tabelle)</pre>
+<h4>datenInDbSuchen</h4>
+<pre class="methodSignature">public&nbsp;java.util.HashMap&lt;?,&#8203;java.lang.Integer&gt;&nbsp;datenInDbSuchen&#8203;(java.lang.String&nbsp;query)</pre>
 </li>
 </ul>
 <a id="storeProcedureAufrufen(java.lang.String,int,DatenSchicht.STORE_PROCEDURE_KONTEXT)">
@@ -350,7 +323,7 @@ extends java.lang.Object</pre>
                                                 <a href="STORE_PROCEDURE_KONTEXT.html" title="enum in DatenSchicht">STORE_PROCEDURE_KONTEXT</a>&nbsp;kontext)</pre>
 </li>
 </ul>
-<a id="storeProcedureAufrufen(java.lang.String,java.lang.String,java.lang.String,DatenSchicht.STORE_PROCEDURE_KONTEXT)">
+<a id="storeProcedureAufrufen(java.lang.String,java.lang.String,java.lang.String,java.lang.String,DatenSchicht.STORE_PROCEDURE_KONTEXT)">
 <!--   -->
 </a>
 <ul class="blockList">
@@ -359,6 +332,7 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public&nbsp;java.util.List&nbsp;storeProcedureAufrufen&#8203;(java.lang.String&nbsp;query,
                                              java.lang.String&nbsp;parameter1,
                                              java.lang.String&nbsp;parameter2,
+                                             java.lang.String&nbsp;parameter3,
                                              <a href="STORE_PROCEDURE_KONTEXT.html" title="enum in DatenSchicht">STORE_PROCEDURE_KONTEXT</a>&nbsp;kontext)</pre>
 </li>
 </ul>
