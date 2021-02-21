@@ -119,7 +119,7 @@ public class Benutzerverwaltung {
 
         try {
             //Benutzerverwaltung File einlesen
-            Stream<String> zeilen = Files.lines(Paths.get("src/Benutzerverwaltung.txt"));
+            Stream<String> zeilen = Files.lines(Paths.get("Benutzerverwaltung.txt"));
             //Zeile fuer Zeile in Liste schreiben
             List<String> alleBenutzerString = zeilen.collect(Collectors.toList());
             zeilen.close();
@@ -211,7 +211,7 @@ public class Benutzerverwaltung {
      */
     private void neuenBenutzerSchreiben(String benutzerDaten){
         try {
-            FileWriter fileWriter = new FileWriter("src/Benutzerverwaltung.txt",true);
+            FileWriter fileWriter = new FileWriter("Benutzerverwaltung.txt",true);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             // Fuegt neue Zeile hinzu
@@ -397,7 +397,7 @@ public class Benutzerverwaltung {
 
         try {
             //Logik.Benutzerverwaltung File einlesen
-            Scanner scan = new Scanner(new File("src/Benutzerverwaltung.txt"));
+            Scanner scan = new Scanner(new File("Benutzerverwaltung.txt"));
             StringBuffer buffer = new StringBuffer();
             while (scan.hasNextLine()){
                 buffer.append(scan.nextLine() + System.lineSeparator());
@@ -408,7 +408,7 @@ public class Benutzerverwaltung {
             String geaenderteListe = inhaltDerDatei.replaceAll(aktuellerText,neuerText);
             scan.close();
             //Geaenderte Liste in die Datei schreiben
-            FileWriter fileWriter = new FileWriter("src/Benutzerverwaltung.txt");
+            FileWriter fileWriter = new FileWriter("Benutzerverwaltung.txt");
             fileWriter.append(geaenderteListe);
             fileWriter.flush();
             fileWriter.close();
