@@ -78,7 +78,7 @@ public class Budget extends ServicesAdmin {
 
             i++;
         }
-//TODO Lehre Tabelle durch Text ersetzen und Methode abbrechen
+
         tabelle.ausgabe();
 
         arrayLaenge = budgetArray.length;

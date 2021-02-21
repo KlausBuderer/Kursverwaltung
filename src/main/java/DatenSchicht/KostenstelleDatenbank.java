@@ -75,7 +75,7 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik, Date
 
         return "UPDATE `itwisse_kursverwaltung`.`tblKostenstelle` SET " +
                 " `KostenstelleNr` = "                     + kostenstelle.getKostenstelleNr() +
-                ", `BezeichnungKST` = \""                + kostenstelle.getKostenstelleId() +
+                ", `BezeichnungKST` = \""                + kostenstelle.getBezeichnungKst()+
                 "\", `KostenstelleVerantPerson` = \""    + kostenstelle.getKostenstelleVerantPerson() +
                 "\" WHERE `ID` = "                       + kostenstelle.getKostenstelleId() + ";";
 

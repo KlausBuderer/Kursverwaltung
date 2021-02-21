@@ -91,9 +91,9 @@ public class Kostenstelle extends ServicesAdmin {
             //Kostenstellennummer
             kostenstelleNr = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Kostenstelle Nummer: ");
             //Bezeichnung Kostenstelle
-            bezeichnungKst = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Bezeichnung der Kostenstelle: ");
+            bezeichnungKst = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Bezeichnung der Kostenstelle: ");
             //Verantwortliche Person
-            kostenstelleVerantPerson = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Verantwortliche Person der Kostenstelle: ");
+            kostenstelleVerantPerson = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Verantwortliche Person der Kostenstelle: ");
 
             // Ausgabe der eingegebenen Daten
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
@@ -152,11 +152,11 @@ public class Kostenstelle extends ServicesAdmin {
                     break;
                 case 2:
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + bezeichnungKst);
-                    bezeichnungKst = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie die neue Bezeichnung ein: ");
+                    bezeichnungKst = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie die neue Bezeichnung ein: ");
                     break;
                 case 3:
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + kostenstelleVerantPerson);
-                    kostenstelleVerantPerson = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie die neue verantwortliche Person ein: ");
+                    kostenstelleVerantPerson = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie die neue verantwortliche Person ein: ");
                     break;
                 default:
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsche Eingabe!");
