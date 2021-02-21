@@ -1,3 +1,0 @@
-jdbc:mysql://itwisse.mysql.db.hostpoint.ch:3306/itwisse_kursverwaltung
-itwisse_kursvw
-abbts2020-01
