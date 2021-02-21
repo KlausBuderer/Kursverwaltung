@@ -16,8 +16,8 @@ public class Zertifikate extends Services {
     private String anbieter;
     private String sprache;
 
-    private final String [] UNTERMENUE = {"1.  Zertifikate Anlegen", "2.  Zertifikate Mutation","3.  Zertifikat Loeschen", "99. Hauptmenue"};
-    private final String[] KOPFZEILE = {" " ,"Titel","Beschreibung","Anbieter","Sprache", "Kosten","Waehrung"};
+    private final String [] UNTERMENUE = {"1.  Zertifikate Anlegen", "2.  Zertifikate Mutation","3.  Zertifikat Löschen", "99. Hauptmenü"};
+    private final String[] KOPFZEILE = {" " ,"Titel","Beschreibung","Anbieter","Sprache", "Kosten","Währung"};
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Konstruktoren
@@ -55,7 +55,7 @@ public class Zertifikate extends Services {
                     break;
                 case 99:
                     //zurueck ins Hauptmenue;
-                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Hauptmenue");
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Hauptmenü");
                     gueltigeEingabe = false;
                     break;
                 default:
@@ -91,7 +91,7 @@ public class Zertifikate extends Services {
             //Ausgeben der eingegebenen Daten
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             objectInTabelleAusgeben(KOPFZEILE,attributenArrayFuerTabelle());
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             //Bestätigen der Eingabe
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
@@ -142,7 +142,7 @@ public class Zertifikate extends Services {
             }
             arrayLaenge = SPALTEN_ARRAY.length;
             //Abfrage welches Attribut geändert werden soll
-            BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Welchen Spalte moechten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
+            BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Welchen Spalte möchten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
             auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
             // Eingabe der Änderung die vorgenommen werden soll
@@ -186,7 +186,7 @@ public class Zertifikate extends Services {
             // Ausgabe der geänderten Daten
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
            objectInTabelleAusgeben(KOPFZEILE,attributenArrayFuerTabelle());
-           BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
+           BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
            //Bestätigung der Eingaben
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
@@ -213,7 +213,7 @@ public class Zertifikate extends Services {
     protected void datenLoeschen(){
         boolean abschliessen = false;
         Zertifikate zertifikat;
-        String titelName = "Zertifikat loeschen";
+        String titelName = "Zertifikat löschen";
 
         do {
             //Abfrage welches Zertifikat geloescht werden soll

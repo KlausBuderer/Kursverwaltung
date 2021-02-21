@@ -97,7 +97,7 @@ public final class BefehlsZeilenSchnittstelle {
         farbschemaWaehlen(FARBSCHEMA.WEISS);
 
         //Ausgabe des Hauptmenues und Einlesen der Auswahl
-        bildReinigen("Hauptmenue", 1);
+        bildReinigen("Hauptmenü", 1);
         do {
             // Ausgabe des Menue Arrays
             for (String menue : hauptmenu) {
@@ -106,14 +106,14 @@ public final class BefehlsZeilenSchnittstelle {
 
             System.out.println();
 
-            ausgabeOhneAbsatz(schriftfarbe + "Waehlen sie das gewuenschte Menue (1-7 oder 90 / 99): " + ANSI_RESET);
+            ausgabeOhneAbsatz(schriftfarbe + "Wählen sie das gewünschte menü (1-7 oder 90 / 99): " + ANSI_RESET);
             auswahlString = scan.next();
 
             // ueberprueft ob die Eingabe eine Ganzzahl [1-(laenge des Untermenues)] ist
             if(!auswahlString.matches("[1-" + (hauptmenu.length) + "]") &
                     (!auswahlString.matches("90") & !auswahlString.matches("99"))){
 
-                ausgabeMitAbsatz(schriftfarbe + "Bitte geben sie einen gueltigen Wert ein!" + ANSI_RESET);
+                ausgabeMitAbsatz(schriftfarbe + "Bitte geben sie einen gültigen Wert ein!" + ANSI_RESET);
                 verzoegerung(1500);
                 gueltigeEingabe = false;
             }else {
@@ -161,7 +161,7 @@ public final class BefehlsZeilenSchnittstelle {
                 programmBeenden();
                 break;
             default:
-                ausgabeMitAbsatz(schriftfarbe + "Bitte geben sie einen gueltigen Wert ein!" + ANSI_RESET);
+                ausgabeMitAbsatz(schriftfarbe + "Bitte geben sie einen gültigen Wert ein!" + ANSI_RESET);
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
@@ -192,7 +192,7 @@ public final class BefehlsZeilenSchnittstelle {
                 ausgabeMitAbsatz(schriftfarbe + untermenue + ANSI_RESET);
             }
             System.out.println();
-            ausgabeOhneAbsatz(schriftfarbe + "Waehlen sie das gewuenschte Untermenue (1-" + (unterMenue.length) + ") oder (99 Menue verlassen): " + ANSI_RESET);
+            ausgabeOhneAbsatz(schriftfarbe + "Wählen sie das gewünschte Untermenü (1-" + (unterMenue.length) + ") oder (99 menü verlassen): " + ANSI_RESET);
 
             //Liest Eingabe als String ein um zu ueberpfuefen ob die Eingabe gueltig ist
             auswahlString = scan.next();
@@ -201,7 +201,7 @@ public final class BefehlsZeilenSchnittstelle {
             if(!auswahlString.matches("[1-" + (unterMenue.length) + "]") & !auswahlString.equals("99")){
 
                 BefehlsZeilenSchnittstelle.bildReinigen(menueTitel,1);
-                ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein!");
+                ausgabeMitAbsatz("Bitte geben sie einen gültigen Wert ein!");
                 System.out.println();
 
                 verzoegerung(1500);
@@ -303,7 +303,7 @@ public final class BefehlsZeilenSchnittstelle {
                     gueltigeEingabe = true;
                 } else {
                     // Gibt eine Fehlermeldung bei nicht korrekter Eingabe und laesst die Abfrage nochmals beginnen
-                    ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein!");
+                    ausgabeMitAbsatz("Bitte geben sie einen gültigen Wert ein!");
                     System.out.println();
 
                     verzoegerung(1500);
@@ -311,7 +311,7 @@ public final class BefehlsZeilenSchnittstelle {
                 }
             } else {
                 // Gibt eine Fehlermeldung bei nicht korrekter Eingabe und laesst die Abfrage nochmals beginnen
-                ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein!");
+                ausgabeMitAbsatz("Bitte geben sie einen gültigen Wert ein!");
                 System.out.println();
 
                 verzoegerung(1500);
@@ -371,11 +371,11 @@ public final class BefehlsZeilenSchnittstelle {
                     return korrekterWert = Integer.parseInt(eingabe);
                 } else {
                     korrekteEingabe = false;
-                    ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein");
+                    ausgabeMitAbsatz("Bitte geben sie einen gültigen Wert ein");
                     ausgabeOhneAbsatz("");
                 }
             }else{
-                ausgabeMitAbsatz("Ungueltige Eingabe");
+                ausgabeMitAbsatz("Ungültige Eingabe");
                 ausgabeMitAbsatz("Zuviele oder keine Zeichen!");
                 ausgabeOhneAbsatz("");
             }
@@ -598,7 +598,7 @@ public final class BefehlsZeilenSchnittstelle {
             ausgabeMitAbsatz(i + ". " + waehrung);
             i++;
         }
-        ausgabeOhneAbsatz("Waehrung (1-" + waehrungsArray.length + "): ");
+        ausgabeOhneAbsatz("Währung (1-" + waehrungsArray.length + "): ");
 
         return waehrungsArray[eingabeMitWertpruefung(waehrungsArray.length)-1];
     }
@@ -616,7 +616,7 @@ public final class BefehlsZeilenSchnittstelle {
       do {
           //Bestaetigung ob wirklich beendet werde soll
           bildReinigen("Programm Beenden",2);
-          ausgabeMitAbsatz("Sind sie sicher, dass sie das Programm Beenden moechten?");
+          ausgabeMitAbsatz("Sind sie sicher, dass sie das Programm Beenden möchten?");
           ausgabeMitAbsatz("1. Ja");
           ausgabeMitAbsatz("2. Nein");
           String auswahl = scan.next();
@@ -680,7 +680,7 @@ public final class BefehlsZeilenSchnittstelle {
 
     public static void beliebigeTasteDrueckenAnzeigen(){
 
-        ausgabeMitAbsatz("Betaetigen Sie eine beliebige Taste um weiterzufahren");
+        ausgabeMitAbsatz("Betätigen Sie eine beliebige Taste um weiterzufahren");
         new Scanner(System.in).nextLine();
     }
 

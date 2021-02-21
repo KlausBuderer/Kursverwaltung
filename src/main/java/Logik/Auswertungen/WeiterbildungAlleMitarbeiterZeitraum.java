@@ -21,7 +21,7 @@ public class WeiterbildungAlleMitarbeiterZeitraum {
     private String waehrung;
     private String zertifikatsablaufdatum;
 
-    private final String[] TITELZEILE = {"Anrede", "Nachname", "Vorname", "Kennung", "Kursbeschreibung", "KOSTEN", "Waehrung", "Zertifikatsablaufdatum"};
+    private final String[] TITELZEILE = {"Anrede", "Nachname", "Vorname", "Kennung", "Kursbeschreibung", "KOSTEN", "Währung", "Zertifikatsablaufdatum"};
 
     public WeiterbildungAlleMitarbeiterZeitraum() {}
 
@@ -43,8 +43,8 @@ public class WeiterbildungAlleMitarbeiterZeitraum {
 
         List<WeiterbildungAlleMitarbeiterZeitraum> AusgabeWeiterbildungAlleMitarbeiterZeitraum;
         // Abfrage Datum
-        datumVon = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Startdatum des gewuenschten Auswertungszeitraum ein: ");
-        datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Enddatum des gewuenschten Auswertungszeitraum ein: ");
+        datumVon = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Startdatum des gewünschten Auswertungszeitraum ein: ");
+        datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Enddatum des gewünschten Auswertungszeitraum ein: ");
 
         //Aufruf Store Procedure SP_ANZEIGEN_ALLE_MA_WEITERBILDUNG_DATUM
         DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();

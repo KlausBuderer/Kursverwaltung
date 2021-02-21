@@ -11,7 +11,7 @@ public class KursSuchen {
 
     private String suchText;
     private String query;
-    private final String[] TABELLENHEADER = {"Nr.","Kurs Code", "Anbieter", "Kursbeschreibung",  "Kosten", "Waehrung", "Start-Datum", "End-Datum", "Durchfuehrungsort"};
+    private final String[] TABELLENHEADER = {"Nr.","Kurs Code", "Anbieter", "Kursbeschreibung",  "Kosten", "Währung", "Start-Datum", "End-Datum", "Durchführungsort"};
     private final String[] SUCHKRITERIEN = {"Kurs Code", "Anbieter", "Kursbeschreibung", "Durchfuehrungsort"};
     private final String[] SPALTENBEZEICHNUNG = {"KursCode", "Anbieter", "Kursbeschreibung", "Durchfuehrungsort"};
 
@@ -56,8 +56,8 @@ public class KursSuchen {
 
         String[] HEADER = {"Nr.","Suchkriterium"};
 
-        BefehlsZeilenSchnittstelle.bildReinigen("Suchkriterien fuer die Kurssuche",2);
-        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte waehlen sie ein Suchkriterium: ");
+        BefehlsZeilenSchnittstelle.bildReinigen("Suchkriterien für die Kurssuche",2);
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte wählen sie ein Suchkriterium: ");
 
         int auswahlNummer = 1;
 
@@ -75,7 +75,7 @@ public class KursSuchen {
             auswahlNummer++;
         }
         tabelle.ausgabe();
-        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Nach welchem Kriterium moechten sie suchen: ");
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Nach welchem Kriterium möchten sie suchen: ");
         return BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(SUCHKRITERIEN.length);
     }
 
@@ -93,13 +93,13 @@ public class KursSuchen {
                 suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie den Kurs Code ein nach dem sie suchen: ");
                 break;
             case 2:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Anbieter des Kurses ein nach dem sie suchen moechten: ");
+                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Anbieter des Kurses ein nach dem sie suchen möchten: ");
                 break;
             case 3:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie die Kursbeschreibung ein nach dem sie suchen moechten: ");
+                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie die Kursbeschreibung ein nach dem sie suchen möchten: ");
                 break;
             case 4:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Durchfuehrungsort ein nach dem sie suchen moechten: ");
+                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Durchführungsort ein nach dem sie suchen möchten: ");
                 break;
             default:
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsche Eingabe!");
@@ -140,7 +140,7 @@ public class KursSuchen {
         arrayLaenge = kursArray.length;
 
         //Der Bediener wird zu Auswahl einer der Objekte aufgefordert
-        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte waehlen sie einen Kurs aus der Liste (1-" + (arrayLaenge - 1) + ")");
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie einen Kurs aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
         return kursArray[auswahl];

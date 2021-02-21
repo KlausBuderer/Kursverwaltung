@@ -67,7 +67,7 @@ public class Kostenstelle extends ServicesAdmin {
         tabelle.ausgabe();
 
         arrayLaenge = kostenstelleArray.length;
-        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte waehlen sie eine Kostenstelle aus der Liste (1-" + (arrayLaenge - 1) + ")");
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie eine Kostenstelle aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
         kostenstelleId = kostenstelleArray[auswahl].kostenstelleId;
@@ -98,7 +98,7 @@ public class Kostenstelle extends ServicesAdmin {
             // Ausgabe der eingegebenen Daten
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             objectInTabelleAusgeben(KOPFZEILE_ANZEIGE_EINGABE,attributenArrayFuerTabelle());
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             // Abfrage ob Eingaben korrekt sind
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
@@ -141,7 +141,7 @@ public class Kostenstelle extends ServicesAdmin {
             }
             arrayLaenge = spaltenArray.length;
 
-            BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Welchen Spalte moechten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
+            BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Welchen Spalte möchten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
             auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
             switch (auswahl) {
@@ -165,7 +165,7 @@ public class Kostenstelle extends ServicesAdmin {
             //Anzeige der Eingaben
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             objectInTabelleAusgeben(KOPFZEILE_ANZEIGE_EINGABE,attributenArrayFuerTabelle());
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
             //Eingabe bestaetigen, neu beginnen oder abbrechen
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
                 case 1:

@@ -54,18 +54,18 @@ public class MitarbeiterBescheinigung {
 
         do {
             //Mitarbeiter auswaehlen
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welchem Mitarbeiter moechten sie einen Kurs zuweisen?");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welchem Mitarbeiter möchten sie einen Kurs zuweisen?");
             mitarbeiter = new MitarbeiterSuche().mitarbeiterSuchen();
             this.mitarbeiterId = mitarbeiter.getMitarbeiterId();
 
             //Kurs auswaehlen
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welchen Kurs moechten sie dem Mitarbeiter zuweisen?");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welchen Kurs möchten sie dem Mitarbeiter zuweisen?");
             kurs = new KursSuchen().kursSuchen();
             this.kurseId = kurs.getKurseId();
 
             // Ausgabe der neuen MitarbeiterBescheinigung
             PraesentationSchicht.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte bestaetigen sie die richtige Eingabe");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte bestätigen sie die richtige Eingabe");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiter: " + mitarbeiter.getVorname() + " " + mitarbeiter.getNachname());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Kurs: " + kurs.getAnbieter() + " " + kurs.getKursBeschreibung() + " " + kurs.getDatumVon());
@@ -101,12 +101,12 @@ public class MitarbeiterBescheinigung {
 
         do {
             //Mitarbeiter auswaehlen
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welchem Mitarbeiter moechten sie ein Zertifikat zuweisen?");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welchem Mitarbeiter möchten sie ein Zertifikat zuweisen?");
             mitarbeiter = new MitarbeiterSuche().mitarbeiterSuchen();
             this.mitarbeiterId = mitarbeiter.getMitarbeiterId();
 
             //Zertifikat auswaehlen
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welches Zertifikat moechten sie dem Mitarbeiter zuweisen?");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welches Zertifikat möchten sie dem Mitarbeiter zuweisen?");
             zertifikat = new ZertifikateSuchen().zertifikatSuchen();
             this.zertifikatId = zertifikat.getZertifikatsId();
 
@@ -116,7 +116,7 @@ public class MitarbeiterBescheinigung {
 
             // Ausgabe der neuen MitarbeiterBescheinigung
             PraesentationSchicht.BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte bestaetigen sie die richtige Eingabe");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte bestätigen sie die richtige Eingabe");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiter: " + mitarbeiter.getVorname() + " " + mitarbeiter.getNachname());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
@@ -192,7 +192,7 @@ public class MitarbeiterBescheinigung {
 
 
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             switch (PraesentationSchicht.BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
 
@@ -256,7 +256,7 @@ public class MitarbeiterBescheinigung {
             return null;
         }
 
-        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte waehlen sie ein Zertifikat aus der Liste (1-" + (arrayLaenge - 1) + ")");
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte wählen sie ein Zertifikat aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
         return mitarbeiterBescheinigungsArray[auswahl];

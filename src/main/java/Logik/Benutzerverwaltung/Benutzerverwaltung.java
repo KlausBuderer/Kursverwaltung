@@ -28,7 +28,7 @@ public class Benutzerverwaltung {
 
 
     private final String[] BENUTZERGRUPPEN = {"ADMINISTRATOR", "BENUTZER"};
-    private final String [] UNTERMENUE = {"1.  Benutzer Anlegen", "2.  Benutzer Loeschen", "3.  Benutzer Passwort mutieren", "99. Hauptmenue"};
+    private final String [] UNTERMENUE = {"1.  Benutzer Anlegen", "2.  Benutzer Löschen", "3.  Benutzer Passwort mutieren", "99. Hauptmenü"};
 
 
 
@@ -234,7 +234,7 @@ public class Benutzerverwaltung {
      */
     private void benutzerLoeschen() {
 
-        String titelName = "Benutzer Loeschen";
+        String titelName = "Benutzer Löschen";
 
         //Ausgabe Benutzer loeschen
         BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
@@ -250,7 +250,7 @@ public class Benutzerverwaltung {
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(i + ". " + benutzer.toString());
         }
         //Ausgabe welchen Benutzer moechten sie loeschen
-        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welchen Benutzer moechten sie Loeschen?");
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welchen Benutzer möchten sie Löschen?");
 
         //Auswahl einlesen
         int auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(benutzerListe.size())-1;
@@ -326,7 +326,7 @@ public class Benutzerverwaltung {
         //Drei Wiederholungen , falls alle falsch wird die Methode beendet
         if (!erstesPasswort.equals(zweitesPasswort)){
             for (int i = 0; i < 3; i++) {
-                erstesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Passwort stimmt nicht ueberein, versuchen sie es erneut: ");
+                erstesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Passwort stimmt nicht überein, versuchen sie es erneut: ");
                 zweitesPasswort = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Wiederholen sie das Passwort ein: ");//Ausgabe: Wiederholen sie das Passwort
                 // Falls das Passwort uebereinstimmt wird die Schleife abgebrochen
                 if (erstesPasswort.equals(zweitesPasswort)){

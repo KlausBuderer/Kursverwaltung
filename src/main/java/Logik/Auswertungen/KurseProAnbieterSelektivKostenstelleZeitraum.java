@@ -39,8 +39,8 @@ public class KurseProAnbieterSelektivKostenstelleZeitraum {
 
         List<KurseProAnbieterSelektivKostenstelleZeitraum> AusgabeKurseProAnbieterSelektivKostenstelleZeitraum;
         // Abfrage Datum
-        datumVon = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Startdatum des gewuenschten Auswertungszeitraum ein: ");
-        datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Enddatum des gewuenschten Auswertungszeitraum ein: ");
+        datumVon = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Startdatum des gewünschten Auswertungszeitraum ein: ");
+        datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Enddatum des gewünschten Auswertungszeitraum ein: ");
         Kostenstelle kostenstelle = new Kostenstelle();
         kostenstelle.auswahlListeKostenstelleAusgeben();
         eingabeKostenstelle = String.valueOf(kostenstelle.getKostenstelleNr());

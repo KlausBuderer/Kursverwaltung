@@ -41,8 +41,8 @@ public class KurseProAnbieterKostenstellenZeitraum {
         String kostenstelle;
         List<KurseProAnbieterKostenstellenZeitraum> ausgabeKurseProAnbieterKostenstellenZeitraum;
         // Abfrage Datum
-        datumVon = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Startdatum des gewuenschten Auswertungszeitraum ein: ");
-        datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Enddatum des gewuenschten Auswertungszeitraum ein: ");
+        datumVon = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Startdatum des gewünschten Auswertungszeitraum ein: ");
+        datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Geben Sie das Enddatum des gewünschten Auswertungszeitraum ein: ");
 
         //Aufruf Store Procedure SP_ANZEIGEN_KURSE_PRO_ANBIETER_KOSTENSTELLE_JAHR
         DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();

@@ -11,7 +11,7 @@ public class ZertifikateSuchen {
 
     private String suchText;
     private String[] SUCHKRITERIEN = {"Titel", "Beschreibung","Anbieter","Sprache","Kosten","Waehrung"};
-    private String[] TABELLENHEADER = {"Nr.", "Titel", "Beschreibung","Anbieter","Sprache","Kosten","Waehrung"};
+    private String[] TABELLENHEADER = {"Nr.", "Titel", "Beschreibung","Anbieter","Sprache","Kosten","Währung"};
 
 //-----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -55,8 +55,8 @@ public class ZertifikateSuchen {
 
         String[] HEADER = {"Nr.","Suchkriterium"};
 
-        BefehlsZeilenSchnittstelle.bildReinigen("Suchkriterien fuer die Zertifikatssuche",2);
-        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte waehlen sie ein Suchkriterium: ");
+        BefehlsZeilenSchnittstelle.bildReinigen("Suchkriterien für die Zertifikatssuche",2);
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte wählen sie ein Suchkriterium: ");
 
         int auswahlNummer = 1;
 
@@ -75,7 +75,7 @@ public class ZertifikateSuchen {
         }
         //Abfrage welche Tabelle geändert werden soll
         tabelle.ausgabe();
-        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Nach welchem Kriterium moechten sie suchen: ");
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Nach welchem Kriterium möchten sie suchen: ");
         return BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(SUCHKRITERIEN.length);
     }
 
@@ -93,16 +93,16 @@ public class ZertifikateSuchen {
                 suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie den Titel des Zertifikats ein nach dem sie suchen: ");
                 break;
             case 2:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie die Zertifikatsbezeichnung ein nach dem sie suchen moechten: ");
+                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei45("Geben sie die Zertifikatsbezeichnung ein nach dem sie suchen möchten: ");
                 break;
             case 3:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Anbieter des Zertifikats ein nach dem sie suchen moechten: ");
+                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Anbieter des Zertifikats ein nach dem sie suchen möchten: ");
                 break;
             case 4:
-                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie die Sprache des Zertifikats ein nach dem sie suchen moechten: ");
+                suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie die Sprache des Zertifikats ein nach dem sie suchen möchten: ");
                 break;
             case 5:
-                suchZahl = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Gebn sie die Kosten des Zertifikats ein nach dem sie suchen moechten: ");
+                suchZahl = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Gebn sie die Kosten des Zertifikats ein nach dem sie suchen möchten: ");
                 suchText = String.valueOf(suchZahl);
                 break;
             case 6:
@@ -153,7 +153,7 @@ public class ZertifikateSuchen {
         arrayLaenge = zertifikatArray.length;
 
         //Der Bediener wird zu Auswahl einer der Objekte aufgefordert
-        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte waehlen sie ein Zertifikat aus der Liste (1-" + (arrayLaenge-1) + ")");
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie ein Zertifikat aus der Liste (1-" + (arrayLaenge-1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
        return zertifikatArray[auswahl];

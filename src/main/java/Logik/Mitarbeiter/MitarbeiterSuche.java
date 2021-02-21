@@ -66,8 +66,8 @@ public class MitarbeiterSuche{
      */
     private int suchkriterienAbfragen(){
 
-        BefehlsZeilenSchnittstelle.bildReinigen("Suchkriterien fuer die Mitarbeitersuche", 2);
-        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte waehlen sie ein Suchkriterium: ");
+        BefehlsZeilenSchnittstelle.bildReinigen("Suchkriterien für die Mitarbeitersuche", 2);
+        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte wählen sie ein Suchkriterium: ");
 
         int auswahlNummer = 1;
 
@@ -90,14 +90,14 @@ public class MitarbeiterSuche{
         BefehlsZeilenSchnittstelle.bildReinigen("Mitarbeitersuche",2);
 
         switch (auswahl){
-            case 1: suchZahl = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie die Personalnummer ein nach der sie suchen moechten: ");
+            case 1: suchZahl = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie die Personalnummer ein nach der sie suchen möchten: ");
                 suchText = String.valueOf(suchZahl);
             break;
-            case 2: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Nachnamen ein nach dem sie suchen moechten: ");
+            case 2: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Nachnamen ein nach dem sie suchen möchten: ");
             break;
-            case 3: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Vornamen nach dem sie suchen moechten: ");
+            case 3: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Vornamen nach dem sie suchen möchten: ");
             break;
-            case 4: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Gebn sie das Geburtsdatum ein nach dem sie suchen moechten: ");
+            case 4: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("Gebn sie das Geburtsdatum ein nach dem sie suchen möchten: ");
             break;
             case 5:
                 Kostenstelle kostenstelle = new Kostenstelle();
@@ -105,7 +105,7 @@ public class MitarbeiterSuche{
                 suchZahl = kostenstelle.getKostenstelleId();
                 suchText = String.valueOf(suchZahl);
                 break;
-            case 6: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Jobtitel an nach dem sie suchen moechten: ");
+            case 6: suchText = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Geben sie den Jobtitel an nach dem sie suchen möchten: ");
             break;
             case 7:
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiterstatus: ");
@@ -167,7 +167,7 @@ public class MitarbeiterSuche{
         arrayLaenge = mitarbeiterArray.length;
 
         //Der Bediener wird zu Auswahl einer der Objekte aufgefordert
-        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte waehlen sie einen Mitarbeiter aus der Liste (1-" + (arrayLaenge-1) + ")");
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie einen Mitarbeiter aus der Liste (1-" + (arrayLaenge-1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
         return mitarbeiterArray[auswahl];

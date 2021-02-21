@@ -16,7 +16,7 @@ import java.util.Scanner;
             public static String benutzer;
             public static String passwort;
 
-            private final String[] UNTERMENUE = {"1.  Datenbank Verbindungsdaten aendern", "99. Hauptmenue"};
+            private final String[] UNTERMENUE = {"1.  Datenbank Verbindungsdaten aendern", "99. Hauptmenü"};
             private final String[] KOPFZEILETABELLE = {"Url", "Benutzerverwaltung", "Passwort"};
             private String[] angabenTabelle = {url, benutzer, passwort};
 
@@ -47,7 +47,7 @@ import java.util.Scanner;
             // Abfrage welche Verbindungsdaten verwendet werden sollen
             public void nachVerbindungFragen(){
 
-                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welche Verbindungsdaten moechten sie nutzen?");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Welche Verbindungsdaten möchten sie nutzen?");
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("1. Standard Verbindungsdaten");
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("2. Benutzerdefinierte Verbindungsdaten");
 
@@ -72,7 +72,7 @@ import java.util.Scanner;
                         passwort = passwortBenutzerdefiniert;
                         break;
                     default:
-                        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie einen gueltigen Wert ein!");
+                        BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie einen gültigen Wert ein!");
                 }
             }
 
@@ -141,7 +141,7 @@ import java.util.Scanner;
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Datenbank URL: " + urlBenutzerdefiniert + "\t" + "Benutzer: " + benutzerBenutzerdefiniert + "\t" + "Passwort: " + passwortBenutzerdefiniert);
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
-                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Daten auf ihre Korrektheit");
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Daten auf ihre Korrektheit");
 
 
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Sind die Daten korrekt?");

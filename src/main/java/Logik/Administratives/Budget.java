@@ -20,7 +20,7 @@ public class Budget extends ServicesAdmin {
     private String waehrung;
     private String kostenstellenBezeichnung;
 
-    private String[] KOPFZEILE = {" ","Kostenstelle", "Jahr", "Betrag", "Waehrung"};
+    private String[] KOPFZEILE = {" ","Kostenstelle", "Jahr", "Betrag", "Währung"};
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Konstruktor erstellen eines Objekts mit Angaben der Utilities.Tabelle BudgetPeriode
@@ -83,7 +83,7 @@ public class Budget extends ServicesAdmin {
 
         arrayLaenge = budgetArray.length;
 
-        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte waehlen sie ein Budget aus der Liste (1-" + (arrayLaenge - 1) + ")");
+        BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie ein Budget aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
         //Schreiben der Attributen der ausgewaehlten Daten in die Membervariablen
@@ -136,7 +136,7 @@ public class Budget extends ServicesAdmin {
             objectInTabelleAusgeben(KOPFZEILE,attributenArrayFuerTabelle());
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("");
 
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             // Eingaben bestaetigen, neu beginnen oder abbrechen
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
@@ -177,7 +177,7 @@ public class Budget extends ServicesAdmin {
             }
             arrayLaenge = spaltenArray.length;
 
-            BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Welchen Spalte moechten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
+            BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Welchen Spalte möchten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
             auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
             switch (auswahl) {
@@ -185,7 +185,7 @@ public class Budget extends ServicesAdmin {
                 case 1:
                     BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + budgetJahr);
-                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Waehlen sie das neue Jahr aus: ");
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Wählen sie das neue Jahr aus: ");
                     int jahr = Year.now().getValue();
 
                     //Gibt Jahre zu Auswahl
@@ -213,7 +213,7 @@ public class Budget extends ServicesAdmin {
             //Eingaben anzeigen
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             objectInTabelleAusgeben(KOPFZEILE,attributenArrayFuerTabelle());
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             //Eingaben bestaetigen, neu beginnen oder abbrechen
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){

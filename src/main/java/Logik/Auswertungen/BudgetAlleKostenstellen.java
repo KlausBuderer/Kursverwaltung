@@ -20,7 +20,7 @@ public class BudgetAlleKostenstellen {
     private String kostenstellenbezeichnung;
     private String kostenstellenverantwortlichePerson;
 
-    private final String[] TITELZEILE = {"Budgetjahr","Budgetbetrag","Waehrung","Kostenstellennummer","Kostenstellenbezeichnung","KostenstellenverantwortlichePerson"};
+    private final String[] TITELZEILE = {"Budgetjahr","Budgetbetrag","Währung","Kostenstellennummer","Kostenstellenbezeichnung","KostenstellenverantwortlichePerson"};
 
     public BudgetAlleKostenstellen() {
     }

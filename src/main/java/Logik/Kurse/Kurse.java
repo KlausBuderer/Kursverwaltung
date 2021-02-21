@@ -18,8 +18,8 @@ public class Kurse extends Services {
     private String datumBis;
     private String durchfuehrungsOrt;
 
-    private final String [] UNTERMENUE = {"1.  Kurse Anlegen", "2.  Kurse Mutation","3.  Kurs loeschen", "99. Hauptmenue"};
-    private final String[] KOPFZEILE = {" ","Kurs Code","Anbieter", "Kurs Beschreibung","Kosten", "Waerung", "Datum Von","Datum Bis","Durchfuehrungsort"};
+    private final String [] UNTERMENUE = {"1.  Kurse Anlegen", "2.  Kurse Mutation","3.  Kurs löschen", "99. Hauptmenü"};
+    private final String[] KOPFZEILE = {" ","Kurs Code","Anbieter", "Kurs Beschreibung","Kosten", "Wärung", "Datum Von","Datum Bis","Durchführungsort"};
 
 
    //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -62,7 +62,7 @@ public class Kurse extends Services {
                     break;
                 case 99:
                     //zurueck ins Hauptmenue;
-                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Hauptmenue");
+                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Hauptmenü");
                     gueltigeEingabe = false;
                     break;
                 default:
@@ -98,12 +98,12 @@ public class Kurse extends Services {
             //Datum bis
             datumBis = BefehlsZeilenSchnittstelle.abfrageMitEingabeDatum("End-Datum: ");
             //Durchfuehrungsort
-            durchfuehrungsOrt = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Durchfuehrungsort: ");
+            durchfuehrungsOrt = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Durchführungsort: ");
 
             // Ausgabe der eingegebenen Daten
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             objectInTabelleAusgeben(KOPFZEILE, attributenArrayFuerTabelle());
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             //Bestätigung der Eingaben
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
@@ -154,7 +154,7 @@ public class Kurse extends Services {
             }
             arrayLaenge = spaltenArray.length;
 
-            BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Welchen Spalte moechten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
+            BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Welchen Spalte möchten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
             auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
             //Eingabe der Änderung
@@ -236,7 +236,7 @@ public class Kurse extends Services {
      */
     protected void datenLoeschen(){
         boolean abschliessen = false;
-        String titelName = "Kurse loeschen";
+        String titelName = "Kurse löschen";
         Kurse kurs;
 
         do {

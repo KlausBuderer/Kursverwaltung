@@ -8,8 +8,8 @@ import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 public class Mitarbeiter extends Services {
 
 
-    private String[] unterMenue = {"1.  Mitarbeiter Anlegen","2.  Mitarbeiter Kurszuordnung", "3.  Mitarbeiter Zertifikatszuordnung", "4.  Zertifikat Verlaengern",
-            "5.  Mitarbeiter Mutation", "6.  Mitarbeiter loeschen", "99. Hauptmenue"};
+    private String[] unterMenue = {"1.  Mitarbeiter Anlegen","2.  Mitarbeiter Kurszuordnung", "3.  Mitarbeiter Zertifikatszuordnung", "4.  Zertifikat Verlängern",
+            "5.  Mitarbeiter Mutation", "6.  Mitarbeiter löschen", "99. Hauptmenü"};
     private String[] anredeArray = {"Frau", "Herr", "Neutral"};
     private String[] statusArray = {"angestellt", "ausgetreten"};
     private String[] KOPFZEILE = {" ","Personal Nummer", "Anrede", "Nachname","Vorname", "Geburtsdatum", "Kostenstelle", "Jobtitel", "Anstellungsstatus"};
@@ -136,7 +136,7 @@ public class Mitarbeiter extends Services {
             //Ausgeben der Eingegebenen Angaben
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             objectInTabelleAusgeben(KOPFZEILE,attributenArrayFuerTabelle());
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             //Bestätigen, neu Beginnen oder abbrechen des Anlegen
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()) {
@@ -188,7 +188,7 @@ public class Mitarbeiter extends Services {
             }
             arrayLaenge = spaltenArray.length;
 
-            BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Welchen Spalte moechten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
+            BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Welchen Spalte möchten sie Bearbeiten? (1-" + (arrayLaenge) + "):");
             auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
             //Aenderung einleiten
@@ -264,7 +264,7 @@ public class Mitarbeiter extends Services {
             //Eingaben ausgeben
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             objectInTabelleAusgeben(KOPFZEILE,attributenArrayFuerTabelle());
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte ueberpruefen sie die Korrektheit der Erfassten Daten");
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte überprüfen sie die Korrektheit der Erfassten Daten");
 
             //Abfrage ob die Eingaben gespeichert werden sollen
             switch (BefehlsZeilenSchnittstelle.korrekteEingabeBestaetigen()){
@@ -287,7 +287,7 @@ public class Mitarbeiter extends Services {
      */
     protected void datenLoeschen(){
         boolean abschliessen = false;
-        String titelName = "Mitarbeiter Loeschen";
+        String titelName = "Mitarbeiter Löschen";
         Mitarbeiter mitarbeiter;
 
         do {

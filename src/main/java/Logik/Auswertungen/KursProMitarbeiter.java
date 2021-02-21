@@ -23,7 +23,7 @@ public class KursProMitarbeiter {
     private String anbieter;
     private String waehrung;
 
-    private final String[] TITELZEILE = {"MitarbeiterID", "Nachname", "Vorname", "Kurscode", "Kursbeschreibung", "Anbieter", "Kosten", "Waehrung"};
+    private final String[] TITELZEILE = {"MitarbeiterID", "Nachname", "Vorname", "Kurscode", "Kursbeschreibung", "Anbieter", "Kosten", "Währung"};
 
     public KursProMitarbeiter() {}
 

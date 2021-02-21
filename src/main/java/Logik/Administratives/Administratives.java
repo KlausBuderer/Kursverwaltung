@@ -5,7 +5,7 @@ import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 public class Administratives{
 
 
-    private final String[] UNTERMENUE = {"1.  Kostenstelle Anlegen", "2.  Kostenstelle Mutation", "3.  Budget pro Kostenstelle erfassen", "4.  Budget Mutation", "99. Hauptmenue"};
+    private final String[] UNTERMENUE = {"1.  Kostenstelle Anlegen", "2.  Kostenstelle Mutation", "3.  Budget pro Kostenstelle erfassen", "4.  Budget Mutation", "99. Hauptmenü"};
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Konstruktor anzeigen Hauptmenue
