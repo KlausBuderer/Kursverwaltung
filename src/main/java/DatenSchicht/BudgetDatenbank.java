@@ -5,7 +5,8 @@ import Logik.Services;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BudgetDatenbank extends Datenbank implements DatenLogik{
 
@@ -30,20 +31,20 @@ public class BudgetDatenbank extends Datenbank implements DatenLogik{
            /*
     Gibt eine Auswahlliste zurueck
      */
-    public HashMap<?,Integer> datenAuslesen(String tabelle){
+    public List<?> datenAuslesen(String tabelle){
         return datenAuslesenfuerAbfrage(tabelle);
     }
 
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
     Parameter: Inhalt der Tabelle der Datenbank
-    Rueckgabewert: Hashmap mit Objekten fuer jeden Tuple
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
      */
-    HashMap<Budget, Integer> budgetAusgeben(ResultSet dbInhalt) throws SQLException {
+    List<Budget> budgetAusgeben(ResultSet dbInhalt) throws SQLException {
 
-        HashMap<Budget, Integer> budgetHash = new HashMap<>();
+        List<Budget> budgetListe = new ArrayList<>();
         Budget budget;
 
         while (dbInhalt.next()) {
@@ -55,9 +56,9 @@ public class BudgetDatenbank extends Datenbank implements DatenLogik{
             String waehrung = dbInhalt.getString("Waehrung");
             budget = new Budget(id, kostenstelleID, budgetJahr, betrag, waehrung);
 
-            budgetHash.put(budget, id);
+            budgetListe.add(budget);
         }
-        return budgetHash;
+        return budgetListe;
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -92,7 +93,7 @@ public class BudgetDatenbank extends Datenbank implements DatenLogik{
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Wird beim Ausbau der Software implementiert
     @Override
-    public HashMap<?, Integer> suchen(String suchkriterium, String suchText) {
+    public List<?> suchen(String suchkriterium, String suchText) {
         return null;
     }
 

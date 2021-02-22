@@ -1,12 +1,11 @@
 package Logik.Administratives;
 
-import DatenSchicht.*;
-
+import DatenSchicht.DatenLogik;
+import DatenSchicht.KostenstelleDatenbank;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class Kostenstelle extends ServicesAdmin {
 
@@ -43,21 +42,21 @@ public class Kostenstelle extends ServicesAdmin {
 
         DatenLogik kostenstelleDatenbank = new KostenstelleDatenbank();
         //  Datenbanka nach Kostenstellen
-        HashMap<Kostenstelle, Integer> kostenstelleMap = (HashMap<Kostenstelle, Integer>) kostenstelleDatenbank.datenAuslesen("tblKostenstelle");
+        List<Kostenstelle> kostenstelleList = (List<Kostenstelle>) kostenstelleDatenbank.datenAuslesen("tblKostenstelle");
 
         // Schreiben der Kostenstellen in ein Array
-        Kostenstelle[] kostenstelleArray = new Kostenstelle[kostenstelleMap.size() + 1];
+        Kostenstelle[] kostenstelleArray = new Kostenstelle[kostenstelleList.size() + 1];
 
         BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
         Tabelle tabelle = new Tabelle();
         tabelle.vertikaleLinieSetzen(true);
         tabelle.kopfzeileSetzen(KOPFZEILE);
 
-        //Schleife durch ganze Hashmap fuer die Ausgabe in einer Tabelle
-        for (Map.Entry<Kostenstelle, Integer> map : kostenstelleMap.entrySet()) {
-            kostenstelleArray[i] = map.getKey();
+        //Schleife durch ganze Liste fuer die Ausgabe in einer Tabelle
+        for (Kostenstelle kostenstelle : kostenstelleList) {
+            kostenstelleArray[i] = kostenstelle;
             //Temporaeres Array fuer die Ausgabe in der Tabelle
-            String[] tempArray = map.getKey().attributenArrayFuerTabelle();
+            String[] tempArray = kostenstelle.attributenArrayFuerTabelle();
             tempArray[0] = i + ".";
             // Ausgeben des Array
             tabelle.zeileHinzufuegen(tempArray);

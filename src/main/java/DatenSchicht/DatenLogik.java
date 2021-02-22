@@ -2,17 +2,17 @@ package DatenSchicht;
 
 import Logik.Services;
 
-import java.util.HashMap;
+import java.util.List;
 
 public interface DatenLogik {
 
-    HashMap<?,Integer> suchen(String suchkriterium, String suchText);
+    List<?> suchen(String suchkriterium, String suchText);
 
     void datenAnlegen(Services services);
 
     void datenMutation(Services services);
 
-    HashMap<?,Integer> datenAuslesen(String tabelle);
+    List<?> datenAuslesen(String tabelle);
 
     public void datenLoeschen(int ID);
 

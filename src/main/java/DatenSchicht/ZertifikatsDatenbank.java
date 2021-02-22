@@ -5,7 +5,8 @@ import Logik.Zertifikate.Zertifikate;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ZertifikatsDatenbank extends Datenbank implements DatenLogik {
 
@@ -31,7 +32,7 @@ public class ZertifikatsDatenbank extends Datenbank implements DatenLogik {
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     //Spezfisches Zertifikat in der Datenbank suchen
-    public HashMap<?,Integer> suchen(String suchkriterium, String suchText){
+    public List<?> suchen(String suchkriterium, String suchText){
         return datenInDbSuchen(queryFuerAnzahlAbfrage(suchkriterium,suchText));
     }
 
@@ -47,13 +48,13 @@ public class ZertifikatsDatenbank extends Datenbank implements DatenLogik {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank.Datenbank
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank.Datenbank
     Parameter: Inhalt der Utilities.Tabelle der Datenbank.Datenbank
-    Rueckgabewert: Hashmap mit Objekten fuer jeden Tuple
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
      */
-    protected HashMap<Zertifikate, Integer> zertifikateListeErstellen(ResultSet dbInhalt) throws SQLException {
+    protected List<Zertifikate> zertifikateListeErstellen(ResultSet dbInhalt) throws SQLException {
 
-        HashMap<Zertifikate, Integer> zertifikateHash = new HashMap<>();
+        List<Zertifikate> zertifikateListe = new ArrayList<>();
         Zertifikate zertifikate;
 
         while (dbInhalt.next()) {
@@ -67,9 +68,9 @@ public class ZertifikatsDatenbank extends Datenbank implements DatenLogik {
             String waehrung = dbInhalt.getString("Waehrung");
             zertifikate = new Zertifikate(id, kosten, zertifikatstitel, zertifikatsBeschreibung, anbieter, sprache, waehrung);
 
-            zertifikateHash.put(zertifikate, id);
+            zertifikateListe.add(zertifikate);
         }
-        return zertifikateHash;
+        return zertifikateListe;
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
@@ -116,7 +117,7 @@ public class ZertifikatsDatenbank extends Datenbank implements DatenLogik {
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Wird beim Ausbau der Software implementiert
     @Override
-    public HashMap<?, Integer> datenAuslesen(String tabelle) {
+    public List<?> datenAuslesen(String tabelle) {
         return null;
     }
 

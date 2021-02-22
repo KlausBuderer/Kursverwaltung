@@ -2,13 +2,14 @@ package Logik.Administratives;
 
 
 import DatenSchicht.BudgetDatenbank;
-import DatenSchicht.*;
+import DatenSchicht.DatenLogik;
+import DatenSchicht.DatenLogikKostenstelle;
+import DatenSchicht.KostenstelleDatenbank;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
 import java.time.Year;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class Budget extends ServicesAdmin {
 
@@ -56,11 +57,11 @@ public class Budget extends ServicesAdmin {
         DatenLogik budgetDatenbank = new BudgetDatenbank();
 
         // Abfrage Datenbank.Datenbank nach Kostenstellen
-        HashMap<Budget, Integer> budgetMap = (HashMap<Budget, Integer>) budgetDatenbank.datenAuslesen("tblBudgetPeriode");
+        List<Budget> budgetList = (List<Budget>) budgetDatenbank.datenAuslesen("tblBudgetPeriode");
 
 
         // Schreiben der Kostenstellen in ein budgetArray
-        Budget[] budgetArray = new Budget[budgetMap.size() + 1];
+        Budget[] budgetArray = new Budget[budgetList.size() + 1];
 
         // Erstellt eine Tabelle für die Ausgabe
         Tabelle tabelle = new Tabelle();
@@ -69,9 +70,10 @@ public class Budget extends ServicesAdmin {
 
         BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
 
-        for (Map.Entry<Budget, Integer> map : budgetMap.entrySet()) {
-            budgetArray[i] = map.getKey();
-            String[] tempArray = map.getKey().attributenArrayFuerTabelle();
+        for (Budget budget : budgetList) {
+            budgetArray[i] = budget;
+            // Nummer hinzufügen für die Auswahlliste
+            String[] tempArray = budgetArray[i].attributenArrayFuerTabelle();
             tempArray[0] = i + ". ";
 
             tabelle.zeileHinzufuegen(tempArray);

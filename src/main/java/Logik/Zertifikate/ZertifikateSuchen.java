@@ -1,11 +1,11 @@
 package Logik.Zertifikate;
 
-import DatenSchicht.*;
+import DatenSchicht.DatenLogik;
+import DatenSchicht.ZertifikatsDatenbank;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class ZertifikateSuchen {
 
@@ -18,7 +18,7 @@ public class ZertifikateSuchen {
     public Zertifikate zertifikatSuchen(){
 
         boolean abbruchBedingung = false;
-        HashMap<?, Integer> zertifikatsHash;
+        List<?> zertifikatsList;
         String titelName = "Zertifikat Suchen";
 
         do {
@@ -26,20 +26,20 @@ public class ZertifikateSuchen {
             int suchkriterium = suchkriterienAbfragen();
             //Suchtext zum gewaehlten Kriterium Abfragen
             suchText = suchTextEinlesen(suchkriterium);
-            //Hashmap mit allen Treffern erstellen
+            //Liste mit allen Treffern erstellen
             DatenLogik zertifikatSuchen = new ZertifikatsDatenbank();
-            zertifikatsHash = zertifikatSuchen.suchen(SUCHKRITERIEN[suchkriterium - 1], suchText);
+            zertifikatsList = zertifikatSuchen.suchen(SUCHKRITERIEN[suchkriterium - 1], suchText);
 
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
 
-            if (zertifikatsHash.size() > 20) {
+            if (zertifikatsList.size() > 20) {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zuviele Treffer!");
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie genauere Angaben an");
                 BefehlsZeilenSchnittstelle.verzoegerung(2000);
-            } else if (zertifikatsHash.size() > 0) {
+            } else if (zertifikatsList.size() > 0) {
                 // Mitarbeiterliste ausgeben und Auswahl Einlesen
                 abbruchBedingung = true;
-                return auswahlListeZertifikateAusgeben(zertifikatsHash);
+                return auswahlListeZertifikateAusgeben(zertifikatsList);
             } else {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Keine Treffer");
                 BefehlsZeilenSchnittstelle.verzoegerung(2000);
@@ -119,32 +119,28 @@ public class ZertifikateSuchen {
        /*
     Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzerverwaltung
      */
-    private Zertifikate auswahlListeZertifikateAusgeben(HashMap zertifikateHash) {
+    private Zertifikate auswahlListeZertifikateAusgeben(List zertifikateList) {
 
         int i = 1;
         int arrayLaenge;
         int auswahl;
 
-        ZertifikatsDatenbank zertifikatsDatenbank = new ZertifikatsDatenbank();
-
-        // Abfrage Datenbank.Datenbank nach Zertifikaten
-        HashMap<Zertifikate, Integer> zertifikatMap = zertifikateHash;
+        // Abfrage Datenbank nach Zertifikaten
+        List<Zertifikate> zertifikatListe = zertifikateList;
 
         //Erstellt eine Tabelle
         Tabelle tabelle = new Tabelle();
         tabelle.kopfzeileSetzen(TABELLENHEADER);
         tabelle.vertikaleLinieSetzen(true);
 
-        // Schreiben der Kostenstellen in ein Array
-        Zertifikate[] zertifikatArray = new Zertifikate[zertifikatMap.size() + 1];
+        // Schreiben der Zertifikate in ein Array
+        Zertifikate[] zertifikatArray = new Zertifikate[zertifikatListe.size() + 1];
 
-        for (Map.Entry<Zertifikate, Integer> map : zertifikatMap.entrySet()) {
-            zertifikatArray[i] = map.getKey();
-            String[] tempArray = map.getKey().attributenArrayFuerTabelle();
+        for (Zertifikate zertifikate : zertifikatListe) {
+            String[] tempArray = zertifikate.attributenArrayFuerTabelle();
             tempArray[0] = i + ".";
 
             // Ausgeben des Array
-            //BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(i + ". " + map.getKey().toString());
             tabelle.zeileHinzufuegen(tempArray);
             i++;
         }
@@ -156,6 +152,6 @@ public class ZertifikateSuchen {
         BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie ein Zertifikat aus der Liste (1-" + (arrayLaenge-1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
-       return zertifikatArray[auswahl];
+       return zertifikatListe.get(auswahl - 1);
     }
 }

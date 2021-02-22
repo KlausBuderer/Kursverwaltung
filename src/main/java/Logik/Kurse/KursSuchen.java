@@ -1,11 +1,11 @@
 package Logik.Kurse;
 
-import DatenSchicht.*;
+import DatenSchicht.DatenLogik;
+import DatenSchicht.KursDatenbank;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class KursSuchen {
 
@@ -19,27 +19,27 @@ public class KursSuchen {
 
         boolean abbruchBedingung = false;
         String titelName = "Kurse Suchen";
-        HashMap<?, Integer> kursHash;
+        List<?> kursListe;
 
         do {
             //Suchkriterium Abfragen
             int suchkriterium = suchkriterienAbfragen();
             //Suchtext zum gewaehlten Kriterium Abfragen
             suchText = suchTextEinlesen(suchkriterium);
-            //Hashmap mit allen Treffern erstellen
+            //Liste mit allen Treffern erstellen
             DatenLogik kursSuchen = new KursDatenbank();
-            kursHash = kursSuchen.suchen(SPALTENBEZEICHNUNG[suchkriterium - 1], suchText);
+            kursListe = kursSuchen.suchen(SPALTENBEZEICHNUNG[suchkriterium - 1], suchText);
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
 
             //Begrenzen der Anzahl der Ausgabe
-            if (kursHash.size() > 30) {
+            if (kursListe.size() > 30) {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zuviele Treffer!");
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie genauere Angaben an");
                 BefehlsZeilenSchnittstelle.verzoegerung(2000);
-            } else if (kursHash.size() > 0) {
+            } else if (kursListe.size() > 0) {
                 // Mitarbeiterliste ausgeben und Auswahl Einlesen
                 abbruchBedingung = true;
-                return auswahlListeKurseAusgeben(kursHash);
+                return auswahlListeKurseAusgeben(kursListe);
             } else {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Keine Treffer");
                 BefehlsZeilenSchnittstelle.verzoegerung(2000);
@@ -110,27 +110,26 @@ public class KursSuchen {
        /*
     Methode zur Ausgabe einer Auswahlliste Kostenstelle fuer den Benutzerverwaltung
      */
-    private Kurse auswahlListeKurseAusgeben(HashMap kursHash) {
+    private Kurse auswahlListeKurseAusgeben(List kursList) {
 
         int i = 1;
         int arrayLaenge;
         int auswahl;
 
         // Abfrage Datenbank nach Kursen
-        HashMap<Kurse, Integer> kursMap = kursHash;
+        List<Kurse> kursListe = kursList;
 
         // Schreiben des Kurses in ein Array
-        Kurse[] kursArray = new Kurse[kursMap.size() + 1];
+        Kurse[] kursArray = new Kurse[kursList.size() + 1];
         //Tabelle erstellen
 
         Tabelle tabelle = new Tabelle();
         tabelle.kopfzeileSetzen(TABELLENHEADER);
         tabelle.vertikaleLinieSetzen(true);
 
-        for (Map.Entry<Kurse, Integer> map : kursMap.entrySet()) {
-            kursArray[i] = map.getKey();
+        for (Kurse kurs : kursListe) {
             // Ausgeben des Array
-            String[] tempArray = map.getKey().attributenArrayFuerTabelle();
+            String[] tempArray = kurs.attributenArrayFuerTabelle();
             tempArray[0] = i + ".";
             tabelle.zeileHinzufuegen(tempArray);
             i++;
@@ -143,6 +142,6 @@ public class KursSuchen {
         BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie einen Kurs aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
-        return kursArray[auswahl];
+        return kursListe.get(auswahl - 1);
     }
 }

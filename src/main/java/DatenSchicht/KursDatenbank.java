@@ -5,7 +5,8 @@ import Logik.Services;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class KursDatenbank extends Datenbank implements DatenLogik {
 
@@ -31,7 +32,7 @@ public class KursDatenbank extends Datenbank implements DatenLogik {
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Spezfischen Kurs in der Datenbank suchen
-    public HashMap<?,Integer> suchen(String suchkriterium, String suchText){
+    public List<?> suchen(String suchkriterium, String suchText){
         return datenInDbSuchen(queryFuerAnzahlAbfrage(suchkriterium,suchText));
     }
 
@@ -46,13 +47,13 @@ public class KursDatenbank extends Datenbank implements DatenLogik {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
     Parameter: Inhalt der Tabelle der Datenbank
-    Rueckgabewert: Hashmap mit Objekten fuer jeden Tuple
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
      */
-    protected HashMap<Kurse, Integer> kursListeErstellen(ResultSet dbInhalt) throws SQLException {
+    protected List<Kurse> kursListeErstellen(ResultSet dbInhalt) throws SQLException {
 
-        HashMap<Kurse, Integer> kursHash = new HashMap<>();
+       List<Kurse> kursList = new ArrayList<>();
         Kurse kurs;
 
         while (dbInhalt.next()) {
@@ -68,9 +69,9 @@ public class KursDatenbank extends Datenbank implements DatenLogik {
             String durchfuehrungsOrt = dbInhalt.getString("Durchfuehrungsort");
             kurs = new Kurse(id, kosten, waehrung, kursCode, anbieter, kursBeschreibung, datumVon, datumBis, durchfuehrungsOrt);
 
-            kursHash.put(kurs, id);
+            kursList.add(kurs);
         }
-        return kursHash;
+        return kursList;
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -128,7 +129,7 @@ public class KursDatenbank extends Datenbank implements DatenLogik {
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Wird beim Ausbau der Software implementiert
     @Override
-    public HashMap<?, Integer> datenAuslesen(String tabelle) {
+    public List<?> datenAuslesen(String tabelle) {
         return null;
     }
 

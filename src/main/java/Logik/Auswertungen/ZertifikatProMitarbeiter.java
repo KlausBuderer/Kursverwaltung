@@ -7,8 +7,7 @@ import Logik.Mitarbeiter.MitarbeiterSuche;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 
 public class ZertifikatProMitarbeiter {
@@ -42,7 +41,7 @@ public class ZertifikatProMitarbeiter {
 
         Mitarbeiter mitarbeiterIdentification;
 
-        HashMap<ZertifikatProMitarbeiter, Integer> AusgabeZertifikatProMitarbeiter;
+        List<ZertifikatProMitarbeiter> AusgabeZertifikatProMitarbeiter;
 
         mitarbeiterIdentification = new MitarbeiterSuche().mitarbeiterSuchen();
 
@@ -56,9 +55,9 @@ public class ZertifikatProMitarbeiter {
         tabelle.kopfzeileSetzen(TITELZEILE);
         tabelle.vertikaleLinieSetzen(true);
 
-        for (Map.Entry<ZertifikatProMitarbeiter, Integer> map : AusgabeZertifikatProMitarbeiter.entrySet()) {
+        for (ZertifikatProMitarbeiter zertifikatProMitarbeiter : AusgabeZertifikatProMitarbeiter) {
 
-            tabelle.zeileHinzufuegen(map.getKey().attributenArrayBefuellen());
+            tabelle.zeileHinzufuegen(zertifikatProMitarbeiter.attributenArrayBefuellen());
         }
         tabelle.ausgabe();
         BefehlsZeilenSchnittstelle.beliebigeTasteDrueckenAnzeigen();

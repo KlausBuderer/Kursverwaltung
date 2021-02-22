@@ -5,7 +5,6 @@ import Logik.Auswertungen.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class AuswertungenDatenbank extends Datenbank implements DatenLogikAuswertungen {
@@ -67,12 +66,12 @@ public class AuswertungenDatenbank extends Datenbank implements DatenLogikAuswer
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public HashMap<KursProMitarbeiter, Integer> storeproduceKursproMitarbeiter(int mitarbeiterID){
+    public List<KursProMitarbeiter> storeproduceKursproMitarbeiter(int mitarbeiterID){
         return storeProcedureAufrufen("{call SP_ANZEIGEN_MA_KURSE(?)}",mitarbeiterID,STORE_PROCEDURE_KONTEXT.AUSWERTUNG_KURS_PRO_MITARBEITER);
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    public HashMap<ZertifikatProMitarbeiter, Integer> storeproduceZertifikatproMitarbeiter(int mitarbeiterID){
+    public List<ZertifikatProMitarbeiter> storeproduceZertifikatproMitarbeiter(int mitarbeiterID){
         return storeProcedureAufrufen("{call SP_ANZEIGEN_MA_ZERT(?)}",mitarbeiterID,STORE_PROCEDURE_KONTEXT.AUSWERTUNG_ZERTIFIKAT_PRO_MITARBEITER);
     }
 
@@ -321,9 +320,9 @@ public class AuswertungenDatenbank extends Datenbank implements DatenLogikAuswer
     Parameter: Inhalt der Tabelle der Datenbank
     Rueckgabewert: Liste mit Objekten fuer jeden Tuple
      */
-    public HashMap<KursProMitarbeiter,Integer> ausfuehrenKursProMitarbeiter(ResultSet dbInhalt) throws SQLException {
+    public List<KursProMitarbeiter> ausfuehrenKursProMitarbeiter(ResultSet dbInhalt) throws SQLException {
 
-        HashMap<KursProMitarbeiter, Integer> KursProMitarbeiterHashMap = new HashMap<KursProMitarbeiter, Integer>();
+        List<KursProMitarbeiter> KursProMitarbeiterListe = new ArrayList<>();
         KursProMitarbeiter kursProMitarbeiter;
 
         while (dbInhalt.next()) {
@@ -340,9 +339,9 @@ public class AuswertungenDatenbank extends Datenbank implements DatenLogikAuswer
             kursProMitarbeiter = new KursProMitarbeiter(mitarbeiterID,nachname,vorname,kurscode,kursbeschreibung,anbieter,kosten,waehrung);
 
 
-            KursProMitarbeiterHashMap.put(kursProMitarbeiter,mitarbeiterID);
+            KursProMitarbeiterListe.add(kursProMitarbeiter);
         }
-        return KursProMitarbeiterHashMap;
+        return KursProMitarbeiterListe;
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
@@ -350,9 +349,9 @@ public class AuswertungenDatenbank extends Datenbank implements DatenLogikAuswer
     Parameter: Inhalt der Tabelle der Datenbank
     Rueckgabewert: Liste mit Objekten fuer jeden Tuple
      */
-    public HashMap<ZertifikatProMitarbeiter,Integer> ausfuehrenZertifikatProMitarbeiter(ResultSet dbInhalt) throws SQLException {
+    public List<ZertifikatProMitarbeiter> ausfuehrenZertifikatProMitarbeiter(ResultSet dbInhalt) throws SQLException {
 
-        HashMap<ZertifikatProMitarbeiter, Integer> ZertifikatProMitarbeiterHashMap = new HashMap<ZertifikatProMitarbeiter, Integer>();
+        List<ZertifikatProMitarbeiter> ZertifikatProMitarbeiterListe = new ArrayList<>();
         ZertifikatProMitarbeiter zertifikatProMitarbeiter;
 
         while (dbInhalt.next()) {
@@ -369,9 +368,9 @@ public class AuswertungenDatenbank extends Datenbank implements DatenLogikAuswer
             zertifikatProMitarbeiter = new ZertifikatProMitarbeiter(mitarbeiterID,nachname,vorname,zertAblDatum,zertifikatstitel,zertifikatsbeschreibung);
 
 
-            ZertifikatProMitarbeiterHashMap.put(zertifikatProMitarbeiter,mitarbeiterID);
+            ZertifikatProMitarbeiterListe.add(zertifikatProMitarbeiter);
         }
-        return ZertifikatProMitarbeiterHashMap;
+        return ZertifikatProMitarbeiterListe;
     }
 
    }

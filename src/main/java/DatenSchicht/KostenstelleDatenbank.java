@@ -5,7 +5,8 @@ import Logik.Services;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class KostenstelleDatenbank extends Datenbank implements DatenLogik, DatenLogikKostenstelle{
 
@@ -30,7 +31,7 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik, Date
            /*
     Gibt eine Auswahlliste zurueck (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
      */
-    public HashMap<?,Integer> datenAuslesen(String tabelle){
+    public List<?> datenAuslesen(String tabelle){
       return datenAuslesenfuerAbfrage(tabelle);
     }
 
@@ -45,13 +46,13 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik, Date
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Methode zum Erstelle eines Hashmap mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
+    Methode zum Erstelle einer Liste mit den jeweiligen Objekten und befuellen der Membervariablen mit den Werten der Datenbank
     Parameter: Inhalt der Tabelle der Datenbank
-    Rueckgabewert: Hashmap mit Objekten fuer jeden Tuple
+    Rueckgabewert: Liste mit Objekten fuer jeden Tuple
      */
-    HashMap<Kostenstelle, Integer> kostenstelleAusgeben(ResultSet dbInhalt) throws SQLException {
+    List<Kostenstelle> kostenstelleAusgeben(ResultSet dbInhalt) throws SQLException {
 
-        HashMap<Kostenstelle, Integer> kostenstelleHash = new HashMap<>();
+        List<Kostenstelle> kostenstelleList = new ArrayList<>();
         Kostenstelle kostenstelle;
 
         while (dbInhalt.next()) {
@@ -61,9 +62,9 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik, Date
             String verantwortlichePerson = dbInhalt.getNString("KostenstelleVerantPerson");
             kostenstelle = new Kostenstelle(id, kostenstelleNummer, kostenstellenBezeichnung, verantwortlichePerson);
 
-            kostenstelleHash.put(kostenstelle, id);
+            kostenstelleList.add(kostenstelle);
         }
-        return kostenstelleHash;
+        return kostenstelleList;
     }
 
     /*
@@ -98,7 +99,7 @@ public class KostenstelleDatenbank extends Datenbank implements DatenLogik, Date
     //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Wird beim Ausbau der Software implementiert
     @Override
-    public HashMap<?, Integer> suchen(String suchkriterium, String suchText) {
+    public List<?> suchen(String suchkriterium, String suchText) {
         return null;
     }
 

@@ -1,13 +1,13 @@
 package Logik.Mitarbeiter;
 
 
+import DatenSchicht.DatenLogik;
+import DatenSchicht.MitarbeiterDatenbank;
 import Logik.Administratives.Kostenstelle;
-import DatenSchicht.*;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class MitarbeiterSuche{
 
@@ -30,7 +30,7 @@ public class MitarbeiterSuche{
     public Mitarbeiter mitarbeiterSuchen(){
 
         boolean abbruchBedingung = false;
-        HashMap<?, Integer> mitarbeiterHash;
+       List<?> mitarbeiterList;
 
         do {
             //Suchkriterium Abfragen
@@ -39,20 +39,20 @@ public class MitarbeiterSuche{
             suchText = suchTextEinlesen(suchkriterium);
             //Tabelle aller passenden Mitarbeiter aus Datenbank anfordern
             DatenLogik mitarbeiterSuchen = new MitarbeiterDatenbank();
-            mitarbeiterHash = mitarbeiterSuchen.suchen(MYSQL_SPALTEN_NAMEN[suchkriterium - 1], suchText);
+            mitarbeiterList = mitarbeiterSuchen.suchen(MYSQL_SPALTEN_NAMEN[suchkriterium - 1], suchText);
 
 
             BefehlsZeilenSchnittstelle.bildReinigen("Mitarbeitersuche",2);
 
             //Auf Anzahl Treffer begrenzen
-            if (mitarbeiterHash.size() > 50) {
+            if (mitarbeiterList.size() > 50) {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Zuviele Treffer!");
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte geben sie genauere Angaben an");
                 BefehlsZeilenSchnittstelle.verzoegerung(2000);
-            } else if (mitarbeiterHash.size() > 0) {
+            } else if (mitarbeiterList.size() > 0) {
                 // Mitarbeiterliste ausgeben und Auswahl Einlesen
                 abbruchBedingung = true;
-                return mitarbeiterListeAusgeben(mitarbeiterHash);
+                return mitarbeiterListeAusgeben(mitarbeiterList);
             } else {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Keine Treffer");
                 BefehlsZeilenSchnittstelle.verzoegerung(2000);
@@ -138,26 +138,25 @@ public class MitarbeiterSuche{
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
     Methode zum Erstellen einer Liste von Objekten der Klasse Mitarbeiter zur Auswahl fuer den Bediener
-    Parameter: Hashmap mit den Mitarbeiter
+    Parameter: Liste mit den Mitarbeiter
     Rueckgabewert: objekt des Typ Mitarbeiter
      */
-    private Mitarbeiter mitarbeiterListeAusgeben(HashMap mitarbeiterHash) {
+    private Mitarbeiter mitarbeiterListeAusgeben(List mitarbeiterList) {
 
         int arrayLaenge;
         int auswahl;
 
-        HashMap<Mitarbeiter,Integer> mitarbeiterHashmap = mitarbeiterHash;
-        Mitarbeiter[] mitarbeiterArray = new Mitarbeiter[mitarbeiterHash.size() + 1];
+        List<Mitarbeiter> mitarbeiterListe = mitarbeiterList;
+        Mitarbeiter[] mitarbeiterArray = new Mitarbeiter[mitarbeiterList.size() + 1];
        // Erstellen der Tabelle
         Tabelle tabelle = new Tabelle();
         tabelle.kopfzeileSetzen(TABELLENHEADER);
         tabelle.vertikaleLinieSetzen(true);
 
         int i = 1;
-        for (Map.Entry<Mitarbeiter, Integer> map : mitarbeiterHashmap.entrySet()) {
-            mitarbeiterArray[i] = map.getKey();
+        for (Mitarbeiter mitarbeiter : mitarbeiterListe) {
             // Ausgeben des Array
-            String[] tempArray = map.getKey().attributenArrayFuerTabelle();
+            String[] tempArray = mitarbeiter.attributenArrayFuerTabelle();
             tempArray[0] = i + ".";
             tabelle.zeileHinzufuegen(tempArray);
             i++;
@@ -170,7 +169,7 @@ public class MitarbeiterSuche{
         BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Bitte wählen sie einen Mitarbeiter aus der Liste (1-" + (arrayLaenge-1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
-        return mitarbeiterArray[auswahl];
+        return mitarbeiterListe.get(auswahl - 1);
     }
 
 }

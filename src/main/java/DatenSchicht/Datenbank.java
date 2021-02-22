@@ -4,7 +4,7 @@ import Logik.Einstellungen.Einstellungen;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 
 import java.sql.*;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Datenbank {
@@ -74,13 +74,13 @@ public class Datenbank {
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-    Abfrage aus Datenbank fuer Integer Werte -> Gibt einen HashMap von Objekten zurueck
+    Abfrage aus Datenbank fuer Integer Werte -> Gibt eine Liste von Objekten zurueck
 
-    Rueckgabewert: HashMap mit Objekt als Key und ID als Value
+    Rueckgabewert: Liste mit Objekt als Key und ID als Value
      */
-    public HashMap<?, Integer> datenAuslesenfuerAbfrage(String tabelle) {
+    public List<?> datenAuslesenfuerAbfrage(String tabelle) {
 
-        HashMap<?, Integer> datenAuflistung = new HashMap<>();
+        List<?> datenAuflistung = new ArrayList<>();
 
         Connection connection = null;
         Statement statement = null;
@@ -93,7 +93,7 @@ public class Datenbank {
             //Schreibt den Inhalt der Tabelle in die Variable dbInhalt
             ResultSet dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`.`" + tabelle + "`");
 
-            // Befüllt einen Hashmap mit dem Inhalt der Datenbank und übergibt sie der Variable datenAuflistung
+            // Befüllt eine Liste mit dem Inhalt der Datenbank und übergibt sie der Variable datenAuflistung
             switch (tabelle) {
                 case "tblKostenstelle":
                     datenAuflistung = new KostenstelleDatenbank().kostenstelleAusgeben(dbInhalt);
@@ -102,10 +102,10 @@ public class Datenbank {
                     datenAuflistung = new BudgetDatenbank().budgetAusgeben(dbInhalt);
                     break;
                 case "tblKurse":
-                    datenAuflistung = new KursDatenbank().kursListeErstellen(dbInhalt);
+                    //datenAuflistung = new KursDatenbank().kursListeErstellen(dbInhalt);
                     break;
                 case "tblZertifikate":
-                    datenAuflistung = new ZertifikatsDatenbank().zertifikateListeErstellen(dbInhalt);
+                    //datenAuflistung = new ZertifikatsDatenbank().zertifikateListeErstellen(dbInhalt);
                     break;
                 default:
                     break;
@@ -161,11 +161,11 @@ public class Datenbank {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Methode für die Suche von einem spezifischen Objekts in der Datenbank
-    Rueckgabewert: HashMap mit Objekten
+    Rueckgabewert: Liste mit Objekten
      */
-    public HashMap<?, Integer> datenInDbSuchen(String query) {
+    public List<?> datenInDbSuchen(String query) {
 
-        HashMap<?,Integer> rueckgabeHashMap = null;
+       List<?> rueckgabeListe = null;
 
         ResultSet dbInhalt = null;
         try {
@@ -177,11 +177,11 @@ public class Datenbank {
             dbInhalt = statement.executeQuery("SELECT * FROM `itwisse_kursverwaltung`." + query);
 
             if(query.contains("tblMitarbeiter")){
-            rueckgabeHashMap = new MitarbeiterDatenbank().mitarbeiterListeErstellen(dbInhalt);
+                rueckgabeListe = new MitarbeiterDatenbank().mitarbeiterListeErstellen(dbInhalt);
                 }else if(query.contains("tblKurse")){
-                    rueckgabeHashMap = new KursDatenbank().kursListeErstellen(dbInhalt);
+                    rueckgabeListe = new KursDatenbank().kursListeErstellen(dbInhalt);
                         }else if (query.contains("tblZertifikate")){
-                            rueckgabeHashMap = new ZertifikatsDatenbank().zertifikateListeErstellen(dbInhalt);
+                            rueckgabeListe = new ZertifikatsDatenbank().zertifikateListeErstellen(dbInhalt);
                          }
 
         } catch (SQLException | ClassNotFoundException sqlException) {
@@ -195,18 +195,18 @@ public class Datenbank {
                 sqlException.printStackTrace();
             }
 
-        return rueckgabeHashMap;
+        return rueckgabeListe;
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
     Methode zum Aufrufen von StoreProcedures
      */
-    public HashMap storeProcedureAufrufen(String query, int parameter, STORE_PROCEDURE_KONTEXT kontext) {
+    public List storeProcedureAufrufen(String query, int parameter, STORE_PROCEDURE_KONTEXT kontext) {
 
         CallableStatement statement = null;
         ResultSet dbInhalt = null;
-        HashMap rueckgabeHash = null;
+        List rueckgabeListe = null;
         String statusSP;
 
         try {
@@ -221,21 +221,21 @@ public class Datenbank {
                     statement.setInt(1,parameter);
 
                     dbInhalt = statement.executeQuery();
-                    rueckgabeHash = new AuswertungenDatenbank().ausfuehrenKursProMitarbeiter(dbInhalt);
+                    rueckgabeListe = new AuswertungenDatenbank().ausfuehrenKursProMitarbeiter(dbInhalt);
                     break;
 
                 case AUSWERTUNG_ZERTIFIKAT_PRO_MITARBEITER:
                     statement.setInt(1,parameter);
 
                     dbInhalt = statement.executeQuery();
-                    rueckgabeHash = new AuswertungenDatenbank().ausfuehrenZertifikatProMitarbeiter(dbInhalt);
+                    rueckgabeListe = new AuswertungenDatenbank().ausfuehrenZertifikatProMitarbeiter(dbInhalt);
                     break;
 
                 case ZERTIFIKATE_PRO_MITARBEITER:
                     statement.setInt(1,parameter);
 
                     dbInhalt = statement.executeQuery();
-                    rueckgabeHash = new MitarbeiterDatenbank().zertifikatVerlaengern(dbInhalt);
+                    rueckgabeListe = new MitarbeiterDatenbank().zertifikatVerlaengern(dbInhalt);
                     break;
 
                 case MITARBEITER_LOESCHEN: case KURS_LOESCHEN: case ZERTIFIKAT_LOESCHEN:
@@ -256,7 +256,7 @@ public class Datenbank {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-            return rueckgabeHash;
+            return rueckgabeListe;
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

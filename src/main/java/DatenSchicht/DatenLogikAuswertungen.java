@@ -4,7 +4,6 @@ import Logik.Auswertungen.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
 
 public interface DatenLogikAuswertungen {
@@ -25,9 +24,9 @@ public interface DatenLogikAuswertungen {
 
     public List storeproduceZertifikateAlleMitarbeiterGueltigkeit(String datumBis);
 
-    public HashMap<KursProMitarbeiter, Integer> storeproduceKursproMitarbeiter(int mitarbeiterID);
+    public List<KursProMitarbeiter> storeproduceKursproMitarbeiter(int mitarbeiterID);
 
-    public HashMap<ZertifikatProMitarbeiter, Integer> storeproduceZertifikatproMitarbeiter(int mitarbeiterID);
+    public List<ZertifikatProMitarbeiter> storeproduceZertifikatproMitarbeiter(int mitarbeiterID);
 
     public List<WeiterbildungAlleMitarbeiterZeitraum> ausfuehrenWeiterbildungAlleMitarbeiterZeitraum(ResultSet dbInhalt) throws SQLException;
 
@@ -45,8 +44,8 @@ public interface DatenLogikAuswertungen {
 
     public List<ZertifikateAlleMitarbeiterGueltigkeit> ausfuehrenZertifikateAlleMitarbeiterGueltigkeit(ResultSet dbInhalt) throws SQLException;
 
-    public HashMap<KursProMitarbeiter,Integer> ausfuehrenKursProMitarbeiter(ResultSet dbInhalt) throws SQLException;
+    public List<KursProMitarbeiter> ausfuehrenKursProMitarbeiter(ResultSet dbInhalt) throws SQLException;
 
-    public HashMap<ZertifikatProMitarbeiter,Integer> ausfuehrenZertifikatProMitarbeiter(ResultSet dbInhalt) throws SQLException;
+    public List<ZertifikatProMitarbeiter> ausfuehrenZertifikatProMitarbeiter(ResultSet dbInhalt) throws SQLException;
 
 }

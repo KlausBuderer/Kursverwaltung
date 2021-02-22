@@ -1,13 +1,15 @@
 package Logik.Mitarbeiter;
 
-import DatenSchicht.*;
-import Logik.Kurse.*;
-import PraesentationSchicht.*;
-import Logik.Zertifikate.*;
+import DatenSchicht.DatenLogik;
+import DatenSchicht.MitarbeiterDatenbank;
+import Logik.Kurse.KursSuchen;
+import Logik.Kurse.Kurse;
+import Logik.Zertifikate.Zertifikate;
+import Logik.Zertifikate.ZertifikateSuchen;
+import PraesentationSchicht.BefehlsZeilenSchnittstelle;
+import PraesentationSchicht.Tabelle;
 
-
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class MitarbeiterBescheinigung {
 
@@ -169,8 +171,6 @@ public class MitarbeiterBescheinigung {
                 return;
             }
 
-
-
             //Das aktuelle Datum zeigen
             BefehlsZeilenSchnittstelle.bildReinigen(titelName,2);
             Tabelle tabelleAlt = new Tabelle();
@@ -224,10 +224,10 @@ public class MitarbeiterBescheinigung {
 
         DatenLogik mitarbeiterDatenbank = new MitarbeiterDatenbank();
         // Abfrage Datenbank nach Kostenstellen
-        HashMap<MitarbeiterBescheinigung, Integer> mitarbeiterBescheinigungsMap = (HashMap<MitarbeiterBescheinigung, Integer>) ((MitarbeiterDatenbank) mitarbeiterDatenbank).zertifikatVerlaengernListe(mitarbeiterId);
+        List<MitarbeiterBescheinigung> mitarbeiterBescheinigungsListe = ((MitarbeiterDatenbank) mitarbeiterDatenbank).zertifikatVerlaengernListe(mitarbeiterId);
 
         // Schreiben der Kostenstellen in ein Array
-        MitarbeiterBescheinigung[] mitarbeiterBescheinigungsArray = new MitarbeiterBescheinigung[mitarbeiterBescheinigungsMap.size() + 1];
+        MitarbeiterBescheinigung[] mitarbeiterBescheinigungsArray = new MitarbeiterBescheinigung[mitarbeiterBescheinigungsListe.size() + 1];
         arrayLaenge = mitarbeiterBescheinigungsArray.length;
 
         BefehlsZeilenSchnittstelle.bildReinigen("Zertifikatsauswahlsliste", 2);
@@ -238,11 +238,10 @@ public class MitarbeiterBescheinigung {
             tabelle.vertikaleLinieSetzen(true);
 
 
-            for (Map.Entry<MitarbeiterBescheinigung, Integer> map : mitarbeiterBescheinigungsMap.entrySet()) {
-                mitarbeiterBescheinigungsArray[i] = map.getKey();
+            for (MitarbeiterBescheinigung mitarbeiterBescheinigung : mitarbeiterBescheinigungsListe) {
 
                 // Ausgeben des Array
-                String[] tempArray = map.getKey().attributenArrayErstellen();
+                String[] tempArray = mitarbeiterBescheinigung.attributenArrayErstellen();
                 tempArray[0] = i + ".";
                 tabelle.zeileHinzufuegen(tempArray);
                 i++;
@@ -259,7 +258,7 @@ public class MitarbeiterBescheinigung {
         BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Bitte wählen sie ein Zertifikat aus der Liste (1-" + (arrayLaenge - 1) + ")");
         auswahl = BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(arrayLaenge);
 
-        return mitarbeiterBescheinigungsArray[auswahl];
+        return mitarbeiterBescheinigungsListe.get(auswahl -1 );
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

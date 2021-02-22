@@ -6,7 +6,8 @@ import Logik.Services;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 import static Logik.Mitarbeiter.MitarbeiterBescheinigung.kontextAnlegen.KURS;
 import static Logik.Mitarbeiter.MitarbeiterBescheinigung.kontextAnlegen.ZERTIFIKAT;
@@ -38,7 +39,7 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
     Aufruf Mitarbeiter suchen (Schnittstelle von Logikpaketen zu den Datenbankpaketen)
    Parameter: MySql Query
      */
-    public HashMap<?, Integer> suchen(String suchkriterium, String suchText){
+    public List<?> suchen(String suchkriterium, String suchText){
         return datenInDbSuchen(queryFuerAnzahlAbfrage(suchkriterium,suchText));
     }
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -71,7 +72,7 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
  Aufruf eines Store Procedure der Datenbank umd eine Liste von Zertifikaten die einem Mitarbeiter zugewiesen sind auszugeben
  Parameter: Id des Mitarbeiters
   */
-    public HashMap zertifikatVerlaengernListe(int mitarbeiterId){
+    public List zertifikatVerlaengernListe(int mitarbeiterId){
 
        return storeProcedureAufrufen("{ call SP_ANZEIGEN_MA_ZERT(?) }",mitarbeiterId,kontext.ZERTIFIKATE_PRO_MITARBEITER);
     }
@@ -130,11 +131,11 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zum Erstellen eines Hashmap von Objekten der Klasse Auswertungen.MitarbeiterAuswertung
+    Methode zum Erstellen einer Liste von Objekten der Klasse Auswertungen.MitarbeiterAuswertung
      */
-    protected HashMap mitarbeiterListeErstellen(ResultSet dbInhalt) throws SQLException {
+    protected List mitarbeiterListeErstellen(ResultSet dbInhalt) throws SQLException {
 
-        HashMap<Mitarbeiter,Integer> mitarbeiterHash = new HashMap<>();
+        List<Mitarbeiter> mitarbeiterListe = new ArrayList<>();
         Mitarbeiter mitarbeiter;
 
 
@@ -152,18 +153,18 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
 
             mitarbeiter = new Mitarbeiter(id ,personalNummer, kostenstelleId, anrede, vorname, nachname ,jobTitel, geburtstag, statusAnstellung);
 
-            mitarbeiterHash.put(mitarbeiter,id);
+            mitarbeiterListe.add(mitarbeiter);
         }
-        return mitarbeiterHash;
+        return mitarbeiterListe;
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zum Erstellen eines Hashmap von Objekten der Klasse MitarbeiterBescheinigung
+    Methode zum Erstellen einer Liste von Objekten der Klasse MitarbeiterBescheinigung
      */
-    protected HashMap zertifikatVerlaengern(ResultSet dbInhalt) throws SQLException {
+    protected List zertifikatVerlaengern(ResultSet dbInhalt) throws SQLException {
 
-        HashMap<MitarbeiterBescheinigung,Integer> mitarbeiterBescheinigungHashMap = new HashMap<>();
+        List<MitarbeiterBescheinigung> mitarbeiterBescheinigungListe = new ArrayList<>();
         MitarbeiterBescheinigung mitarbeiterBescheinigung;
 
 
@@ -179,9 +180,9 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
 
             mitarbeiterBescheinigung = new MitarbeiterBescheinigung(maBescheinigungId ,zertAblDatum, mitarbeiterID, vorname, nachname, zertifikatsTitel,zertifikatsbeschreibung);
 
-            mitarbeiterBescheinigungHashMap.put(mitarbeiterBescheinigung,maBescheinigungId);
+            mitarbeiterBescheinigungListe.add(mitarbeiterBescheinigung);
         }
-        return mitarbeiterBescheinigungHashMap;
+        return mitarbeiterBescheinigungListe;
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -253,7 +254,7 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
     // Wird beim Ausbau der Software implementiert
 
     @Override
-    public HashMap<?, Integer> datenAuslesen(String tabelle) {
+    public List<?> datenAuslesen(String tabelle) {
         return null;
     }
 }

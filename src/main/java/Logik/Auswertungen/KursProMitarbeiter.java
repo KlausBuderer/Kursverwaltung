@@ -7,8 +7,7 @@ import Logik.Mitarbeiter.MitarbeiterSuche;
 import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 import PraesentationSchicht.Tabelle;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 
 public class KursProMitarbeiter {
@@ -41,7 +40,7 @@ public class KursProMitarbeiter {
     public void auswertungAusgeben() {
         Mitarbeiter mitarbeiterIdentification;
 
-        HashMap<KursProMitarbeiter, Integer> AusgabeKursProMitarbeiter;
+        List<KursProMitarbeiter> AusgabeKursProMitarbeiter;
 
         mitarbeiterIdentification = new MitarbeiterSuche().mitarbeiterSuchen();
 
@@ -55,9 +54,9 @@ public class KursProMitarbeiter {
         tabelle.kopfzeileSetzen(TITELZEILE);
         tabelle.vertikaleLinieSetzen(true);
 
-        for (Map.Entry<KursProMitarbeiter, Integer> map : AusgabeKursProMitarbeiter.entrySet()) {
+        for (KursProMitarbeiter kursProMitarbeiter : AusgabeKursProMitarbeiter) {
 
-            tabelle.zeileHinzufuegen(map.getKey().attributenArrayBefuellen());
+            tabelle.zeileHinzufuegen(kursProMitarbeiter.attributenArrayBefuellen());
         }
         tabelle.ausgabe();
         BefehlsZeilenSchnittstelle.beliebigeTasteDrueckenAnzeigen();
