@@ -36,23 +36,34 @@ public class StammdatenAlleMitarbeiter {
 
     public void auswertungAusgeben() {
 
-        List<StammdatenAlleMitarbeiter> AusgabeStammdatenAlleMitarbeiter;
+        //Performancetest Stammdaten der Mitarbeiter Start
+       // long time = System.nanoTime();
 
-        //Aufruf Store Procedure SP_ANZEIGEN_ALLE_MA_STAMMDATEN
-        DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
-        AusgabeStammdatenAlleMitarbeiter = auswertungen.storeproduceStammdatenAlleMitarbeiter();
+        // 100 Testläufe
+        //for (int i = 0; i < 100; i++) {
 
-        Tabelle tabelle = new Tabelle();
-        tabelle.kopfzeileSetzen(TITELZEILE);
-        tabelle.vertikaleLinieSetzen(true);
-        for (StammdatenAlleMitarbeiter sam  : AusgabeStammdatenAlleMitarbeiter) {
+            List<StammdatenAlleMitarbeiter> AusgabeStammdatenAlleMitarbeiter;
 
-            tabelle.zeileHinzufuegen(sam.attributenArrayBefuellen());
 
+            //Aufruf Store Procedure SP_ANZEIGEN_ALLE_MA_STAMMDATEN
+            DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
+            AusgabeStammdatenAlleMitarbeiter = auswertungen.storeproduceStammdatenAlleMitarbeiter();
+
+            Tabelle tabelle = new Tabelle();
+            tabelle.kopfzeileSetzen(TITELZEILE);
+            tabelle.vertikaleLinieSetzen(true);
+            for (StammdatenAlleMitarbeiter sam : AusgabeStammdatenAlleMitarbeiter) {
+
+                tabelle.zeileHinzufuegen(sam.attributenArrayBefuellen());
+            }
+            tabelle.ausgabe();
+
+      //  }
+            //Performancetest Stammdaten der Mitarbeiter Ende
+            long duration = (System.nanoTime() - AuswertungenDatenbank.time) / 1000000; // stopp
+            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Performancemessung: " + duration + " Millisekunden");
+            BefehlsZeilenSchnittstelle.beliebigeTasteDrueckenAnzeigen();
         }
-        tabelle.ausgabe();
-        BefehlsZeilenSchnittstelle.beliebigeTasteDrueckenAnzeigen();
-    }
 
     private String[] attributenArrayBefuellen() {
 

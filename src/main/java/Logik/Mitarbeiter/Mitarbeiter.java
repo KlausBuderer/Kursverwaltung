@@ -169,7 +169,7 @@ public class Mitarbeiter extends Services {
 
         //Mitarbeitersuchen der geändert werden soll
         MitarbeiterSuche mitarbeiterSuche = new MitarbeiterSuche();
-        //Falls kein Mitarbeiter zurückgegeben wird wird abgebrochen ist wird abgebrochen
+        //Falls kein Mitarbeiter zurückgegeben wird, wird abgebrochen
         try {
             mitarbeiter = mitarbeiterSuche.mitarbeiterSuchen();
             objektUebergeben(mitarbeiter);

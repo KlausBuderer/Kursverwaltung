@@ -9,6 +9,8 @@ import java.util.List;
 
 public class AuswertungenDatenbank extends Datenbank implements DatenLogikAuswertungen {
 
+    public static long time;
+
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -85,6 +87,7 @@ public class AuswertungenDatenbank extends Datenbank implements DatenLogikAuswer
 
         List<WeiterbildungAlleMitarbeiterZeitraum> weiterbildungAlleMitarbeiterliste = new ArrayList<>();
         WeiterbildungAlleMitarbeiterZeitraum weiterbildungAlleMitarbeiter;
+
 
         while (dbInhalt.next()) {
 
@@ -170,6 +173,7 @@ public class AuswertungenDatenbank extends Datenbank implements DatenLogikAuswer
         List<ZertifikateAlleMitarbeiter> zertifikateAlleMitarbeiterliste = new ArrayList<>();
         ZertifikateAlleMitarbeiter zertifikateAlleMitarbeiter;
 
+
         while (dbInhalt.next()) {
 
             int personalnummer = dbInhalt.getInt("personalnummer");
@@ -192,6 +196,9 @@ public class AuswertungenDatenbank extends Datenbank implements DatenLogikAuswer
      */
     public List<StammdatenAlleMitarbeiter> ausfuehrenStammdatenAlleMitarbeiter(ResultSet dbInhalt) throws SQLException {
 
+        //Performancetest
+        time = System.nanoTime();
+
         List<StammdatenAlleMitarbeiter> stammdatenAlleMitarbeiterliste = new ArrayList<>();
         StammdatenAlleMitarbeiter stammdatenAlleMitarbeiter;
 
@@ -209,6 +216,8 @@ public class AuswertungenDatenbank extends Datenbank implements DatenLogikAuswer
 
             stammdatenAlleMitarbeiterliste.add(stammdatenAlleMitarbeiter);
         }
+
+
         return stammdatenAlleMitarbeiterliste;
     }
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

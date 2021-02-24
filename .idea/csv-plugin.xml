@@ -115,7 +115,21 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\src\main\java\Logik\Auswertungen\KostenstellenAlle.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\main\java\Logik\Auswertungen\KursProMitarbeiter.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\src\main\java\Logik\Auswertungen\StammdatenAlleMitarbeiter.java">
           <value>
             <Attribute>
               <option name="separator" value=";" />

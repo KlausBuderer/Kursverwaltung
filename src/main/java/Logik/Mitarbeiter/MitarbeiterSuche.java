@@ -13,7 +13,7 @@ public class MitarbeiterSuche{
 
 
     private String suchText;
-    private final String[] TABELLENHEADER = {"Nr.","Personalnummer","Nachname","Vorname","Geburtsdatum","Abteilung","Jobtitel","Status", "Anrede"};
+    private final String[] TABELLENHEADER = {"Nr.","Personalnummer", "Anrede","Nachname","Vorname","Geburtsdatum","Abteilung","Jobtitel","Status"};
     private final String[] SUCHKRITERIEN = {"Personalnummer","Nachname","Vorname","Geburtsdatum","Abteilung","Jobtitel","Status", "Anrede"};
     private final String[] MYSQL_SPALTEN_NAMEN = {"PersonalNr","Nachname","Vorname","Geburtsdatum","KostenstelleID","Jobtitel","Statusmitarbeiter","Anrede"};
     private String[] STATUS_ARRAY = {"angestellt", "ausgetreten"};

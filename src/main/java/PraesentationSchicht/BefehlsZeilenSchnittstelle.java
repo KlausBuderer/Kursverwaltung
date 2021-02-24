@@ -106,7 +106,7 @@ public final class BefehlsZeilenSchnittstelle {
 
             System.out.println();
 
-            ausgabeOhneAbsatz(schriftfarbe + "Wählen sie das gewünschte menü (1-7 oder 90 / 99): " + ANSI_RESET);
+            ausgabeOhneAbsatz(schriftfarbe + "Wählen sie das gewünschte Menü (1-7 oder 90 / 99): " + ANSI_RESET);
             auswahlString = scan.next();
 
             // ueberprueft ob die Eingabe eine Ganzzahl [1-(laenge des Untermenues)] ist
@@ -192,7 +192,7 @@ public final class BefehlsZeilenSchnittstelle {
                 ausgabeMitAbsatz(schriftfarbe + untermenue + ANSI_RESET);
             }
             System.out.println();
-            ausgabeOhneAbsatz(schriftfarbe + "Wählen sie das gewünschte Untermenü (1-" + (unterMenue.length) + ") oder (99 menü verlassen): " + ANSI_RESET);
+            ausgabeOhneAbsatz(schriftfarbe + "Wählen sie das gewünschte Untermenü (1-" + (unterMenue.length) + ") oder (99 Menü verlassen): " + ANSI_RESET);
 
             //Liest Eingabe als String ein um zu ueberpfuefen ob die Eingabe gueltig ist
             auswahlString = scan.next();

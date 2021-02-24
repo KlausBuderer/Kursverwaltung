@@ -12,7 +12,6 @@ import java.util.List;
 public class KostenstellenAlle {
 
     private int kostenstellennummer;
-
     private String bezechnungkostenstelle;
     private String kostenstellenverantwortlichePerson;
 
@@ -30,18 +29,20 @@ public class KostenstellenAlle {
     public void auswertungAusgeben() {
 
 
-        List<KostenstellenAlle> AusgabeKostenstellenAlle;
+        List<KostenstellenAlle> ausgabeKostenstellenAlle;
 
 
         //Aufruf Store Procedure SP_ANZEIGEN_ALLE_KOSTENSTELLEN
 
-        DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
-        AusgabeKostenstellenAlle = auswertungen.storeproduceKostenstellenAlle();
+            DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
+
+            ausgabeKostenstellenAlle = auswertungen.storeproduceKostenstellenAlle();
 
         Tabelle tabelle = new Tabelle();
         tabelle.kopfzeileSetzen(TITELZEILE);
         tabelle.vertikaleLinieSetzen(true);
-        for (KostenstellenAlle ksa  : AusgabeKostenstellenAlle) {
+
+        for (KostenstellenAlle ksa  : ausgabeKostenstellenAlle) {
 
             tabelle.zeileHinzufuegen(ksa.attributenArrayBefuellen());
 
@@ -49,6 +50,7 @@ public class KostenstellenAlle {
         tabelle.ausgabe();
         BefehlsZeilenSchnittstelle.beliebigeTasteDrueckenAnzeigen();
     }
+
 
     private String[] attributenArrayBefuellen() {
 
