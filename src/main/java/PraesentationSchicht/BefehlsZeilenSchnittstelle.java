@@ -408,10 +408,9 @@ public final class BefehlsZeilenSchnittstelle {
     Rueckgabe = Korrektes Datum als String
      */
     public static String pruefeDatum() {
-
         Scanner scan = new Scanner(System.in);
 
-        String sDatumFormat= "dd.MM.yyyy";
+        String datumFormat= "dd.MM.yyyy";
         boolean korrekteEingabe = false;
         String datum = "";
         Date date;
@@ -420,21 +419,21 @@ public final class BefehlsZeilenSchnittstelle {
             try {
                 //Einlesen des Datums
                 datum = scan.next();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(sDatumFormat);
-                simpleDateFormat.setLenient(false);
-                //Pruefen ob das korrekte Format und ein reales Datum eingegeben wurde
-                date = simpleDateFormat.parse(datum);
-                //Umformatieren des Datum für die Datenbank
-                simpleDateFormat.applyPattern("yyyy-MM-dd");
-                datum = simpleDateFormat.format(date);
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat(datumFormat);
+                        simpleDateFormat.setLenient(false);
+                            //Pruefen ob das korrekte Format und ein reales Datum eingegeben wurde
+                                date = simpleDateFormat.parse(datum);
+                            //Umformatieren des Datum für die Datenbank
+                        simpleDateFormat.applyPattern("yyyy-MM-dd");
+                    datum = simpleDateFormat.format(date);
                 korrekteEingabe = true;
 
             } catch (ParseException e) {
                 //Bei falscher Eingabe wird die Schleife wiederholt
                 ausgabeMitAbsatz("Ungueltiges Datum oder falsches Format");
-                ausgabeMitAbsatz("Bitte verwenden sie folgendes Format: dd.MM.yyyy");
-                ausgabeOhneAbsatz("");
-                korrekteEingabe = false;
+                    ausgabeMitAbsatz("Bitte verwenden sie folgendes Format: dd.MM.yyyy");
+                        ausgabeOhneAbsatz("");
+                 korrekteEingabe = false;
 
             } catch (IllegalArgumentException e) {
                 ausgabeMitAbsatz("Fehler");
