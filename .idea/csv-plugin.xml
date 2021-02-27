@@ -3,6 +3,34 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="C:\Program Files\Java\jdk-11.0.9\lib\src.zip!\java.sql\java\sql\DriverManager.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Users\klaus\.gradle\caches\modules-2\files-2.1\mysql\mysql-connector-java\8.0.22\fbef0281a0355dd3fa36a4146d7916eed6e904df\mysql-connector-java-8.0.22-sources.jar!\com\mysql\cj\jdbc\ConnectionImpl.java">
+          <value>
+            <Attribute>
+              <option name="separator" value=";" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Users\klaus\.gradle\caches\modules-2\files-2.1\mysql\mysql-connector-java\8.0.22\fbef0281a0355dd3fa36a4146d7916eed6e904df\mysql-connector-java-8.0.22-sources.jar!\com\mysql\cj\jdbc\JdbcPreparedStatement.java">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="C:\Users\klaus\.gradle\caches\modules-2\files-2.1\mysql\mysql-connector-java\8.0.22\fbef0281a0355dd3fa36a4146d7916eed6e904df\mysql-connector-java-8.0.22-sources.jar!\com\mysql\cj\jdbc\PreparedStatementWrapper.java">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\src\main\java\DatenSchicht\AuswertungenDatenbank.java">
           <value>
             <Attribute>

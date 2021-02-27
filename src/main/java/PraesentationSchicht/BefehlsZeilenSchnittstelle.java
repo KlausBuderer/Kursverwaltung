@@ -365,7 +365,7 @@ public final class BefehlsZeilenSchnittstelle {
         //Die Zahl darf maximal 11 stellig sein
         do {
             eingabe = scan.next();
-            if(!(eingabe.length() > 11 || eingabe.isEmpty())) {
+            if(!(eingabe.length() > 9 || eingabe.isEmpty())) {
                 korrekteEingabe = true;
                 if (eingabeIntPruefen(eingabe)) {
                     return korrekterWert = Integer.parseInt(eingabe);

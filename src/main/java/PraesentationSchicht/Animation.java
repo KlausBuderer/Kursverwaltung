@@ -26,6 +26,7 @@ public class Animation {
         System.out.println("****************************************************************************************************************");
         BefehlsZeilenSchnittstelle.verzoegerung(dauer);
         System.out.println("                                                                              By Bruno Thurnherr & Klaus Buderer");
+        BefehlsZeilenSchnittstelle.verzoegerung(2000);
 
 
 

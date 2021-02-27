@@ -31,7 +31,7 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
     Parameter: Objekt des Aufrufers
      */
     public void datenMutation(Services services){
-        datenBearbeiten(updateQuerry((Mitarbeiter) services));
+        datenBearbeiten(updateStatementErstellen((Mitarbeiter) services));
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -80,9 +80,10 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
     /*
        //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     /*
-   Aufruf eines Store Procedure der Datenbank umd eine Liste von Zertifikaten die einem Mitarbeiter zugewiesen sind auszugeben
+   Aufruf eines Store Procedure der Datenbank um die Existenz einer Personalnummer zu prüfen
    Parameter: Id des Mitarbeiters
-   */
+   Rückgabe: String Existiert / Exisitiert nicht
+     */
     public String nummerAufExistenzPruefen(int mitarbeiterId){
 
       return  storeProcedureAufrufen("{ call SP_PRUEFEN_MA_NR(?,?) }",mitarbeiterId);
@@ -224,9 +225,9 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
        /*
-    Methode zur Erstellung eines Querrys fuer einen Update
+    Methode zur Erstellung eines Statement fuer ein Update
      */
-    private String updateQuerry(Mitarbeiter mitarbeiter){
+    private String updateStatementErstellen(Mitarbeiter mitarbeiter){
 
         return "Update `itwisse_kursverwaltung`.`tblMitarbeiter` SET" +
                 "`PersonalNr` = '"            + mitarbeiter.getPersonalNummer() +
@@ -240,6 +241,7 @@ public class MitarbeiterDatenbank extends Datenbank implements DatenLogikMitarbe
                 "' WHERE `ID` = "              + mitarbeiter.getMitarbeiterId() +";";
     }
 
+ //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   /*
     Methode zur Erstellung eines Querrys fuer einen Update
      */

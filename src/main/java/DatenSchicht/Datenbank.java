@@ -127,35 +127,26 @@ public class Datenbank {
     /*
     Methode zur Bearbeitung einer Tabelle von der Datenbank
      */
-
-    public boolean datenBearbeiten(String query) {
-
-        boolean bearbeitungErfolgreich;
+    public void datenBearbeiten(String statement) {
 
         try {
-
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
-            PreparedStatement ps = connection.prepareStatement(query);
-            // Ausführen des Querys
-            ps.executeUpdate();
+            PreparedStatement ps = connection.prepareStatement(statement);
 
-            bearbeitungErfolgreich = true;
+            // Ausführen des Statements
+            ps.executeUpdate();
 
         } catch (SQLException | ClassNotFoundException sqlException) {
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Probleme mit der Bearbeitung der Datenbank aufgetreten");
-            bearbeitungErfolgreich = false;
         }
-
-        if (bearbeitungErfolgreich) {
 
             try {
                 connection.close();
             } catch (SQLException throwables) {
-                throwables.printStackTrace();
+                BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Fehler beim Ausführen des Statements!");
             }
-        }
-        return bearbeitungErfolgreich;
+
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -372,35 +363,29 @@ public class Datenbank {
      */
     public String storeProcedureAufrufen(String query, int parameter) {
 
-
         Connection connection = null;
         CallableStatement statement = null;
         ResultSet dbInhalt = null;
         String antwortDatenbank = "";
 
         try {
-
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(Einstellungen.url, Einstellungen.benutzer, Einstellungen.passwort);
             statement = connection.prepareCall(query);
-
 
                     statement.setInt(1, parameter);
                     statement.executeQuery();
                     antwortDatenbank = statement.getString(2);
 
-
         } catch (SQLException | ClassNotFoundException sqlException) {
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Probleme mit der Datenbank aufgetreten");
         }
-
         try {
             connection.close();
             statement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
         return antwortDatenbank;
     }
 

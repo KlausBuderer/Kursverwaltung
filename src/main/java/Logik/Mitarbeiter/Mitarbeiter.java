@@ -23,7 +23,7 @@ public class Mitarbeiter extends Services {
     private String jobTitel;
     private String geburtstag;
     private String mitarbeiterStatus;
-    private String kostenstellenBezeichnung;
+    private String kostenstellenBezeichnung = " ";
 
     public Mitarbeiter() {
         untermenueAnzeigen();
@@ -167,6 +167,7 @@ public class Mitarbeiter extends Services {
         boolean abschliessen = true;
         Mitarbeiter mitarbeiter;
 
+        do {
         //Mitarbeitersuchen der geändert werden soll
         MitarbeiterSuche mitarbeiterSuche = new MitarbeiterSuche();
         //Falls kein Mitarbeiter zurückgegeben wird, wird abgebrochen
@@ -178,7 +179,7 @@ public class Mitarbeiter extends Services {
         }
 
         //Abfrage was geändert werden soll
-        do {
+
             BefehlsZeilenSchnittstelle.bildReinigen(titelName, 2);
             int i = 1;
             for (String spalte : spaltenArray) {
@@ -196,7 +197,14 @@ public class Mitarbeiter extends Services {
                 case 1:
                     //Personalnummer
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Aktuell: " + personalNummer);
-                    personalNummer = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie die Personalnummer ein: ");
+                    int zaehler = 0;
+                    //Prüfung ob die Nummer bereits vorhanden ist
+                    do {
+                        if(zaehler > 0){BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Personalnummer bereits vergeben!");};
+                        personalNummer = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Personalnummer: ");
+                        zaehler++;
+                    }while(new MitarbeiterDatenbank().nummerAufExistenzPruefen(personalNummer).equals("EXISTIERT"));
+                    //personalNummer = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Geben sie die Personalnummer ein: ");
                     break;
                 case 2:
                     BefehlsZeilenSchnittstelle.bildReinigen(titelName, 2);
@@ -341,6 +349,7 @@ public class Mitarbeiter extends Services {
         this.geburtstag = mitarbeiter.geburtstag;
         this.mitarbeiterId = mitarbeiter.mitarbeiterId;
         this.kostenstelleId = mitarbeiter.kostenstelleId;
+        this.kostenstellenBezeichnung = mitarbeiter.kostenstellenBezeichnung;
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
