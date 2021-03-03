@@ -33,7 +33,7 @@ public class KursDatenbank extends Datenbank implements DatenLogik {
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Spezfischen Kurs in der Datenbank suchen
     public List<?> suchen(String suchkriterium, String suchText){
-        return datenInDbSuchen(queryFuerAnzahlAbfrage(suchkriterium,suchText));
+        return datenInDbSuchen(queryFuerSuchabfrage(suchkriterium,suchText));
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -113,7 +113,7 @@ public class KursDatenbank extends Datenbank implements DatenLogik {
       Methode die den query aus für die Suche nach Kursen
      Rueckgabewert: query als String
        */
-    private String queryFuerAnzahlAbfrage(String suchkriterium, String suchText){
+    private String queryFuerSuchabfrage(String suchkriterium, String suchText){
 
         String query = "`tblKurse` where `";
         String suche;

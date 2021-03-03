@@ -21,7 +21,7 @@ public class Budget extends ServicesAdmin {
     private String waehrung;
     private String kostenstellenBezeichnung;
 
-    private String[] KOPFZEILE = {" ","Kostenstelle", "Jahr", "Betrag", "Währung"};
+    private final String[] KOPFZEILE = {" ","Kostenstelle", "Jahr", "Betrag", "Währung"};
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Konstruktor erstellen eines Objekts mit Angaben der Utilities.Tabelle BudgetPeriode

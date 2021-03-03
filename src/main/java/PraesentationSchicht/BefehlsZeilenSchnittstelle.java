@@ -35,7 +35,6 @@ public final class BefehlsZeilenSchnittstelle {
     public static final String ANSI_VIOLETT = "\u001B[35m";
     public static final String ANSI_TUERKIS = "\u001B[36m";
     public static final String ANSI_WEISS = "\u001B[37m";
-    public static final String ANSI_USICHTBARER_TEXT = "\u001B[8m";
     public static String schriftfarbe = "";
 
 
@@ -513,7 +512,6 @@ public final class BefehlsZeilenSchnittstelle {
     public static String abfrageMitEingabeDatum(String ausgabe){
 
         String eingabe = "";
-        Scanner scan = new Scanner(System.in);
 
         ausgabeOhneAbsatz(ausgabe);
         eingabe = pruefeDatum();
@@ -589,7 +587,6 @@ public final class BefehlsZeilenSchnittstelle {
     public static String abfrageWaehrung(){
 
         String[] waehrungsArray = {"CHF","EUR","USD"};
-        Scanner scan = new Scanner(System.in);
 
         int i = 1;
 

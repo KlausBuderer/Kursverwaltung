@@ -14,8 +14,8 @@ public class Kostenstelle extends ServicesAdmin {
     private String bezeichnungKst = " ";
     private String kostenstelleVerantPerson;
 
-    private String[] KOPFZEILE = {"Nr.","Kostenstellen Nr.", "Verant. Person", "Bezeichnung"};
-    private String[] KOPFZEILE_ANZEIGE_EINGABE = {"Nr.","Kostenstellen Nr.", "Verant. Person", "Bezeichnung"};
+    private final String[] KOPFZEILE = {"Nr.","Kostenstellen Nr.", "Verant. Person", "Bezeichnung"};
+    private final String[] KOPFZEILE_ANZEIGE_EINGABE = {"Nr.","Kostenstellen Nr.", "Verant. Person", "Bezeichnung"};
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     //Konstruktor erstellen eines Objekts mit Angaben der Kostenstelle
     public Kostenstelle(int kostenstelleId, int konstenstelle, String bezeichnungKst, String kostenstelleVerantPerson){

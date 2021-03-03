@@ -16,8 +16,8 @@ public class MitarbeiterSuche{
     private final String[] TABELLENHEADER = {"Nr.","Personalnummer", "Anrede","Nachname","Vorname","Geburtsdatum","Abteilung","Jobtitel","Status"};
     private final String[] SUCHKRITERIEN = {"Personalnummer","Nachname","Vorname","Geburtsdatum","Abteilung","Jobtitel","Status", "Anrede"};
     private final String[] MYSQL_SPALTEN_NAMEN = {"PersonalNr","Nachname","Vorname","Geburtsdatum","KostenstelleID","Jobtitel","Statusmitarbeiter","Anrede"};
-    private String[] STATUS_ARRAY = {"angestellt", "ausgetreten"};
-    private String[] anredeArray = {"Frau", "Herr", "Andere"};
+    private final String[] STATUS_ARRAY = {"angestellt", "ausgetreten"};
+    private final String[] ANREDE_ARRAY = {"Frau", "Herr", "Andere"};
 
 
     public MitarbeiterSuche() {
@@ -122,12 +122,12 @@ public class MitarbeiterSuche{
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede: ");
                 int i = 1;
 
-                for (String waehrung : anredeArray) {
+                for (String waehrung : ANREDE_ARRAY) {
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(i + ". " + waehrung);
                     i++;
                 }
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede (1-3): ");
-                suchText = anredeArray[BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
+                suchText = ANREDE_ARRAY[BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
                 break;
             default:
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsche Eingabe!");

@@ -36,14 +36,7 @@ public class StammdatenAlleMitarbeiter {
 
     public void auswertungAusgeben() {
 
-        //Performancetest Stammdaten der Mitarbeiter Start
-       // long time = System.nanoTime();
-
-        // 100 Testläufe
-        //for (int i = 0; i < 100; i++) {
-
             List<StammdatenAlleMitarbeiter> AusgabeStammdatenAlleMitarbeiter;
-
 
             //Aufruf Store Procedure SP_ANZEIGEN_ALLE_MA_STAMMDATEN
             DatenLogikAuswertungen auswertungen = new AuswertungenDatenbank();
@@ -58,10 +51,7 @@ public class StammdatenAlleMitarbeiter {
             }
             tabelle.ausgabe();
 
-      //  }
-            //Performancetest Stammdaten der Mitarbeiter Ende
-            long duration = (System.nanoTime() - AuswertungenDatenbank.time) / 1000000; // stopp
-            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Performancemessung: " + duration + " Millisekunden");
+
             BefehlsZeilenSchnittstelle.beliebigeTasteDrueckenAnzeigen();
         }
 
@@ -72,3 +62,13 @@ public class StammdatenAlleMitarbeiter {
         return attributenArray;
     }
 }
+
+//Performancetest Stammdaten der Mitarbeiter Start
+// long time = System.nanoTime();
+
+// 100 Testläufe
+//for (int i = 0; i < 100; i++) {
+//  }
+//Performancetest Stammdaten der Mitarbeiter Ende
+//long duration = (System.nanoTime() - AuswertungenDatenbank.time) / 1000000; // stopp
+//            BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Performancemessung: " + duration + " Millisekunden");

@@ -31,6 +31,7 @@ public class KursverwaltungMain {
 
         }while(!verbindungAufgebaut);
 
+        //Applikation
         while(true) {
             if(Benutzerverwaltung.angemeldeterBenutzer.equals("")) {
                 BefehlsZeilenSchnittstelle.anmeldeFensterAusgeben();

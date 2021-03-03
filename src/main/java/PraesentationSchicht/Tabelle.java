@@ -67,7 +67,6 @@ public class Tabelle {
                 }
             }
 
-
             if(zeile.isEmpty()){
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Keine Treffer!");
             }else {
@@ -127,7 +126,5 @@ public class Tabelle {
             }
             System.out.println();
         }
-
-
 
 }

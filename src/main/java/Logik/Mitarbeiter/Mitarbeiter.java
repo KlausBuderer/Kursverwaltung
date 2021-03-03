@@ -8,11 +8,11 @@ import PraesentationSchicht.BefehlsZeilenSchnittstelle;
 public class Mitarbeiter extends Services {
 
 
-    private String[] unterMenue = {"1.  Mitarbeiter Anlegen","2.  Mitarbeiter Kurszuordnung", "3.  Mitarbeiter Zertifikatszuordnung", "4.  Zertifikat Verlängern",
+    private final String[] UNTERMENUE = {"1.  Mitarbeiter Anlegen","2.  Mitarbeiter Kurszuordnung", "3.  Mitarbeiter Zertifikatszuordnung", "4.  Zertifikat Verlängern",
             "5.  Mitarbeiter Mutation", "6.  Mitarbeiter löschen", "99. Hauptmenü"};
-    private String[] anredeArray = {"Frau", "Herr", "Neutral"};
-    private String[] statusArray = {"angestellt", "ausgetreten"};
-    private String[] KOPFZEILE = {" ","Personal Nummer", "Anrede", "Nachname","Vorname", "Geburtsdatum", "Kostenstelle", "Jobtitel", "Anstellungsstatus"};
+    private final String[] ANREDE_ARRAY = {"Frau", "Herr", "Neutral"};
+    private final String[] STATUS_ARRAY = {"angestellt", "ausgetreten"};
+    private final String[] KOPFZEILE = {" ","Personal Nummer", "Anrede", "Nachname","Vorname", "Geburtsdatum", "Kostenstelle", "Jobtitel", "Anstellungsstatus"};
 
     private int mitarbeiterId;
     private int personalNummer;
@@ -49,7 +49,7 @@ public class Mitarbeiter extends Services {
         boolean gueltigeEingabe = false;
 
         do {
-            switch (BefehlsZeilenSchnittstelle.unterMenue(unterMenue, "Logik/Mitarbeiter")) {
+            switch (BefehlsZeilenSchnittstelle.unterMenue(UNTERMENUE, "Logik/Mitarbeiter")) {
                 case 1:
                     datenAnlegen();
                     break;
@@ -94,12 +94,12 @@ public class Mitarbeiter extends Services {
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede: ");
             int i = 1;
 
-            for (String waehrung : anredeArray) {
+            for (String waehrung : ANREDE_ARRAY) {
                 BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(i + ". " + waehrung);
                 i++;
             }
             BefehlsZeilenSchnittstelle.ausgabeOhneAbsatz("Anrede (1-3): ");
-            anrede = anredeArray[BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
+            anrede = ANREDE_ARRAY[BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
 
             //Vorname
             vorname = BefehlsZeilenSchnittstelle.abfrageMitEingabeString("Vorname: ");
@@ -113,7 +113,7 @@ public class Mitarbeiter extends Services {
             //Personal Nummer
             int zaehler = 0;
             do {
-                if(zaehler > 0){BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Personalnummer bereits vergeben!");};
+                if(zaehler > 0){BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Personalnummer bereits vergeben!");}
                 personalNummer = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Personalnummer: ");
                 zaehler++;
             }while(new MitarbeiterDatenbank().nummerAufExistenzPruefen(personalNummer).equals("EXISTIERT"));
@@ -122,7 +122,7 @@ public class Mitarbeiter extends Services {
             //Jobtitel
             jobTitel = BefehlsZeilenSchnittstelle.abfrageMitEingabeFrei255("Jobtitel: ");
             //Status beim Anlegen automatisch true
-            mitarbeiterStatus = statusArray[0];
+            mitarbeiterStatus = STATUS_ARRAY[0];
 
             //kostenstelle (organisation)
             Kostenstelle kostenstelle = new Kostenstelle();
@@ -200,7 +200,7 @@ public class Mitarbeiter extends Services {
                     int zaehler = 0;
                     //Prüfung ob die Nummer bereits vorhanden ist
                     do {
-                        if(zaehler > 0){BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Personalnummer bereits vergeben!");};
+                        if(zaehler > 0){BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Personalnummer bereits vergeben!");}
                         personalNummer = BefehlsZeilenSchnittstelle.abfrageMitEingabeInt("Personalnummer: ");
                         zaehler++;
                     }while(new MitarbeiterDatenbank().nummerAufExistenzPruefen(personalNummer).equals("EXISTIERT"));
@@ -213,12 +213,12 @@ public class Mitarbeiter extends Services {
                    BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede: ");
                     int j = 1;
 
-                    for (String anrede : anredeArray) {
+                    for (String anrede : ANREDE_ARRAY) {
                         BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(j + ". " + anrede);
                         j++;
                     }
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede (1-3): ");
-                    anrede = anredeArray[BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
+                    anrede = ANREDE_ARRAY[BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(3) - 1];
                     break;
                 case 3:
                     //Nachname
@@ -258,12 +258,12 @@ public class Mitarbeiter extends Services {
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Mitarbeiterstatus: ");
                     int p = 1;
 
-                    for (String anrede : statusArray) {
+                    for (String anrede : STATUS_ARRAY) {
                         BefehlsZeilenSchnittstelle.ausgabeMitAbsatz(p + ". " + anrede);
                         p++;
                     }
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Anrede (1-2): ");
-                    mitarbeiterStatus = statusArray[BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1];
+                    mitarbeiterStatus = STATUS_ARRAY[BefehlsZeilenSchnittstelle.eingabeMitWertpruefung(2) - 1];
                 default:
                     BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsche Eingabe!");
                     break;

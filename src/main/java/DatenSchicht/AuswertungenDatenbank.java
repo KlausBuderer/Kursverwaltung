@@ -9,8 +9,6 @@ import java.util.List;
 
 public class AuswertungenDatenbank extends Datenbank implements DatenLogikAuswertungen {
 
-    public static long time;
-
 
     //---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -195,9 +193,6 @@ public class AuswertungenDatenbank extends Datenbank implements DatenLogikAuswer
     Rueckgabewert: Liste mit Objekten fuer jeden Tuple
      */
     public List<StammdatenAlleMitarbeiter> ausfuehrenStammdatenAlleMitarbeiter(ResultSet dbInhalt) throws SQLException {
-
-        //Performancetest
-        time = System.nanoTime();
 
         List<StammdatenAlleMitarbeiter> stammdatenAlleMitarbeiterliste = new ArrayList<>();
         StammdatenAlleMitarbeiter stammdatenAlleMitarbeiter;

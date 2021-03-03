@@ -20,8 +20,6 @@ public class Benutzerverwaltung {
     public static String angemeldeterBenutzer = "";
     public static String angemeldeteGruppe;
 
-
-
     private String benutzer;
     private String passwort;
     private String benutzergruppe;
@@ -29,8 +27,6 @@ public class Benutzerverwaltung {
 
     private final String[] BENUTZERGRUPPEN = {"ADMINISTRATOR", "BENUTZER"};
     private final String [] UNTERMENUE = {"1.  Benutzer Anlegen", "2.  Benutzer Löschen", "3.  Benutzer Passwort mutieren", "99. Hauptmenü"};
-
-
 
 
     //-----------------------------------------------------------------------------------------------------------------------------
@@ -87,7 +83,7 @@ public class Benutzerverwaltung {
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Es sind keine Benutzer auffindbar");
             return false;
         }
-        // Pruefen ob der Benutzerg existiert
+        // Pruefen ob der Benutzer existiert
         Benutzerverwaltung b;
 
             b = benutzerSuchen(benutzerListe,benutzername);
@@ -98,14 +94,13 @@ public class Benutzerverwaltung {
         }
         // Pruefen ob das Passwort korrekt ist
         if (b.passwort.equals(passwort)){
-            // Bei korrekter Eingabe Benutzer anmelden
 
+            // Bei korrekter Eingabe Benutzer anmelden
             angemeldeterBenutzer = b.benutzer;
             angemeldeteGruppe = b.benutzergruppe;
             return true;
         }else{
             BefehlsZeilenSchnittstelle.ausgabeMitAbsatz("Falsches Passwort");
-
         }
         return false;
     }

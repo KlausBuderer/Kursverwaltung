@@ -10,7 +10,6 @@ import java.util.List;
 public class KursSuchen {
 
     private String suchText;
-    private String query;
     private final String[] TABELLENHEADER = {"Nr.","Kurs Code", "Anbieter", "Kursbeschreibung",  "Kosten", "Währung", "Start-Datum", "End-Datum", "Durchführungsort"};
     private final String[] SUCHKRITERIEN = {"Kurs Code", "Anbieter", "Kursbeschreibung", "Durchfuehrungsort"};
     private final String[] SPALTENBEZEICHNUNG = {"KursCode", "Anbieter", "Kursbeschreibung", "Durchfuehrungsort"};
@@ -84,8 +83,6 @@ public class KursSuchen {
    Rueckgabewert: Suchtext als String
      */
     private String suchTextEinlesen(int auswahl) {
-
-        int suchZahl = 0;
 
             //Eingabe der Änderung die vorgenommen werden soll
         switch (auswahl) {
